@@ -4,27 +4,27 @@
 		"active": "Y",
 		"dept": "CS",
 		"category": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<a ui-sref='app.Payroll-CategoryView'><button type='button' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button></a> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"name": "Vijay",
 		"active": "Y",
 		"dept": "CS",
 		"category": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<a ui-sref='app.Payroll-CategoryView'><button type='button' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button></a> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"name": "mani",
 		"active": "N",
 		"dept": "ECE",
 		"category": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<a ui-sref='app.Payroll-CategoryView'><button type='button' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button></a> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"name": "Rafeeq",
 		"active": "Y",
 		"dept": "IT",
 		"category": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<a ui-sref='app.Payroll-CategoryView'><button type='button' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button></a> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	}
 ] }
