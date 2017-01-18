@@ -1,0 +1,60 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR | Employee Leave Management | Reset Leaves</h1>
+</div>
+<!-- <div class="wrapper-md" ng-controller="" style="padding-bottom: 0px"> -->
+<div class="wrapper-md"  style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <a ui-sref='app.ResetLeave-allEmp' class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-refresh"></i><span class="f-s-14 f-w-500">&nbsp; Reset Leaves of All Employees </span></a>
+  </div>
+  </div>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Reset Leaves
+    </div>
+    <div class="panel-body">
+      <div class="row">
+      <div class="col-md-12"><p><b>Leave Reset updates the employee's leave balance for all leave types. You can perform a Leave Reset for an individual employee, for all employees of a department, or for all employees in the institution.</b></p>
+        <br>
+      </div>
+      <div class="col-md-3">
+      <input class="form-control" placeholder="Employee Name or Number" type="text">
+      </div>
+      <div class="col-md-3">
+      <select ui-jq="chosen" class="w-full">
+        <option>Test</option>
+        <option>Test 2</option>
+      </select>
+      </div>
+      </div>
+      <hr>
+     <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/EmployeeLeaveMangement/resetleaves.json',
+          aoColumns: [
+            { mData: 'Name' },
+            { mData: 'EmployeeNumber' },
+            { mData: 'Department' },
+            { mData: 'LastResetDate' }
+          ]
+        }" class="table table-striped table table-bordered b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Name</th>
+            <th  style="width:15%">Employee Number</th>
+            <th  style="width:15%">Department</th>
+            <th  style="width:15%">Last Reset Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+   
+  </div>
+</div>

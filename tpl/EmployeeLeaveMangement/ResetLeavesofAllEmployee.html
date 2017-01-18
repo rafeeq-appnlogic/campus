@@ -1,0 +1,46 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR | Employee Leave Management | Reset Leaves of All Employees </h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Reset Leaves of All Employees
+    </div>
+    <div class="panel-body">
+      <div class="row">
+      <div class="col-md-12"><p><b>Leaves for all employees in the institution will be updated.</b></p>
+      </div>
+      </div>
+        <form class="bs-example form-horizontal ng-pristine ng-valid">
+          <div class="form-group">
+            <label class="col-lg-2 control-label">No. of Employees</label>
+            <div class="col-lg-3">
+              <p class="form-control-static">10</p>
+            </div>
+          </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Reset Remarks</label>
+              <div class="col-lg-3">
+                <textarea style=" width:100%" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Datepicker</label>
+            <div class="col-sm-3" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group w-md">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+            <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-10">
+                <button type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-refresh"></i><span class="f-s-14 f-w-500">&nbsp; Reset Leaves</span></button>
+              </div>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

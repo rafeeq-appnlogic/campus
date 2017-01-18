@@ -1,0 +1,121 @@
+<!-- list -->
+<ul class="nav">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    <span translate="aside.nav.HEADER">Navigation</span>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.dashboard-v1">
+      <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+      <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a href class="auto">      
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-warning text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-user icon"></i>
+      <span class="font-bold" translate="aside.nav.HR">HR</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span translate="aside.nav.HR">HR</span>
+        </a>
+      </li>
+      <li>
+        <a href class="auto">
+          <span class="pull-right text-muted">
+            <i class="fa fa-fw fa-angle-right text"></i>
+            <i class="fa fa-fw fa-angle-down  text-warning text-active"></i>
+          </span>
+          <!-- <b class="label bg-warning pull-right">2</b> -->
+          <span>Configuration</span>
+        </a>
+        <ul class="nav dker">
+          <li ui-sref-active="active">
+            <a ui-sref="app.Employee-Category">
+              <span>Employee Category</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.Employee-Department">
+              <span>Employee Department</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.Employee-Position">
+              <span>Employee Position</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.Employee-Grade">
+              <span>Employee Grade</span>
+            </a>
+          </li>
+          <!-- <li ui-sref-active="active">
+            <a ui-sref="app.Working-day">
+              <span>Working Day</span>
+            </a>
+          </li> -->
+        </ul>
+      </li>
+      <li>
+        <a href class="auto">
+          <span class="pull-right text-muted">
+            <i class="fa fa-fw fa-angle-right text"></i>
+            <i class="fa fa-fw fa-angle-down text-warning text-active"></i>
+          </span>
+          <!-- <b class="label bg-warning pull-right">2</b> -->
+          <span>PayRoll & PaySlip</span>
+        </a>
+        <ul class="nav dker">
+          <li ui-sref-active="active">
+            <a ui-sref="app.pr-category">
+              <span>PR Category</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.pr-group">
+              <span>PR Groups</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href class="auto">
+          <span class="pull-right text-muted">
+            <i class="fa fa-fw fa-angle-right text"></i>
+            <i class="fa fa-fw fa-angle-down text-warning text-active"></i>
+          </span>
+          <!-- <b class="label bg-info pull-right">2</b> -->
+          <span>Employee Leave Management</span>
+        </a>
+        <ul class="nav dker">
+          <li ui-sref-active="active">
+            <a ui-sref="app.Attendance-Register">
+              <span>Attendance Register</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.Attendance-Report">
+              <span>Attendance Report</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.Leave-Reset">
+              <span>Leave Reset</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.Leave-Application">
+              <span>Leave Application</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<!-- / list -->

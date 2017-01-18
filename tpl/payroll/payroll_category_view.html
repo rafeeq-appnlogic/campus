@@ -1,0 +1,92 @@
+<style>
+.tips {
+    background-color: #3f729b;
+    color: white;
+}
+.well, pre {
+    background-color: #ffffff !important;
+    border-color: #dee5e7;
+}
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Management | Payroll Category</h1>
+</div>
+<!-- <div class="wrapper-md" ng-controller="" style="padding-bottom: 0px"> -->
+<!-- <div class="wrapper-md"  style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <a ui-sref="app.pr-add"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Create Payroll Category </span></button></a>
+  </div>
+  </div>
+</div> -->
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Payroll Category View
+    </div>
+    <div class="well">
+    <legend>
+      Payroll Category Details
+    </legend>
+    <form class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Payroll Category name</label>
+              <div class="col-lg-3">
+                <input class="form-control" placeholder="Payroll Category name" type="text">
+              </div>
+              <label class="col-lg-2 control-label">Category code</label>
+              <div class="col-lg-3">
+                <input class="form-control" placeholder="Category code" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Value Type</label>
+              <div class="col-lg-3">
+                <input class="form-control" placeholder="Value Type" type="text">
+              </div>
+              <label class="col-lg-2 control-label">Default Value</label>
+              <div class="col-lg-3">
+                <input class="form-control" placeholder="Default Value" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-lg-2 control-label">Category type</label>
+              <div class="col-lg-10">
+                <div class="radio">
+                  <label class="i-checks">
+                    <input name="a" value="option2" checked="" type="radio">
+                    <i></i>
+                    Active
+                  </label>&nbsp;&nbsp;&nbsp; 
+                  <label class="i-checks">
+                    <input name="a" value="option2" type="radio">
+                    <i></i>
+                    InActive
+                  </label>
+                </div>
+              </div>
+            </div>
+            <legend>
+              Associated Payroll Groups
+            </legend>
+            <p class="text-muted" style="margin-left:15px">List of payroll groups that have been set up using this payroll category.</p>
+            <p></p>
+            <div class="form-group">
+            <div class="col-lg-8">
+              <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td class="col-md-3" style="text-align:center">Basic</td>
+                        <td class="col-md-3" style="text-align:center">Monthly</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            </div>
+          </form>
+    </div>
+    
+  </div>
+</div>
+

@@ -1,0 +1,80 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Configuration | Bank Details</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <!-- <button type="button" class="btn btn-primary btn-sm">Add</button> -->
+      <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#myModal"> <i class="glyphicon glyphicon-plus"> </i> Bank Details</button>
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/hrconfig/bank_datatable.json',
+          aoColumns: [
+            { mData: 'name' },
+            { mData: 'active' },
+            { mData: 'action' },
+          ]
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:70%">Bank Name</th>
+            <th  style="width:10%">Active</th>
+            <th  style="width:20%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+      <h4 class="modal-title" id="header">Bank Details</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+          <div class="col-md-offset-3">
+        <form id="FormValidation" method="post" action="" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Name</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control input-sm" name="EMP_BNK_NAME" id="EMP_BNK_NAME" placeholder="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Status</label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                                <input type="radio" name="EMP_BNK_ACTIVE" class="Active" id="radio_1" value="Y">Active
+                                        </label>
+                                                <label class="radio-inline">
+                                                <input type="radio" name="EMP_BNK_ACTIVE" class="Inactive" id="radio_2" value="N">Inactive
+                                                <input type="hidden" name="EMP_BNK_ACTIVE_YN" id="EMP_BNK_ACTIVE_YN">
+                                        </label>
+                                    </div>
+                                </div><br>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-primary btn-sm" name="" id="save">Create</button>
+                                        <button type="button" class="btn btn-warning btn-sm hidden" name="" id="update">Update</button>
+                                        <input type="hidden" class="updatedID">
+                                    </div>
+                                    <div class="col-md-2" id="cancel">
+                                        <button type="button" class=" btn btn-danger btn-sm" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+      </div>
+        </div>
+    </div>
+      </div>
+  </div>

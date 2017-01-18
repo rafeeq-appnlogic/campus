@@ -1,0 +1,15 @@
+{ "aaData": [
+	{
+		"Employee_Cat": "Test",
+		"Prefix": "Test Prefix",
+		"Active": "Y",
+		"Action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
+	},
+	{
+		"Employee_Cat": "Demo",
+		"Prefix": "Prefix Demo",
+		"Active": "N",
+		"Action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
+	}	
+	
+] }

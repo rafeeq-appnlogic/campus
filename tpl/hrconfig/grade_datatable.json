@@ -1,0 +1,42 @@
+{ "aaData": [
+	{
+		"grade": "test",
+		"Priority": "first",
+		"maxday": "10",
+		"maxweek": "5",
+		"active": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"grade": "test1",
+		"Priority": "first",
+		"maxday": "3",
+		"maxweek": "5",
+		"active": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"grade": "test3",
+		"Priority": "last",
+		"maxday": "11",
+		"maxweek": "2",
+		"active": "N",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"grade": "test4",
+		"Priority": "second",
+		"maxday": "7",
+		"maxweek": "1",
+		"active": "N",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"grade": "test5",
+		"Priority": "first",
+		"maxday": "10",
+		"maxweek": "5",
+		"active": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	}
+] }

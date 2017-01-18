@@ -1,0 +1,15 @@
+{ "aaData": [
+	{
+		"Employee": "Test",
+		"ResetDate": "11/4/2016",
+		"Remarks": "-",
+		"ResetBy": "Admin"
+	},
+	{
+		"Employee": "Test 1",
+		"ResetDate": "11/4/2016",
+		"Remarks": "-",
+		"ResetBy": "Admin"
+	}	
+	
+] }

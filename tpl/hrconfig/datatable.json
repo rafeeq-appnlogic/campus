@@ -1,0 +1,20 @@
+{ "aaData": [
+	{
+		"position_name": "Professor",
+		"emp_category": "TEST_DEMO",
+		"status": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"position_name": "Asst. Professor",
+		"emp_category": "TEST",
+		"status": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"position_name": "Admin",
+		"emp_category": "DEMO",
+		"status": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	}
+] }
