@@ -1,0 +1,216 @@
+<style type="text/css">
+  .form-group {
+    margin-bottom: 3px;
+}
+.form-group.adjust {
+    padding-bottom: 12px;
+}
+</style>
+
+<div class="container">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Employee Category</h4>
+        </div>
+        <div class="modal-body">
+          <form class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group adjust">
+              <label class="col-lg-2 control-label col-lg-offset-2">Name</label>
+              <div class="col-lg-5">
+                <input class="form-control" placeholder="Name" type="text">
+              </div>
+            </div>
+            <div class="form-group adjust">
+            <label class="col-lg-2 control-label col-lg-offset-2">Amopunt</label>
+              <div class="col-lg-5">
+                <input class="form-control" placeholder="Amount" type="text">
+              </div>
+            </div>
+            <div class="form-group adjust">
+              <div class="col-lg-offset-4 col-lg-10">
+                <button type="button" class="btn btn-sm btn-info">Add</button>
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR | Payroll & Payslip | Generate Employee Payslip  </h1>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Generate Employee Payslip 
+    </div>
+    <div class="panel-body">
+    <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled" method="get">
+    <legend>Generate Employee Payslip - Siva  </legend>
+      <div class="form-group col-md-12" ng-controller="DatepickerDemoCtrl" >
+          <div class="input-group w-md">
+            <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        </div>
+      <div class="form-group">
+          <label class="col-lg-2">Name </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>Siva(EMP045556)</b></p>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-lg-2">Department </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>English</b></p>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-lg-2">Position</label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>Junior</b></p>
+          </div>
+      </div>
+      <legend>Payroll Details</legend>
+        <div class="form-group">
+          <label class="col-lg-2">Payroll Group </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b> Current Payslip </b></p>
+          </div>
+        </div>
+            <div class="form-group">
+          <label class="col-lg-2">Payment Frequency</label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>  Monthly </b></p>
+          </div>
+        </div>
+        <legend>Payroll categories of this payroll group</legend>
+        <p>The payroll amounts are calculated based on how each payroll category is set up. You can edit the amounts if needed.</p>
+        <div class="col-md-12 row">
+        <div class="col-md-6 well" style="width: 49%;float: left; background-color: white;" >
+          <!-- <h4>Earnings</h4> -->
+          <legend>Earnings</legend>
+          <div class="form-group adjust">
+          <label class="col-lg-4">Basic Pay </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+             <input class="form-control" placeholder="Basic Pay" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust">
+          <label class="col-lg-4">Bonus</label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+             <input class="form-control" placeholder="Bonus" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust">
+          <label class="col-lg-4"></label>
+          <label class="col-lg-1"></label>
+          <div class="col-lg-5" style="padding-bottom: 7px;padding-top: 7px">
+             <a  data-toggle="modal" data-target="#myModal"><span class="label bg-success"><i class="fa fa-plus "></i> &nbsp;Add </span></a>
+          </div>
+          </div>
+          <!-- <div class="form-group">
+          <label class="col-lg-4">Housing Allowance </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-lg-4">Human Resource Allowance  </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-lg-4">Transport Allowance  </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div> -->
+          <div class="form-group" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px">
+          <label class="col-lg-4">Total Earnings </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+
+        </div>
+        <div class="col-md-6 well" style="width: 49%;float: right;background-color: white;">
+        <!-- <h4>Deductions</h4> -->
+        <legend>Deductions</legend>
+         <div class="form-group adjust ">
+          <label class="col-lg-4">LOP </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="LOP" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust">
+          <label class="col-lg-4">PF </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="PF" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust">
+          <label class="col-lg-4"></label>
+          <label class="col-lg-1"></label>
+          <div class="col-lg-5" style="padding-bottom: 7px;padding-top: 7px">
+             <a  data-toggle="modal" data-target="#myModal"><span class="label bg-success"><i class="fa fa-plus "></i> &nbsp;Add </span></a>
+          </div>
+          </div>
+          <!-- <div class="form-group">
+          <label class="col-lg-4">Provident Fund   </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div> -->
+          <div class="form-group" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px;">
+          <label class="col-lg-4">Total Deductions  </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+        </div>
+        </div>
+        <!-- <div class="col-md-12" style="background-color:  InactiveCaption;padding-bottom: 8px;line-height: 9px;font-size: 17px"> -->
+        <div class="col-md-12">
+            <div class="form-group" style="background-color: #F0F0F0;padding-top: 10px;padding-bottom: 2px;font-size: 16px;width: 1048px">
+              <label class="col-lg-2"><!-- <span class="label bg-primary">Net Pay </span> --><b> Net Pay</b></label>
+              <div class="col-lg-5">
+                <p class=""><b> Rs. 20000.00</b></p>
+              </div>
+            </div>
+            <div class="form-group">
+            <p></p>
+              <input class="btn btn-info btn-sm col-md-offset-5" value="Generate" type="button">
+              <input class="btn btn-danger btn-sm" value="Cancel" type="button">
+            </div>
+          </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -91,6 +91,31 @@ angular.module('app')
               }).state("app.pr-groupassignemployee", {
                    url: "/pr-groupassignemployee",
                    templateUrl: "tpl/payroll/payroll_group_assign.html"
+              })
+
+                  .state("app.Emppayslip-Report", {
+                  url: "/emppayslip-report",
+                  templateUrl: "tpl/payroll/EmpPayslipReport.html"
+              })
+                 .state("app.Payslipview-Report", {
+                  url: "/payslipview-report",
+                  templateUrl: "tpl/payroll/EmpPayslipReportView.html"
+              })
+              .state("app.PayslipFor-Employee", {
+                  url: "/payslipfor-employee",
+                  templateUrl: "tpl/payroll/PayslipForEmployee.html"
+              })
+              .state("app.Generate-Payslip", {
+                  url: "/generate-payslip",
+                  templateUrl: "tpl/payroll/GeneratePayslip.html"
+              })
+              .state("app.View-Payslip", {
+                  url: "/view-payslip",
+                  templateUrl: "tpl/payroll&payslip/ViewPayslip.html"
+              })
+              .state("app.Payslip-View", {
+                  url: "/payslip-view",
+                  templateUrl: "tpl/payroll/PayslipView.html"
               }).state("app.Attendance-Register", {
                   url: "/attendance-register",
                   templateUrl: "tpl/EmployeeLeaveMangement/AttendanceRegister.html"

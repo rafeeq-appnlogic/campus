@@ -1,0 +1,17 @@
+{ "aaData": [
+	{
+		"Employee": "Test",
+		"Startdate": "Current Payslip",
+		"Enddate": " Monthly",
+		"No_of_days": "January 2016",
+		"LeaveType": "<a><span class='label bg-success'>Generate Payslip</span></a> <a><span class='label bg-info'>View Payslip</span></a> "
+	},
+	{
+		"Employee": "Test1",
+		"Startdate": "New Group",
+		"Enddate": " Monthly",
+		"No_of_days": "December 2016",
+		"LeaveType": "<a><span class='label bg-primary'>Update Payslip</span></a> <a><span class='label bg-info'>View Payslip</span></a>"
+	}	
+	
+] }

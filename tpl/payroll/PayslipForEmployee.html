@@ -1,0 +1,58 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR | Payroll & Payslip | Payslip for Employee</h1>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Payslips for Employees
+    </div>
+    <div class="panel-body">
+      <form role="form" class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group">
+              <label class="col-lg-2 control-label" style="text-align: left;">Department</label>
+              <div class="col-lg-3">
+                <select ui-jq="chosen" class="w-full " ng-model="department">
+                  <option value="English">English</option>
+                  <option value="Maths">Maths</option>
+                </select>
+              </div>
+              <div class="col-lg-7">
+              <a ui-sref="app.View-Payslip" class="btn btn-success btn-sm">View Payslip</a>
+              <a ui-sref="app.Generate-Payslip" class="btn btn-info btn-sm">Generate Payslip</a> 
+              <a class="btn btn-danger btn-sm col-md-offset-5">Reject Payslip</a>
+              <!-- <a class="btn btn-danger btn-sm col-md-offset-10">Reject Payslip</a> -->
+              </div>
+            </div>
+      </form>
+     <div class="table-responsive"> 
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/payroll/PaysilpforEmpoloyee.json',
+          aoColumns: [
+            { mData: 'Employee' },
+            { mData: 'Startdate' },
+            { mData: 'Enddate' },
+            { mData: 'No_of_days' },
+            { mData: 'LeaveType' },
+          ]
+        }" class="table table-striped table table-bordered b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Employee Name</th>
+            <th  style="width:15%">Payroll Group</th>
+            <th  style="width:15%">Payment Frequency</th>
+            <th  style="width:15%">Recent Payslip</th>
+            <th  style="width:18%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+

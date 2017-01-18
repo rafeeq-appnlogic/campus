@@ -1,0 +1,21 @@
+{ "aaData": [
+	{
+		"Employee": "Test",
+		"Startdate": "11/4/2016",
+		"Enddate": "11/5/2016",
+		"No_of_days": "4",
+		"LeaveType": "CL",
+		"LeaveStatus": "Y",
+		"Reason": "<a>View</a>"
+	},
+	{
+		"Employee": "Test1",
+		"Startdate": "10/5/2016",
+		"Enddate": "12/5/2016",
+		"No_of_days": "2",
+		"LeaveType": "SL",
+		"LeaveStatus": "Y",
+		"Reason": "<a>View</a>"
+	}	
+	
+] }

@@ -1,0 +1,15 @@
+{ "aaData": [
+	{
+		"Employee": "February 2016",
+		"Startdate": "Approved",
+		"Enddate": " 31000.00",
+		"LeaveType": "<a><span class='label bg-info'>View Payslip</span></a>  <a><span class='label bg-success'>PDF Report</span></a> "
+	},
+	{
+		"Employee": "March 2016",
+		"Startdate": "Pending",
+		"Enddate": " 15000.00",
+		"LeaveType": "<a><span class='label bg-info'>View Payslip</span></a> <a><span class='label bg-danger'>Delete Payslip</span></a> <a><span class='label bg-success'>PDF Report</span></a> "
+	}	
+	
+] }
