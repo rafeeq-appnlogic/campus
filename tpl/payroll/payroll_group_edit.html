@@ -1,0 +1,370 @@
+<style>
+.tips {
+    background-color: #3f729b;
+    color: white;
+}
+.well, pre {
+    background-color: #ffffff !important;
+    border-color: #dee5e7;
+}
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Management | Payroll Groups</h1>
+</div>
+<div class="wrapper-md">
+<p style="float: right;">
+<!-- <a ui-sref="app.pr-groupedit"><button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>Edit</button></a> -->
+<a ui-sref="app.pr-groupemployee"><button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i>&nbspDelete</button></a>
+</p>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      View Payroll Group
+    </div>
+    <div class="well">
+      <form class="bs-example form-horizontal ng-pristine ng-valid">
+      <legend>Edit payroll group</legend>
+        <p class="text-muted">Create payroll groups to group employees who have a common payroll structure such as payment frequency, payroll categories and LOP calculation method.</p>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Payroll group name</label>
+          <div class="col-lg-3">
+            <input class="form-control" placeholder="Enter email" type="email">
+          </div>
+        </div>
+        
+        <legend>
+        Salary Preferences
+        </legend>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Employee salary type</label>
+          <div class="col-md-3">
+          <p> Salaried</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Payment frequency</label>
+          <div class="col-md-3">
+          <!-- <p>: Monthly</p> -->
+            <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDownSelect">
+                <option value="">Select</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+            </select>
+        </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Payslip generation date</label>
+          <div class="col-md-3">
+          <!-- <p>: Day 1 of every month</p> -->
+          <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDownSelectNew">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+                <option value="3">5</option>
+                <option value="3">6</option>
+                <option value="3">7</option>
+                <option value="3">8</option>
+                <option value="3">9</option>
+                <option value="3">10</option>
+            </select>
+          </div>
+        </div>
+        <legend>
+        Loss of Pay Criteria
+        </legend>
+        <p class="text-muted">Specify if an amount must be deducted from the employee's salary for loss of pay (LOP)</p>
+        <div class="form-group">
+            <div class="col-md-8">
+                <div class="radio">
+                  <label class="i-checks">
+                    <input name="a" value="option2" ng-model="myOption" type="radio">
+                    <i></i>
+                    Enable LOP deduction
+                  </label>&nbsp;&nbsp;&nbsp; 
+                  <label class="i-checks">
+                    <input name="a" value="option1" ng-model="myOption" checked="" type="radio">
+                    <i></i>
+                    LOP not applicable
+                  </label>
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group" ng-show="myOption=='option2'">
+              <label class="col-lg-2 ">LOP calculation method </label>
+              <div class="col-lg-4">
+                <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDown">
+                  <option value="">Select</option>
+                  <option value="Numeric">Numeric</option>
+                  <option value="Formula">Formula</option>
+                  <option value="Conditional Formula">Conditional Formula</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" ng-show="myDropDown=='Numeric'">
+              <label class="col-lg-2 control-label">Amount </label>
+              <div class="col-lg-4">
+                <input class="form-control" placeholder="Payroll Category name" type="text">
+              </div>
+            </div>
+            <div class="form-group has-feedback" id="formula" ng-show="myDropDown=='Formula' && myOption=='option2'">
+                   <label class="col-md-2 control-label">Formula <span class="imp">*</span> </label>
+                   <div class="col-md-4">
+                     <textarea style="width: 100%;" rows="3" class="form-control input-sm" cols="38" name="PR_C_L_DEFAULT_VAL" id="PR_C_L_DEFAULT_VAL" data-bv-field="PR_C_L_DEFAULT_VAL"> </textarea>
+                     <i style="display: none;" class="form-control-feedback" data-bv-icon-for="PR_C_L_DEFAULT_VAL" data-original-title="" title=""></i> 
+                   </div>
+                   <div class="col-md-1">
+                     <a href="#">Validate</a>
+                   </div>
+                   <div class="col-md-5">
+                      <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
+                        <tab heading="Payroll categories" active="steps.step1" select="steps.percent=10">
+                          <div id="t1" class="tab-pane fade in active">
+                             <h6 class="section_header">Standard codes</h6>
+                              <div class="row">
+                               <div class="col-md-6">Gross pay</div>
+                               <div class="col-md-offset-2 col-md-4">GROSS</div>
+                              </div>
+                              <div class="row">
+                               <div class="col-md-6">Number of working days</div>
+                               <div class="col-md-offset-2 col-md-4">NWD</div>
+                              </div>
+                              <h6 class="section_header">Earnings</h6>
+                              <div class="row">
+                               <div class="col-md-6">Basic</div>
+                               <div class="col-md-offset-2 col-md-4">Travelling </div>
+                              </div>
+                              <div class="row">
+                               <div class="col-md-6">Number of working days</div>
+                               <div class="col-md-offset-2 col-md-4">NWD</div>
+                              </div>
+                              <h6 class="section_header">Deductions</h6>
+                          </div>
+                        </tab>
+                        <tab heading="Formula Examples" disabled="step1.$invalid" active="steps.step2" select="steps.percent=30">
+                          <div id="t2" class="tab-pane fade in active">
+                             <ul>
+                               <li>content 1</li>
+                               <li>content 2</li>
+                               <li>content 3</li>
+                             </ul>
+                           </div>
+                        </tab>
+                      </tabset>
+                   </div>
+                 </div>
+
+                 <div class="row" id="conditional_formula" ng-show="myDropDown=='Conditional Formula' && myOption=='option2'">
+                   <div class="row">
+                 <div class="col-md-offset-1 col-md-5" style="border:1px solid;">
+                       <div class="row section_header">
+                         <div class="col-md-2">
+                           <h6>Condition </h6>
+                         </div>
+                         <!--<div class="col-md-offset-9 col-md-1">
+                           <a href="#"  class="cancel hidden">[X]</a>
+                         </div>-->
+                       </div>
+                       <br>
+                       <div class="form-group">
+                         <label class="col-md-2 control-label">if</label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" name="PR_C_L_VALI_1[]" id="PR_C_L_VALI_1"> </textarea> 
+                         </div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                       <div class="form-group">
+                          <label class="col-md-2 control-label"></label>
+                         <div class="col-md-8">
+                           <select name="PR_C_L_VALI_2[]" id="PR_C_L_VALI_2" class="form-control input-sm">
+                             <option value="">select value type</option>
+                             <option>Numeric</option>
+                             <option>Formula</option>
+                             <option>Conditional Formula</option>
+                           </select>
+                         </div>
+                       </div>
+                       <div class="form-group" id="">
+                         <label class="col-md-2 control-label"></label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" name="PR_C_L_VALI_3[]" id="PR_C_L_VALI_3"> </textarea> 
+                         </div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                       <div class="form-group" id="">
+                         <label class="col-md-2 control-label">then</label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" name="PR_C_L_VALI_4[]" id="PR_C_L_VALI_4"> </textarea> 
+                         </div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                </div>
+                     <div class="col-md-offset-1 col-md-5" id="reference_code1">
+                       <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
+                        <tab heading="Payroll categories" active="steps.step1" select="steps.percent=10">
+                          <div id="t1" class="tab-pane fade in active">
+                             <h6 class="section_header">Standard codes</h6>
+                              <div class="row">
+                               <div class="col-md-6">Gross pay</div>
+                               <div class="col-md-offset-2 col-md-4">GROSS</div>
+                              </div>
+                              <div class="row">
+                               <div class="col-md-6">Number of working days</div>
+                               <div class="col-md-offset-2 col-md-4">NWD</div>
+                              </div>
+                              <h6 class="section_header">Earnings</h6>
+                              <div class="row">
+                               <div class="col-md-6">Basic</div>
+                               <div class="col-md-offset-2 col-md-4">Travelling </div>
+                              </div>
+                              <div class="row">
+                               <div class="col-md-6">Number of working days</div>
+                               <div class="col-md-offset-2 col-md-4">NWD</div>
+                              </div>
+                              <h6 class="section_header">Deductions</h6>
+                          </div>
+                        </tab>
+                        <tab heading="Formula Examples" disabled="step1.$invalid" active="steps.step2" select="steps.percent=30">
+                          <div id="t2" class="tab-pane fade in active">
+                             <ul>
+                               <li>content 1</li>
+                               <li>content 2</li>
+                               <li>content 3</li>
+                             </ul>
+                           </div>
+                        </tab>
+                      </tabset>
+                 </div>
+                   </div>
+                   
+                   <div class="row template hidden" id="template" style="margin-top: 50px">
+                 <div class="col-md-offset-1 col-md-5" style="border:1px solid;">
+                       <div class="row section_header">
+                         <div class="col-md-2">
+                           <h6>Condition </h6>
+                         </div>
+                         <div class="col-md-offset-9 col-md-1">
+                           <a class="cancel">[X]</a>
+                         </div>
+                       </div>
+                       <br>
+                       <div class="form-group">
+                         <label class="col-md-2 control-label">if</label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" id="value1[]"> </textarea> 
+                         </div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                       <div class="form-group">
+                          <label class="col-md-2 control-label"></label>
+                           <div class="col-md-8">
+                             <select id="value2[]" class="form-control input-sm">
+                               <option>select value type</option>
+                               <option>Numeric</option>
+                               <option>Formula</option>
+                               <option>Conditional Formula</option>
+                             </select>
+                           </div>
+                       </div>
+                       <div class="form-group" id="">
+                         <label class="col-md-2 control-label"></label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" id="value3[]"> </textarea> 
+                         </div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                       <div class="form-group" id="">
+                         <label class="col-md-2 control-label">then</label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" id="value4[]"> </textarea> 
+                         </div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                </div>
+                     
+                     <div class="col-md-offset-1 col-md-5" id="reference_code">
+                       <ul class="nav nav-tabs">
+                         <li class="active"><a data-toggle="tab" href="#categories">Payroll categories</a></li>
+                         <li><a data-toggle="tab" href="#formula">Formula Examples</a></li>
+                       </ul>
+                       <div class="tab-content well">
+                         <div id="categories" class="tab-pane fade in active">
+                           <h6 class="section_header">Standard codes</h6>
+                            <div class="row">
+                             <div class="col-md-6">Gross pay</div>
+                             <div class="col-md-offset-2 col-md-4">GROSS</div>
+                            </div>
+                            <div class="row">
+                             <div class="col-md-6">Number of working days</div>
+                             <div class="col-md-offset-2 col-md-4">NWD</div>
+                            </div>
+                            <h6 class="section_header">Earnings</h6>
+                            <div class="row">
+                             <div class="col-md-6">Basic</div>
+                             <div class="col-md-offset-2 col-md-4">Travelling </div>
+                            </div>
+                            <div class="row">
+                             <div class="col-md-6">Number of working days</div>
+                             <div class="col-md-offset-2 col-md-4">NWD</div>
+                            </div>
+                            <h6 class="section_header">Deductions</h6>
+                         </div>
+                         <div id="formula" class="tab-pane fade">
+                           <ul>
+                             <li>content 1</li>
+                             <li>content 2</li>
+                             <li>content 3</li>
+                           </ul>
+                         </div>
+                       </div>
+                 </div>
+                   </div>
+                   
+                  <div class="row">
+                     <div class="col-md-offset-1 col-md-3">
+                     <p></p>
+                     <a id="add"><span class="label bg-primary"><i class="glyphicon glyphicon-plus"> </i> Add another condition</span></a>
+                     </div>
+                  </div>
+                   <br><br>
+                    <div class="form-group">
+                     <div class="col-md-offset-1 col-md-5" style="border:1px solid;">
+                       <h6>Default Condition</h6>
+                       <p class="section_header">If above condition cannot be performed, this condition will be considered</p>
+                       <div class="form-group has-feedback">
+                         <label class="col-md-2 control-label">Value</label>
+                         <div class="col-md-8">
+                           <textarea style="width: 100%;" rows="2" class="form-control input-sm" cols="38" name="PR_C_L_DEFAULT_VAL" id="PR_C_L_DEFAULT_VAL" data-bv-field="PR_C_L_DEFAULT_VAL"> </textarea><i style="display: none;" class="form-control-feedback" data-bv-icon-for="PR_C_L_DEFAULT_VAL"></i> 
+                         <small style="display: none;" class="help-block" data-bv-validator="notEmpty" data-bv-for="PR_C_L_DEFAULT_VAL" data-bv-result="NOT_VALIDATED">Please enter a value or expression.</small></div>
+                         <div class="col-md-2">
+                      <a href="#">Validate</a>
+                         </div>
+                       </div>
+                     </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-offset-4 col-md-4">
+                        <button type="submit" name="pay_grp" id="pay_grp" class="btn btn-sm btn-dark">Update</button>
+                        <button type="submit" name="pay_grp" id="pay_grp" class="btn btn-sm btn-danger">Cancel</button>
+                      </div>
+                    </div>
+      </form>
+    </div>
+  </div>
+</div>

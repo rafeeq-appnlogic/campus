@@ -61,15 +61,37 @@ angular.module('app')
               .state("app.pr-add", {
                   url: "/pr-add",
                   templateUrl: "tpl/payroll/Create_Payroll_Category.html"
-              }).state("app.pr-group", {
-                  url: "/pr-group",
-                  templateUrl: "tpl/ui_icons.html"
-              })
-              .state("app.Payroll-CategoryView", {
+              }).state("app.Payroll-CategoryView", {
                   url: "/Payroll-CategoryView",
                   templateUrl: "tpl/payroll/payroll_category_view.html"
-              })
-              .state("app.Attendance-Register", {
+              }).state("app.pr-group", {
+                  url: "/pr-group",
+                  templateUrl: "tpl/payroll/payroll_group_view.html"
+              }).state("app.pr-groupcreate", {
+                  url: "/pr-groupcreate",
+                  templateUrl: "tpl/payroll/payroll_group_create.html"
+              }).state("app.pr-groupview", {
+                  url: "/pr-groupview",
+                  templateUrl: "tpl/payroll/payroll_group_viewNew.html"
+              }).state("app.pr-assigngroup", {
+                  url: "/pr-assigngroup",
+                  templateUrl: "tpl/payroll/payroll_assign_group.html"
+              }).state("app.pr-changegroup", {
+                  url: "/pr-changegroup",
+                  templateUrl: "tpl/payroll/payroll_change_group_view.html"
+              }).state("app.pr-changegroupedit", {
+                  url: "/pr-changegroupedit",
+                  templateUrl: "tpl/payroll/payroll_change_group.html"
+              }).state("app.pr-groupedit", {
+                  url: "/pr-groupedit",
+                  templateUrl: "tpl/payroll/payroll_group_Edit.html"
+              }).state("app.pr-groupemployee", {
+                  url: "/pr-groupemployee",
+                  templateUrl: "tpl/payroll/payroll_group_employee.html"
+              }).state("app.pr-groupassignemployee", {
+                   url: "/pr-groupassignemployee",
+                   templateUrl: "tpl/payroll/payroll_group_assign.html"
+              }).state("app.Attendance-Register", {
                   url: "/attendance-register",
                   templateUrl: "tpl/EmployeeLeaveMangement/AttendanceRegister.html"
               })

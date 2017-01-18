@@ -1,0 +1,86 @@
+<style>
+.tips {
+    background-color: #3f729b;
+    color: white;
+}
+.well, pre {
+    background-color: #ffffff !important;
+    border-color: #dee5e7;
+}
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Management | Payroll Groups</h1>
+</div>
+<!-- <div class="wrapper-md" ng-controller="" style="padding-bottom: 0px"> -->
+<!-- <div class="wrapper-md"  style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <a ui-sref="app.pr-add"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Create Payroll Category </span></button></a>
+  </div>
+  </div>
+</div> -->
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Payroll Groups
+    </div>
+    <div class="well">
+    <legend>
+      Payroll Groups
+    </legend>
+    <p class="text-muted" style="margin-left:15px">Create payroll groups to group employees who have a common payroll structure such as payment frequency, payroll categories and LOP calculation method.</p>
+
+<div class="wrapper-md"  style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-5">
+  <a ui-sref="app.pr-groupcreate"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Create Payroll Group</span></button></a>
+  </div>
+  <div class="col-lg-5">
+    <a ui-sref="app.pr-groupview"><button type="button" class="btn btn-sm btn-info"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; View</span></button></a>
+    <a ui-sref="app.pr-groupemployee"><button type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Employees </span></button></a>
+  </div>
+  </div>
+</div>
+
+    <div class="wrapper-md ng-scope" ng-controller="TableCtrl">
+  <div class="panel panel-default">
+    <!-- <div class="panel-heading">The basics</div>   -->
+    <table st-table="rowCollectionBasic" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Payroll group name</th>
+        <th>Assigned employees</th>
+        <th>Payroll Categories</th>
+        <th>Salary preferences</th>
+        <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- ngRepeat: row in rowCollectionBasic --><tr ng-repeat="row in rowCollectionBasic" st-select-row="row" class="ng-scope ng-isolate-scope">
+        <td class="ng-binding">Laurent</td>
+        <td class="ng-binding">Renard</td>
+        <td class="ng-binding">"1987-05-21T00:00:00.000Z"</td>
+        <td class="ng-binding">102</td>
+        <td class="ng-binding">whatever@gmail.com</td>
+      </tr><!-- end ngRepeat: row in rowCollectionBasic --><tr ng-repeat="row in rowCollectionBasic" st-select-row="row" class="ng-scope ng-isolate-scope">
+        <td class="ng-binding">Blandine</td>
+        <td class="ng-binding">Faivre</td>
+        <td class="ng-binding">"1987-04-25T00:00:00.000Z"</td>
+        <td class="ng-binding">-2323.22</td>
+        <td class="ng-binding">oufblandou@gmail.com</td>
+      </tr><!-- end ngRepeat: row in rowCollectionBasic --><tr ng-repeat="row in rowCollectionBasic" st-select-row="row" class="ng-scope ng-isolate-scope">
+        <td class="ng-binding">Francoise</td>
+        <td class="ng-binding">Frere</td>
+        <td class="ng-binding">"1955-08-27T00:00:00.000Z"</td>
+        <td class="ng-binding">42343</td>
+        <td class="ng-binding">raymondef@gmail.com</td>
+      </tr><!-- end ngRepeat: row in rowCollectionBasic -->
+      </tbody>
+    </table>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+

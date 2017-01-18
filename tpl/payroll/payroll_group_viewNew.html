@@ -1,0 +1,105 @@
+<style>
+.tips {
+    background-color: #3f729b;
+    color: white;
+}
+.well, pre {
+    background-color: #ffffff !important;
+    border-color: #dee5e7;
+}
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Management | View Payroll Group</h1>
+</div>
+<!-- <div class="wrapper-md" ng-controller="" style="padding-bottom: 0px"> -->
+<!-- <div class="wrapper-md"  style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <a ui-sref="app.pr-add"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Create Payroll Category </span></button></a>
+  </div>
+  </div>
+</div> -->
+<!-- data table -->
+<div class="wrapper-md">
+<p style="float: right;">
+<a ui-sref="app.pr-groupedit"><button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>Edit</button></a>
+<a ui-sref="app.pr-groupemployee"><button class="btn btn-xs btn-info"><i class="fa fa-user"></i>Employees</button></a>
+</p>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      View Payroll Group
+    </div>
+    <div class="well">
+      <form class="bs-example form-horizontal ng-pristine ng-valid">
+      <legend>
+        Payroll Group Details
+        </legend>
+        <div class="form-group">
+          <label class="col-md-2">Payroll group name</label>
+          <div clasds="col-md-10">
+          <p>: 20000</p>
+          </div>
+        </div>
+        <legend>
+        Salary Preferences
+        </legend>
+        <div class="form-group">
+          <label class="col-md-2">Employee salary type</label>
+          <div clasds="col-md-10">
+          <p>: Salaried</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2">Payment frequency</label>
+          <div clasds="col-md-10">
+          <p>: Monthly</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2">Payslip generation date</label>
+          <div clasds="col-md-10">
+          <p>: Day 1 of every month</p>
+          </div>
+        </div>
+        <legend>
+        Payroll Categories
+        </legend>
+        <br>
+        <p>Earnings</p>
+        <div class="wrapper-md ng-scope" ng-controller="TableCtrl">
+          <div class="panel panel-default">
+            <!-- <div class="panel-heading">The basics</div>   -->
+            <table st-table="rowCollectionBasic" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Payroll category name ‎(Code)‎</th>
+                <th>Value</th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p>Deduction</p>
+        <div class="wrapper-md ng-scope" ng-controller="TableCtrl">
+          <div class="panel panel-default">
+            <!-- <div class="panel-heading">The basics</div>   -->
+            <table st-table="rowCollectionBasic" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Payroll category name ‎(Code)‎</th>
+                <th>Value</th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

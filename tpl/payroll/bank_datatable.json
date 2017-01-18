@@ -1,0 +1,30 @@
+{ "aaData": [
+	{
+		"name": "Trident",
+		"active": "Y",
+		"dept": "CS",
+		"category": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"name": "Vijay",
+		"active": "Y",
+		"dept": "CS",
+		"category": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"name": "mani",
+		"active": "N",
+		"dept": "ECE",
+		"category": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"name": "Rafeeq",
+		"active": "Y",
+		"dept": "IT",
+		"category": "Y",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	}
+] }

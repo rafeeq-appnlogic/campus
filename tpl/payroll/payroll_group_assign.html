@@ -1,0 +1,83 @@
+<style>
+.tips {
+    background-color: #3f729b;
+    color: white;
+}
+.well, pre {
+    background-color: #ffffff !important;
+    border-color: #dee5e7;
+}
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Management | Assign Employees</h1>
+</div>
+<div class="wrapper-md">
+<p style="float: right;">
+<a ui-sref="app.pr-assigngroup"><button class="btn btn-xs btn-info"><i class="fa fa-bell"></i>&nbsp Assign Group</button></a>
+<a ui-sref="app.pr-changegroup"><button class="btn btn-xs btn-primary"><i class="fa fa-exchange"></i>&nbsp Change Group</button></a>
+</p>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Assign Employees
+    </div>
+    <div class="well">
+    <form class="bs-example form-horizontal ng-pristine ng-valid">
+      <div class="form-group">
+      <label class="col-lg-2 control-label">Department</label>
+        <div class="col-md-4">
+            <select name="ASSIGN_EMP" class="form-control m-b input-md" id="ASSIGN_EMP" ng-model="myDropDownSelectNew">
+                <option value="">Select</option>
+                <option value="Tamil">Tamil</option>
+                <option value="Maths">Maths</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="Social Science">Social Science</option>
+            </select>
+        </div>
+      </div>
+      <!-- <div class="wrapper-md ng-scope" ng-show="myDropDownSelectNew=='Tamil'">
+          <div class="panel panel-default">
+            <table st-table="rowCollectionBasic" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Employee name</th>
+                <th>Employee category</th>
+                <th>Payroll group</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              
+              </tbody>
+            </table>
+          </div>
+        </div> -->
+        <div class="table-responsive" ng-show="myDropDownSelectNew=='Tamil' || myDropDownSelectNew=='Science'">
+          <table ui-jq="dataTable" ui-options="{
+              sAjaxSource: 'api/emp_cate.json',
+              aoColumns: [
+                { mData: 'Employee_Cat' },
+                { mData: 'Prefix' },
+                { mData: 'Active' },
+                { mData: 'Action' },
+              ]
+            }" class="table table-striped table table-bordered b-t b-b">
+            <thead>
+              <tr>
+                <th  style="width:20%">Employee name</th>
+                <th  style="width:25%">Employee category</th>
+                <th  style="width:25%">Payroll group</th>
+                <th  style="width:15%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
