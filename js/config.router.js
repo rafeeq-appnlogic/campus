@@ -190,6 +190,18 @@ angular.module('app')
                   url: "/employee-admission",
                   templateUrl: "tpl/employee_management/employee-admission.html",
               })
+                .state("app.Add-Expense", {
+                  url: "/add-expense",
+                  templateUrl: "tpl/Finance/addExpense.html",
+              })
+               .state("app.Add-Income", {
+                url: "/add-income",
+                templateUrl: "tpl/Finance/addIncome.html",
+              })
+               .state("app.Reverted-Transaction", {
+                url: "/reverted-transaction",
+                templateUrl: "tpl/Finance/revertedTransaction.html",
+              })
               ;
 
           function load(srcs, callback) {
