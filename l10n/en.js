@@ -18,6 +18,7 @@
     "HEADER" : "Navigation",
     "DASHBOARD" : "Dashboard",
     "HR" : "HR",
+    "FINANCE" : "Finance",
     "CALENDAR" : "Calendar",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",

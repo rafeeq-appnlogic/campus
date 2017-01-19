@@ -91,6 +91,12 @@ angular.module('app')
               }).state("app.pr-groupassignemployee", {
                    url: "/pr-groupassignemployee",
                    templateUrl: "tpl/payroll/payroll_group_assign.html"
+              }).state("app.ps-viewpayslip", {
+                   url: "/viewpayslip",
+                   templateUrl: "tpl/payroll/payslip_viewpayslip.html"
+              }).state("app.ps-viewpayslipall", {
+                   url: "/viewpayslipall",
+                   templateUrl: "tpl/payroll/payslip_viewpayslipall.html"
               })
 
                   .state("app.Emppayslip-Report", {
