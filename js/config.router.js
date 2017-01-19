@@ -118,12 +118,30 @@ angular.module('app')
               })
               .state("app.View-Payslip", {
                   url: "/view-payslip",
-                  templateUrl: "tpl/payroll&payslip/ViewPayslip.html"
+                  templateUrl: "tpl/payroll/ViewPayslip.html"
               })
               .state("app.Payslip-View", {
                   url: "/payslip-view",
                   templateUrl: "tpl/payroll/PayslipView.html"
-              }).state("app.Attendance-Register", {
+                })
+              .state("app.PayslipFor-PayrollGroup", {
+                  url: "/payslipfor-payrollgroup",
+                  templateUrl: "tpl/payroll/PayslipforPayrollGroup.html"
+                })
+
+              .state("app.GeneratePayslip-PayrollGroup", {
+                  url: "/generatepayslip-payrollgroup",
+                  templateUrl: "tpl/payroll/GeneratePayslipPayrollGroup.html"
+                })
+              .state("app.ViewPayslip-PayrollGroup", {
+                  url: "/viewpayslip-payrollgroup",
+                  templateUrl: "tpl/payroll/ViewPayslipPayrollGroup.html"
+                })
+                .state("app.Generate-PayslipforAll", {
+                  url: "generate-payslipforall",
+                  templateUrl: "tpl/payroll/GeneratePayslipforAll.html"
+                })
+              .state("app.Attendance-Register", {
                   url: "/attendance-register",
                   templateUrl: "tpl/EmployeeLeaveMangement/AttendanceRegister.html"
               })

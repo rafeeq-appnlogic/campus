@@ -1,0 +1,32 @@
+{ "aaData": [
+	{
+		"Employee": "Keerthi ",
+		"Startdate": "EMP003",
+		"Department": "Maths",
+		"AdditionalLeaves":"0",
+		"LeaveType": " <a class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span>&nbsp; Generate Payslip</span></a>"
+	},
+	{
+		"Employee": "Sarah  ",
+		"Startdate": "EMP004",
+		"Department": "Maths",
+		"AdditionalLeaves":"0",
+		"LeaveType": " <a class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span>&nbsp; Generate Payslip</span></a>"
+	},
+	{
+		"Employee": "Lara ",
+		"Startdate": "EMP005",
+		"Department": "Maths",
+		"AdditionalLeaves":"0",
+		"LeaveType": " <a class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span>&nbsp; Generate Payslip</span></a>"
+	},
+	{
+		"Employee": "Karan ",
+		"Startdate": "EMP006",
+		"Department": "Maths",
+		"AdditionalLeaves":"0",
+		"LeaveType": " <a class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span>&nbsp; Generate Payslip</span></a>"
+	}
+
+	
+] } 

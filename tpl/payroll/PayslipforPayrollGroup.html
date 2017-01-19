@@ -1,0 +1,52 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR Management| Payslip For Payroll Group</h1>
+</div>
+<div class="wrapper-md ng-scope" style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <a class="btn btn-primary btn-xs" ui-sref='app.GeneratePayslip-PayrollGroup'><i class="glyphicon glyphicon-export"></i><span>&nbsp; Generate</span></a>
+    <a class="btn btn-info btn-xs" ui-sref='app.ViewPayslip-PayrollGroup'><i class="glyphicon glyphicon-file"></i><span>&nbsp; View</span></a>
+  </div>
+  </div>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Payslip For Payroll Group
+    </div>
+    <div class="panel-body">
+     <div class="table-responsive"> 
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/payroll/PayslipforPayrollgroup.json',
+          aoColumns: [
+            { mData: 'Employee' },
+            { mData: 'Startdate' },
+            { mData: 'Enddate' },
+            { mData: 'Reason' }
+          ]
+        }" class="table table-striped table table-bordered b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Payroll Group</th>
+            <th  style="width:15%">Recent Payslip</th>
+            <th  style="width:15%">No.of Employees</th>
+            <th  style="width:15%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+<!--     <div class="">
+      <input class="btn btn-info btn-sm" value="PDF Report" type="button">
+      <input class="btn btn-dark btn-sm" value="CSV Report" type="button">
+    </div> -->
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<!-- <h1>payslip for payroll group</h1> -->

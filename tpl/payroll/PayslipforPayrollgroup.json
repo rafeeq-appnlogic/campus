@@ -1,0 +1,15 @@
+{ "aaData": [
+	{
+		"Employee": "Current Payslip",
+		"Startdate": "December 2016",
+		"Enddate": "2",
+		"Reason": "<a class='btn btn-primary btn-xs'><i class='glyphicon glyphicon-export'></i><span>&nbsp; Generate Payslip</span></a> <a class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span>&nbsp; View Payslip</span></a>"
+	},
+	{
+		"Employee": "Current Payslip",
+		"Startdate": "December 2016",
+		"Enddate": "3",
+	"Reason": "<a class='btn btn-primary btn-xs'><i class='glyphicon glyphicon-export'></i><span>&nbsp; Generate Payslip</span></a> <a class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span>&nbsp; View Payslip</span></a>"
+	}	
+	
+] }

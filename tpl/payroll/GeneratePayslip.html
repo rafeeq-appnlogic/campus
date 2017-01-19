@@ -1,5 +1,5 @@
 <style type="text/css">
-  .form-group {
+  .form-group.element {
     margin-bottom: 3px;
 }
 .form-group.adjust {
@@ -53,7 +53,10 @@
     <div class="panel-body">
     <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled" method="get">
     <legend>Generate Employee Payslip - Siva  </legend>
-      <div class="form-group col-md-12" ng-controller="DatepickerDemoCtrl" >
+      <div class="form-group" ng-controller="DatepickerDemoCtrl" >
+          <label class="col-lg-2">Pay Period </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-md-3">
           <div class="input-group w-md">
             <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
             <span class="input-group-btn">
@@ -61,21 +64,22 @@
             </span>
         </div>
         </div>
-      <div class="form-group">
+        </div>
+      <div class="form-group element ">
           <label class="col-lg-2">Name </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-3">
             <p class=""><b>Siva(EMP045556)</b></p>
           </div>
       </div>
-      <div class="form-group">
+      <div class="form-group element">
           <label class="col-lg-2">Department </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-3">
             <p class=""><b>English</b></p>
           </div>
       </div>
-      <div class="form-group">
+      <div class="form-group element">
           <label class="col-lg-2">Position</label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-3">
@@ -83,14 +87,14 @@
           </div>
       </div>
       <legend>Payroll Details</legend>
-        <div class="form-group">
+        <div class="form-group element">
           <label class="col-lg-2">Payroll Group </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-3">
             <p class=""><b> Current Payslip </b></p>
           </div>
         </div>
-            <div class="form-group">
+            <div class="form-group element">
           <label class="col-lg-2">Payment Frequency</label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-3">
@@ -103,21 +107,21 @@
         <div class="col-md-6 well" style="width: 49%;float: left; background-color: white;" >
           <!-- <h4>Earnings</h4> -->
           <legend>Earnings</legend>
-          <div class="form-group adjust">
+          <div class="form-group adjust element">
           <label class="col-lg-4">Basic Pay </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-5">
              <input class="form-control" placeholder="Basic Pay" type="text">
           </div>
           </div>
-          <div class="form-group adjust">
+          <div class="form-group adjust element">
           <label class="col-lg-4">Bonus</label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-5">
              <input class="form-control" placeholder="Bonus" type="text">
           </div>
           </div>
-          <div class="form-group adjust">
+          <div class="form-group adjust element">
           <label class="col-lg-4"></label>
           <label class="col-lg-1"></label>
           <div class="col-lg-5" style="padding-bottom: 7px;padding-top: 7px">
@@ -145,7 +149,7 @@
             <p class=""><b> Rs. 20000.00</b></p>
           </div>
           </div> -->
-          <div class="form-group" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px">
+          <div class="form-group element" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px">
           <label class="col-lg-4">Total Earnings </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-5">
@@ -157,21 +161,21 @@
         <div class="col-md-6 well" style="width: 49%;float: right;background-color: white;">
         <!-- <h4>Deductions</h4> -->
         <legend>Deductions</legend>
-         <div class="form-group adjust ">
+         <div class="form-group adjust element ">
           <label class="col-lg-4">LOP </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-5">
             <input class="form-control" placeholder="LOP" type="text">
           </div>
           </div>
-          <div class="form-group adjust">
+          <div class="form-group adjust element">
           <label class="col-lg-4">PF </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-5">
             <input class="form-control" placeholder="PF" type="text">
           </div>
           </div>
-          <div class="form-group adjust">
+          <div class="form-group adjust element ">
           <label class="col-lg-4"></label>
           <label class="col-lg-1"></label>
           <div class="col-lg-5" style="padding-bottom: 7px;padding-top: 7px">
@@ -185,7 +189,7 @@
             <p class=""><b> Rs. 20000.00</b></p>
           </div>
           </div> -->
-          <div class="form-group" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px;">
+          <div class="form-group element" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px;">
           <label class="col-lg-4">Total Deductions  </label>
           <label class="col-lg-1"> : </label>
           <div class="col-lg-5">
