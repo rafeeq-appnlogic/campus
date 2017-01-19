@@ -202,6 +202,14 @@ angular.module('app')
                 url: "/reverted-transaction",
                 templateUrl: "tpl/Finance/revertedTransaction.html",
               })
+               .state("app.Finance-Category", {
+                url: "/finance-category",
+                templateUrl: "tpl/Finance/financeCategory.html",
+              })
+               .state("app.Add-Donation", {
+                url: "/add-donation",
+                templateUrl: "tpl/Finance/addDonation.html",
+              })
               ;
 
           function load(srcs, callback) {
