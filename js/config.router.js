@@ -39,12 +39,13 @@ angular.module('app')
               // added by rafeeq
               .state("app.Employee-Category", {
                   url: "/employee-category",
-                  templateUrl: "tpl/hrconfig/employee_category.html"
-                  // resolve: e(["js/app/todo/todo.js", "moment"])
+                  templateUrl: "tpl/hrconfig/employee_category.html",
+                  resolve: load(['js/controllers/hrconfig.js'])
               })
               .state("app.Employee-Department", {
                   url: "/employee-dept",
-                  templateUrl: "tpl/hrconfig/employee_department.html"
+                  templateUrl: "tpl/hrconfig/employee_department.html",
+                  resolve: load(['js/controllers/hrconfig.js'])
               })
               .state("app.Employee-Position", {
                   url: "/employee-position",
@@ -150,6 +151,23 @@ angular.module('app')
                   url: "/resetLeave-allEmployee",
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetEmployeeLeave.html"
               })
+                // added by vijayaraj
+              .state("app.Bank-Details", {
+                    url: "/bank-details",
+                    templateUrl: "tpl/hrconfig/bank_details.html"
+                }).state("app.Additional-Details", {
+                    url: "/additional-details",
+                    templateUrl: "tpl/hrconfig/additional_Details.html"
+                }).state("app.Working-Days", {
+                    url: "/working-days",
+                    templateUrl: "tpl/hrconfig/workind_days.html"
+                }).state("app.Leave-Types", {
+                    url: "/leave-types",
+                    templateUrl: "tpl/hrconfig/leave-types.html"
+                }).state("app.Leavetype-Add", {
+                    url: "/leavetype-add",
+                    templateUrl: "tpl/hrconfig/leave-type-add.html"
+                })          
                .state("app.Employee-Admission", {
                   url: "/employee-admission",
                   templateUrl: "tpl/employee_management/employee-admission.html",
