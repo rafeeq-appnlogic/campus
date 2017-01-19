@@ -1,0 +1,83 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Finance | Category</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <!-- <button type="button" class="btn btn-primary btn-sm">Add</button> -->
+      <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#myModal"> <i class="glyphicon glyphicon-plus"> </i> Add Finance Category</button>
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/Finance/finCategory_datatable.json',
+          aoColumns: [
+            { mData: 'category' },
+            { mData: 'action' },
+          ]
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Category</th>
+            <th  style="width:10%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+      <h4 class="modal-title" id="header">Add Finance Category</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+          <div class="">
+        <form method="post" action="" class="form-horizontal">
+           <div class="form-group">
+            <input type="hidden" name="FINC_CA_ID">
+         <label class="col-md-4 control-label">Category Name </label>
+         <div class="col-md-5">
+             <input type="text" name="FINC_CA_NAME" class="form-control input-sm" id="name" placeholder="" />
+         </div>
+           </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Description </label>
+            <div class="col-md-5">
+              <input type="text" name="FINC_CA_DESC" class="form-control input-sm" id="description" placeholder="" />
+            </div>
+          </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Is this under income? </label>
+        <div class="col-md-5">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="">
+            </label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-2">
+        <button type="button" name="insert" class="btn btn-primary btn-sm submit" id="submit" >Create</button>
+        <button type="button" name="update" class="btn btn-warning btn-sm update hidden" id="update" >Update</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+       </form>
+      </div>
+        </div>
+    </div>
+      </div>
+  </div>

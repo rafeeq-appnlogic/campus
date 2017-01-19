@@ -1,0 +1,58 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Transaction | New Donation</h1>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Add Donation
+    </div>
+    <div class="panel-body">
+        <form class="bs-example form-horizontal ng-pristine ng-valid">
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Donor Name</label>
+            <div class="col-lg-3">
+              <input class="form-control" placeholder="" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Description </label>
+            <div class="col-lg-3">
+              <input class="form-control" placeholder="" type="text">
+            </div>
+          </div>
+           <div class="form-group">
+              <label class="col-md-2 control-label">Transaction Date</label>
+              <div class="col-md-3" ng-controller="DatepickerDemoCtrl" >
+                <div class="input-group ">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Amount</label>
+            <div class="col-lg-3">
+              <input class="form-control" placeholder="" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-1">
+              <button type="button" name="insert" class="btn btn-primary btn-sm submit" id="submit" >Add</button>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-danger btn-sm" >Cancel</button>
+            </div>
+          </div>
+        </form>
+   
+    </div>
+      <hr>
+  </div>
+</div>
+
+
