@@ -169,6 +169,11 @@ angular.module('app')
                   url: "/resetLeave-allEmployee",
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetEmployeeLeave.html"
               })
+              //added by senthil for finance module
+              .state("app.fn-assetview", {
+                  url: "/assetview",
+                  templateUrl: "tpl/Finance/assetview.html"
+              })
                 // added by vijayaraj
               .state("app.Bank-Details", {
                     url: "/bank-details",
