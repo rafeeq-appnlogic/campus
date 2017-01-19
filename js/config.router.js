@@ -186,10 +186,15 @@ angular.module('app')
                     url: "/leavetype-add",
                     templateUrl: "tpl/hrconfig/leave-type-add.html"
                 })          
-               .state("app.Employee-Admission", {
+                .state("app.Employee-Admission", {
                   url: "/employee-admission",
                   templateUrl: "tpl/employee_management/employee-admission.html",
-              })
+                })
+                .state("app.Employee-Sub-Association", {
+                  url: "/employee-sub-association",
+                  templateUrl: "tpl/employee_management/employee-sub_assoc.html",
+                  resolve: load(['js/controllers/hrconfig.js'])
+                })
                 .state("app.Add-Expense", {
                   url: "/add-expense",
                   templateUrl: "tpl/Finance/addExpense.html",

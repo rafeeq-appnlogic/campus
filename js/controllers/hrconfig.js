@@ -5,6 +5,7 @@
   // config controller
 app.controller('hrconfig', ['$scope','$http', function($scope,$http) {
     $scope.payrollGroup = false;
+    $scope.batch='';
     $scope.createCategory=function(){
       var name=$scope.cat_name;
       var prefix=$scope.prefix;
@@ -36,9 +37,15 @@ app.controller('hrconfig', ['$scope','$http', function($scope,$http) {
       console.log(name,prefix,status);
     };
 
-    $scope.showGroup=function(){
-      alert('ss');
-       $scope.payrollGroup = true;  
-    }
+    $scope.getSubject=function(){
+      console.log($scope.batch);
+      // $scope.batch='batcha';
 
+
+    }
+     $scope.getDept=function(){
+      console.log('');
+
+    }
+    
 }]);

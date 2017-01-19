@@ -1,0 +1,110 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR -> Configuration -> Employee Association</h1>
+</div>
+<div class="wrapper-md">
+  <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Employee Association</div>
+            <div class="panel-body">
+              <form role="form" class="ng-pristine form-horizontal ng-valid" ng-controller="hrconfig">
+
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Class</label>
+                  <div class="col-lg-3">
+                    <select class="form-control selectpicker input-sm" data-live-search="true" data-style="btn-white btn-sm" >
+                      <option value="english">Select</option>
+                      <option value="classa">Class A</option>
+                      <option value="classb">Class B</option>
+                      <option value="classc">Class C</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Batch</label>
+                  <div class="col-lg-3">
+                    <select class="form-control selectpicker input-sm" data-live-search="true" data-style="btn-white btn-sm">
+                      <option value="" selected>Select</option>
+                      <option value="batcha">Batch A</option>
+                      <option value="batchb">Batch B</option>
+                      <option value="batchc">Batch C</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Subject</label>
+                  <div class="col-lg-3">
+                    <select class="form-control selectpicker input-sm" ng-model="subject" data-live-search="true" data-style="btn-white btn-sm" ng-change="getSubject()">
+                      <option value="">Select</option>
+                      <option value="english">English</option>
+                      <option value="maths">Maths</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="" style="margin-left: 50px;" ng-show="subject=='english'">
+                  <h3>Current Assign</h3>
+                  <table border="1" width="50%;">
+                    <tr >
+                      <th style="padding: 10px !important;width: 40%;">Employee 1</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Delete</u></a>
+                    </tr>
+                    <!-- <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 2</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr>
+                    <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 3</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr>
+                    <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 4</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr> -->
+                  </table>
+                  <br>
+                  <div class="form-group">
+                    <label class="col-lg-2 control-label">Department</label>
+                    <div class="col-lg-3">
+                      <select class="form-control selectpicker input-sm" ng-model="dept" data-live-search="true" data-style="btn-white btn-sm" ng-change="getDept()">
+                        <option value="">Select</option>
+                        <option value="english">English</option>
+                        <option value="maths">Maths</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <div class="" style="margin-left: 50px;" ng-show="dept=='english'">
+                  <h3>New Assign</h3>
+                  <table border="1" width="50%;">
+                    <!-- <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 1</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr> -->
+                    <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 2</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr>
+                    <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 3</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr>
+                    <tr>
+                      <th style="padding: 10px !important;width: 40%;">Employee 4</th>
+                      <th style="padding: 10px !important;width: 10%;"><a href=""><u>Assign</u></a>
+                    </tr>
+                  </table>
+                </div>
+                <br>
+                <div class="col-md-offset-3">
+                <button class="btn btn-info btn-sm">Save</button>
+                <button class="btn btn-danger btn-sm">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

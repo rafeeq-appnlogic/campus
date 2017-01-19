@@ -91,9 +91,11 @@
                 <option value="">Antigua and Barbuda</option>
               </select>
           </div>
-          <div class="form-group col-md-3">
-              <label class="control-label">Upload photo</label>
-              <input nv-file-select="" uploader="uploader" multiple="" type="file">
+          <div class="form-group col-md-4">
+            <label class="col-sm-4 control-label">Upload photo</label>
+            <div class="col-sm-10">
+              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" type="file" multiple="">
+            </div>
           </div>
         </div>
 
