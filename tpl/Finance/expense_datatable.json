@@ -1,0 +1,19 @@
+{ "aaData": [
+	{
+		"name": "test",
+		"description": "first",
+		"category": "10",
+		"amount": "5",
+		"date": "02/01/17",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	},
+	{
+		"name": "test1",
+		"description": "sec",
+		"category": "20",
+		"amount": "15",
+		"date": "12/01/17",
+		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+	}
+	
+] }

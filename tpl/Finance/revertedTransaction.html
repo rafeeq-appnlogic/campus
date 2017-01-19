@@ -1,0 +1,134 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Transaction | Reverted Transaction </h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <!-- <button type="button" class="btn btn-primary btn-sm">Add</button> -->
+      <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#myModal"> <i class="glyphicon glyphicon-plus"> </i> Advanced</button>
+    </div>
+    <div class="well">
+      <form class="bs-example form-horizontal ng-pristine ng-valid">
+      <legend>Reverted Transaction</legend>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Transaction Type</label>
+          <div class="col-md-3">
+            <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDownSelect">
+              <option value="fees">Fees</option>
+              <option value="payslip">Payslips</option>
+              <option value="other">Others</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Search By</label>
+          <div class="col-md-3">
+            <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDownSelectNew">
+              <option value="ad">Admission No</option>
+              <option value="date">Date</option>
+              <option value="collection">Fee Collection Name</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Start Date</label>
+            <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
+              <div class="input-group ">
+                <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="FINC_TXN_EX_DT"/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">End Date</label>
+            <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
+              <div class="input-group ">
+                <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="FINC_TXN_EX_DT"/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Search</label>
+          <div class="col-lg-3">
+            <input class="form-control" placeholder="Enter group name" type="email">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+      <h4 class="modal-title" id="header">Add Expense</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+          <div class="">
+        <form method="post" action="" class="form-horizontal">
+           <div class="form-group">
+            <input type="hidden" name="FINC_TXN_EX_ID">
+         <label class="col-md-4 control-label">Title </label>
+         <div class="col-md-5">
+             <input type="text" name="FINC_TXN_EX_TITLE" class="form-control input-sm" id="name" placeholder="" />
+         </div>
+           </div>
+           <div class="form-group">
+         <label class="col-md-4 control-label">Description </label>
+         <div class="col-md-5">
+             <input type="text" name="FINC_TXN_EX_DESC" class="form-control input-sm" id="description" placeholder="" />
+         </div>
+           </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label">Amount </label>
+         <div class="col-md-5">
+             <input type="text" name="FINC_TXN_EX_AMT" class="form-control input-sm" id="amount" placeholder="" />
+         </div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label">Date</label>
+             <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
+                <div class="input-group ">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="FINC_TXN_EX_DT"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+              </div>
+            </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Category </label>
+          <div class="col-md-5">
+            <select name="FINC_TXN_EX_CA_ID" class="form-control m-b input-md" id="category" ng-model="myDropDownSelect">
+              <option value="">Select</option>
+              <option value="Daily">studenttt</option>
+              <option value="Weekly">bookss</option>
+            </select>
+          </div>
+      </div><br>
+      <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-2">
+        <button type="button" name="insert" class="btn btn-primary btn-sm submit" id="submit" >Create</button>
+        <button type="button" name="update" class="btn btn-warning btn-sm update hidden" id="update" >Update</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+       </form>
+      </div>
+        </div>
+    </div>
+      </div>
+  </div>
