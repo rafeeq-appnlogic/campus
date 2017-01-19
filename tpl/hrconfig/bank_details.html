@@ -1,11 +1,16 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">HR Configuration | Bank Details</h1>
+  <h1 class="m-n font-thin h3">HR -> Configuration -> Bank Details</h1>
+</div>
+<div class="wrapper-md" style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add </span></button>
+  </div>
+  </div>
 </div>
 <div class="wrapper-md">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <!-- <button type="button" class="btn btn-primary btn-sm">Add</button> -->
-      <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#myModal"> <i class="glyphicon glyphicon-plus"> </i> Bank Details</button>
+    <div class="panel-heading font-bold">Bank Details
     </div>
     <div class="table-responsive">
       <table ui-jq="dataTable" ui-options="{
@@ -64,8 +69,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-2">
-                                        <button type="button" class="btn btn-primary btn-sm" name="" id="save">Create</button>
-                                        <button type="button" class="btn btn-warning btn-sm hidden" name="" id="update">Update</button>
+                                        <button type="button" class="btn btn-info btn-sm" name="" id="save">Create</button>
                                         <input type="hidden" class="updatedID">
                                     </div>
                                     <div class="col-md-2" id="cancel">

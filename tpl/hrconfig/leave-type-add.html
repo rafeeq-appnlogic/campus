@@ -1,0 +1,103 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR -> Configuration -> Leave Types Add</h1>
+</div>
+<div class="wrapper-md">
+  <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Add Leave Type</div>
+            <div class="panel-body">
+              <form role="form" class="ng-pristine form-horizontal ng-valid">
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Leave Name</label>
+                  <div class="col-lg-3">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Leave Code</label>
+                  <div class="col-lg-3">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Leave Count</label>
+                  <div class="col-lg-3">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Valid From</label>
+                  <div class="col-lg-3">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Leave Balance </label>
+                  <div class="col-lg-4">
+                    <p>Mange how to reset employee leave balance</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label"></label>
+                    <div class="col-lg-9">
+                      <div class="col-md-5">
+                        <label class="radio-inline">
+                            <input name="EMP_L_ALLOW_LEAVE" id="allow" class="checkallow" value="Y" type="radio"  >
+                            Allow leave carry forward
+                        </label>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="radio-inline">
+                            <input name="EMP_L_ALLOW_LEAVE" id="discard"  class="checkallow"  value="N" type="radio" >
+                            Discard leave balance
+                            <input type="hidden" name="EMP_L_ALLOW_LEAVE_BAL" id="EMP_L_ALLOW_LEAVE_BAL">
+                        </label>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Additional Leaves  </label>
+                  <div class="col-lg-4">
+                    <p>Set how to manage employee additional leaves</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label"></label>
+                    <div class="col-lg-9">
+                      <div class="col-md-5">
+                        <label class="radio-inline">
+                            <input name="" id="allow" class="checkallow" value="Y" type="radio"  ><input name="EMP_L_ADDI_LEAVE_YN" class="cleardata" id="ADDI_YES" value="Y" type="radio" >
+                            Liable for salary deduction(LOP)
+                        </label>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="radio-inline">
+                            <input name="EMP_L_ADDI_LEAVE_YN" class="cleardata" id="ADDI_NO"  value="N" type="radio" >
+                            No salary deduction 
+                        </label>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Active</label>
+                  <div class="col-sm-10">
+                    <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                      <input checked="" type="checkbox">
+                      <i></i>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-md-offset-3">
+                <button class="btn btn-info btn-sm">Save</button>
+                <button class="btn btn-danger btn-sm">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

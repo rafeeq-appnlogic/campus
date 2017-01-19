@@ -1,5 +1,41 @@
-<div class="container">
-  <div class="modal fade" id="myModal" role="dialog">
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">HR -> Configuration ->Working Days</h1>
+</div>
+<div class="wrapper-md" style="padding-bottom: 0px">
+  <div class="row">
+  <div class="col-lg-10">
+    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add </span></button>
+  </div>
+  </div>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">Working Days
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/hrconfig/workingdays.json',
+          aoColumns: [
+            { mData: 'Monthly' },
+            { mData: 'Weekly' },
+            { mData: 'Action' },
+          ]
+        }" class="table table-striped table table-bordered b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Monthly</th>
+            <th  style="width:25%">Weekly</th>
+            <th  style="width:15%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
@@ -32,44 +68,3 @@
       </div>
     </div>
   </div>
-</div>
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">HR Configurations | Working Days</h1>
-</div>
-<div class="wrapper-md" ng-controller="FormDemoCtrl" style="padding-bottom: 0px">
-  <div class="row">
-  <div class="col-lg-10">
-    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add </span></button>
-  </div>
-  </div>
-</div>
-<!-- data table -->
-<div class="wrapper-md">
-  <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-      Working Days
-    </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'api/workingdays.json',
-          aoColumns: [
-            { mData: 'Monthly' },
-            { mData: 'Weekly' },
-            { mData: 'Action' },
-          ]
-        }" class="table table-striped table table-bordered b-t b-b">
-        <thead>
-          <tr>
-            <th  style="width:20%">Monthly</th>
-            <th  style="width:25%">Weekly</th>
-            <th  style="width:15%">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-

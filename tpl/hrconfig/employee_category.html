@@ -1,3 +1,4 @@
+<!-- <script type="text/javascript" src="js/controllers/hrconfig.js"></script> -->
 <div class="container">
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-md">
@@ -7,39 +8,48 @@
           <h4 class="modal-title">Employee Category</h4>
         </div>
         <div class="modal-body">
-          <form class="bs-example form-horizontal ng-pristine ng-valid">
+          <form class="bs-example form-horizontal ng-pristine ng-valid" ng-controller="hrconfig">
             <div class="form-group">
               <label class="col-lg-2 control-label col-lg-offset-2">Name</label>
               <div class="col-lg-5">
-                <input class="form-control" placeholder="Name" type="text">
+                <input class="form-control" ng-model="cat_name" type="text">
               </div>
             </div>
             <div class="form-group">
             <label class="col-lg-2 control-label col-lg-offset-2">Prefix</label>
               <div class="col-lg-5">
-                <input class="form-control" placeholder="Prefix" type="text">
+                <input class="form-control" ng-model="prefix" type="text">
               </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
             <label class="col-lg-2 control-label col-lg-offset-2">Staus</label>
               <div class="col-lg-5">
                 <div class="radio">
                   <label class="i-checks">
-                    <input name="a" value="option2" checked="" type="radio">
+                    <input name="status" value="Y" checked="" type="radio" ng-model="status">
                     <i></i>
                     Active
                   </label>&nbsp;&nbsp;&nbsp; 
                   <label class="i-checks">
-                    <input name="a" value="option2"  type="radio">
+                    <input name="status" value="N"  type="radio" ng-model="status">
                     <i></i>
                     InActive
                   </label>
                 </div>
               </div>
+            </div> -->
+            <div class="form-group">
+            <label class="col-lg-2 control-label col-lg-offset-2">Status</label>
+              <div class="col-lg-5">
+                <label class="i-switch i-switch-md bg-succ m-t-xs m-r">
+                <input type="checkbox" ng-model="status" id="status" ng-click="swicheryCheck()">
+                <i></i>
+                </label>
+              </div>
             </div>
             <div class="form-group">
               <div class="col-lg-offset-4 col-lg-10">
-                <button type="button" class="btn btn-sm btn-info">Create</button>
+                <button type="button" class="btn btn-sm btn-info" ng-click="createCategory()">Create</button>
                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
               </div>
             </div>
@@ -50,7 +60,7 @@
   </div>
 </div>
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">HR Configurations | Employee Category</h1>
+  <h1 class="m-n font-thin h3">HR -> Configuration -> Employee Category</h1>
 </div>
 <!-- <div class="wrapper-md" ng-controller="" style="padding-bottom: 0px"> -->
 <div class="wrapper-md"  style="padding-bottom: 0px">
@@ -68,7 +78,7 @@
     </div>
     <div class="table-responsive">
       <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'api/emp_cate.json',
+          sAjaxSource: 'tpl/hrconfig/emp_cate.json',
           aoColumns: [
             { mData: 'Employee_Cat' },
             { mData: 'Prefix' },

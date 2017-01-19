@@ -2,12 +2,12 @@
 	{
 		"Monthly": "25",
 		"Weekly": "7",
-		"Action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
+		"Action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"Monthly": "24",
 		"Weekly": "7",
-		"Action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-primary btn-sm' value='Edit'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
+		"Action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	}	
 	
 ] }

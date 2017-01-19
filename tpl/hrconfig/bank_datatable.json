@@ -2,21 +2,21 @@
 	{
 		"name": "Trident",
 		"active": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"name": "Vijay",
 		"active": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"name": "mani",
 		"active": "N",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"name": "Rafeeq",
 		"active": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	}
 ] }

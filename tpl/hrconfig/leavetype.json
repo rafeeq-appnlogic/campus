@@ -1,0 +1,18 @@
+{ "aaData": [
+	{
+		"leave_type": "Casual",
+		"leave_code": "CL",
+		"leave_count": "1",
+		"leave_bal": "1",
+		"status": "Y",
+		"action": "<a ui-sref='app.Leavetype-Add'><button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button></a> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
+	},
+	{
+		"leave_type": "Casual",
+		"leave_code": "CL",
+		"leave_count": "1",
+		"leave_bal": "1",
+		"status": "Y",
+		"action": "<a ui-sref='app.Leavetype-Add'><button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button></a> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
+	}
+] }

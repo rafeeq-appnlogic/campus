@@ -5,7 +5,7 @@
 		"maxday": "10",
 		"maxweek": "5",
 		"active": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"grade": "test1",
@@ -13,7 +13,7 @@
 		"maxday": "3",
 		"maxweek": "5",
 		"active": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"grade": "test3",
@@ -21,7 +21,7 @@
 		"maxday": "11",
 		"maxweek": "2",
 		"active": "N",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"grade": "test4",
@@ -29,7 +29,7 @@
 		"maxday": "7",
 		"maxweek": "1",
 		"active": "N",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	},
 	{
 		"grade": "test5",
@@ -37,6 +37,6 @@
 		"maxday": "10",
 		"maxweek": "5",
 		"active": "Y",
-		"action": "<button class='btn m-b-xs btn-sm btn-info btn-addon' data-toggle='modal' data-target='#myModal'>Edit</button> <button class='btn m-b-xs btn-sm btn-danger btn-addon'>Delete</button>"
+		"action": "<button type='button'data-toggle='modal' data-target='#myModal' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></button> <button type='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></button>"
 	}
 ] }
