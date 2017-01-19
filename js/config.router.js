@@ -144,6 +144,10 @@ angular.module('app')
                   url: "/resetLeave-allEmployee",
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetEmployeeLeave.html"
               })
+               .state("app.Employee-Admission", {
+                  url: "/employee-admission",
+                  templateUrl: "tpl/employee_management/employee-admission.html",
+              })
               ;
 
           function load(srcs, callback) {
