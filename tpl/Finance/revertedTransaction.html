@@ -13,49 +13,51 @@
         <div class="form-group">
           <label class="col-md-2 control-label">Transaction Type</label>
           <div class="col-md-3">
-            <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDownSelect">
+            <select name="" class="form-control m-b input-md" id="" ng-model="myDropDownSelect">
               <option value="fees">Fees</option>
               <option value="payslip">Payslips</option>
               <option value="other">Others</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-md-2 control-label">Search By</label>
-          <div class="col-md-3">
-            <select name="CATEGORY_CODE" class="form-control m-b input-md" id="CATEGORY_CODE" ng-model="myDropDownSelectNew">
-              <option value="ad">Admission No</option>
-              <option value="date">Date</option>
-              <option value="collection">Fee Collection Name</option>
-            </select>
+        <div class="row">
+          <div class="">
+            <label class="col-md-2 control-label">Search By</label>
+            <div class="col-md-3">
+              <select name="" class="form-control m-b input-md" id="" ng-model="myDropDown">
+                <option value="ad">Admission No</option>
+                <option value="date">Date</option>
+                <option value="collection">Fee Collection Name</option>
+              </select>
+            </div>
+            <div ng-show="myDropDown=='date'">
+              <label class="col-md-1 control-label">Start Date</label>
+                  <div class="col-md-2" ng-controller="DatepickerDemoCtrl" >
+                    <div class="input-group ">
+                      <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </div>
+                  </div>
+            </div>
+            <div ng-show="myDropDown=='date'">
+                <label class="col-md-1 control-label">End Date</label>
+                  <div class="col-md-2" ng-controller="DatepickerDemoCtrl" >
+                    <div class="input-group ">
+                      <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </div>
+                  </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-4 control-label">Start Date</label>
-            <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
-              <div class="input-group ">
-                <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="FINC_TXN_EX_DT"/>
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </div>
-            </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-4 control-label">End Date</label>
-            <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
-              <div class="input-group ">
-                <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="FINC_TXN_EX_DT"/>
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </div>
-            </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Search</label>
           <div class="col-lg-3">
-            <input class="form-control" placeholder="Enter group name" type="email">
+            <input class="form-control" placeholder="Search" type="text">
           </div>
         </div>
       </form>
@@ -70,7 +72,7 @@
       <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
           <i class="fa  fa-times-circle "></i>
       </button>
-      <h4 class="modal-title" id="header">Add Expense</h4>
+      <h4 class="modal-title" id="header">Add Revert Transaction</h4>
         </div>
         <div class="modal-body">
       <div class="panel-body">
@@ -78,28 +80,69 @@
         <form method="post" action="" class="form-horizontal">
            <div class="form-group">
             <input type="hidden" name="FINC_TXN_EX_ID">
-         <label class="col-md-4 control-label">Title </label>
+         <label class="col-md-4 control-label">Student Name </label>
          <div class="col-md-5">
-             <input type="text" name="FINC_TXN_EX_TITLE" class="form-control input-sm" id="name" placeholder="" />
+             <input type="text" name="" class="form-control input-sm" id="name" placeholder="" />
          </div>
            </div>
            <div class="form-group">
-         <label class="col-md-4 control-label">Description </label>
+         <label class="col-md-4 control-label">Admission Number </label>
          <div class="col-md-5">
-             <input type="text" name="FINC_TXN_EX_DESC" class="form-control input-sm" id="description" placeholder="" />
+             <input type="text" name="" class="form-control input-sm" id="" placeholder="" />
          </div>
            </div>
       <div class="form-group">
-         <label class="col-md-4 control-label">Amount </label>
-         <div class="col-md-5">
-             <input type="text" name="FINC_TXN_EX_AMT" class="form-control input-sm" id="amount" placeholder="" />
-         </div>
+        <label class="col-md-4 control-label">Employee Name </label>
+        <div class="col-md-5">
+          <input type="text" name="" class="form-control input-sm" id="" placeholder="" />
+        </div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label">Date</label>
+        <label class="col-md-4 control-label">Employee Number</label>
+        <div class="col-md-5">
+          <input type="text" name="" class="form-control input-sm" id="" placeholder="" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Guest Name</label>
+        <div class="col-md-5">
+          <input type="text" name="" class="form-control input-sm" id="" placeholder="" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Fee Collection Name</label>
+        <div class="col-md-5">
+          <input type="text" name="" class="form-control input-sm" id="" placeholder="" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Transaction Type</label>
+        <div class="col-md-5">
+          <select name="" class="form-control m-b input-md" id="" ng-model="myDropDownSelect">
+            <option value="fees">Fees</option>
+            <option value="payslip">Payslips</option>
+            <option value="other">Others</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Category Name</label>
+        <div class="col-md-5">
+          <select name="" class="form-control m-b input-md" id="" ng-model="myDropDownSelect1">
+            <option value="appregister">Applicant Registration</option>
+              <option value="fee">Fee</option>
+              <option value="hostel">Hostel</option>
+              <option value="instant">Instant Fee</option>
+              <option value="inventory">Inventory</option>
+              <option value="library">Library</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label">Start Date</label>
              <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
                 <div class="input-group ">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="FINC_TXN_EX_DT"/>
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -107,15 +150,17 @@
             </div>
       </div>
       <div class="form-group">
-        <label class="col-md-4 control-label">Category </label>
-          <div class="col-md-5">
-            <select name="FINC_TXN_EX_CA_ID" class="form-control m-b input-md" id="category" ng-model="myDropDownSelect">
-              <option value="">Select</option>
-              <option value="Daily">studenttt</option>
-              <option value="Weekly">bookss</option>
-            </select>
-          </div>
-      </div><br>
+         <label class="col-md-4 control-label">End Date</label>
+             <div class="col-md-5" ng-controller="DatepickerDemoCtrl" >
+                <div class="input-group ">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+              </div>
+            </div>
+      </div>
+      <br>
       <div class="form-group">
           <label class="col-md-4 control-label"></label>
           <div class="col-md-2">
