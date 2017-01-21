@@ -1,0 +1,17 @@
+{ "aaData": [
+	{
+		"Employee": "1",
+		"Startdate": "Refund 1",
+		"Enddate": " 20%",
+		"No_of_days": "January 2016",
+		"LeaveType": "<a class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'><i class='fa fa-edit'></i></a> <a class='btn btn-danger btn-sm'><i class='glyphicon glyphicon-trash'></i></a> "
+	},
+	{
+		"Employee": "2",
+		"Startdate": "Refund",
+		"Enddate": " 3000",
+		"No_of_days": "December 2016",
+	"LeaveType": "<a class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'><i class='fa fa-edit'></i></a> <a class='btn btn-danger btn-sm'><i class='glyphicon glyphicon-trash'></i></a> "
+	}	
+	
+] }

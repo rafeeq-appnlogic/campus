@@ -1,84 +1,108 @@
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">HR -> Configuration -> Bank Details</h1>
-</div>
-<div class="wrapper-md" style="padding-bottom: 0px">
-  <div class="row">
-  <div class="col-lg-10">
-    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add </span></button>
+<div>
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">HR | Configuration | Bank Details</h1>
   </div>
-  </div>
-</div>
-<div class="wrapper-md">
-  <div class="panel panel-default">
-    <div class="panel-heading font-bold">Bank Details
+  <div class="wrapper-md ng-scope" style="padding-bottom: 0px">
+    <div class="row">
+    <div class="col-lg-12">
+      <button type="button" class="btn btn-sm btn-success pull-right" ng-click="addBankDetails()" ><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add Bank Detail </span></button>
     </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'tpl/hrconfig/bank_datatable.json',
-          aoColumns: [
-            { mData: 'name' },
-            { mData: 'active' },
-            { mData: 'action' },
-          ]
-        }" class="table table-striped b-t b-b">
+    </div>
+</div>
+  <div class="wrapper-md" >
+    <div class="panel panel-default">
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="2">Bulk edit</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" >
         <thead>
           <tr>
-            <th  style="width:70%">Bank Name</th>
-            <th  style="width:10%">Active</th>
-            <th  style="width:20%">Action</th>
+            <th></th>
+            <th>
+              <input st-search="'EMP_BNK_NAME'" placeholder="Search for Bank Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'EMP_BNK_ACTIVE_YN'" placeholder="Search for Status" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="all"><i></i>
+              </label>
+            </th>
+            <th st-sort="EMP_BNK_NAME">Bank Name</th>
+            <th st-sort=" EMP_BNK_ACTIVE_YN">Status</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post"><i></i></label></td>
+            <td>
+              <span editable-text="row.EMP_BNK_NAME" e-name="EMP_BNK_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_BNK_NAME}}
+              </span>
+            </td>
+            <td>
+              <span editable-text="row.EMP_BNK_ACTIVE_YN" e-name="EMP_BNK_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_BNK_ACTIVE_YN}}
+              </span>
+            </td>
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveBankDetails(row)" class="btn btn-sm btn-info">
+                  save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="removeUser($index)"><i class="fa fa-trash-o"></i></button>
+              </div>  
+            </td>
+          </tr>
         </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="2"></td>
+          <td colspan="2"></td>
+            <td colspan="2" class="">
+              <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog modal-md">
-    <div class="modal-content">
-        <div class="modal-header">
-      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
-          <i class="fa  fa-times-circle "></i>
-      </button>
-      <h4 class="modal-title" id="header">Bank Details</h4>
-        </div>
-        <div class="modal-body">
-      <div class="panel-body">
-          <div class="col-md-offset-3">
-        <form id="FormValidation" method="post" action="" class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Name</label>
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control input-sm" name="EMP_BNK_NAME" id="EMP_BNK_NAME" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Status</label>
-                                    <div class="col-md-6">
-                                        <label class="radio-inline">
-                                                <input type="radio" name="EMP_BNK_ACTIVE" class="Active" id="radio_1" value="Y">Active
-                                        </label>
-                                                <label class="radio-inline">
-                                                <input type="radio" name="EMP_BNK_ACTIVE" class="Inactive" id="radio_2" value="N">Inactive
-                                                <input type="hidden" name="EMP_BNK_ACTIVE_YN" id="EMP_BNK_ACTIVE_YN">
-                                        </label>
-                                    </div>
-                                </div><br>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label"></label>
-                                    <div class="col-md-2">
-                                        <button type="button" class="btn btn-info btn-sm" name="" id="save">Create</button>
-                                        <input type="hidden" class="updatedID">
-                                    </div>
-                                    <div class="col-md-2" id="cancel">
-                                        <button type="button" class=" btn btn-danger btn-sm" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                    </div>
-                                </div>
-                            </form>
-      </div>
-        </div>
-    </div>
-      </div>
-  </div>

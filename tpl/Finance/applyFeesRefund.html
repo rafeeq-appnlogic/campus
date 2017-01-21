@@ -1,0 +1,34 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Finance | Apply Fees Refund</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Apply Fees Refund
+    </div>
+    <div class="panel-body">
+      <form role="form" class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group">
+              <label class="col-lg-1 control-label" style="text-align: left;">Search</label>
+              <div class="col-lg-3">
+                <input type="text" class="form-control" placeholder="Student Name/Admission No" ng-model="SearchName">
+              </div>
+            </div>
+      </form>
+     <div class="table-responsive" ng-show="SearchName==''"> 
+      <table class="table table-bordered table table-striped">
+        <thead>
+          <tr>
+            <th colspan="4" style="text-align: center; background-color:lightblue">No Data Found</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+

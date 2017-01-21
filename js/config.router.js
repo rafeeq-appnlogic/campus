@@ -181,7 +181,9 @@ angular.module('app')
                 // added by vijayaraj
               .state("app.Bank-Details", {
                     url: "/bank-details",
-                    templateUrl: "tpl/hrconfig/bank_details.html"
+                    templateUrl: "tpl/hrconfig/bank_details.html",
+                    controller:"bank_detailsctrl",
+                    resolve: load(['smart-table','js/controllers/hrconfig/bank_detailsctrl.js','xeditable'])
                 }).state("app.Additional-Details", {
                     url: "/additional-details",
                     templateUrl: "tpl/hrconfig/additional_Details.html"
@@ -227,6 +229,19 @@ angular.module('app')
                .state("app.Add-Donation", {
                 url: "/add-donation",
                 templateUrl: "tpl/Finance/addDonation.html",
+              })
+               //added by manikandan
+                .state("app.Create-RefundRule", {
+                url: "/create-refundrule",
+                templateUrl: "tpl/Finance/addFeesRefund.html",
+              })
+                .state("app.View-RefundRule", {
+                url: "/view-refundrule",
+                templateUrl: "tpl/Finance/viewFeesRefund.html",
+              })
+                .state("app.Apply-RefundRule", {
+                url: "/apply-refundrule",
+                templateUrl: "tpl/Finance/applyFeesRefund.html",
               })
               ;
 

@@ -1,0 +1,91 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Finance | View Fees Refund</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      View Fees Refund
+    </div>
+    <div class="panel-body">
+      <form role="form" class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group">
+              <label class="col-lg-1 control-label" style="text-align: left;">Search by</label>
+              <div class="col-lg-3">
+                <select name="Searchby" class="form-control m-b" ng-model="Searchby">
+                  <option value="" selected="" disabled="">Select</option>
+                  <option value="Date">Date</option>
+                  <option value="StudentName">Student name</option>
+                  <option value="FeecollectionName">Fee collection name</option>
+                </select>
+              </div>
+              <div ng-show="Searchby=='Date'">
+              <label class="col-lg-1 control-label" style="text-align: left;">Start Date</label>
+              <div class="col-lg-3">
+                <div class="form-group" ng-controller="DatepickerDemoCtrl" >
+                <div class="col-md-3">
+                  <div class="input-group w-md">
+                    <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                </div>
+                </div>
+              </div>
+              <label class="col-lg-1 control-label" style="text-align: left;">End Date</label>
+              <div class="col-lg-3">
+                  <div class="form-group" ng-controller="DatepickerDemoCtrl" >
+                <div class="col-md-3">
+                  <div class="input-group w-md">
+                    <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                </div>
+                </div>
+              </div>
+              </div>
+              <div ng-hide="Searchby=='Date'">
+              <label class="col-lg-1 control-label" style="text-align: left;">Search</label>
+              <div class="col-md-3">
+                <input type="text" class="form-control" ng-model='Search' name="">
+              </div>
+              </div>
+            </div>
+      </form>
+     <div class="table-responsive" ng-show="Searchby=='Date' || Searchby=='StudentName' || Searchby=='FeecollectionName'"> 
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'tpl/Finance/viewfeesrefund.json',
+          aoColumns: [
+            { mData: 'Employee' },
+            { mData: 'Startdate' },
+            { mData: 'Enddate' },
+            { mData: 'No_of_days' },
+            { mData: 'LeaveType' },
+            { mData: 'LeaveType' },
+            { mData: 'LeaveType' }
+          ]
+        }" class="table table-striped table table-bordered b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Sl.No.</th>
+            <th  style="width:15%">Student Name</th>
+            <th  style="width:15%">Amount</th>
+            <th  style="width:15%">Date</th>
+            <th  style="width:19%">Fee Collection Name</th>
+            <th  style="width:19%">Refunded By</th>
+            <th  style="width:19%">Voucher No</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <center><a class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> View PDF Report</a></center>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+

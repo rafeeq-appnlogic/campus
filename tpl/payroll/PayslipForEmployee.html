@@ -20,7 +20,8 @@
             <div class="form-group">
               <label class="col-lg-2 control-label" style="text-align: left;">Department</label>
               <div class="col-lg-3">
-                <select ui-jq="chosen" class="w-full " ng-model="department">
+                <select name="" class="form-control m-b" ng-model="department">
+                  <option value="">Select</option>
                   <option value="English">English</option>
                   <option value="Maths">Maths</option>
                 </select>
@@ -28,11 +29,10 @@
               <div class="col-lg-7">
               <a ui-sref="app.View-Payslip" class="btn btn-success btn-sm">View Payslip</a>
               <a ui-sref="app.Generate-Payslip" class="btn btn-info btn-sm">Generate Payslip</a> 
-              <!-- <a class="btn btn-danger btn-sm col-md-offset-10">Reject Payslip</a> -->
               </div>
             </div>
       </form>
-     <div class="table-responsive"> 
+     <div class="table-responsive" ng-show="department=='Maths'"> 
       <table ui-jq="dataTable" ui-options="{
           sAjaxSource: 'tpl/payroll/PaysilpforEmpoloyee.json',
           aoColumns: [
@@ -57,7 +57,6 @@
       </table>
     </div>
       </div>
-      <hr>
     </div>
   </div>
 </div>
