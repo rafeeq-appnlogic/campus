@@ -1,96 +1,105 @@
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">HR -> Configuration -> Employee Position</h1>
-</div>
-<div class="wrapper-md" style="padding-bottom: 0px">
-  <div class="row">
-  <div class="col-lg-10">
-    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add </span></button>
+<div>
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">HR -> Configuration -> Employee Position</h1>
   </div>
-  </div>
-</div>
-<div class="wrapper-md">
-  <div class="panel panel-default">
-    <div class="panel-heading font-bold">Employee Position
-    </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'tpl/hrconfig/datatable.json',
-          aoColumns: [
-            { mData: 'position_name' },
-            { mData: 'emp_category' },
-            { mData: 'status' },
-            { mData: 'action' },
-          ]
-        }" class="table table-striped b-t b-b">
+  <div class="wrapper-md" >
+  <div class="">
+        <button class="btn btn-success m-b-lg" ng-click="addPosition()"><i class="fa fa-plus"></i>Add Position</button>
+      </div>
+    <div class="panel panel-default">
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" >
         <thead>
           <tr>
-            <th  style="width:30%">Position Name</th>
-            <th  style="width:30%">Category</th>
-            <th  style="width:20%">Active</th>
-            <th  style="width:20%">Action</th>
+          <th style="width:150px !important;">Items by page &nbsp;<input class="input-sm form-control" name="items" id="items" type="number" ng-model="itemsByPage" ></th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="2">Bulk edit</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>
+              <input st-search="'EMP_P_NAME'" placeholder="search for position name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'EMP_P_CATEGORY_ID'" placeholder="search for category name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'EMP_P_ACTIVE_YN'" placeholder="search for status" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="all"><i></i>
+              </label>
+            </th>
+            <th st-sort="EMP_P_NAME">Position Name</th>
+            <th st-sort="EMP_P_CATEGORY_ID">Position Id</th>
+            <th st-sort="EMP_P_ACTIVE_YN">Status</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post"><i></i></label></td>
+            <td>
+              <span editable-text="row.EMP_P_NAME" e-name="EMP_P_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_P_NAME}}
+              </span>
+            </td>
+            <td>
+              <!-- <span editable-select="row.EMP_P_CATEGORY_ID" e-name="EMP_P_CATEGORY_ID" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_P_CATEGORY_ID}}
+              </span> -->
+
+              <span editable-select="row.EMP_P_CATEGORY_ID" e-name="EMP_P_CATEGORY_ID" e-form="rowform" e-ng-options="s.name for s in selectCategory">
+              {{ row.EMP_P_CATEGORY_ID}}
+              </span>
+            </td>
+            <td>
+              <span editable-text="row.EMP_P_ACTIVE_YN" e-name="EMP_P_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_P_ACTIVE_YN}}
+              </span>
+            </td>
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="savePosition(row)" class="btn btn-sm btn-info">
+                  save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show()">edit</button>
+                <button class="btn btn-sm btn-danger" ng-click="removePosition($index)">del</button>
+              </div>  
+            </td>
+          </tr>
         </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-center">
+              <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog modal-md">
-    <div class="modal-content">
-        <div class="modal-header">
-      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
-          <i class="fa  fa-times-circle "></i>
-      </button>
-      <h4 class="modal-title" id="header">Employee Position</h4>
-        </div>
-        <div class="modal-body">
-      <div class="panel-body">
-          <div class="">
-        <form id="FormValidation" method="post" action="" class="form-horizontal">
-            <div class="form-group">
-          <label class="col-md-4 control-label">Position Name</label>
-          <div class="col-md-5">
-              <input type="text" class="form-control input-sm" id="EMP_P_NAME" name="EMP_P_NAME" placeholder="" />
-          </div>
-            </div>
-            <div class="form-group">
-          <label class="col-md-4 control-label">Employee Category</label>
-          <div class="col-md-5">
-              <select name="EMP_P_CATEGORY_ID" class="form-control m-b input-md" id="EMP_P_CATEGORY_ID" >
-              <option value="">Select</option>
-              <option value="cat1">category1</option>
-              <option value="cat2">category2</option>
-              </select>
-          </div>
-            </div>
-            <div class="form-group">
-          <label class="col-md-4 control-label">Status</label>
-          <div class="col-md-6">
-              <label class="radio-inline">
-            <input type="radio" name="EMP_P_ACTIVE" checked class="Active" id="" value="Y">Active
-              </label>
-              <label class="radio-inline">
-            <input type="radio" name="EMP_P_ACTIVE" class="Inactive" id="" value="N">Inactive
-            <input type="hidden" name="EMP_P_ACTIVE_YN"  id="EMP_P_ACTIVE_YN" value="Y">
-              </label>
-          </div>
-            </div><br>
-            <div class="form-group">
-          <label class="col-md-4 control-label"></label>
-          <div class="col-md-2">
-              <button type="button" class="btn btn-info btn-sm save" id="save">Create</button>
-              <input type="hidden" id="updatedID">
-          </div>
-          <div class="col-md-2" id="cancel">
-              <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
-          </div>
-            </div>
-          </form>
-      </div>
-        </div>
-    </div>
-      </div>
-  </div>

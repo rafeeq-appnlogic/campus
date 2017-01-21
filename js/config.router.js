@@ -39,17 +39,21 @@ angular.module('app')
               // added by rafeeq
               .state("app.Employee-Category", {
                   url: "/employee-category",
+                  controller:"empcategoryctrl",
                   templateUrl: "tpl/hrconfig/employee_category.html",
-                  resolve: load(['js/controllers/hrconfig.js'])
+                  resolve: load(['smart-table','js/controllers/hrconfig/empcategoryctrl.js','xeditable'])
               })
               .state("app.Employee-Department", {
                   url: "/employee-dept",
                   templateUrl: "tpl/hrconfig/employee_department.html",
-                  resolve: load(['js/controllers/hrconfig.js'])
+                  controller:"empdept_ctrl",
+                  resolve: load(['smart-table','js/controllers/hrconfig/emp_deptctrl.js','xeditable'])
               })
               .state("app.Employee-Position", {
                   url: "/employee-position",
-                  templateUrl: "tpl/hrconfig/employee_position.html"
+                  templateUrl: "tpl/hrconfig/employee_position.html",
+                  controller:"position_ctrl",
+                  resolve: load(['smart-table','js/controllers/hrconfig/position_ctrl.js','xeditable'])
               })
               .state("app.Employee-Grade", {
                   url: "/employee-grade",
