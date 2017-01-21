@@ -177,6 +177,16 @@ angular.module('app')
               .state("app.fn-assetview", {
                   url: "/assetview",
                   templateUrl: "tpl/Finance/assetview.html"
+              }).state("app.fn-liabilityview", {
+                  url: "/liabilityview",
+                  templateUrl: "tpl/Finance/liabilityview.html"
+              }).state("app.fn-category", {
+                  url: "/configcategory",
+                  templateUrl: "tpl/Finance/categoryview.html"
+              })
+              .state("app.fn-particularview", {
+                  url: "/particularview",
+                  templateUrl: "tpl/Finance/particularview.html"
               })
                 // added by vijayaraj
               .state("app.Bank-Details", {
