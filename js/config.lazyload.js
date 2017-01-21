@@ -166,7 +166,13 @@ angular.module('app')
       {
           name: 'smart-table',
           files: [
-              'libs/angular/angular-smart-table/dist/smart-table.min.js'
+              'libs/angular/angular-smart-table/dist/smart-table.js'
+          ]
+      },
+      {
+          name: 'ui.bootstrap',
+          files: [
+              'libs/angular/angular-bootstrap/ui-bootstrap-tpls.js'
           ]
       },
       {

@@ -1,3 +1,13 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+</style>
 <div>
 
   <div class="bg-light lter b-b wrapper-md">
@@ -49,18 +59,21 @@
     </table>
     <!-- <hr> -->
 
-      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" >
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
         <thead>
           <tr>
             <th></th>
             <th>
-              <input st-search="'EMP_C_NAME'" placeholder="search for category name" class="input-sm form-control" type="search"/>
+             <!--  <input st-search="'EMP_C_NAME'" placeholder="search for category name" class="input-sm form-control" type="search"/> -->
+              <st-select-distinct collection="rowCollection" predicate="EMP_C_NAME"></st-select-distinct>
             </th>
             <th>
+              <!-- <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/> -->
               <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'EMP_C_ACTIVE_YN'" placeholder="search for Status" class="input-sm form-control" type="search"/>
+              <!-- <input st-search="'EMP_C_ACTIVE_YN'" placeholder="search for Status" class="input-sm form-control" type="search"/> -->
+              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
             </th>
           </tr>
           <tr>
@@ -117,11 +130,13 @@
         </tbody>
         <tfoot>
           <tr>
-          <td colspan="2"></td>
-          <td colspan="2"></td>
-            <td colspan="2" class="">
-              <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
-            </td>
+          <!-- <td colspan="2"></td> -->
+          <td colspan="3" class="text-center">
+            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
+          </td>
+          <td colspan="2" class="">
+            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
+          </td>
           </tr>
         </tfoot>
       </table>

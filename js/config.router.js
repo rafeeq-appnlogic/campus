@@ -41,7 +41,7 @@ angular.module('app')
                   url: "/employee-category",
                   controller:"empcategoryctrl",
                   templateUrl: "tpl/hrconfig/employee_category.html",
-                  resolve: load(['smart-table','js/controllers/hrconfig/empcategoryctrl.js','xeditable'])
+                  resolve: load(['smart-table','js/controllers/hrconfig/empcategoryctrl.js','xeditable','ui.bootstrap'])
               })
               .state("app.Employee-Department", {
                   url: "/employee-dept",
