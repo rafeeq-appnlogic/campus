@@ -212,6 +212,10 @@ angular.module('app')
                 url: "/reverted-transaction",
                 templateUrl: "tpl/Finance/revertedTransaction.html",
               })
+               .state("app.Add-Advanced", {
+                url: "/add-advanced",
+                templateUrl: "tpl/Finance/advTransaction.html",
+              })
                .state("app.Finance-Category", {
                 url: "/finance-category",
                 templateUrl: "tpl/Finance/financeCategory.html",
