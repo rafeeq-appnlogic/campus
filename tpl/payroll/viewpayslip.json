@@ -3,13 +3,13 @@
 		"Employee": "February 2016",
 		"Startdate": "Approved",
 		"Enddate": " 31000.00",
-		"LeaveType": "<a><span class='label bg-info'>View Payslip</span></a>  <a><span class='label bg-success'>PDF Report</span></a> "
+		"LeaveType": "<a ui-sref='app.Payslip-View' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span> &nbsp;View Payslip</span></a>  <a ui-sref='app.Payslip-View' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-duplicate'></i><span> &nbsp;Payslip Report</span></a>"
 	},
 	{
 		"Employee": "March 2016",
 		"Startdate": "Pending",
 		"Enddate": " 15000.00",
-		"LeaveType": "<a><span class='label bg-info'>View Payslip</span></a> <a><span class='label bg-danger'>Delete Payslip</span></a> <a><span class='label bg-success'>PDF Report</span></a> "
+	"LeaveType": "<a ui-sref='app.Payslip-View' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-file'></i><span> &nbsp;View Payslip</span></a>  <a ui-sref='app.Payslip-View' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-duplicate'></i><span> &nbsp;Payslip Report</span></a> <a ui-sref='app.Payslip-View' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i><span> &nbsp;Delete Payslip</span></a>"
 	}	
 	
 ] }
