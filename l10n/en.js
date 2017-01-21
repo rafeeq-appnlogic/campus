@@ -19,6 +19,7 @@
     "DASHBOARD" : "Dashboard",
     "HR" : "HR",
     "FINANCE" : "Finance",
+    "STUDENT" : "Students",
     "CALENDAR" : "Calendar",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
