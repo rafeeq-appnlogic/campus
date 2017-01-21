@@ -11,7 +11,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
-  $scope.removeUser = function(index) {
+  $scope.deleteData = function(index) {
     var id=$scope.displayedCollection[index].EMP_C_ID;
     console.log(id,"id");
     $http({
@@ -46,5 +46,8 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
 
       });
     },200);
+  }
+  $scope.removeRow = function(index) {
+    $scope.displayedCollection.splice(index, 1);
   }
 }]);

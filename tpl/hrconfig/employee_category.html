@@ -86,13 +86,13 @@
                 <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row)" class="btn btn-sm btn-info">
                   save
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow($index)"" class="btn btn-sm btn-default">
                   cancel
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
                 <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" ng-click="removeUser($index)"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteData($index)"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
           </tr>
