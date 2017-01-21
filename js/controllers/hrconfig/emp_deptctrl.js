@@ -6,7 +6,7 @@ app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions',
   $scope.itemsByPage=5;
   $scope.isLoading=true;
   $scope.rowCollection = [];
-    $http.get('http://localhost/smartedu/api/HrConfigCtrl/employeeDepartment').success(function(incomingData) {
+    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeDepartment').success(function(incomingData) {
           $scope.rowCollection = incomingData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -16,7 +16,7 @@ app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions',
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigCtrl/employeeDepartment",
+      url : "http://localhost/smartedu/api/HrConfigModule/employeeDepartment",
       params : {id : id},
     }).then(function mySucces(response) {
 
@@ -39,7 +39,7 @@ app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions',
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigCtrl/employeeDepartment",
+        url : "http://localhost/smartedu/api/HrConfigModule/employeeDepartment",
         data : { 'data' : user_data}
       }).then(function mySucces(response) {
         console.log(response.data.message);

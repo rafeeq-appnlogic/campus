@@ -11,7 +11,7 @@ app.controller('position_ctrl', ['$scope', '$timeout','$http', 'editableOptions'
   ];
 
   $scope.rowCollection = [];
-    $http.get('http://localhost/smartedu/api/HrConfigCtrl/employeePosition').success(function(incomingData) {
+    $http.get('http://localhost/smartedu/api/HrConfigModule/employeePosition').success(function(incomingData) {
           $scope.rowCollection = incomingData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -21,7 +21,7 @@ app.controller('position_ctrl', ['$scope', '$timeout','$http', 'editableOptions'
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigCtrl/employeePosition",
+      url : "http://localhost/smartedu/api/HrConfigModule/employeePosition",
       params : {id : id},
     }).then(function mySucces(response) {
       }, function myError(response) {
@@ -43,7 +43,7 @@ app.controller('position_ctrl', ['$scope', '$timeout','$http', 'editableOptions'
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigCtrl/employeePosition",
+        url : "http://localhost/smartedu/api/HrConfigModule/employeePosition",
         data : { 'data' : user_data}
       }).then(function mySucces(response) {
         console.log(response.data.message);
