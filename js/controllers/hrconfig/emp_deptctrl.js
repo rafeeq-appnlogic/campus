@@ -7,7 +7,7 @@ app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions',
   $scope.isLoading=true;
   $scope.rowCollection = [];
     $http.get('http://localhost/smartedu/api/HrConfigModule/employeeDepartment').success(function(incomingData) {
-          $scope.rowCollection = incomingData;
+          $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
@@ -40,7 +40,7 @@ app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions',
       $http({
         method : "POST",
         url : "http://localhost/smartedu/api/HrConfigModule/employeeDepartment",
-        data : { 'data' : user_data}
+        data : { 'EMP_D_ID':user_data.EMP_D_ID,'EMP_D_NAME' : user_data.EMP_D_NAME,'EMP_D_CODE' : user_data.EMP_D_CODE,'EMP_D_STATUS' : user_data.EMP_D_STATUS}
       }).then(function mySucces(response) {
         console.log(response.data.message);
       }, function myError(response) {

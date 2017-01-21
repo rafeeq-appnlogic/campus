@@ -39,7 +39,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       $http({
         method : "POST",
         url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-        data : { 'emp_id':user_data.EMP_C_ID,'emp_name' : user_data.EMP_C_NAME,'prefix' : user_data.EMP_C_PREFIX,'status' : user_data.EMP_C_ACTIVE_YN}
+        data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
         console.log(response.data.message);
       }, function myError(response) {
