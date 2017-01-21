@@ -47,7 +47,12 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       });
     },200);
   }
-  $scope.removeRow = function(index) {
-    $scope.displayedCollection.splice(index, 1);
+  $scope.removeRow = function(curr_id,index) {
+    // console.log(curr_id,index,'curr_id,index');
+    if(!curr_id){
+      $scope.displayedCollection.splice(index, 1);
+    }else{
+      return true;
+    }    
   }
 }]);

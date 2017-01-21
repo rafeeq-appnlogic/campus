@@ -86,7 +86,7 @@
                 <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row)" class="btn btn-sm btn-info">
                   save
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow($index)"" class="btn btn-sm btn-default">
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.EMP_C_ID,$index);rowform.$cancel()" class="btn btn-sm btn-default">
                   cancel
                 </button>
               </form>
