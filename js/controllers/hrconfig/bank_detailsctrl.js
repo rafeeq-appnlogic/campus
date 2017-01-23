@@ -11,7 +11,7 @@ app.controller('bank_detailsctrl', ['$scope', '$timeout','$http', 'editableOptio
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
-  $scope.removeUser = function(index) {
+  $scope.deleteData = function(index) {
     var id=$scope.displayedCollection[index].EMP_BNK_ID;
     console.log(id,"id");
     $http({
