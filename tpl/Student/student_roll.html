@@ -9,45 +9,93 @@
       View All 
     </div>
     <div class="panel-body">
-     <form class="bs-example form-horizontal ng-pristine ng-valid">
-      <div class="form-group">
-        <label class="col-lg-2 col-md-offset-2 control-label">Select a batch</label>
-        <div class="col-md-3">
-          <select ui-jq="chosen" class="form-control input-sm" ng-model="s_batch">
-            <option value="">Select a batch</option>
-            <option value="b-tech">B.Tech</option>
-          </select>
-        </div>
-     </form>
-    </div><br>
-    <div class="panel-body">
-      <div class="table-responsive" ng-show="s_batch=='b-tech'">
-            <table ui-jq="dataTable" ui-options="{
-                sAjaxSource: 'tpl/Student/viewAll_datatable.json',
-                aoColumns: [
-                  { mData: 'slno' },
-                  { mData: 'name' },
-                  { mData: 'admissionno' },
-                  { mData: 'rollno' },
-                  { mData: 'action' },
-                ]
-              }" class="table table-striped b-t b-b">
-              <thead>
-                <tr>
-                  <th  style="width:10%">Sl.No</th>
-                  <th  style="width:10%">Name</th>
-                  <th  style="width:10%">Admission No.</th>
-                  <th  style="width:10%">Roll number</th>
-                  <th  style="width:20%">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+      <div class="well">
+        <div class="row">
+          <div class="col-md-2">
+            <h5>Sort students based on </h5>
+          </div>
+          <div class="col-md-2 sortColumn" ng-hide="showme">
+            <h5><b>First Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a  data-toggle="modal" data-target="#myModal" >Edit</a></h5>
+          </div>
+          <div class="col-md-2" ng-show="showme">
+            <select name="value"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm">
+              <option>Admission no.</option>
+              <option selected>First Name</option>
+              <option>Last Name</option>
+            </select>
+          </div>
+          <div class="col-md-2 changeSort" ng-show="showme">
+            <button type="button" class="btn btn-primary btn-sm">Save</button>
+            <button type="button" class="btn btn-danger btn-sm" id="cancelSort" ng-click="showme=false">cancel</button>
           </div>
         </div>
+      </div>
     </div>
-      <hr>
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Sorting order</h4>
+        </div>
+        <div class="modal-body">
+    <div class="row">
+      <center><p>Students will be arranged based on the selected sort order with roll numbers unchanged.</p></center><br>
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-sm btn-success" id="edit" data-dismiss="modal" value="Edit" ng-click="showme=true">Edit</button>
+          <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+    </div>
+        <!--<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit/Set Roll number Prefix</h4>
+        </div>
+        <div class="modal-body">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="col-md-6 control-label">Roll number Prefix</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control input-sm" placeholder="" value=""/> 
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+        <label class="control-label">Max 6 characters</label>
+        </div>
+      </div><br><br><br>
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+    </div>
+        <!--<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  
+
+
   </div>
 </div>
 
