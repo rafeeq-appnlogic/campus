@@ -1,0 +1,57 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Discipline | Complaints</h1>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+     Add Complaints 
+    </div>
+    <div class="panel-body">
+     <form class="bs-example ng-pristine ng-valid">
+        <div class="row">
+          <div class="form-group col-md-3">
+              <label class="control-label ">Complaint number</label>
+                <input type="text" class="form-control input-sm" id="" name="STU_ADM_NO">                
+          </div>
+          <div class="form-group col-md-3">
+            <label class="control-label">Title</label>
+            <input type="text" class="form-control input-sm" id="" name="STU_ADM_FIRST_NAME" placeholder="">
+          </div>
+           <div class="form-group col-md-3">
+              <label class="control-label">Description</label>
+              <textarea type="text" class="form-control input-sm" id="" name="STU_ADM_MIDDLE_NAME" placeholder="" style="height:32px;"></textarea>
+          </div>
+          <div class="form-group col-md-3">
+            <label class="control-label">Trial Date</label>
+            <div class="" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group w-md">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DT" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+         <div class="row">
+           <div class="form-group col-md-3">
+            <label class=" control-label">Attachments (5MB max)</label>
+            <div class="">
+              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" type="file" multiple="">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-offset-5">
+          <button type="button" class="btn btn-success " ng-click="steps.percent=100">Save</button>
+          <button type="button" class="btn btn-danger " ng-click="steps.percent=100">Cancel</button>
+        </div>
+     </form>
+    </div><br>
+    </div>
+      <hr>
+  </div>
+</div>
+
+
