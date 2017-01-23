@@ -263,8 +263,12 @@ angular.module('app')
                 resolve: load(['smart-table','js/controllers/studentconfig/managestud_catctrl.js','xeditable'])
                
               })
+                .state("app.Student-Rollno", {
+                url: "/student-rollno",
+                templateUrl: "tpl/Student/student_roll.html",
+              })
                //added by manikandan
-                .state("app.Create-RefundRule", {
+                .state("app.Create-RefundRule", { 
                 url: "/create-refundrule",
                 templateUrl: "tpl/Finance/addFeesRefund.html",
               })
