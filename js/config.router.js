@@ -240,6 +240,29 @@ angular.module('app')
                 url: "/add-donation",
                 templateUrl: "tpl/Finance/addDonation.html",
               })
+                  .state("app.Student_Details", {
+                url: "/student-details",
+                templateUrl: "tpl/Student/student_details.html",
+              })
+                .state("app.Advanced-Search", {
+                url: "/advanced-search",
+                templateUrl: "tpl/Student/advanced_search.html",
+              })
+                .state("app.View-Details", {
+                url: "/view-details",
+                templateUrl: "tpl/Student/view_details.html",
+              })
+                .state("app.Student-Admission", {
+                url: "/student-admission",
+                templateUrl: "tpl/Student/student_admission.html",
+              })
+                .state("app.Managestudent-Category", {
+                url: "/managestudent-category",
+                controller:"managestud_catctrl",
+                templateUrl: "tpl/Student/manageStudent_category.html",
+                resolve: load(['smart-table','js/controllers/studentconfig/managestud_catctrl.js','xeditable'])
+               
+              })
                //added by manikandan
                 .state("app.Create-RefundRule", {
                 url: "/create-refundrule",
