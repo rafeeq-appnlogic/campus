@@ -20,6 +20,7 @@
     "HR" : "HR",
     "FINANCE" : "Finance",
     "STUDENT" : "Students",
+    "ACADEMICS" : "Academics",
     "CALENDAR" : "Calendar",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
