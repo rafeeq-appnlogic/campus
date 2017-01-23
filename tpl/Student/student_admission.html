@@ -1,0 +1,435 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Students | Admission</h1>
+</div>
+<div class="wrapper-md">
+  <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false,step4:false,step5:false,step6:false}">
+    <tab heading="Student admission" active="steps.step1" select="steps.percent=10">
+      <h4>Basic Information</h4>
+      <hr>
+      <form name="step1" class="form-validation">
+        <div class="row">
+          <div class="form-group col-md-3">
+              <label class="control-label ">Admission number</label>
+                <input type="text" class="form-control input-sm" id="" name="STU_ADM_NO">                
+          </div>
+          <div class="form-group col-md-3">
+            <label class="control-label">Admission Date</label>
+            <div class="" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group w-md">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DT" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+              <label class="control-label">First Name</label>
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_FIRST_NAME" placeholder="">
+          </div>
+          <div class="form-group col-md-3">
+              <label class="control-label">Middle Name</label>
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_MIDDLE_NAME" placeholder="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-3">
+              <label class="control-label">Last Name</label>
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_LAST_NAME" placeholder="">
+          </div>
+          <div class="form-group col-md-3">
+            <label class="control-label ">Date of Birth</label>
+            <div class="" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group w-md">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DOB" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+              <label class="control-label">Gender</label><br>
+              <label class="radio-inline">
+                <input type="radio" name="STU_ADM_GENDER" >Male
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="STU_ADM_GENDER">Female
+              </label>
+          </div>
+          <div class="form-group col-md-3">
+            <label class="control-label">Blood group</label>
+            <select class="form-control selectpicker input-sm" name="" data-live-search="true" data-style="btn-white btn-sm" >
+              <option>UnKnown</option>
+              <option >A+</option>
+              <option >A-</option>
+              <option >A1+</option>
+              <option >A1-</option>
+              <option >B+</option>
+                </select>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Birth Place</label>
+                <input type="text" name="STU_ADM_BIRTH_PLACE"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+            </div>         
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Nationality</label>
+                <select name="STU_ADM_NATIONALITY"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm" >
+                  <option value="">Afghanistan (‫افغانستان‬‎)</option>
+                  <option value="">Åland Islands (Åland)</option>
+                  <option value="">Albania (Shqipëria)</option>
+                  <option value="3">Algeria (‫الجزائر‬‎)</option>
+                  <option value="">American Samoa</option>
+                  <option value="">Andorra</option>
+                  <option value="">Angola</option>
+                  <option value="">Anguilla</option>
+                  <option value="">Antarctica</option>
+                  <option value="">Antigua and Barbuda</option>
+                </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Mother Tongue</label>
+             <input type="text"  placeholder=""  name="STU_ADM_MOTHER_TONGUE" id="" class="form-control input-sm" value="">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="control-label">Category</label>
+              <select name="STU_ADM_STUD_CATE"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm">
+              <option>select a Category</option>
+              <option>Term 1 Fee</option>
+              <option>fee</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Religion</label>
+                <input type="text"  placeholder=""  name="STU_ADM_RELIGION" id="" class="form-control input-sm" value="">
+            </div>         
+          </div>
+        </div>
+        <div class="m-t m-b">
+          <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Next</button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="Contact Details" active="steps.step2" select="steps.percent=30">
+      <form name="step2" class="form-validation">
+          <div class="row">
+            <div class="form-group col-md-3">
+            <label class="control-label">Address Line 1</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" placeholder="">
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">Address Line 1</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD2" placeholder="">
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">City</label>
+            <input type="text" class="form-control  input-sm" name="STU_ADM_CITY" placeholder="">
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">State</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_STATE" placeholder="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+            <label class="control-label">Pincode</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_PINCODE" placeholder="">
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">Country</label>
+            <select class="form-control selectpicker" name="STU_ADM_COUNTRY" data-live-search="true" data-style="btn-white btn-sm">
+              <option>select</option>
+              <option selected>India</option>
+              <option>France</option>
+              <option>Dubai</option>
+              <option>newzland</option>
+              <option>australia</option>
+            </select>
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">Phone</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_PHONE" placeholder="">
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">Mobile</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_MOBILE" placeholder="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+            <label class="control-label">E-mail</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_EMAIL" placeholder="">
+            </div>
+          </div>
+        <div class="m-t m-b">
+          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+          <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Next</button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="Class and Batch details" active="steps.step3" select="steps.percent=50">
+        <div class="row">
+            <div class="form-group col-md-3">
+            <label class="control-label">Class</label>
+            <select name="STU_CB_COURSE"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm">
+                <option>select a Class</option>
+                <option value="class 1">class 1</option>
+                <option value="class 2">Class 2</option>
+                <option value="class 3">Class 3</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">Batch</label>
+            <select name="STU_CB_BATCH"  class="form-control input-sm selectpicker" id="batch" data-style="btn-white btn-sm">
+                <option>select a Batch</option>
+                <option value="B.Tech">B.Tech</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+            <label class="control-label">Roll Number</label>
+            <input type="text"  placeholder=""  name="STU_CB_ROLL_NO" id="" class="form-control input-sm" value="">
+            </div>
+          </div>
+      <div class="m-t m-b">
+        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Prev</button>
+        <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step4=true">Next</button>
+      </div>
+    </tab>
+
+    <tab heading="Parent/Guardian details"  active="steps.step4" select="steps.percent=70">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-5 control-label">Student Admission number<span class="imp">*</span></label>
+            <div class="col-md-7">
+              <input type="text" name="STU_PA_ADM_NO" class="form-control input-sm" placeholder="" value="STD063"/>
+            </div>
+        </div>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-sm-4">
+        <h5><b>Parent - Personal details</b></h5>
+      </div>
+      <div class="col-sm-3" style="margin-top:9px;">
+        <a class="btn btn-primary btn-xs" role="button" id="addParent"><i class="fa fa-plus fa-1x"></i> Add New</a>
+      </div>
+    </div><hr class="line">
+    <div class="row">
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">First Name </label>
+              <input type="text"  placeholder=""  name="STU_PA_FIRST_NAME" id="" class="form-control input-sm" value="">
+          </div>
+             </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Last Name</label>
+              <input type="text"  placeholder=""  name="STU_PA_LAST_NAME" id="" class="form-control input-sm" value="">
+          </div>
+             </div>
+             <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Relation</label>
+              <input type="text"  placeholder=""  name="STU_PA_RELATION" id="" class="form-control input-sm" value="">
+          </div>         
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Date of Birth</label>
+              <span class="input-group">
+            <input type="text" class="form-control dateSet input-sm"  id="from_date" value="January 04, 2007">
+            <span class="input-group-addon" >
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+              </span>
+          </div>
+                     
+             </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Education</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Occupation</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+             <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Income</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>         
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Email</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+             
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Address Line 1</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Address Line 2</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+             <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">City</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>         
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">State</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+             
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Country</label>
+              <select name="value"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm" >
+              <option>select</option>
+              <option selected>India</option>
+              <option>France</option>
+              <option>Dubai</option>
+              <option>newzland</option>
+              <option>australia</option>
+            </select>
+          </div>
+                     
+             </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Phone 1</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+             <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Phone 2</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>         
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Mobile</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>         
+             </div>
+        </div>
+        
+      <div class="m-t m-b">
+        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Prev</button>
+        <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step5=true">Next</button>
+      </div>
+    </tab>
+    <tab heading="Previous Educational Details" active="steps.step5" select="steps.percent=80">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Institution Name</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Class</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>
+                     
+             </div>
+             <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Year</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>         
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Total marks</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>         
+            </div>
+        </div>
+      <div class="m-t m-b">
+        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step4=true">Prev</button>
+        <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step6=true">Next</button>
+      </div>
+    </tab>
+    <tab heading="Addtional Deatails" active="steps.step6" select="steps.percent=90">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Id Card Number</label>
+              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>    
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="control-label">Height of student</label>
+            <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+          </div>  
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Country</label>
+              <select name="value"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm" >
+                <option>select</option>
+                <option selected>India</option>
+                <option>France</option>
+                <option>Dubai</option>
+                <option>newzland</option>
+                <option>australia</option>
+              </select>
+          </div>         
+        </div>
+      </div><br>
+      <div class="col-md-4 col-md-offset-3">
+        <button class="btn btn-dark btn-sm" type="button">Save & Finish</button>
+      </div>
+      <div class="m-t m-b">
+        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step5=true">Prev</button>
+        <!-- <button type="button" class="btn btn-default btn-rounded" ng-click="steps.percent=100">Click me to Finish</button> -->
+      </div>
+    </tab>
+  </tabset>
+</div>

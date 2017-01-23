@@ -1,0 +1,17 @@
+{ "aaData": [
+	{
+		"slno": "01",
+		"name": "first",
+		"admissionno": "101",
+		"rollno": "5",
+		"action": "<a ui-sref=''>View profile</a>"
+	},
+	{
+		"slno": "02",
+		"name": "sec",
+		"admissionno": "102",
+		"rollno": "7",
+		"action": "<a ui-sref=''>View profile</a>"
+	}
+	
+] }

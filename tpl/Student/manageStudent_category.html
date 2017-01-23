@@ -1,0 +1,96 @@
+<div>
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">HR -> Configurations -> Manage student Category </h1>
+  </div>
+  <div class="wrapper-md" >
+  <div class="">
+        <button class="btn btn-success m-b-lg" ng-click="addNewCategory()"><i class="fa fa-plus"></i>Add Category</button>
+      </div>
+    <div class="panel panel-default">
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="2">Bulk edit</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" >
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <input st-search="'STU_CATE_TYPE_NAME'" placeholder="search for category name" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="all"><i></i>
+              </label>
+            </th>
+            <th st-sort="STU_CATE_TYPE_NAME">Category Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post"><i></i></label></td>
+            <td>
+              <span editable-text="row.STU_CATE_TYPE_NAME" e-name="STU_CATE_TYPE_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.STU_CATE_TYPE_NAME}}
+              </span>
+            </td>
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row)" class="btn btn-sm btn-info">
+                  save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="removeUser($index)"><i class="fa fa-trash-o"></i></button>
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="2"></td>
+          <td colspan="2"></td>
+            <td colspan="2" class="">
+              <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
