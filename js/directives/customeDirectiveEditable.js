@@ -8,7 +8,8 @@ angular.module('app')
       predicate: '@',
       predicateExpression: '='
     },
-    template: '<select ng-model="selectedOption" ng-change="optionChanged(selectedOption)" ng-options="opt for opt in distinctItems"></select>',
+    templateUrl:'tpl/stSelectsingle.html',
+    // template: '<select ng-model="selectedOption" ng-change="optionChanged(selectedOption)" ng-options="opt for opt in distinctItems"></select>',
     link: function(scope, element, attr, table) {
       var getPredicate = function() {
         var predicate = scope.predicate;
@@ -23,7 +24,7 @@ angular.module('app')
 
         if (newValue) {
           var temp = [];
-          scope.distinctItems = ['All'];
+          scope.distinctItems = ['All Items'];
 
           angular.forEach(scope.collection, function(item) {
             var value = item[predicate];
@@ -47,7 +48,7 @@ angular.module('app')
 
         query.distinct = selectedOption;
 
-        if (query.distinct === 'All') {
+        if (query.distinct === 'All Items') {
           query.distinct = '';
         }
 
@@ -92,7 +93,7 @@ angular.module('app')
           var selected = getSelectedOptions();
 
           if (allCount === selected.length || selected.length === 0) {
-            return 'All';
+            return 'All Items';
           }
 
           if (selected.length === 1) {
@@ -173,7 +174,7 @@ angular.module('app')
 
           return found;
         }
-      },2000);
+      },500);
     }
   }
 }])

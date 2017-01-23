@@ -41,7 +41,7 @@ angular.module('app')
                   url: "/employee-category",
                   controller:"empcategoryctrl",
                   templateUrl: "tpl/hrconfig/employee_category.html",
-                  resolve: load(['smart-table','js/controllers/hrconfig/empcategoryctrl.js','xeditable','ui.bootstrap'])
+                  resolve: load(['smart-table','js/controllers/hrconfig/empcategoryctrl.js','xeditable','ui.bootstrap','toaster'])
               })
               .state("app.Employee-Department", {
                   url: "/employee-dept",
@@ -266,7 +266,7 @@ angular.module('app')
                 url: "/managestudent-category",
                 controller:"managestud_catctrl",
                 templateUrl: "tpl/Student/manageStudent_category.html",
-                resolve: load(['smart-table','js/controllers/studentconfig/managestud_catctrl.js','xeditable'])
+                resolve: load(['smart-table','xeditable','ui.select','js/controllers/studentconfig/managestud_catctrl.js'])
                
               })
                 .state("app.Student-Rollno", {

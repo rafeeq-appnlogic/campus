@@ -1,0 +1,12 @@
+<!-- <div class="dropdown" style="width:20px !important;"> -->
+<!-- template: '<select ng-model="selectedOption" ng-change="optionChanged(selectedOption)" ng-options="opt for opt in distinctItems"></select>', -->
+<select class="form-control selectpicker input-sm" ng-model="selectedOption" ng-change="optionChanged(selectedOption)" data-live-search="true" data-style="btn-white btn-sm">
+  <option ng-repeat="item in distinctItems" value="{{item}}">{{item}}</option>
+</select>
+  <!-- <ui-select ng-model="selectedOption" theme="bootstrap">
+    <ui-select-match placeholder="Select or search a person in the list...">{{$select.selectedOption}}</ui-select-match>
+    <ui-select-choices group-by="'group'" repeat="item in distinctItems | filter: $select.selectedOption">
+      <span ng-bind="item | highlight: $select.selectedOption"></span>
+    </ui-select-choices>
+  </ui-select>
+</div> -->

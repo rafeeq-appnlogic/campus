@@ -1,12 +1,16 @@
-<div class="dropdown">
+<div class="dropdown" style="width:20px !important;">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     {{dropdownLabel}}
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
     <li ng-repeat="item in distinctItems">
-      <label>
+      <label class="i-checks m-b-none"><input type="checkbox" ng-model="item.selected" ng-click="filterChanged()">
+      <i></i>
+      {{item.value}}
+      </label>
+      <!-- <label>
         <input type="checkbox" ng-model="item.selected" ng-click="filterChanged()">{{item.value}}</label>
-    </li>
+    </li> -->
   </ul>
 </div>
