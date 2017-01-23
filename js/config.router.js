@@ -176,11 +176,17 @@ angular.module('app')
               //added by senthil for finance module
               .state("app.fn-assetview", {
                   url: "/assetview",
-                  templateUrl: "tpl/Finance/assetview.html"
-              }).state("app.fn-liabilityview", {
+                  controller:"assetctrl",
+                  templateUrl: "tpl/Finance/assetview.html",
+                  resolve: load(['smart-table','js/controllers/finance/asset.js','xeditable','ui.bootstrap'])
+              })
+              .state("app.fn-liabilityview", {
                   url: "/liabilityview",
-                  templateUrl: "tpl/Finance/liabilityview.html"
-              }).state("app.fn-category", {
+                  controller:"liabilityctrl",
+                  templateUrl: "tpl/Finance/liabilityview.html",
+                  resolve: load(['smart-table','js/controllers/finance/liability.js','xeditable','ui.bootstrap'])
+              })
+              .state("app.fn-category", {
                   url: "/configcategory",
                   templateUrl: "tpl/Finance/categoryview.html"
               })
@@ -279,6 +285,10 @@ angular.module('app')
                 .state("app.Apply-RefundRule", {
                 url: "/apply-refundrule",
                 templateUrl: "tpl/Finance/applyFeesRefund.html",
+              })
+                .state("app.Add-Complaint", {
+                url: "/add-complaint",
+                templateUrl: "tpl/discipline/addComplaint.html",
               })
               ;
 
