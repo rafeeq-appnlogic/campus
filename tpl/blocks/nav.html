@@ -361,7 +361,7 @@
             <!-- <i class="fa fa-fw fa-angle-down text-warning text-active"></i> -->
           </span>
           <!-- <b class="label bg-warning pull-right">2</b> -->
-          <a ui-sref="">
+          <a ui-sref="app.Student_Details">
             <span>Student Details</span>
           </a>
       </li>
@@ -369,10 +369,32 @@
           <span class="pull-right text-muted">
           </span> 
           <!-- <b class="label bg-info pull-right">2</b> -->
-          <a ui-sref="">
+          <a ui-sref="app.Student-Admission">
             <span>Admission</span>
           </a>
       </li>
+      <li ui-sref-active="active">
+            <a href class="auto">
+              <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-warning text-active"></i>
+              </span>
+              <!-- <b class="label bg-info pull-right">2</b> -->
+              <span>Configurations</span>
+            </a>
+            <ul class="nav dker">
+              <li ui-sref-active="active">
+                <a ui-sref="app.Managestudent-Category">
+                  <span>Manage student Category </span>
+                </a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="app.Student-Rollno">
+                  <span>Manage Student Roll No </span>
+                </a>
+              </li>
+            </ul>
+          </li>
     </ul>
   </li>
 
