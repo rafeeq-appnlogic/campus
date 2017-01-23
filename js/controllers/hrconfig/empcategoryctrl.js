@@ -12,6 +12,13 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.data='';
   $scope.status='';
   $scope.rowCollection = [];
+  var tableState = {
+        sort: {},
+        search: {},
+        pagination: {
+            start: 0
+        }
+    };
     $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
@@ -30,9 +37,10 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
         var data=response.data.message.message;
         $scope.showMessage(data,status);
       }, function myError(response) {
-    });
-    
+    });    
     $scope.displayedCollection.splice(index, 1);
+
+    $scope.getMasterJobs(tableState);
   }
   $scope.addNewCategory = function() {
     $scope.inserted = {
@@ -59,7 +67,9 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       }, function myError(response) {
 
       });
+      $scope.getMasterJobs(tableState);
     },200);
+
   }
   $scope.removeRow = function(curr_id,index) {
     console.log(curr_id,index,'curr_id,index');
@@ -68,6 +78,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     }else{
       return true;
     }    
+    $scope.getMasterJobs(tableState);
   }
   $scope.showMessage=function(data,status){
     toaster.pop(status, data);
@@ -126,5 +137,27 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       $scope.showMessage("Records Deleted Successfully","error");
       // $scope.multipleDelete($scope.deletedItem);
     }
+    $scope.getMasterJobs(tableState);
   }
+
+  $scope.getMasterJobs = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+          $scope.rowCollection = response.aaData;
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+
+          //set the number of pages so the pagination can update
+          // tableState.pagination.numberOfPages = response.numberOfPages;
+          // $scope.displayedPages = Math.ceil(response.numberOfPages / length);
+          $scope.isLoading = false;
+      }).error(function (data, status, headers, config) {
+          console.error(data);
+          $scope.isLoading = false;
+      });
+  };
 }]);
