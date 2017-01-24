@@ -7,12 +7,40 @@
     padding: 0;
     margin: -5px 0;
   }
+  .i-switch-md input:checked + i::after {
+    color: green;
+    content: "Yes";
+    font-size: 15px;
+    font-style: normal;
+    margin-left: 19px;
+}
+.i-switch-md i::after {
+    color: red;
+    content: "No";
+    font-size: 15px;
+    font-style: normal;
+    text-align: center;
+    width: 22px;
+}
+.i-switch i::before {
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 30px;
+    bottom: -1px;
+    content: "";
+    left: -1px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    transition: all 0.2s ease 0s;
+}
 </style>
 <div>
+
   <div class="bg-light lter b-b wrapper-md">
     <div class="row">
     <div class="col-md-4">
-      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Acadmeics</b> | Manage Class</h4>
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Academics</b> | Manage Classes</h4>
       </div>
       <div class="col-md-8">
       <ul class="breadcrumb pull-right">
@@ -23,11 +51,16 @@
       </div>
     </div>
   </div>
+
   <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="panel panel-default">
-    <div class="panel-heading font-bold"><p>Class
-    <button type="button" class="btn btn-sm btn-success pull-right" ng-click="addNewCategory()" ><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Add Class </span></button></p>
+    <div class="panel-heading" style="padding:10px;">
+    <span style="font-size:18px;"><b>Manage Classes</b></span>  
+    <a data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Classes</a>
     </div>
+    <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
       <tr>
           <th style="width:185px !important">
@@ -40,13 +73,12 @@
           </th>
             <th colspan="2">
                <div>
-                <select class="input-sm form-control w-sm inline v-middle">
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
                   <option value="0">Bulk action</option>
                   <option value="1">Delete selected</option>
-                  <option value="2">Bulk edit</option>
                   <option value="3">Export</option>
                 </select>
-                <button class="btn btn-sm btn-default">Apply</button>                
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
               </div>
             </th>
             <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
@@ -57,35 +89,40 @@
       <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
         <thead>
           <tr>
-            <th></th>
+            <th style="width:5px !important"></th>
             <th>
-             <!--  <input st-search="'EMP_C_NAME'" placeholder="search for category name" class="input-sm form-control" type="search"/> -->
               <st-select-distinct collection="rowCollection" predicate="EMP_C_NAME"></st-select-distinct>
             </th>
             <th>
-              <!-- <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/> -->
               <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <!-- <input st-search="'EMP_C_ACTIVE_YN'" placeholder="search for Status" class="input-sm form-control" type="search"/> -->
+              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+            </th>
+            <th>
+              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+            </th>
+            <th>
               <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
             </th>
           </tr>
           <tr>
-            <th style="width:20px;">
+            <th>
               <label class="i-checks m-b-none">
-                <input type="checkbox" ng-model="all"><i></i>
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="EMP_C_NAME">Category Name</th>
-            <th st-sort="EMP_C_PREFIX">Category Prefix</th>
-            <th st-sort="EMP_C_ACTIVE_YN">Status</th>
+            <th st-sort="EMP_C_NAME">Class Name</th>
+            <th st-sort="EMP_C_PREFIX">Section Name</th>
+            <th st-sort="EMP_C_ACTIVE_YN">Class Code</th>
+            <th st-sort="EMP_C_ACTIVE_YN">Grade Type</th>
+            <th st-sort="EMP_C_ACTIVE_YN">Elective Selection</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post"><i></i></label></td>
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
             <td>
               <span editable-text="row.EMP_C_NAME" e-name="EMP_C_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.EMP_C_NAME}}
@@ -101,19 +138,30 @@
                 {{row.EMP_C_ACTIVE_YN}}
               </span>
             </td>
+            <td>
+              <span editable-text="row.EMP_C_ACTIVE_YN" e-name="EMP_C_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_C_ACTIVE_YN}}
+              </span>
+            </td>
+            <td>
+              <span editable-text="row.EMP_C_ACTIVE_YN" e-name="EMP_C_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_C_ACTIVE_YN}}
+              </span>
+            </td>
             <td style="white-space: nowrap">
               <!-- form -->
               <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
-                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row)" class="btn btn-sm btn-info">
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row,$index)" class="btn btn-sm btn-info">
                   save
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow($index)"" class="btn btn-sm btn-default">
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.EMP_C_ID,$index)" class="btn btn-sm btn-default">
                   cancel
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
+                <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-file"></i></a>
                 <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" ng-click="deleteData($index)"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
           </tr>
@@ -125,16 +173,93 @@
         </tbody>
         <tfoot>
           <tr>
-          <!-- <td colspan="2"></td> -->
-          <td colspan="3" class="text-center">
+          <td colspan="5" class="text-right">
             <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
-          </td>
-          <td colspan="2" class="">
-            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
           </td>
           </tr>
         </tfoot>
       </table>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg" style="padding-top: 87px">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+      <h4 class="modal-title" id="header">Add Class</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+        <form role="form" class="form-validation" name="Form">
+            <div class="form-group col-md-4 ">
+              <label>Course Name</label>
+              <input class="form-control" placeholder="Course Name" ng-model="ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Section Name</label>
+              <input class="form-control" placeholder="Section Name" ng-model="ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Class Code</label>
+              <input class="form-control" placeholder="Class Code" ng-model="ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Grading System Type</label>
+               <!-- <select ui-jq="chosen" class="w-full"> -->
+               <select class="form-control" ng-model="ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
+                 <option value="Normal">Normal</option>
+                 <option value="CCE">CCE</option>
+               </select>
+            </div>
+            <div class="form-group col-md-8">
+              <label>Enable Elective Section</label>
+                <div class="">
+                  <label class="i-switch i-switch-md bg-success m-t-xs m-r">
+                <input checked="" type="checkbox" ng-model="ACA_COU_ELECTIVE_SEL_YN" name="ACA_COU_ELECTIVE_SEL_YN">
+                <i></i>
+              </label>
+                </div>
+            </div>
+            <legend class="text-muted" style="font-size: 17px">Add Initail Batch for Creating Class</legend>
+            <div class="form-group col-md-4 ">
+              <label>Batch Name</label>
+              <input class="form-control" placeholder="Batch Name" type="text" ng-model="ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Start Date</label>
+              <div ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-4 ">
+              <label>End Date</label>
+              <div ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+            <button type="submit" class="btn btn-sm btn-success" ng-disabled="Form.$invalid">
+<!--             <span class="fa fa-save"><i class=""></i></span> 
+ -->            &nbsp;Save</button>
+              </div>
+          </form>
+        </div>
+    </div>
+      </div>
+  </div>
+    </div>

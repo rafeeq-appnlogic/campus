@@ -294,17 +294,17 @@ angular.module('app')
                 url: "/manage-subjects",
                 templateUrl: "tpl/academics/manageSubjects.html",
               })
-              // .state("app.Manage-Class", {
-              //   url: "/manage-class",
-              //   controller:"manageClassCtrl",
-              //   templateUrl: "tpl/academics/manageClass.html",
-              //   resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable'])
-              // })
               .state("app.Manage-Class", {
                   url: "/manage-class",
                   controller:"manageClassCtrl",
                   templateUrl: "tpl/academics/manageClass.html",
-                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap'])
+                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster'])
+              })
+              .state("app.Batch-View", {
+                  url: "/app.batch-view",
+                  controller:"manageClassCtrl",
+                  templateUrl: "tpl/academics/batchview.html",
+                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster'])
               })
               .state("app.Manage-Batch", {
                 url: "/manage-batch",
