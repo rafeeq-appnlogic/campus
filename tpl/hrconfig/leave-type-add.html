@@ -7,94 +7,116 @@
           <div class="panel panel-default">
             <div class="panel-heading font-bold">Add Leave Type</div>
             <div class="panel-body">
-              <form role="form" class="ng-pristine form-horizontal ng-valid">
+              <form role="form" class="form-validation form-horizontal" name="myForm">
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Leave Name</label>
                   <div class="col-lg-3">
-                    <input class="form-control" type="text">
+                    <input type="text" name="EMP_L_NAME" class="form-control" ng-model="EMP_L_NAME"  ng-pattern="/^[a-zA-Z]/" required >
+                    <!-- <span style="color:red" ng-show="myForm.EMP_L_NAME.$dirty && myForm.EMP_L_NAME.$invalid">
+                    <span>Leave Name is required Not Empty.</span>
+                    </span> -->
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Leave Code</label>
                   <div class="col-lg-3">
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" name="EMP_L_CODE" ng-model="EMP_L_CODE" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Leave Count</label>
                   <div class="col-lg-3">
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" ng-model="EMP_L_COUNT" name="EMP_L_COUNT" ng-pattern="/^[0-9]/" required >
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Valid From</label>
                   <div class="col-lg-3">
-                    <input class="form-control" type="text">
+                    <input class="form-control" required type="text" name="EMP_L_VALID_FROM" ng-model="EMP_L_VALID_FROM">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Leave Balance </label>
-                  <div class="col-lg-4">
-                    <p>Mange how to reset employee leave balance</p>
+                  <div class="col-lg-10">
+                    <p class="form-control-static">Mange how to reset employee leave balance</p>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-2 control-label"></label>
-                    <div class="col-lg-9">
-                      <div class="col-md-5">
-                        <label class="radio-inline">
-                            <input name="EMP_L_ALLOW_LEAVE" id="allow" class="checkallow" value="Y" type="radio"  >
-                            Allow leave carry forward
-                        </label>
-                      </div>
-                      <div class="col-md-4">
-                        <label class="radio-inline">
-                            <input name="EMP_L_ALLOW_LEAVE" id="discard"  class="checkallow"  value="N" type="radio" >
-                            Discard leave balance
-                            <input type="hidden" name="EMP_L_ALLOW_LEAVE_BAL" id="EMP_L_ALLOW_LEAVE_BAL">
+                    <div class="col-lg-8  col-md-offset-2">
+                      <div class="radio">
+                        <label class="i-checks col-md-4">
+                          <input name="EMP_L_ALLOW_LEAVE" required ng-model="EMP_L_ALLOW_LEAVE" value="Y" type="radio">
+                          <i></i>
+                          Allow leave carry forward
+                        </label>&nbsp;&nbsp;&nbsp; 
+                        <label class="i-checks">
+                          <input name="EMP_L_ALLOW_LEAVE" required value="N" ng-model="EMP_L_ALLOW_LEAVE" checked=""  type="radio">
+                          <i></i>
+                          Discard leave balance
                         </label>
                       </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-2 control-label">Additional Leaves  </label>
-                  <div class="col-lg-4">
-                    <p>Set how to manage employee additional leaves</p>
+                  </div>
+                  <div ng-if="EMP_L_ALLOW_LEAVE=='Y'">
+                  <div class="form-group">
+                  <div class="col-lg-10  col-md-offset-2">
+                    <p class="form-control-static">Minimum number of leave that can be carry forward</p>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-2 control-label"></label>
-                    <div class="col-lg-9">
-                      <div class="col-md-5">
-                        <label class="radio-inline">
-                            <input name="" id="allow" class="checkallow" value="Y" type="radio"  ><input name="EMP_L_ADDI_LEAVE_YN" class="cleardata" id="ADDI_YES" value="Y" type="radio" >
-                            Liable for salary deduction(LOP)
+                    <div class="col-lg-8  col-md-offset-2">
+                      <div class="radio">
+                        <label class="i-checks col-md-4">
+                          <input name="EMP_L_ALLOW" required ng-model="EMP_L_ALLOW" value="Y" type="radio">
+                          <i></i>
+                          All leave balance
+                        </label>   
+                        <label class="i-checks col-md-3">
+                          &nbsp;&nbsp;&nbsp;<input name="EMP_L_ALLOW" required value="N" ng-model="EMP_L_ALLOW" checked=""  type="radio">
+                          <i></i>
+                          Special count
                         </label>
+                        <div class="col-md-3" ng-if="EMP_L_ALLOW=='N'">
+                          <input type="text" class="form-control input-sm" ng-model="Count" ng-pattern="/^[0-9]/" required >
+                        </div>
                       </div>
-                      <div class="col-md-4">
-                        <label class="radio-inline">
-                            <input name="EMP_L_ADDI_LEAVE_YN" class="cleardata" id="ADDI_NO"  value="N" type="radio" >
-                            No salary deduction 
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-2 control-label">Additional Leaves  </label>
+                    <div class="col-lg-10">
+                    <p class="form-control-static">Set how to manage employee additional leaves</p>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-8  col-md-offset-2">
+                        <div class="radio">
+                          <label class="i-checks col-md-4">
+                            <input name="EMP_L_ADDI_LEAVE_YN" value="Y" checked="" type="radio">
+                            <i></i>Liable for salary deduction(LOP) 
+                          </label>&nbsp;&nbsp;&nbsp; 
+                          <label class="i-checks">
+                            <input name="EMP_L_ADDI_LEAVE_YN" value="N" type="radio">
+                            <i></i>No salary deduction 
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Active</label>
+                      <div class="col-sm-10">
+                        <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                          <input checked="" type="checkbox">
+                          <i></i>
                         </label>
                       </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Active</label>
-                  <div class="col-sm-10">
-                    <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-                      <input checked="" type="checkbox">
-                      <i></i>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-offset-3">
-                <button class="btn btn-info btn-sm">Save</button>
-                <button class="btn btn-danger btn-sm">Cancel</button>
-                </div>
+                    <div class="col-md-offset-3">
+                    <button class="btn btn-info btn-sm" ng-disabled="myForm.$invalid">Save</button>
+                    <button class="btn btn-danger btn-sm" ui-sref="app.Leave-Types">Cancel</button>
+                    </div>
               </form>
             </div>
           </div>

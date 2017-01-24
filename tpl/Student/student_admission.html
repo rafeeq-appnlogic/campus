@@ -119,11 +119,11 @@
           </div>
         </div>
         <div class="m-t m-b">
-          <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Next</button>
+          <button type="submit" class="btn btn-default btn-rounded" ng-disabled="step1.$invalid" ng-click="steps.step2=true">Next</button>
         </div>
       </form>
     </tab>
-    <tab heading="Contact Details" active="steps.step2" select="steps.percent=30">
+    <tab heading="Contact Details" active="steps.step2" disabled="step1.$invalid" select="steps.percent=30">
       <form name="step2" class="form-validation">
           <div class="row">
             <div class="form-group col-md-3">
@@ -176,11 +176,12 @@
           </div>
         <div class="m-t m-b">
           <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
-          <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Next</button>
+          <button type="submit" class="btn btn-default btn-rounded" ng-disabled="step2.$invalid" ng-click="steps.step3=true">Next</button>
         </div>
       </form>
     </tab>
-    <tab heading="Class and Batch details" active="steps.step3" select="steps.percent=50">
+    <tab heading="Class and Batch details" active="steps.step3" disabled="step2.$invalid" select="steps.percent=50">
+    <form name="step3" class="form-validation">
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Class</label>
@@ -207,9 +208,11 @@
         <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Prev</button>
         <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step4=true">Next</button>
       </div>
+      </form>
     </tab>
 
-    <tab heading="Parent/Guardian details"  active="steps.step4" select="steps.percent=70">
+    <tab heading="Parent/Guardian details"  active="steps.step4" disabled="step3.$invalid" select="steps.percent=70">
+    <form name="step4" class="form-validation">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -360,8 +363,10 @@
         <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Prev</button>
         <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step5=true">Next</button>
       </div>
+      </form>
     </tab>
-    <tab heading="Previous Educational Details" active="steps.step5" select="steps.percent=80">
+    <tab heading="Previous Educational Details" active="steps.step5" disabled="step4.$invalid" select="steps.percent=80">
+    <form name="step5" class="form-validation">
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
@@ -394,8 +399,10 @@
         <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step4=true">Prev</button>
         <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step6=true">Next</button>
       </div>
+      </form>
     </tab>
-    <tab heading="Addtional Deatails" active="steps.step6" select="steps.percent=90">
+    <tab heading="Addtional Deatails" active="steps.step6" disabled="step5.$invalid" select="steps.percent=90">
+    <form name="step6" class="form-validation">
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
@@ -430,6 +437,7 @@
         <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step5=true">Prev</button>
         <!-- <button type="button" class="btn btn-default btn-rounded" ng-click="steps.percent=100">Click me to Finish</button> -->
       </div>
+      </form>
     </tab>
   </tabset>
 </div>

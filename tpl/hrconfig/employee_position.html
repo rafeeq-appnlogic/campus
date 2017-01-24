@@ -1,7 +1,15 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+</style>
 <div>
-  <!-- <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">HR -> Configuration -> Employee Position</h1>
-  </div> -->
+
   <div class="bg-light lter b-b wrapper-md">
     <div class="row">
     <div class="col-md-4">
@@ -16,15 +24,25 @@
       </div>
     </div>
   </div>
+
   <div class="wrapper-md" >
   <div class="">
-        <button class="btn btn-success m-b-lg" ng-click="addPosition()"><i class="fa fa-plus"></i>Add Position</button>
+        
       </div>
     <div class="panel panel-default">
-      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" >
-        <thead>
-          <tr>
-          <th style="width:150px !important;">Items by page &nbsp;<input class="input-sm form-control" name="items" id="items" type="number" ng-model="itemsByPage" ></th>
+    <div style="padding:10px !important;margin-right: 10px;">
+      <button class="btn btn-success m-b-sm" ng-click="addPosition()" style="float: right !important;"><i class="fa fa-plus"></i>Add Position</button>
+    </div>
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
             <th colspan="2">
                <div>
                 <select class="input-sm form-control w-sm inline v-middle">
@@ -38,16 +56,24 @@
             </th>
             <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
           </tr>
+    </table>
+    <!-- <hr> -->
+
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
           <tr>
             <th></th>
             <th>
-              <input st-search="'EMP_P_NAME'" placeholder="search for position name" class="input-sm form-control" type="search"/>
+             <!--  <input st-search="'EMP_C_NAME'" placeholder="search for category name" class="input-sm form-control" type="search"/> -->
+              <st-select-distinct collection="rowCollection" predicate="EMP_P_NAME"></st-select-distinct>
             </th>
             <th>
-              <input st-search="'EMP_P_CATEGORY_ID'" placeholder="search for category name" class="input-sm form-control" type="search"/>
+              <!-- <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/> -->
+              <input st-search="'EMP_P_CATEGORY_ID'" placeholder="Search for Emp Category Id" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'EMP_P_ACTIVE_YN'" placeholder="search for status" class="input-sm form-control" type="search"/>
+              <!-- <input st-search="'EMP_C_ACTIVE_YN'" placeholder="search for Status" class="input-sm form-control" type="search"/> -->
+              <st-select-multiple collection="rowCollection" predicate="EMP_P_ACTIVE_YN"></st-select-multiple>
             </th>
           </tr>
           <tr>
@@ -56,9 +82,9 @@
                 <input type="checkbox" ng-model="all"><i></i>
               </label>
             </th>
-            <th st-sort="EMP_P_NAME">Position Name</th>
-            <th st-sort="EMP_P_CATEGORY_ID">Position Id</th>
-            <th st-sort="EMP_P_ACTIVE_YN">Status</th>
+            <th st-sort="EMP_P_NAME">Category Name</th>
+            <th st-sort="EMP_P_CATEGORY_ID">Category Prefix</th>
+            <th st-sort="">Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -66,15 +92,20 @@
           <tr ng-repeat="row in displayedCollection">
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post"><i></i></label></td>
             <td>
-              <span editable-text="row.EMP_P_NAME" e-name="EMP_P_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+              <span editable-text="row.EMP_C_NAME" e-name="EMP_P_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.EMP_P_NAME}}
               </span>
             </td>
             <td>
               <span editable-select="row.EMP_P_CATEGORY_ID" e-name="EMP_P_CATEGORY_ID" e-form="rowform" e-ng-options="s.name for s in selectCategory">
-              {{ row.EMP_P_CATEGORY_ID}}
+              {{selectSlitfunction(row.EMP_P_CATEGORY_ID)}}
               </span>
             </td>
+            <!-- <td>
+              <span editable-text="row.EMP_P_CATEGORY_ID" e-name="EMP_P_CATEGORY_ID" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_P_CATEGORY_ID}}
+              </span>
+            </td> -->
             <td>
               <span editable-text="row.EMP_P_ACTIVE_YN" e-name="EMP_P_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.EMP_P_ACTIVE_YN}}
@@ -86,13 +117,13 @@
                 <button type="submit" ng-disabled="rowform.$waiting" ng-click="savePosition(row)" class="btn btn-sm btn-info">
                   save
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow($index)"" class="btn btn-sm btn-default">
                   cancel
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
-                <button class="btn btn-sm btn-info" ng-click="rowform.$show()">edit</button>
-                <button class="btn btn-sm btn-danger" ng-click="removePosition($index)">del</button>
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="removePosition($index)"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
           </tr>
@@ -104,9 +135,13 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="3" class="text-center">
-              <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
-            </td>
+          <!-- <td colspan="2"></td> -->
+          <td colspan="3" class="text-center">
+            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
+          </td>
+          <td colspan="2" class="">
+            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
+          </td>
           </tr>
         </tfoot>
       </table>

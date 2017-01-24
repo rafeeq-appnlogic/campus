@@ -1,3 +1,4 @@
+
 app.controller('position_ctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes', 
   function($scope, $timeout, $http, editableOptions, editableThemes) {
   editableThemes.bs3.inputClass = 'input-sm';
@@ -9,7 +10,13 @@ app.controller('position_ctrl', ['$scope', '$timeout','$http', 'editableOptions'
   {name: 'Category 2', code: 'ct002'},
   {name: 'Category 3', code: 'ct003'},
   ];
-
+  $scope.selectSlitfunction = function(selectedData) {
+    if (angular.isObject(selectedData)) {
+      return selectedData.name;  
+    }else{
+      return selectedData;  
+    }  
+  }
   $scope.rowCollection = [];
     $http.get('http://localhost/smartedu/api/HrConfigModule/employeePosition').success(function(incomingData) {
           $scope.rowCollection = incomingData;

@@ -290,6 +290,26 @@ angular.module('app')
                 url: "/add-complaint",
                 templateUrl: "tpl/discipline/addComplaint.html",
               })
+              .state("app.Manage-Subjects", {
+                url: "/manage-subjects",
+                templateUrl: "tpl/academics/manageSubjects.html",
+              })
+              // .state("app.Manage-Class", {
+              //   url: "/manage-class",
+              //   controller:"manageClassCtrl",
+              //   templateUrl: "tpl/academics/manageClass.html",
+              //   resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable'])
+              // })
+              .state("app.Manage-Class", {
+                  url: "/manage-class",
+                  controller:"manageClassCtrl",
+                  templateUrl: "tpl/academics/manageClass.html",
+                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap'])
+              })
+              .state("app.Manage-Batch", {
+                url: "/manage-batch",
+                templateUrl: "tpl/academics/manageBatch.html",
+              })
               ;
 
           function load(srcs, callback) {
