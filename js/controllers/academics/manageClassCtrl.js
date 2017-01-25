@@ -1,5 +1,5 @@
-app.controller('manageClassCtrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster) {
+app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
+  function($scope,$rootScope,$timeout, $http, editableOptions, editableThemes,toaster) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -11,6 +11,7 @@ app.controller('manageClassCtrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.deletedItem=[];
   $scope.data='';
   $scope.status='';
+  $scope.Savedata=[];
   $scope.rowCollection = [];
   var tableState = {
         sort: {},
@@ -19,56 +20,59 @@ app.controller('manageClassCtrl', ['$scope', '$timeout','$http', 'editableOption
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
-          $scope.rowCollection = incomingData.aaData;
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail').success(function(incomingData) {
+          $scope.rowCollection = incomingData.message;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
-  $scope.deleteData = function(index) {
-    var id=$scope.displayedCollection[index].EMP_C_ID;
-    console.log(id,"id");
-    $http({
-      method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-      params : {id : id},
-    }).then(function mySucces(response) {
-        console.log(response.data.message.message);
-        var status="error";
-        var data=response.data.message.message;
-        $scope.showMessage(data,status);
-      }, function myError(response) {
-    });    
-    $scope.displayedCollection.splice(index, 1);
+  // $scope.deleteData = function(index) {
+  //   var id=$scope.displayedCollection[index].EMP_C_ID;
+  //   console.log(id,"id");
+  //   $http({
+  //     method : "DELETE",
+  //     url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+  //     params : {id : id},
+  //   }).then(function mySucces(response) {
+  //       console.log(response.data.message.message);
+  //       var status="error";
+  //       var data=response.data.message.message;
+  //       $scope.showMessage(data,status);
+  //     }, function myError(response) {
+  //   });    
+  //   $scope.displayedCollection.splice(index, 1);
 
-    $scope.getMasterJobs(tableState);
-  }
-  $scope.addNewCategory = function() {
-    $scope.inserted = {
-      EMP_C_ID: null,
-      EMP_C_NAME: null,
-      EMP_C_PREFIX: null,
-      EMP_C_ACTIVE_YN: null
-    };
-    $scope.displayedCollection.push($scope.inserted);
-  };
+  //   $scope.getMasterJobs(tableState);
+  // }
+  // $scope.addNewCategory = function() {
+  //   $scope.inserted = {
+  //     EMP_C_ID: null,
+  //     EMP_C_NAME: null,
+  //     EMP_C_PREFIX: null,
+  //     EMP_C_ACTIVE_YN: null
+  //   };
+  //   $scope.displayedCollection.push($scope.inserted);
+  // };
 
   $scope.saveCategory=function(user_data,$index){
-    setTimeout(function(){
+    console.log(user_data,'asdasd');
+    // setTimeout(function(){
+      console.log($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail');
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-        data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
+        url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
+        data : {'ACA_COU_ID':user_data.ACA_COU_ID,'ACA_COU_NAME' : user_data.ACA_COU_NAME,'ACA_COU_SEC_NAME' : user_data.ACA_COU_SEC_NAME,'ACA_COU_CODE' : user_data.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':user_data.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':user_data.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':user_data.ACA_BAT_NAME,'ACA_BAT_START_DT':user_data.ACA_BAT_START_DT,'ACA_BAT_END_DT':user_data.ACA_BAT_END_DT}
       }).then(function mySucces(response) {
-        console.log(response.data.message);
+        console.log(response,'response');
         // console.log($scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID);
-        $scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID
-        var status="success";
-         $scope.showMessage(response.data.message,status);
+        // $scope.displayedCollection[$index].ACA_COU_ID=response.data.ACA_COU_ID
+        // $scope.Savedata=[];
+        // var status="success";
+        //  $scope.showMessage(response.data.message,status);
       }, function myError(response) {
 
       });
       $scope.getMasterJobs(tableState);
-    },200);
+    // },200);
 
   }
   $scope.removeRow = function(curr_id,index) {
@@ -148,7 +152,7 @@ app.controller('manageClassCtrl', ['$scope', '$timeout','$http', 'editableOption
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
-          $scope.rowCollection = response.aaData;
+          $scope.rowCollection = response.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
 
           //set the number of pages so the pagination can update
