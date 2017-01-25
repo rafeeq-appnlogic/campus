@@ -1,5 +1,5 @@
-app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
-  function($scope,$rootScope,$timeout, $http, editableOptions, editableThemes,toaster) {
+app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope', 
+  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -19,7 +19,7 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
             start: 0
         }
     };
-    $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function(incomingData) {
+    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -29,7 +29,7 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
+      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
       params : {id : id},
     }).then(function mySucces(response) {
         console.log(response.data.message.message);
@@ -56,7 +56,7 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
     setTimeout(function(){
       $http({
         method : "POST",
-        url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
+        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
         data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
         console.log(response.data.message);
@@ -72,12 +72,10 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
 
   }
   $scope.removeRow = function(curr_id,index) {
-    console.log(curr_id,index,'curr_id,index');
-    if(!curr_id){
-      $scope.displayedCollection.splice(index, 1);
-    }else{
-      return true;
-    }    
+    // console.log(curr_id,index,'curr_id,index');
+    // if(!curr_id){
+    //   $scope.displayedCollection.splice(index, 1);
+    // }
     $scope.getMasterJobs(tableState);
   }
   $scope.showMessage=function(data,status){
@@ -96,7 +94,7 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
     // var data1;
     $http({
       method : "DELETE",
-      url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
+      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
       params : {id : data},
     }).then(function mySucces(response) {
         // status1="error";
@@ -147,7 +145,7 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
       start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
-      $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+      $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
 
@@ -160,4 +158,18 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
           $scope.isLoading = false;
       });
   };
+   $scope.currentViewCalculation=function(){
+    var precal=$scope.currentPageNumber*$scope.itemsByPage;
+    return precal-$scope.itemsByPage+1;
+  }
+  $scope.currentViewCalculationMax=function(){
+    var maxcal=$scope.currentPageNumber*$scope.itemsByPage;
+    console.log(maxcal+"====" +$scope.rowCollection.length)
+    if(maxcal > $scope.rowCollection.length){
+      return $scope.rowCollection.length;
+    }else{
+      return maxcal;
+    }
+    
+  }
 }]);
