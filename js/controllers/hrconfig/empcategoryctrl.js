@@ -54,11 +54,9 @@ app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'ed
 
   $scope.saveCategory=function(user_data,$index){
     setTimeout(function(){
-		alert("Hello");
-		alert(user_data.EMP_C_CRT_DT);
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory1",
+        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
         data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
         console.log(response.data.message);
