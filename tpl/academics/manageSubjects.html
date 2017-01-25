@@ -1,21 +1,97 @@
-<div class="bg-light lter b-b wrapper-md">
-    <div class="row">
-    <div class="col-md-4">
-      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Employee settings</b> | Manage Subjects</h4>
-      </div>
-      <div class="col-md-8">
-      <ul class="breadcrumb pull-right">
-        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
-        <li><a href="">Elements</a></li>
-        <li class="active">Components</li>
-      </ul>
-      </div>
-    </div>
-  </div>
 
+<div class="bg-light lter b-b wrapper-md">
+  <h4 class="m-n font-thin h4"><i class="fa fa-book"></i> &nbsp&nbsp<b>Subject </b> | Manage Subjects </h4>
+</div>
+<!-- data table -->
 <div class="wrapper-md">
   <div class="panel panel-default">
-    <div class="panel-heading font-bold">Employee Position
+    <div class="panel-heading font-bold">
+      Manage Subjects
     </div>
+    <div class="panel-body">
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>
+            <th>
+              <st-select-distinct collection="rowCollection" predicate="CLASS_TIME_NAME"></st-select-distinct>
+            </th>
+            <th>
+              <st-select-multiple collection="rowCollection" predicate="ACA_BAT_NAME"></st-select-multiple>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="CLASS_TIME_NAME">Class</th>
+            <th st-sort="ACA_BAT_NAME">Batch</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            <td style="white-space: nowrap">
+              
+            </td>
+             <td style="white-space: nowrap">
+             
+            </td>
+             <td style="white-space: nowrap">
+              <!-- form -->
+              <div class="buttons" ng-show="!rowform.$visible">
+                <a ui-sref="app.View-Subjects">View</a>
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <!-- <td colspan="2"></td> -->
+          <td colspan="5" class="text-right">
+            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
+          </td>
+          <!-- <td colspan="2" class="">
+            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
+          </td> -->
+          </tr>
+        </tfoot>
+      </table>
+    </div><br>
   </div>
 </div>
+
+
