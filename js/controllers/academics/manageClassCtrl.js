@@ -20,7 +20,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'ed
             start: 0
         }
     };
-    $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(incomingData) {
           $scope.rowCollection = incomingData.message;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -53,28 +53,33 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'ed
   //   $scope.displayedCollection.push($scope.inserted);
   // };
 
-  $scope.saveCategory=function(user_data,$index){
-    console.log(user_data,'asdasd');
-    // setTimeout(function(){
-      console.log($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail');
-      $http({
-        method : "POST",
-        url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
-        data : {'ACA_COU_ID':user_data.ACA_COU_ID,'ACA_COU_NAME' : user_data.ACA_COU_NAME,'ACA_COU_SEC_NAME' : user_data.ACA_COU_SEC_NAME,'ACA_COU_CODE' : user_data.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':user_data.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':user_data.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':user_data.ACA_BAT_NAME,'ACA_BAT_START_DT':user_data.ACA_BAT_START_DT,'ACA_BAT_END_DT':user_data.ACA_BAT_END_DT}
-      }).then(function mySucces(response) {
-        console.log(response,'response');
-        // console.log($scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID);
-        // $scope.displayedCollection[$index].ACA_COU_ID=response.data.ACA_COU_ID
-        // $scope.Savedata=[];
-        // var status="success";
-        //  $scope.showMessage(response.data.message,status);
-      }, function myError(response) {
+  $scope.saveCategory=function(){    
+	alert($scope.ACA_BAT_START_DT);
+	alert($scope.ACA_BAT_END_DT);
+	$http({
+		method : "POST",
+		url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
+		data : {'ACA_COU_NAME' : $scope.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.ACA_BAT_NAME,'ACA_BAT_START_DT':'25-01-2016','ACA_BAT_END_DT':'25-01-2017'}
+	}).then(function mySucces(response) {
+		console.log(response,'response');
+		// console.log($scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID);
+		// $scope.displayedCollection[$index].ACA_COU_ID=response.data.ACA_COU_ID
+		// $scope.Savedata=[];
+		// var status="success";
+		//  $scope.showMessage(response.data.message,status);
+	}, function myError(response) {
 
-      });
-      $scope.getMasterJobs(tableState);
-    // },200);
-
+	});
+	$scope.getMasterJobs(tableState);
   }
+  
+	$scope.open = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.opened = true;
+	};
+  
+  
   $scope.removeRow = function(curr_id,index) {
     console.log(curr_id,index,'curr_id,index');
     if(!curr_id){
@@ -151,7 +156,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'ed
       start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
-      $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function (response, status, headers, config) {
           $scope.rowCollection = response.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
 
