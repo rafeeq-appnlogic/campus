@@ -175,23 +175,23 @@
         </div>
         <div class="modal-body">
       <div class="panel-body">
-        <form role="form" class="form-validation" name="Form" ng-submit="saveCategory(Savedata)">
+        <form role="form" class="form-validation" name="Form" ng-submit="saveCategory()">
             <div class="form-group col-md-4 ">
               <label>Course Name</label>
-              <input class="form-control" placeholder="Course Name" ng-model="Savedata.ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
+              <input class="form-control" placeholder="Course Name" ng-model="ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Section Name</label>
-              <input class="form-control" placeholder="Section Name" ng-model="Savedata.ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
+              <input class="form-control" placeholder="Section Name" ng-model="ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Class Code</label>
-              <input class="form-control" placeholder="Class Code" ng-model="Savedata.ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
+              <input class="form-control" placeholder="Class Code" ng-model="ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Grading System Type</label>
                <!-- <select ui-jq="chosen" class="w-full"> -->
-               <select class="form-control" ng-model="Savedata.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
+               <select class="form-control" ng-model="ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
                  <option value="Normal">Normal</option>
                  <option value="CCE">CCE</option>
                </select>
@@ -200,7 +200,7 @@
               <label>Enable Elective Section</label>
                 <div class="">
                   <label class="i-switch i-switch-md bg-success m-t-xs m-r">
-                <input checked="" type="checkbox" ng-model="Savedata.ACA_COU_ELECTIVE_SEL_YN" name="ACA_COU_ELECTIVE_SEL_YN">
+                <input checked="" type="checkbox" ng-model="ACA_COU_ELECTIVE_SEL_YN" name="ACA_COU_ELECTIVE_SEL_YN">
                 <i></i>
               </label>
                 </div>
@@ -208,13 +208,13 @@
             <legend class="text-muted" style="font-size: 17px">Add Initail Batch for Creating Class</legend>
             <div class="form-group col-md-4 ">
               <label>Batch Name</label>
-              <input class="form-control" placeholder="Batch Name" type="text" ng-model="Savedata.ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
+              <input class="form-control" placeholder="Batch Name" type="text" ng-model="ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Start Date</label>
               <div ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="Savedata.dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="ACA_BAT_START_DT" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -225,7 +225,7 @@
               <label>End Date</label>
               <div ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="Savedata.dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="ACA_BAT_END_DT" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
