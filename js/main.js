@@ -3,13 +3,16 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 
-    function(              $scope,   $translate,   $localStorage,   $window ) {
+  .controller('AppCtrl', ['$scope','$rootScope','$translate', '$localStorage', '$window', 
+    function(              $scope,$rootScope,$translate,   $localStorage,   $window ) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       if(isIE){ angular.element($window.document.body).addClass('ie');}
       if(isSmartDevice( $window ) ){ angular.element($window.document.body).addClass('smart')};
-
+	  
+	  // REST API end point
+	  $rootScope.endUrl="http://192.168.1.136/smartedu/api/";
+	
       // config
       $scope.app = {
         name: 'Ruby Campus',

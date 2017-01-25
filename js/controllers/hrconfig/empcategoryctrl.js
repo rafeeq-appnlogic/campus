@@ -1,5 +1,5 @@
-app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster) {
+app.controller('empcategoryctrl', ['$scope','$rootScope','$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
+  function($scope,$rootScope,$timeout, $http, editableOptions, editableThemes,toaster) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -19,7 +19,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -54,9 +54,11 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
 
   $scope.saveCategory=function(user_data,$index){
     setTimeout(function(){
+		alert("Hello");
+		alert(user_data.EMP_C_CRT_DT);
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory1",
         data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
         console.log(response.data.message);
