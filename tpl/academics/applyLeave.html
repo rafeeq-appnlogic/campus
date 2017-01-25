@@ -1,0 +1,81 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h4 class="m-n font-thin h4"><i class="icon-users"></i> &nbsp&nbsp<b>Leave management</b> | Leave application </h4>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+     Apply for Leave
+    </div>
+    <div class="panel-body">
+     <form class="bs-example form-horizontal ng-pristine ng-valid">
+        <div class="row">
+          <div class="form-group">
+              <label class="control-label col-md-3" >Leave Duration</label>
+              <div class="col-md-9">
+                <label class="radio-inline col-md-3">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=false">Single day
+                </label>
+                <label class="radio-inline col-md-3">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=true">Multiple days
+                </label>
+                  <label class="radio-inline col-md-3">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=false">Half days
+                </label>
+              </div>
+          </div>
+          </div>
+        <div class="row">
+          <div class="form-group">
+            <label class="control-label col-md-3" >Date</label>
+            <div class="col-md-2" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+             <div class="col-md-2" ng-controller="DatepickerDemoCtrl" ng-show="multipleDays" style="margin-left: 28px;">
+              <div class="input-group">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+              <label class="control-label col-md-3">Leave type</label>
+              <div class="col-md-3">
+               <select ui-jq="chosen" class="w-full">
+                  <option>Select a leave type</option>
+                  <option >Casual</option>
+                  <option >Sick leave</option>
+                </select>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label class="control-label col-md-3">Reason</label>
+            <div class="col-md-3">
+              <textarea type="text"  placeholder=""  name="STU_ADM_RELIGION" id="" class="form-control input-sm" ></textarea>
+            </div>
+          </div>  
+        </div><br>
+        <div class="col-md-offset-3">
+          <button type="button" class="btn btn-success " ng-click="steps.percent=100">Submit</button>
+          <button type="button" class="btn btn-danger " ng-click="steps.percent=100">Cancel</button>
+        </div>
+     </form>
+    </div><br>
+    </div>
+      <hr>
+  </div>
+</div>
+
+
