@@ -69,7 +69,7 @@ angular.module('app')
     templateUrl: 'tpl/stSelectMultiple.html',
     link: function(scope, element, attr, table) {
       setTimeout(function(){
-        console.log(scope.collection,"scope.collection")
+        // console.log(scope.collection,"scope.collection")
         scope.dropdownLabel = '';
         scope.filterChanged = filterChanged;
 
