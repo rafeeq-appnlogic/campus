@@ -91,19 +91,19 @@
           <tr>
             <th style="width:5px !important"></th>
             <th>
-              <st-select-distinct collection="rowCollection" predicate="EMP_C_NAME"></st-select-distinct>
+              <st-select-distinct collection="rowCollection" predicate="ACA_COU_NAME"></st-select-distinct>
             </th>
             <th>
-              <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
+              <input st-search="'ACA_COU_SEC_NAME'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+              <st-select-multiple collection="rowCollection" predicate="ACA_COU_CODE"></st-select-multiple>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+              <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+              <st-select-multiple collection="rowCollection" predicate="ACA_COU_ELECTIVE_SEL_YN"></st-select-multiple>
             </th>
           </tr>
           <tr>
@@ -112,52 +112,32 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="EMP_C_NAME">Class Name</th>
-            <th st-sort="EMP_C_PREFIX">Section Name</th>
-            <th st-sort="EMP_C_ACTIVE_YN">Class Code</th>
-            <th st-sort="EMP_C_ACTIVE_YN">Grade Type</th>
-            <th st-sort="EMP_C_ACTIVE_YN">Elective Selection</th>
+            <th st-sort="ACA_COU_NAME">Class Name</th>
+            <th st-sort="ACA_COU_SEC_NAME">Section Name</th>
+            <th st-sort="ACA_COU_CODE">Class Code</th>
+            <th st-sort="ACA_COU_GRADE_TYPE">Grade Type</th>
+            <th st-sort="ACA_COU_ELECTIVE_SEL_YN">Elective Selection</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
-            <td>
-              <span editable-text="row.EMP_C_NAME" e-name="EMP_C_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
-                {{row.EMP_C_NAME}}
-              </span>
-            </td>
-            <td>
-              <span editable-text="row.EMP_C_PREFIX" e-name="EMP_C_PREFIX" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
-                {{row.EMP_C_PREFIX}}
-              </span>
-            </td>
-            <td>
-              <span editable-text="row.EMP_C_ACTIVE_YN" e-name="EMP_C_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
-                {{row.EMP_C_ACTIVE_YN}}
-              </span>
-            </td>
-            <td>
-              <span editable-text="row.EMP_C_ACTIVE_YN" e-name="EMP_C_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
-                {{row.EMP_C_ACTIVE_YN}}
-              </span>
-            </td>
-            <td>
-              <span editable-text="row.EMP_C_ACTIVE_YN" e-name="EMP_C_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
-                {{row.EMP_C_ACTIVE_YN}}
-              </span>
-            </td>
+            <td>{{row.ACA_COU_NAME}}</td>
+            <td>{{row.ACA_COU_SEC_NAME}}</td>
+            <td>{{row.ACA_COU_CODE}}</td>
+            <td>{{row.ACA_COU_GRADE_TYPE}}</td>
+            <td>{{row.ACA_COU_ELECTIVE_SEL_YN}}</td>
             <td style="white-space: nowrap">
               <!-- form -->
-              <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
+              <!-- <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
                 <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row,$index)" class="btn btn-sm btn-info">
                   save
                 </button>
                 <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.EMP_C_ID,$index)" class="btn btn-sm btn-default">
                   cancel
                 </button>
-              </form>
+              </form> -->
               <div class="buttons" ng-show="!rowform.$visible">
                 <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-file"></i></a>
                 <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
@@ -195,23 +175,23 @@
         </div>
         <div class="modal-body">
       <div class="panel-body">
-        <form role="form" class="form-validation" name="Form">
+        <form role="form" class="form-validation" name="Form" ng-submit="saveCategory(Savedata)">
             <div class="form-group col-md-4 ">
               <label>Course Name</label>
-              <input class="form-control" placeholder="Course Name" ng-model="ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
+              <input class="form-control" placeholder="Course Name" ng-model="Savedata.ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Section Name</label>
-              <input class="form-control" placeholder="Section Name" ng-model="ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
+              <input class="form-control" placeholder="Section Name" ng-model="Savedata.ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Class Code</label>
-              <input class="form-control" placeholder="Class Code" ng-model="ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
+              <input class="form-control" placeholder="Class Code" ng-model="Savedata.ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Grading System Type</label>
                <!-- <select ui-jq="chosen" class="w-full"> -->
-               <select class="form-control" ng-model="ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
+               <select class="form-control" ng-model="Savedata.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
                  <option value="Normal">Normal</option>
                  <option value="CCE">CCE</option>
                </select>
@@ -220,7 +200,7 @@
               <label>Enable Elective Section</label>
                 <div class="">
                   <label class="i-switch i-switch-md bg-success m-t-xs m-r">
-                <input checked="" type="checkbox" ng-model="ACA_COU_ELECTIVE_SEL_YN" name="ACA_COU_ELECTIVE_SEL_YN">
+                <input checked="" type="checkbox" ng-model="Savedata.ACA_COU_ELECTIVE_SEL_YN" name="ACA_COU_ELECTIVE_SEL_YN">
                 <i></i>
               </label>
                 </div>
@@ -228,13 +208,13 @@
             <legend class="text-muted" style="font-size: 17px">Add Initail Batch for Creating Class</legend>
             <div class="form-group col-md-4 ">
               <label>Batch Name</label>
-              <input class="form-control" placeholder="Batch Name" type="text" ng-model="ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
+              <input class="form-control" placeholder="Batch Name" type="text" ng-model="Savedata.ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
             </div>
             <div class="form-group col-md-4">
               <label>Start Date</label>
               <div ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="Savedata.dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -245,7 +225,7 @@
               <label>End Date</label>
               <div ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="Savedata.dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -253,7 +233,7 @@
               </div>
             </div>
             <div class="col-md-12">
-            <button type="submit" class="btn btn-sm btn-success" ng-disabled="Form.$invalid">
+            <button type="submit" class="btn btn-sm btn-success"  ng-disabled="Form.$invalid">
 <!--             <span class="fa fa-save"><i class=""></i></span> 
  -->            &nbsp;Save</button>
               </div>

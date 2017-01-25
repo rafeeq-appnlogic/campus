@@ -7,13 +7,40 @@
     padding: 0;
     margin: -5px 0;
   }
+  .i-switch-md input:checked + i::after {
+    color: green;
+    content: "Yes";
+    font-size: 15px;
+    font-style: normal;
+    margin-left: 19px;
+}
+.i-switch-md i::after {
+    color: red;
+    content: "No";
+    font-size: 15px;
+    font-style: normal;
+    text-align: center;
+    width: 22px;
+}
+.i-switch i::before {
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 30px;
+    bottom: -1px;
+    content: "";
+    left: -1px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    transition: all 0.2s ease 0s;
+}
 </style>
 <div>
 
   <div class="bg-light lter b-b wrapper-md">
     <div class="row">
     <div class="col-md-4">
-      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Employee settings</b> | Employee category</h4>
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Academics</b> | Manage Batches</h4>
       </div>
       <div class="col-md-8">
       <ul class="breadcrumb pull-right">
@@ -28,7 +55,12 @@
   <div class="wrapper-md" >
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="panel panel-default">
-    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Employee category</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewCategory()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i>Add Category</button></div>
+    <div class="panel-heading" style="padding:10px;">
+    <span style="font-size:18px;"><b>Manage Classes</b></span>  
+    <a data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Classes</a>
+    </div>
+    <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
       <tr>
           <th style="width:185px !important">
@@ -52,6 +84,8 @@
             <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
           </tr>
     </table>
+    <!-- <hr> -->
+
       <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
         <thead>
           <tr>
@@ -60,10 +94,10 @@
               <st-select-distinct collection="rowCollection" predicate="EMP_C_NAME"></st-select-distinct>
             </th>
             <th>
-              <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
+              <input st-search="'EMP_C_PREFIX'" placeholder="search for Start Date" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+              <input st-search="'EMP_C_PREFIX'" placeholder="search for End Date" class="input-sm form-control" type="search"/>
             </th>
           </tr>
           <tr>
@@ -107,6 +141,7 @@
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
+                <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-file"></i></a>
                 <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
               </div>  
@@ -120,16 +155,63 @@
         </tbody>
         <tfoot>
           <tr>
-          <!-- <td colspan="2"></td> -->
           <td colspan="5" class="text-right">
             <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
           </td>
-          <!-- <td colspan="2" class="">
-            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
-          </td> -->
           </tr>
         </tfoot>
       </table>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-md" style="padding-top: 87px">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+      <h4 class="modal-title" id="header">Add Class</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+        <form role="form" class="form-validation" name="Form">
+            <div class="form-group col-md-4 ">
+              <label>Batch Name</label>
+              <input class="form-control" placeholder="Batch Name" type="text" ng-model="ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <div ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <div ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+            <button type="submit" class="btn btn-sm btn-success" ng-disabled="Form.$invalid">
+<!--             <span class="fa fa-save"><i class=""></i></span> 
+ -->            &nbsp;Save</button>
+              </div>
+          </form>
+        </div>
+    </div>
+      </div>
+  </div>
+    </div>
