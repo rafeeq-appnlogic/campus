@@ -12,7 +12,6 @@ angular.module('app')
 	  
 	  // REST API end point
 	  $rootScope.endUrl="http://192.168.1.136/smartedu/api/";
-    // var url=$location.url();
     if($localStorage.user_id==''){
       $location.path('signin');
     }else {
@@ -76,10 +75,8 @@ angular.module('app')
       };
 
       $scope.logOut=function(){
-        alert();
         $localStorage.user_id='';
         $location.path('login');
-        $location.reload();
       }
 
       function isSmartDevice( $window )

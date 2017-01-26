@@ -320,12 +320,12 @@ angular.module('app')
                 resolve: load(['smart-table','js/controllers/academics/manageSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
               })
               .state("app.View-Subjects", {
-              url: "/view-subjects/:id1",
-              controller:"viewSubjectsctrl",
-              templateUrl: "tpl/academics/viewSubjects.html",
-              params:{id1:"id1"},
-              resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
-            });
+                url: "/view-subjects/:id1",
+                controller:"viewSubjectsctrl",
+                templateUrl: "tpl/academics/viewSubjects.html",
+                params:{id1:"id1"},
+                resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
+              })
               .state('app.calendar', {
                   url: '/calendar',
                   templateUrl: 'tpl/academics/app_calendar.html',
