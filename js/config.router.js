@@ -286,14 +286,6 @@ angular.module('app')
                 url: "/apply-refundrule",
                 templateUrl: "tpl/Finance/applyFeesRefund.html",
               })
-                .state("app.Add-Complaint", {
-                url: "/add-complaint",
-                templateUrl: "tpl/discipline/addComplaint.html",
-              })
-              .state("app.Manage-Subjects", {
-                url: "/manage-subjects",
-                templateUrl: "tpl/academics/manageSubjects.html",
-              })
               .state("app.Manage-Class", {
                   url: "/manage-class",
                   controller:"manageClassCtrl",
@@ -310,7 +302,28 @@ angular.module('app')
                 url: "/manage-batch",
                 templateUrl: "tpl/academics/manageBatch.html",
               })
-              ;
+               //added by gnanamani
+                .state("app.Apply-Leave", {
+                url: "/apply-leave",
+                templateUrl: "tpl/academics/applyLeave.html",
+              })
+                .state("app.Add-Complaint", {
+                url: "/add-complaint",
+                templateUrl: "tpl/academics/addComplaint.html",
+              })
+                .state("app.Manage-Subjects", {
+                url: "/manage-subjects",
+                controller:"manageSubjectsctrl",
+                templateUrl: "tpl/academics/manageSubjects.html",
+                resolve: load(['smart-table','js/controllers/academics/manageSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
+              })
+              .state("app.View-Subjects", {
+              url: "/view-subjects/:id1",
+              controller:"viewSubjectsctrl",
+              templateUrl: "tpl/academics/viewSubjects.html",
+              params:{id1:"id1"},
+              resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
+            });
 
           function load(srcs, callback) {
             return {
