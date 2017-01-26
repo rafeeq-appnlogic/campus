@@ -22,7 +22,7 @@ angular.module('app')
               .otherwise('/app/dashboard-v3');
           }else{
             $urlRouterProvider
-              .otherwise('/app/dashboard-v1');
+              .otherwise('signin');
           }
           
           $stateProvider
@@ -33,7 +33,9 @@ angular.module('app')
               })
               .state('app.dashboard-v1', {
                   url: '/dashboard-v1',
+                  cache:false,
                   templateUrl: 'tpl/app_dashboard_v1.html',
+                  controller:"AppCtrl",
                   resolve: load(['js/controllers/chart.js'])
               })
               // added by rafeeq
@@ -324,6 +326,22 @@ angular.module('app')
               params:{id1:"id1"},
               resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
             });
+              .state('app.calendar', {
+                  url: '/calendar',
+                  templateUrl: 'tpl/academics/app_calendar.html',
+                  resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
+              })
+              .state('login', {
+                  url: '/signin',
+                  templateUrl: 'tpl/page_signin.html',
+                  resolve: load( ['js/controllers/signin.js'] )
+              })
+              .state('app.edit-profile', {
+                  url: '/edit-profile',
+                  templateUrl: "tpl/edit-profile.html"
+                  // resolve: load( ['js/controllers/signin.js'] )
+              })
+              ;
 
           function load(srcs, callback) {
             return {

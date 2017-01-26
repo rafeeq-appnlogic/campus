@@ -2,22 +2,19 @@
 
 /* Controllers */
   // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state', function($scope, $http, $state) {
-    $scope.user = {};
-    $scope.authError = null;
-    $scope.login = function() {
+app.controller('SigninFormController', ['$scope', '$http', '$state','$localStorage','$timeout', function($scope, $http, $state,$localStorage,$timeout) {
+    $scope.checkLogin=function(){
+      $localStorage.user_id='vijay';
       $scope.authError = null;
-      // Try to login
-      $http.post('api/login', {email: $scope.user.email, password: $scope.user.password})
-      .then(function(response) {
-        if ( !response.data.user ) {
-          $scope.authError = 'Email or Password not right';
-        }else{
-          $state.go('app.dashboard-v1');
-        }
-      }, function(x) {
-        $scope.authError = 'Server Error';
-      });
+      // console.log($localStorage.user_id,'$localStorage.user_id');
+      if ($localStorage.user_id==$scope.userid) {
+        $state.go('app.dashboard-v1');
+      }else{
+        $scope.authError = 'Please Enter Valid UserId';  
+      }
     };
+    $scope.hideMsg=function(){
+      $scope.authError=null;
+    }
   }])
 ;

@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope','$rootScope','$translate', '$localStorage', '$window', 
-    function(              $scope,$rootScope,$translate,   $localStorage,   $window ) {
+  .controller('AppCtrl', ['$scope','$rootScope','$translate', '$localStorage', '$window','$location','$timeout' ,
+    function(              $scope,$rootScope,$translate,   $localStorage,   $window ,$location,$timeout) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       if(isIE){ angular.element($window.document.body).addClass('ie');}
@@ -12,7 +12,12 @@ angular.module('app')
 	  
 	  // REST API end point
 	  $rootScope.endUrl="http://192.168.1.136/smartedu/api/";
-	
+    // var url=$location.url();
+    if($localStorage.user_id==''){
+      $location.path('signin');
+    }else {
+      $location.path($location.url());      
+    }
       // config
       $scope.app = {
         name: 'Ruby Campus',
@@ -70,6 +75,13 @@ angular.module('app')
         $scope.lang.isopen = !$scope.lang.isopen;
       };
 
+      $scope.logOut=function(){
+        alert();
+        $localStorage.user_id='';
+        $location.path('login');
+        $location.reload();
+      }
+
       function isSmartDevice( $window )
       {
           // Adapted from http://www.detectmobilebrowsers.com
@@ -77,5 +89,5 @@ angular.module('app')
           // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
           return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
       }
-
+      
   }]);

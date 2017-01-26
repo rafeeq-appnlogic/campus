@@ -106,7 +106,7 @@
             </a>
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeInRight w">
-              <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+              <!-- <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
                 <div>
                   <p>Profile Filled</p>
                 </div>
@@ -117,19 +117,14 @@
                   <span class="badge bg-danger pull-right">30%</span>
                   <span>Settings</span>
                 </a>
-              </li>
+              </li> -->
               <li>
-                <a ui-sref="app.page.profile">Profile</a>
-              </li>
-              <li>
-                <a ui-sref="app.docs">
-                  <span class="label bg-info pull-right">new</span>
-                  Help
-                </a>
+                <a ui-sref="app.edit-profile">Profile</a>
               </li>
               <li class="divider"></li>
               <li>
-                <a ui-sref="access.signin">Logout</a>
+                <a ng-click="logOut()">Logout</a>
+                <!-- <button class="" ng-click="logout()">Logout</button> -->
               </li>
             </ul>
             <!-- / dropdown -->

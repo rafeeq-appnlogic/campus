@@ -1,5 +1,5 @@
-app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope', 
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope) {
+app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope','$localStorage','$location',
+  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope,$localStorage,$location) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -12,6 +12,15 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.data='';
   $scope.status='';
   $scope.rowCollection = [];
+
+// url refresh
+            if($localStorage.user_id==''){
+              $location.path('signin');
+            }else {
+              $location.path($location.url());      
+            }
+
+
   var tableState = {
         sort: {},
         search: {},
@@ -59,13 +68,9 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
         url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
         data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
-        console.log(response.data.message);
-        // console.log($scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID);
-        $scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID
         var status="success";
-         $scope.showMessage(response.data.message,status);
-      }, function myError(response) {
-
+        $scope.showMessage(response.data.message,status);
+        // $scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID;        
       });
       $scope.getMasterJobs(tableState);
     },200);
@@ -145,8 +150,11 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
+      $scope.rowCollection=[];
       $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+          console.log(response.aaData,'response.aaData');
           $scope.rowCollection = response.aaData;
+
           $scope.displayedCollection = [].concat($scope.rowCollection);
 
           //set the number of pages so the pagination can update

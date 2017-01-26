@@ -5,6 +5,14 @@ app.controller('bank_detailsctrl', ['$scope', '$timeout','$http', 'editableOptio
   editableOptions.theme = 'bs3';
   $scope.isLoading=true;
   $scope.itemsByPage=5;
+
+   // url refresh
+            if($localStorage.user_id==''){
+              $location.path('signin');
+            }else {
+              $location.path($location.url());      
+            }
+            
   $scope.rowCollection = [];
     $http.get('http://localhost/smartedu/api/HrConfigModule/employeeBankdetails').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;

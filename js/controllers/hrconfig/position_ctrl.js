@@ -5,6 +5,14 @@ app.controller('position_ctrl', ['$scope', '$timeout','$http', 'editableOptions'
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
   $scope.isLoading=true;
+
+   // url refresh
+            if($localStorage.user_id==''){
+              $location.path('signin');
+            }else {
+              $location.path($location.url());      
+            }
+            
   $scope.selectCategory=[
   {name: 'Category 1', code: 'ct001'},
   {name: 'Category 2', code: 'ct002'},

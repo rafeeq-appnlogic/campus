@@ -1,10 +1,18 @@
-app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes', 
-  function($scope, $timeout, $http, editableOptions, editableThemes) {
+app.controller('empdept_ctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','$localStorage','$location',
+  function($scope, $timeout, $http, editableOptions, editableThemes,$localStorage,$location) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
   $scope.itemsByPage=5;
   $scope.isLoading=true;
+
+  // url refresh
+            if($localStorage.user_id==''){
+              $location.path('signin');
+            }else {
+              $location.path($location.url());      
+            }
+
   $scope.rowCollection = [];
     $http.get('http://localhost/smartedu/api/HrConfigModule/employeeDepartment').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
