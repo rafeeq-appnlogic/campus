@@ -1,5 +1,5 @@
-app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
-  function($scope,$rootScope,$timeout, $http, editableOptions, editableThemes,toaster) {
+app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'editableOptions', 'editableThemes','toaster','$location','$localStorage',
+  function($scope,$rootScope,$timeout, $http, editableOptions, editableThemes,toaster,$location,$localStorage) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -13,6 +13,12 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$timeout','$http', 'ed
   $scope.status='';
   $scope.Savedata=[];
   $scope.rowCollection = [];
+  // url refresh
+            if($localStorage.user_id==''){
+              $location.path('signin');
+            }else {
+              $location.path($location.url());      
+            }
   var tableState = {
         sort: {},
         search: {},

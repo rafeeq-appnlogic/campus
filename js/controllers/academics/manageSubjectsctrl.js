@@ -1,5 +1,5 @@
-app.controller('manageSubjectsctrl', ['$scope','$localStorage', '$timeout','$http','$location','editableOptions', 'editableThemes','toaster', 
-  function($scope,$localStorage, $timeout, $http,$location, editableOptions, editableThemes,toaster) {
+app.controller('manageSubjectsctrl', ['$scope','$localStorage', '$timeout','$http','$location','editableOptions', 'editableThemes','toaster','$location',
+  function($scope,$localStorage, $timeout, $http,$location, editableOptions, editableThemes,toaster,$location) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -12,6 +12,12 @@ app.controller('manageSubjectsctrl', ['$scope','$localStorage', '$timeout','$htt
   $scope.data='';
   $scope.status='';
   $scope.rowCollection = [];
+  // url refresh
+            if($localStorage.user_id==''){
+              $location.path('signin');
+            }else {
+              $location.path($location.url());      
+            }
   var tableState = {
         sort: {},
         search: {},

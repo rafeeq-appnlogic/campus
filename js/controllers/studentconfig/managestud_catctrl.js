@@ -1,11 +1,20 @@
-app.controller('managestud_catctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes', 
-  function($scope, $timeout, $http, editableOptions, editableThemes) {
+app.controller('managestud_catctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','$location','$localStorage',
+  function($scope, $timeout, $http, editableOptions, editableThemes,$location,$localStorage) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
   $scope.isLoading=true;
   $scope.itemsByPage=5;
   $scope.rowCollection = [];
+
+   // url refresh
+      if($localStorage.user_id==''){
+        $location.path('signin');
+      }else {
+        $location.path($location.url());      
+      }
+
+      
     $http.get('http://localhost/smartedu/HrConfigCtrl/employeeCategory').success(function(incomingData) {
           $scope.rowCollection = incomingData;
     });
