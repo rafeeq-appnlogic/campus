@@ -1,5 +1,5 @@
-app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster) {
+app.controller('viewSubjectsctrl', ['$scope','$localStorage','$timeout','$http', 'editableOptions', 'editableThemes','toaster', 
+  function($scope,$localStorage, $timeout, $http, editableOptions, editableThemes,toaster) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -19,9 +19,22 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
-          $scope.rowCollection = incomingData.aaData;
+
+      var paramOne = $localStorage.ACA_COU_ID;
+      var paramTwo = $localStorage.ACA_BAT_ID;
+      console.log(paramOne);
+      console.log(paramTwo);
+
+
+     $http({
+      method : "GET",
+      url : "http://192.168.1.136/smartedu/api/ManageBatchModule/ManageSubjectDetail",
+      params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
+    }).then(function mySucces(resData) {
+        console.log(resData);
+        $scope.rowCollection = resData.data.message;
     });
+
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
   $scope.deleteData = function(index) {
@@ -29,12 +42,12 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-      params : {id : id},
+      url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+      params : {ACA_SUB_ID : id},
     }).then(function mySucces(response) {
-        console.log(response.data.message.message);
+        console.log(response.data.message);
         var status="error";
-        var data=response.data.message.message;
+        var data=response.data.message;
         $scope.showMessage(data,status);
       }, function myError(response) {
     });    
@@ -42,7 +55,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
 
     $scope.getMasterJobs(tableState);
   }
-  $scope.addNewCategory = function() {
+  $scope.addNewSubject = function() {
     $scope.inserted = {
       ACA_SUB_ID: null,
       ACA_SUB_NAME: null,
@@ -52,18 +65,29 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     $scope.displayedCollection.push($scope.inserted);
   };
 
-  $scope.saveCategory=function(user_data,$index){
+  $scope.saveSubject=function(user_data,$index){
+    var paramOne = $localStorage.ACA_COU_ID;
+    var paramTwo = $localStorage.ACA_BAT_ID;
+    //console.log(user_data);
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-        data : { 'ACA_SUB_ID':user_data.ACA_SUB_ID,'ACA_SUB_NAME' : user_data.ACA_SUB_NAME,'ACA_SUB_CODE' : user_data.ACA_SUB_CODE,'ACA_SUB_MAXCLASS_WEEK' : user_data.ACA_SUB_MAXCLASS_WEEK}
+        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+        data : { 'ACA_SUB_ID':user_data.ACA_SUB_ID,'ACA_SUB_COU_ID':paramOne,'ACA_SUB_BAT_ID':paramTwo,'ACA_SUB_NAME' : user_data.ACA_SUB_NAME,'ACA_SUB_CODE' : user_data.ACA_SUB_CODE,'ACA_SUB_MAXCLASS_WEEK' : user_data.ACA_SUB_MAXCLASS_WEEK}
       }).then(function mySucces(response) {
-        console.log(response.data.message);
-        // console.log($scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID);
-        $scope.displayedCollection[$index].EMP_C_ID=response.data.EMP_C_ID
-        var status="success";
-         $scope.showMessage(response.data.message,status);
+        console.log(response.data.status);
+        //$scope.status=response.data.status;
+        $scope.displayedCollection[$index].ACA_SUB_ID=response.data.ACA_SUB_ID
+        var stat="success";
+        var stat1="error";
+        //var data=response.message;
+        var success="subject inserted Successfully";
+        var failed="subject insert Failed";
+        if(response.data.status==true){
+          $scope.showMessage(success,stat);
+        }else{
+          $scope.showMessage(failed,stat1);
+        }
       }, function myError(response) {
 
       });
@@ -96,8 +120,8 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     // var data1;
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-      params : {id : data},
+      url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+      params : {ACA_SUB_ID : data},
     }).then(function mySucces(response) {
         // status1="error";
         // data1=response.data.message.message;
@@ -118,7 +142,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
         if ($scope.post[i]==true) {
           $scope.post[i]=false;
           // $scope.deletedItem.push($scope.displayedCollection[i].EMP_C_ID);
-          $scope.multipleDelete($scope.displayedCollection[i].EMP_C_ID,totalLength,i);
+          $scope.multipleDelete($scope.displayedCollection[i].ACA_SUB_ID,totalLength,i);
           $scope.displayedCollection.splice(i, 1);
         };
       };
@@ -130,7 +154,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       // $scope.deletedItem=[];
       for (var i = totalLength - 1; i >= 0; i--) {
           // $scope.deletedItem.push($scope.displayedCollection[i].EMP_C_ID);
-           $scope.multipleDelete($scope.displayedCollection[i].EMP_C_ID,totalLength,i);
+           $scope.multipleDelete($scope.displayedCollection[i].ACA_SUB_ID,totalLength,i);
           $scope.displayedCollection.splice(i, 1);
       };
       $scope.selectall=false;
@@ -147,17 +171,24 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
-      $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
-          $scope.rowCollection = response.aaData;
+      var paramOne = $localStorage.ACA_COU_ID;
+      var paramTwo = $localStorage.ACA_BAT_ID;
+      $http({
+        method : "get",
+        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/ManageSubjectDetail",
+        params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
+      }).then(function mySucces(response) {
+          $scope.rowCollection = response.data.message;
+          console.log(response.data.message);
           $scope.displayedCollection = [].concat($scope.rowCollection);
 
           //set the number of pages so the pagination can update
           // tableState.pagination.numberOfPages = response.numberOfPages;
           // $scope.displayedPages = Math.ceil(response.numberOfPages / length);
           $scope.isLoading = false;
-      }).error(function (data, status, headers, config) {
+      })/*.error(function (data, status, headers, config) {
           console.error(data);
           $scope.isLoading = false;
-      });
+      });*/
   };
 }]);
