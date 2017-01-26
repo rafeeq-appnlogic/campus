@@ -78,13 +78,20 @@
             <th st-sort="ACA_SUB_NAME">Subject</th>
             <th st-sort="ACA_SUB_CODE">Code</th>
             <th st-sort="ACA_SUB_MAXCLASS_WEEK">Weekly Classes</th>
-            <th>Action</th>
+            <th>Action {{}}</th>
           </tr>
         </thead>
         <tbody ng-hide="isLoading">
+
+          <tr ng-show="displayedCollection.length=='0'">
+          <td></td><td></td>
+            <td colspan="3"> No data found add new subject</td>
+          </tr>
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
             <td>
+             <!--  <input type="hidden" e-name="ACA_SUB_NAME" value="{{}}"/>
+              <input type="hidden" e-name="ACA_SUB_NAME" value="{{}}"/> -->
               <span editable-text="row.ACA_SUB_NAME" e-name="ACA_SUB_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.ACA_SUB_NAME}}
               </span>

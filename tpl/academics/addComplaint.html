@@ -9,24 +9,30 @@
      Add Complaints 
     </div>
     <div class="panel-body">
-     <form class="bs-example ng-pristine ng-valid">
+     <form class="bs-example form-horizontal ng-pristine ng-valid">
         <div class="row">
-          <div class="form-group col-md-3">
-              <label class="control-label ">Complaint number</label>
-                <input type="text" class="form-control input-sm" id="" name="STU_ADM_NO">                
+          <div class="form-group">
+            <label class=" col-md-3 control-label ">Complaint number</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_NO">  
+            </div>              
           </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Title</label>
-            <input type="text" class="form-control input-sm" id="" name="STU_ADM_FIRST_NAME" placeholder="">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Title</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_FIRST_NAME" placeholder="">
+            </div>   
           </div>
-           <div class="form-group col-md-3">
-              <label class="control-label">Description</label>
-              <textarea type="text" class="form-control input-sm" id="" name="STU_ADM_MIDDLE_NAME" placeholder="" style="height:32px;"></textarea>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Description</label>
+            <div class="col-md-3">
+                <textarea type="text" class="form-control input-sm" id="" name="STU_ADM_MIDDLE_NAME" placeholder="" style="height:32px;"></textarea>
+            </div>   
           </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Trial Date</label>
-            <div class="" ng-controller="DatepickerDemoCtrl">
-              <div class="input-group w-md">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Trial Date</label>
+            <div class="col-md-3" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group">
                 <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DT" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -35,16 +41,16 @@
             </div>
           </div>
         </div>
-         <div class="row">
-           <div class="form-group col-md-3">
-            <label class=" control-label">Attachments (5MB max)</label>
-            <div class="">
+        <div class="row">
+           <div class="form-group">
+            <label class="col-md-3 control-label">Attachments (5MB max)</label>
+            <div class="col-md-3">
               <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" type="file" multiple="">
             </div>
           </div>
-        </div>
-        <div class="col-md-offset-5">
-          <button type="button" class="btn btn-success " ng-click="steps.percent=100">Save</button>
+        </div><br>
+        <div class="col-md-offset-3">
+          <button type="button" class="btn btn-success " ng-click="steps.percent=100" style="margin-left:60px;">Save</button>
           <button type="button" class="btn btn-danger " ng-click="steps.percent=100">Cancel</button>
         </div>
      </form>

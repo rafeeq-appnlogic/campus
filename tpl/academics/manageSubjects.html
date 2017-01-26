@@ -1,4 +1,13 @@
-
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+</style>
 <div class="bg-light lter b-b wrapper-md">
   <h4 class="m-n font-thin h4"><i class="fa fa-book"></i> &nbsp&nbsp<b>Subject </b> | Manage Subjects </h4>
 </div>
@@ -39,11 +48,12 @@
           <tr>
             <th style="width:5px !important"></th>
             <th>
-              <st-select-distinct collection="rowCollection" predicate="CLASS_TIME_NAME"></st-select-distinct>
+              <st-select-distinct collection="rowCollection" predicate="ACA_COU_NAME"></st-select-distinct>
             </th>
             <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_BAT_NAME"></st-select-multiple>
             </th>
+           
           </tr>
           <tr>
             <th>
@@ -51,24 +61,29 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="CLASS_TIME_NAME">Class</th>
+            <th st-sort="ACA_COU_NAME">Class</th>
             <th st-sort="ACA_BAT_NAME">Batch</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody ng-hide="isLoading">
+         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            <td>
+              <input type="hidden" id="ACA_COU_ID">
+              <span text="row.ACA_SUB_NAME" e-name="ACA_SUB_NAME" e-form="rowform">
+                {{row.ACA_COU_NAME}}
+              </span>
+            </td>
+            <td>
+             <input type="hidden" id="ACA_BAT_ID">
+              <span text="row.ACA_SUB_CODE" e-name="ACA_BAT_NAME" e-form="rowform">
+                {{row.ACA_BAT_NAME}}
+              </span>
+            </td>
             <td style="white-space: nowrap">
-              
-            </td>
-             <td style="white-space: nowrap">
-             
-            </td>
-             <td style="white-space: nowrap">
-              <!-- form -->
               <div class="buttons" ng-show="!rowform.$visible">
-                <a ui-sref="app.View-Subjects">View</a>
+                <a ng-click="viewSubject(row,res)">View</a>
               </div>  
             </td>
           </tr>
