@@ -296,9 +296,9 @@ angular.module('app')
               })
               .state("app.Batch-View", {
                   url: "/app.batch-view",
-                  controller:"manageClassCtrl",
+                  controller:"manageBatchCtrl",
                   templateUrl: "tpl/academics/batchview.html",
-                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster'])
+                  resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster'])
               })
               .state("app.Manage-Batch", {
                 url: "/manage-batch",
