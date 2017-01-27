@@ -237,8 +237,28 @@
   }])
   ; 
   app.controller('DatepickerDemoCtrl', ['$scope', function($scope) {
+    console.log($scope,'DatepickerDemoCtrl');
     $scope.today = function() {
       $scope.dt = new Date();
+      var dt = new Date();
+      var day = dt.getDate();
+      // var month = new Array();
+      //     month[0] = "January";
+      //     month[1] = "February";
+      //     month[2] = "March";
+      //     month[3] = "April";
+      //     month[4] = "May";
+      //     month[5] = "June";
+      //     month[6] = "July";
+      //     month[7] = "August";
+      //     month[8] = "September";
+      //     month[9] = "October";
+      //     month[10] = "November";
+      //     month[11] = "December";
+      // var monthVal = month[dt.getMonth()];
+      var month=('0'+(dt.getMonth()+1)).slice(-2);
+      var year = dt.getFullYear();
+      $scope.dtform = day +'-'+ month +'-'+ year ;
     };
     $scope.today();
 
@@ -270,8 +290,8 @@
     };
 
     $scope.initDate = new Date('2016-15-20');
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[0];
+    $scope.formats = ['dd-MMMM-yyyy','dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[1];
   }])
   ; 
   app.controller('TimepickerDemoCtrl', ['$scope', function($scope) {

@@ -260,9 +260,11 @@ angular.module('app')
                 url: "/view-details",
                 templateUrl: "tpl/Student/view_details.html",
               })
-                .state("app.Student-Admission", {
+              .state("app.Student-Admission", {
                 url: "/student-admission",
+                controller:"stuAdmissionCtrl",
                 templateUrl: "tpl/Student/student_admission.html",
+                resolve: load(['js/controllers/studentconfig/stuAdmissionCtrl.js'])
               })
                 .state("app.Managestudent-Category", {
                 url: "/managestudent-category",

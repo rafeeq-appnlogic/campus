@@ -1,253 +1,246 @@
+<style>
+.nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
+    /*background: #00acac none repeat scroll 0 0 !important;#333*/
+    background: #00ACAC none repeat scroll 0 0 !important;
+    color:#ffffff !important;
+}
+.btncolor{
+  background: #00ACAC !important;
+}
+</style>
+
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Students | Admission</h1>
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="fa fa-graduation-cap"></i> &nbsp&nbsp<b>Students</b> | Admission</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+        <li><a href="">Elements</a></li>
+        <li class="active">Components</li>
+      </ul>
+      </div>
+    </div>
 </div>
 <div class="wrapper-md">
   <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false,step4:false,step5:false,step6:false}">
-    <tab heading="Student admission" active="steps.step1" select="steps.percent=10">
-      <h4>Basic Information</h4>
-      <hr>
+    <tab active="steps.step1" select="steps.percent=10">
+    <tab-heading><i class="fa fa-user"></i>&nbsp Student admission</tab-heading>
+      <legend>
+        Student Admission
+      </legend>
       <form name="step1" class="form-validation">
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label ">Admission number</label>
-                <input type="text" class="form-control input-sm" id="" name="STU_ADM_NO">                
+                <input type="text" class="form-control input-sm" ng-model="STU_ADM_NO" name="STU_ADM_NO">                
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Admission Date</label>
             <div class="" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DT" />
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dtform" is-open="opened" datepicker-options="" close-text="Close" name="STU_ADM_DT" ng-required="false">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </div>
             </div>
           </div>
+        </div>
+        <legend>
+          Personal Details
+        </legend>
+        <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label">First Name</label>
-              <input type="text" class="form-control input-sm" id="" name="STU_ADM_FIRST_NAME" placeholder="">
+              <input type="text" class="form-control input-sm" ng-model="STU_ADM_FIRST_NAME" name="STU_ADM_FIRST_NAME" placeholder="Firstname">
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Middle Name</label>
-              <input type="text" class="form-control input-sm" id="" name="STU_ADM_MIDDLE_NAME" placeholder="">
+              <input type="text" class="form-control input-sm" ng-model="STU_ADM_MIDDLE_NAME" name="STU_ADM_MIDDLE_NAME" placeholder="Middle Name">
           </div>
-        </div>
-        <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label">Last Name</label>
-              <input type="text" class="form-control input-sm" id="" name="STU_ADM_LAST_NAME" placeholder="">
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label ">Date of Birth</label>
-            <div class="" ng-controller="DatepickerDemoCtrl">
-              <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DOB" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </div>
-            </div>
+              <input type="text" class="form-control input-sm" ng-model="STU_ADM_LAST_NAME" name="STU_ADM_LAST_NAME" placeholder="Last Name">
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Gender</label><br>
               <label class="radio-inline">
-                <input type="radio" name="STU_ADM_GENDER" >Male
+                <input type="radio" name="STU_ADM_GENDER" ng-model="STU_ADM_GENDER">Male
               </label>
               <label class="radio-inline">
-                <input type="radio" name="STU_ADM_GENDER">Female
+                <input type="radio" name="STU_ADM_GENDER" ng-model="STU_ADM_GENDER">Female
               </label>
           </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Blood group</label>
-            <select class="form-control selectpicker input-sm" name="" data-live-search="true" data-style="btn-white btn-sm" >
-              <option>UnKnown</option>
-              <option >A+</option>
-              <option >A-</option>
-              <option >A1+</option>
-              <option >A1-</option>
-              <option >B+</option>
-                </select>
-            </div>
+          
           </div>
         <div class="row">
-          <div class="col-sm-3">
-            <div class="form-group">
-                <label class="control-label">Birth Place</label>
-                <input type="text" name="STU_ADM_BIRTH_PLACE"  placeholder=""  name="" id="" class="form-control input-sm" value="">
-            </div>         
+        <div class="form-group col-md-3">
+            <label class="control-label ">Date of Birth</label>
+            <div class="" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group w-md">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-required="false" ng-model="dtform" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="STU_ADM_DOB">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
           </div>
+          
           <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Nationality</label>
-                <select name="STU_ADM_NATIONALITY"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm" >
-                  <option value="">Afghanistan (‫افغانستان‬‎)</option>
-                  <option value="">Åland Islands (Åland)</option>
-                  <option value="">Albania (Shqipëria)</option>
-                  <option value="3">Algeria (‫الجزائر‬‎)</option>
-                  <option value="">American Samoa</option>
-                  <option value="">Andorra</option>
-                  <option value="">Angola</option>
-                  <option value="">Anguilla</option>
-                  <option value="">Antarctica</option>
-                  <option value="">Antigua and Barbuda</option>
+                <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_NATIONALITY" ng-model="STU_ADM_NATIONALITY">
+                    <option value="Indian">Indian</option>
+                    <option value="American">American</option>
+                    <option value="Australian">Australia</option>
+                    <option value="Englishmen">England</option>
+                    <option value="Srilangan">Srilanga</option>
                 </select>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Mother Tongue</label>
-             <input type="text"  placeholder=""  name="STU_ADM_MOTHER_TONGUE" id="" class="form-control input-sm" value="">
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label class="control-label">Category</label>
-              <select name="STU_ADM_STUD_CATE"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm">
-              <option>select a Category</option>
-              <option>Term 1 Fee</option>
-              <option>fee</option>
+                <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_MOTHER_TONGUE" ng-model="STU_ADM_MOTHER_TONGUE">
+                    <option value="Tamil">Tamil</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Kannadam">Kannadam</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Malayalam">Malayalam</option>
                 </select>
             </div>
           </div>
-        </div>
-        <div class="row">
+          
           <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Religion</label>
-                <input type="text"  placeholder=""  name="STU_ADM_RELIGION" id="" class="form-control input-sm" value="">
+                <input type="text" name="STU_ADM_RELIGION" ng-model="STU_ADM_RELIGION" class="form-control input-sm" placeholder="Religion">
             </div>         
           </div>
         </div>
-        <div class="m-t m-b">
-          <button type="submit" class="btn btn-default btn-rounded" ng-disabled="step1.$invalid" ng-click="steps.step2=true">Next</button>
-        </div>
-      </form>
-    </tab>
-    <tab heading="Contact Details" active="steps.step2" disabled="step1.$invalid" select="steps.percent=30">
-      <form name="step2" class="form-validation">
-          <div class="row">
+        <p></p>
+
+        <legend>
+          Contact Details
+        </legend>
+        <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Address Line 1</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" ng-model="STU_ADM_ADD1" placeholder="Address Line 1">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Address Line 1</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_ADD2" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD2" ng-model="STU_ADM_ADD2" placeholder="Address Line 1">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">City</label>
-            <input type="text" class="form-control  input-sm" name="STU_ADM_CITY" placeholder="">
+            <input type="text" class="form-control  input-sm" name="STU_ADM_CITY" ng-model="STU_ADM_CITY" placeholder="City">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">State</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_STATE" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_STATE" ng-model="STU_ADM_STATE" placeholder="State">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Pincode</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_PINCODE" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_PINCODE" ng-model="STU_ADM_PINCODE" placeholder="Pincode">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Country</label>
-            <select class="form-control selectpicker" name="STU_ADM_COUNTRY" data-live-search="true" data-style="btn-white btn-sm">
-              <option>select</option>
-              <option selected>India</option>
-              <option>France</option>
-              <option>Dubai</option>
-              <option>newzland</option>
-              <option>australia</option>
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_COUNTRY" ng-model="STU_ADM_COUNTRY">
+                <option value="India">India</option>
+                <option value="America">America</option>
+                <option value="Australia">Australia</option>
+                <option value="England">England</option>
+                <option value="Srilanga">Srilanga</option>
             </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Phone</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_PHONE" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_PHONE" ng-model="STU_ADM_PHONE" placeholder="Phone">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Mobile</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_MOBILE" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_MOBILE" ng-model="STU_ADM_MOBILE" placeholder="Mobile">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">E-mail</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_EMAIL" placeholder="">
+            <input type="text" class="form-control input-sm" name="STU_ADM_EMAIL" ng-model="STU_ADM_EMAIL" placeholder="E-mail">
             </div>
           </div>
-        <div class="m-t m-b">
-          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
-          <button type="submit" class="btn btn-default btn-rounded" ng-disabled="step2.$invalid" ng-click="steps.step3=true">Next</button>
-        </div>
-      </form>
-    </tab>
-    <tab heading="Class and Batch details" active="steps.step3" disabled="step2.$invalid" select="steps.percent=50">
-    <form name="step3" class="form-validation">
+          <p></p>
+        <legend>
+        Class and Batch Details
+      </legend>
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Class</label>
-            <select name="STU_CB_COURSE"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm">
-                <option>select a Class</option>
-                <option value="class 1">class 1</option>
-                <option value="class 2">Class 2</option>
-                <option value="class 3">Class 3</option>
+              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="STU_ADM_CB_COURSE">
+                  <option value="class 1">class 1</option>
+                  <option value="class 2">Class 2</option>
+                  <option value="class 3">Class 3</option>
               </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Batch</label>
-            <select name="STU_CB_BATCH"  class="form-control input-sm selectpicker" id="batch" data-style="btn-white btn-sm">
-                <option>select a Batch</option>
-                <option value="B.Tech">B.Tech</option>
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="STU_ADM_CB_BATCH">
+                  <option value="B.Tech">B.Tech</option>
               </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Roll Number</label>
-            <input type="text"  placeholder=""  name="STU_CB_ROLL_NO" id="" class="form-control input-sm" value="">
+            <input type="text" name="STU_ADM_CB_ROLL_NO" ng-model="STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number">
             </div>
           </div>
-      <div class="m-t m-b">
-        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Prev</button>
-        <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step4=true">Next</button>
-      </div>
+         <div class="row wrapper-md">
+            <div class="form-group">
+              <!-- <div class="m-t m-b"> -->
+                <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveStuAdmission()" ng-disabled="step1.$invalid">Save & Next</button>
+              <!-- </div> -->
+            </div>
+          </div>
       </form>
     </tab>
-
-    <tab heading="Parent/Guardian details"  active="steps.step4" disabled="step3.$invalid" select="steps.percent=70">
-    <form name="step4" class="form-validation">
+    
+    <tab disabled="step1.$invalid" active="steps.step2" select="steps.percent=70">
+    <tab-heading><i class="fa fa-group"></i>&nbsp Parent/Guardian details</tab-heading>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
+        <p></p>
             <label class="col-md-5 control-label">Student Admission number<span class="imp">*</span></label>
             <div class="col-md-7">
-              <input type="text" name="STU_PA_ADM_NO" class="form-control input-sm" placeholder="" value="STD063"/>
+              <input type="text" name="STU_PA_ADM_NO" ng-model="STU_PA_ADM_NO" class="form-control input-sm" placeholder="" value="STD063"/>
             </div>
         </div>
       </div>
     </div><br>
-    <div class="row">
-      <div class="col-sm-4">
-        <h5><b>Parent - Personal details</b></h5>
-      </div>
-      <div class="col-sm-3" style="margin-top:9px;">
-        <a class="btn btn-primary btn-xs" role="button" id="addParent"><i class="fa fa-plus fa-1x"></i> Add New</a>
-      </div>
-    </div><hr class="line">
+    <legend>
+        Parent - Personal details
+    </legend>
     <div class="row">
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">First Name </label>
-              <input type="text"  placeholder=""  name="STU_PA_FIRST_NAME" id="" class="form-control input-sm" value="">
+              <input type="text" placeholder="First Name" name="STU_PA_FIRST_NAME" ng-model="STU_PA_FIRST_NAME" class="form-control input-sm">
           </div>
              </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Last Name</label>
-              <input type="text"  placeholder=""  name="STU_PA_LAST_NAME" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Last Name"  name="STU_PA_LAST_NAME" ng-model="STU_PA_LAST_NAME" class="form-control input-sm">
           </div>
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Relation</label>
-              <input type="text"  placeholder=""  name="STU_PA_RELATION" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Relation"  name="STU_PA_RELATION" ng-model="STU_PA_RELATION" class="form-control input-sm" >
           </div>         
             </div>
             <div class="col-sm-3">
@@ -267,27 +260,27 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Education</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Education"  name="STU_PA_EDUCATION" ng-model="STU_PA_EDUCATION" class="form-control input-sm">
           </div>
                      
              </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Occupation</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text" placeholder="Occupation" name="STU_PA_OCCUPATION" ng-model="STU_PA_OCCUPATION" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Income</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Income"  name="STU_PA_INCOME" ng-model="STU_PA_INCOME" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Email</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Email"  name="STU_PA_EMAIL" ng-model="STU_PA_EMAIL" class="form-control input-sm">
           </div>
                      
              </div>
@@ -297,27 +290,27 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Address Line 1</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Address Line 1"  name="STU_PA_ADD1" ng-model="STU_PA_ADD1" class="form-control input-sm">
           </div>
                      
              </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Address Line 2</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Address Line 2"  name="STU_PA_ADD2" ng-model="STU_PA_ADD2" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">City</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="City"  name="STU_PA_CITY" ng-model="STU_PA_CITY" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">State</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="State"  name="STU_PA_STATE" ng-model="STU_PA_STATE" class="form-control input-sm">
           </div>
                      
              </div>
@@ -327,7 +320,7 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Country</label>
-              <select name="value"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm" >
+              <select name="STU_PA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="STU_PA_COUNTRY" data-style="btn-white btn-sm" >
               <option>select</option>
               <option selected>India</option>
               <option>France</option>
@@ -341,103 +334,176 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone 1</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Phone 1"  name="STU_PA_PHONE1" ng-model="STU_PA_PHONE1" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone 2</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Phone 2"  name="STU_PA_PHONE2" ng-model="STU_PA_PHONE2" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Mobile</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Mobile"  name="STU_PA_MOBILE" ng-model="STU_PA_MOBILE" class="form-control input-sm">
           </div>         
              </div>
         </div>
-        
-      <div class="m-t m-b">
-        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Prev</button>
-        <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step5=true">Next</button>
-      </div>
-      </form>
+        <legend>
+          Gaurdian - Personal Details
+        </legend>
+        <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                  <label class="control-label">Gaurdian Name </label>
+                  <input type="text" placeholder="Gaurdian Name" ng-model="STU_PA_GA_NAME" name="STU_PA_GA_NAME" class="form-control input-sm">
+              </div>
+             </div>
+             <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Relation</label>
+                    <input type="text"  placeholder="Relation" ng-model="STU_PA_GA_RELATION" name="STU_PA_GA_RELATION" class="form-control input-sm">
+                </div>         
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Address Line 1</label>
+                    <input type="text"  placeholder="Address Line 1" ng-model="STU_PA_GA_ADD1" name="STU_PA_GA_ADD1" class="form-control input-sm">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Address Line 2</label>
+                    <input type="text"  placeholder="Address Line 2" ng-model="STU_PA_GA_ADD2" name="STU_PA_GA_ADD2" class="form-control input-sm">
+                </div>
+             </div>
+        </div>
+                <div class="row">
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">City</label>
+              <input type="text"  placeholder="City"  name="STU_PA_GA_CITY" ng-model="STU_PA_GA_CITY" class="form-control input-sm">
+          </div>
+                     
+             </div>
+             <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">State</label>
+              <input type="text"  placeholder="State"  name="STU_PA_GA_STATE" ng-model="STU_PA_GA_STATE" class="form-control input-sm">
+          </div>         
+            </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Country</label>
+              <select name="STU_PA_GA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="STU_PA_GA_COUNTRY" data-style="btn-white btn-sm" >
+              <option>select</option>
+              <option selected>India</option>
+              <option>France</option>
+              <option>Dubai</option>
+              <option>newzland</option>
+              <option>australia</option>
+            </select>
+          </div>
+                     
+             </div>
+            <div class="col-sm-3">
+          <div class="form-group">
+              <label class="control-label">Phone</label>
+              <input type="text"  placeholder="Phone"  name="STU_PA_GA_PHONE1" ng-model="STU_PA_GA_PHONE1" class="form-control input-sm">
+          </div>         
+             </div>
+        </div>
+        <div class="row wrapper-md">
+          <div class="form-group">
+              <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+              <button type="submit" class="btn btn-default btn-rounded pull-right" ng-disabled="step2.$invalid" ng-click="steps.step3=true">Next</button>
+          </div>
+        </div>
     </tab>
-    <tab heading="Previous Educational Details" active="steps.step5" disabled="step4.$invalid" select="steps.percent=80">
-    <form name="step5" class="form-validation">
+    <tab active="steps.step3" disabled="step1.$invalid" select="steps.percent=80">
+    <tab-heading><i class="fa fa-graduation-cap"></i>&nbsp Previous Educational Details</tab-heading>
+    <legend>
+      Previous Educational Details
+      </legend>
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Institution Name</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Institution Name"  name="STU_PRE_D_INSTITUTE_NAME" ng-model="STU_PRE_D_INSTITUTE_NAME" class="form-control input-sm">
           </div>
                      
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Class</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Class"  name="STU_PRE_D_COURSE" ng-model="STU_PRE_D_COURSE" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Year</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Year"  name="STU_PRE_D_YEAR" ng-model="STU_PRE_D_YEAR" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Total marks</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
+              <input type="text"  placeholder="Total marks"  name="STU_PRE_D_YEARS" ng-model="STU_PRE_D_YEARS" class="form-control input-sm">
           </div>         
             </div>
         </div>
-      <div class="m-t m-b">
-        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step4=true">Prev</button>
-        <button type="submit" class="btn btn-default btn-rounded" ng-click="steps.step6=true">Next</button>
-      </div>
-      </form>
-    </tab>
-    <tab heading="Addtional Deatails" active="steps.step6" disabled="step5.$invalid" select="steps.percent=90">
-    <form name="step6" class="form-validation">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-              <label class="control-label">Id Card Number</label>
-              <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
-          </div>    
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="control-label">Height of student</label>
-            <input type="text"  placeholder=""  name="" id="" class="form-control input-sm" value="">
-          </div>  
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-              <label class="control-label">Country</label>
-              <select name="value"  class="form-control input-sm selectpicker" data-style="btn-white btn-sm" >
-                <option>select</option>
-                <option selected>India</option>
-                <option>France</option>
-                <option>Dubai</option>
-                <option>newzland</option>
-                <option>australia</option>
+        <legend>
+        Additional Details
+        </legend>
+        <div class="row">
+            <div class="form-group col-md-3">
+              <label class="control-label">Blood group</label>
+              <select class="form-control selectpicker input-sm" name="STU_PRE_ADD_BLOOD_GROUP" ng-model="STU_PRE_ADD_BLOOD_GROUP" data-live-search="true" data-style="btn-white btn-sm" >
+                <option>UnKnown</option>
+                <option >A+</option>
+                <option >A-</option>
+                <option >A1+</option>
+                <option >A1-</option>
+                <option >B+</option>
               </select>
-          </div>         
-        </div>
-      </div><br>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Birth Place</label>
+                    <input type="text" name="STU_PRE_ADD_BIRTH_PLACE"  ng-model="STU_PRE_ADD_BIRTH_PLACE" class="form-control input-sm" placeholder="Birth Place">
+                </div>         
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="control-label">Category</label>
+              <select name="STU_PRE_ADD_STUD_CATE"  class="form-control input-sm selectpicker" ng-model="STU_PRE_ADD_STUD_CATE" data-style="btn-white btn-sm" >
+              <option>select a Category</option>
+              <option>Term 1 Fee</option>
+              <option>fee</option>
+                </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Profile Image</label>
+                    <input type = "file" file-model = "myFile" name="STU_ADM_IMAGE_PATH" ng-model="STU_ADM_IMAGE_PATH"/>
+                </div>         
+          </div>
+      </div>
+      <br>
       <div class="col-md-4 col-md-offset-3">
         <button class="btn btn-dark btn-sm" type="button">Save & Finish</button>
       </div>
-      <div class="m-t m-b">
-        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step5=true">Prev</button>
-        <!-- <button type="button" class="btn btn-default btn-rounded" ng-click="steps.percent=100">Click me to Finish</button> -->
-      </div>
-      </form>
+        <div class="row wrapper-md">
+          <div class="form-group">
+            <div class="m-t m-b">
+            <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Prev</button>
+            </div>
+          </div>
+        </div>
     </tab>
   </tabset>
 </div>
