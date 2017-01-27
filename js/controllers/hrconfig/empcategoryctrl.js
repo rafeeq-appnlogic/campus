@@ -1,5 +1,5 @@
-app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope','$localStorage','$location',
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope,$localStorage,$location) {
+app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope','$localStorage','$location','$ngBootbox',
+  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope,$localStorage,$location,$ngBootbox) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -34,21 +34,25 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
   $scope.deleteData = function(index) {
-    $scope.isLoading = true;
-    var id=$scope.displayedCollection[index].EMP_C_ID;
-    $http({
-      method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-      params : {id : id},
-    }).then(function mySucces(response) {
-       setTimeout(function(){
-          var status="error";
-          var data=response.data.message.message;
-          $scope.showMessage(data,status);
-          $scope.getMasterJobs(tableState);
-          $scope.isLoading = false;
-        },500);
-      });    
+      $ngBootbox.confirm('Are you sure you want to delete this record?')
+        .then(function() {
+              $scope.isLoading = true;
+              var id=$scope.displayedCollection[index].EMP_C_ID;
+              $http({
+                method : "DELETE",
+                url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+                params : {id : id},
+              }).then(function mySucces(response) {
+                 setTimeout(function(){
+                    var status="error";
+                    var data=response.data.message.message;
+                    $scope.showMessage(data,status);
+                    $scope.getMasterJobs(tableState);
+                    $scope.isLoading = false;
+                  },500);
+                })
+
+                 });  
   }
   $scope.addNewCategory = function() {
     $scope.inserted = {
