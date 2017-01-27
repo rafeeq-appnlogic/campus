@@ -13,7 +13,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state','$localStora
       }).then(function(response){
         $state.go('app.dashboard-v1');
       }, function myError(response) {
-        $scope.authError = 'Please Enter Valid UserId';
+        $scope.authError = 'Please Enter Valid Email';
       });
     };
     $scope.hideMsg=function(){
