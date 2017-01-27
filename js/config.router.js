@@ -328,6 +328,12 @@ angular.module('app')
                 params:{id1:"id1"},
                 resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
               })
+               .state("app.Grade-Level", {
+                url: "/grade-level",
+                controller:"gradeLevelctrl",
+                templateUrl: "tpl/academics/gradeLevel.html",
+                resolve: load(['smart-table','js/controllers/academics/gradeLevelctrl.js','xeditable','ui.bootstrap','toaster'])
+              })
               .state('app.calendar', {
                   url: '/calendar',
                   templateUrl: 'tpl/academics/app_calendar.html',
