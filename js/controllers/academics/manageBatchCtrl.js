@@ -15,8 +15,8 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
   $scope.Batch=[];
   $scope.Savebutton=true;
   $scope.Updatebutton=false;
-  $scope.Edit=false;
-  $scope.Save=false;
+  // $scope.Edit=false;
+  // $scope.Save=false;
   $scope.rowCollection = [];
   $scope.saveDatas= [];
   // $scope.testForm=false;
@@ -31,12 +31,13 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
     };
     var id=$localStorage.Class_id;
     console.log(id,'BatchDetail');
-    // alert(id);
+    // alert("Class_id-"+id);
     $http({
       method : "GET",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-      params :{ACA_BAT_COU_ID : id,ACA_BAT_ID: id},
+      params :{ACA_COU_ID : id},
     }).then(function mySucces(response) {
+    console.log(response,'tes')
         $scope.rowCollection = response.data.message;
         console.log(response.data.message,'datas');
     });
@@ -97,13 +98,12 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
     $scope.batch=false;
     $scope.Savebutton=false;
     $scope.Updatebutton=true;
-    var user_id=id.ACA_BAT_ID;
-    var class_id=
+    var id=id.ACA_BAT_ID;
     // alert(user_id);
     $http({
       method : "GET",
-      url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-      params :{ACA_BAT_ID : user_id},
+      url : $rootScope.endUrl+'ManageBatchModule/Batch',
+      params :{ACA_BAT_ID : id},
     }).then(function mySucces(response) {
       console.log(response,'test');
       $scope.Batch=[];
