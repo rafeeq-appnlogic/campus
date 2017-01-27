@@ -6,12 +6,15 @@ app.controller('SigninFormController', ['$scope', '$http', '$state','$localStora
     $scope.checkLogin=function(){
       $localStorage.user_id='vijay';
       $scope.authError = null;
-      // console.log($localStorage.user_id,'$localStorage.user_id');
-      if ($localStorage.user_id==$scope.userid) {
+      $http({
+        method : "GET",
+        url : "http://192.168.1.136/smartedu/api/GeneralAPI/login",
+        params : {"USER_EMAIL": $scope.userid, "USER_PASSWORD": $scope.password},
+      }).then(function(response){
         $state.go('app.dashboard-v1');
-      }else{
-        $scope.authError = 'Please Enter Valid UserId';  
-      }
+      }, function myError(response) {
+        $scope.authError = 'Please Enter Valid UserId';
+      });
     };
     $scope.hideMsg=function(){
       $scope.authError=null;
