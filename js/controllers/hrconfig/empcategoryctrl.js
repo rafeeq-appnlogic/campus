@@ -28,7 +28,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
+    $http.get('http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -40,7 +40,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
               var id=$scope.displayedCollection[index].EMP_C_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+                url : "http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory",
                 params : {id : id},
               }).then(function mySucces(response) {
                  setTimeout(function(){
@@ -49,10 +49,10 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
                     $scope.showMessage(data,status);
                     $scope.getMasterJobs(tableState);
                     $scope.isLoading = false;
-                  },500);
+                  },1100);
                 })
 
-                 });  
+                 });
   }
   $scope.addNewCategory = function() {
     $scope.inserted = {
@@ -69,7 +69,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+        url : "http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory",
         data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
         setTimeout(function(){
@@ -98,7 +98,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+      url : "http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory",
       params : {id : data},
     }).then(function mySucces(response) {
     }, function myError(response) {
@@ -138,7 +138,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+      $http.get('http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;
