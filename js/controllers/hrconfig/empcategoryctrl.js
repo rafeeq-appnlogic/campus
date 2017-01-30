@@ -33,7 +33,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
-    $scope.isLoading=false
+    $scope.isLoading=false;
   $scope.deleteData = function(index) {
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
@@ -109,6 +109,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     });
   }
   $scope.applyAction = function() {
+     if($scope.bulkaction==1){
     $ngBootbox.confirm('Are you sure you want to delete all this record ?')
         .then(function() {
           // if($scope.bulkaction==1 && $scope.post.length > 0){
@@ -142,18 +143,16 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
 
           if($scope.bulkaction==1){
             if($scope.selectall==true || $scope.post.length > 0){
-              var totalLength=$scope.post.length;
-              // for (var i = totalLength - 1; i >= 0; i--) {
-                console.log(totalLength,'totalLength');
+              var totalLength=$scope.displayedCollection.length;
+              console.log(totalLength,'totalLengthtotalLengthtotalLength');
               for(var i=0;i<totalLength;i++){
-
-                if(typeof $scope.displayedCollection[i]!='undefined'){
+                // if(typeof $scope.displayedCollection[i]!='undefined'){
                    if ($scope.post[i]==true) {
-                      $scope.post[i]=false;
+                      // $scope.post[i]=false;
                       var cat_id=$scope.displayedCollection[i].EMP_C_ID;
-                      // $scope.multipleDelete(cat_id);
+                      $scope.multipleDelete(cat_id);
                    }
-                }
+                // }
               }
             }
                 // console.log($scope.post,'$scope.post$scope.post');
@@ -177,10 +176,12 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
              $scope.selectall=false;
              $scope.showMessage("Records Deleted Successfully","success");
              setTimeout(function(){
+                $scope.callbackbulk();
                 $scope.getMasterJobs(tableState);
              },700);
           }
         });
+      }
   }
 
   $scope.getMasterJobs = function (tableState) {
@@ -195,7 +196,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;
-          $scope.paginationShow();
+          // $scope.paginationShow();
           
       }).error(function (data, status, headers, config) {
           $scope.isLoading = false;
@@ -216,11 +217,11 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.changeMode=function(){
     $scope.buttonStatus='Update';
   }
-  $scope.paginationShow=function(){
-    if($scope.displayedCollection.length > 5){
-      $scope.show_pagination=true;
-    }else{
-      $scope.show_pagination=false;
-    }
-  }
+  // $scope.paginationShow=function(){
+  //   if($scope.displayedCollection.length > $scope.itemsByPage){
+  //     $scope.show_pagination=true;
+  //   }else{
+  //     $scope.show_pagination=false;
+  //   }
+  // }
 }]);
