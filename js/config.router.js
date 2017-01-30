@@ -17,6 +17,7 @@ angular.module('app')
       function ($stateProvider,   $urlRouterProvider, JQ_CONFIG, MODULE_CONFIG) {
           var layout = "tpl/app.html";
           if(window.location.href.indexOf("material") > 0){
+            alert();
             layout = "tpl/blocks/material.layout.html";
             $urlRouterProvider
               .otherwise('/app/dashboard-v3');
@@ -259,6 +260,10 @@ angular.module('app')
                 .state("app.View-Details", {
                 url: "/view-details",
                 templateUrl: "tpl/Student/view_details.html",
+              })
+                .state("app.View-DetailsNew", {
+                url: "/view-detailsnew",
+                templateUrl: "tpl/Student/view_detailsnew.html",
               })
               .state("app.Student-Admission", {
                 url: "/student-admission",

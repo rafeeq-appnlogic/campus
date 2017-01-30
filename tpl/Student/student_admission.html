@@ -34,7 +34,7 @@
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label ">Admission number</label>
-                <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_NO" name="STU_ADM_NO">                
+                <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_NO" name="STU_ADM_NO" required>                
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Admission Date</label>
@@ -55,7 +55,7 @@
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label">First Name</label>
-              <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_FIRST_NAME" name="STU_ADM_FIRST_NAME" placeholder="Firstname">
+              <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_FIRST_NAME" name="STU_ADM_FIRST_NAME" placeholder="Firstname" required>
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Middle Name</label>
@@ -130,7 +130,7 @@
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Address Line 1</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" ng-model="Stud.STU_ADM_ADD1" placeholder="Address Line 1">
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" ng-model="Stud.STU_ADM_ADD1" placeholder="Address Line 1" required>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Address Line 2</label>
@@ -162,17 +162,17 @@
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Phone</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE" placeholder="Phone">
+            <input type="number" class="form-control input-sm" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE" placeholder="Phone" required>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Mobile</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE" placeholder="Mobile">
+            <input type="number" class="form-control input-sm" name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE" placeholder="Mobile" required>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">E-mail</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" placeholder="E-mail">
+            <input type="email" class="form-control input-sm" name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" placeholder="E-mail" required>
             </div>
           </div>
           <p></p>
@@ -182,7 +182,7 @@
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Class</label>
-              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="Stud.STU_ADM_CB_COURSE">
+              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="Stud.STU_ADM_CB_COURSE" required>
                   <option value="class 1">class 1</option>
                   <option value="class 2">Class 2</option>
                   <option value="class 3">Class 3</option>
@@ -190,13 +190,13 @@
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Batch</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="Stud.STU_ADM_CB_BATCH">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="Stud.STU_ADM_CB_BATCH" required>
                   <option value="B.Tech">B.Tech</option>
               </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Roll Number</label>
-            <input type="text" name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number">
+            <input type="text" name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number" required>
             </div>
           </div>
          <div class="row wrapper-md">
