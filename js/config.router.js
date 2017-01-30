@@ -301,15 +301,15 @@ angular.module('app')
                   templateUrl: "tpl/academics/manageClass.html",
                   resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Batch-View", {
-                  url: "/app.batch-view",
+              .state("app.Manage-Batch", {
+                  url: "/app.manage-batch",
                   controller:"manageBatchCtrl",
-                  templateUrl: "tpl/academics/batchview.html",
+                  templateUrl: "tpl/academics/manageBatch.html",
                   resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Manage-Batch", {
-                url: "/manage-batch",
-                templateUrl: "tpl/academics/manageBatch.html",
+              .state("app.Calendar", {
+                url: "/calendar",
+                templateUrl: "tpl/academics/calendar.html",
               })
                //added by gnanamani
                 .state("app.Apply-Leave", {
