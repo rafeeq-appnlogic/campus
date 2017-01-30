@@ -1,6 +1,7 @@
 app.controller('ScrollController', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.datasource = {
 		get : function(index, count, success) {
+            alert(count);
             return $timeout(function() {
                 var i, result, _i, _ref;
                 result = [];

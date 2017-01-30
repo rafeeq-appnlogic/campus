@@ -34,7 +34,7 @@
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label ">Admission number</label>
-                <input type="text" class="form-control input-sm" ng-model="STU_ADM_NO" name="STU_ADM_NO">                
+                <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_NO" name="STU_ADM_NO">                
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Admission Date</label>
@@ -47,6 +47,7 @@
               </div>
             </div>
           </div>
+          
         </div>
         <legend>
           Personal Details
@@ -54,23 +55,23 @@
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label">First Name</label>
-              <input type="text" class="form-control input-sm" ng-model="STU_ADM_FIRST_NAME" name="STU_ADM_FIRST_NAME" placeholder="Firstname">
+              <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_FIRST_NAME" name="STU_ADM_FIRST_NAME" placeholder="Firstname">
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Middle Name</label>
-              <input type="text" class="form-control input-sm" ng-model="STU_ADM_MIDDLE_NAME" name="STU_ADM_MIDDLE_NAME" placeholder="Middle Name">
+              <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_MIDDLE_NAME" name="STU_ADM_MIDDLE_NAME" placeholder="Middle Name">
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Last Name</label>
-              <input type="text" class="form-control input-sm" ng-model="STU_ADM_LAST_NAME" name="STU_ADM_LAST_NAME" placeholder="Last Name">
+              <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_LAST_NAME" name="STU_ADM_LAST_NAME" placeholder="Last Name">
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Gender</label><br>
               <label class="radio-inline">
-                <input type="radio" name="STU_ADM_GENDER" ng-model="STU_ADM_GENDER">Male
+                <input type="radio" name="STU_ADM_GENDER" ng-model="Stud.STU_ADM_GENDER">Male
               </label>
               <label class="radio-inline">
-                <input type="radio" name="STU_ADM_GENDER" ng-model="STU_ADM_GENDER">Female
+                <input type="radio" name="STU_ADM_GENDER" ng-model="Stud.STU_ADM_GENDER">Female
               </label>
           </div>
           
@@ -91,7 +92,7 @@
           <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Nationality</label>
-                <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_NATIONALITY" ng-model="STU_ADM_NATIONALITY">
+                <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_NATIONALITY" ng-model="Stud.STU_ADM_NATIONALITY">
                     <option value="Indian">Indian</option>
                     <option value="American">American</option>
                     <option value="Australian">Australia</option>
@@ -103,7 +104,7 @@
           <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Mother Tongue</label>
-                <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_MOTHER_TONGUE" ng-model="STU_ADM_MOTHER_TONGUE">
+                <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_MOTHER_TONGUE" ng-model="Stud.STU_ADM_MOTHER_TONGUE">
                     <option value="Tamil">Tamil</option>
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
@@ -117,7 +118,7 @@
           <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Religion</label>
-                <input type="text" name="STU_ADM_RELIGION" ng-model="STU_ADM_RELIGION" class="form-control input-sm" placeholder="Religion">
+                <input type="text" name="STU_ADM_RELIGION" ng-model="Stud.STU_ADM_RELIGION" class="form-control input-sm" placeholder="Religion">
             </div>         
           </div>
         </div>
@@ -129,29 +130,29 @@
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Address Line 1</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" ng-model="STU_ADM_ADD1" placeholder="Address Line 1">
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD1" ng-model="Stud.STU_ADM_ADD1" placeholder="Address Line 1">
             </div>
             <div class="form-group col-md-3">
-            <label class="control-label">Address Line 1</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_ADD2" ng-model="STU_ADM_ADD2" placeholder="Address Line 1">
+            <label class="control-label">Address Line 2</label>
+            <input type="text" class="form-control input-sm" name="STU_ADM_ADD2" ng-model="Stud.STU_ADM_ADD2" placeholder="Address Line 2">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">City</label>
-            <input type="text" class="form-control  input-sm" name="STU_ADM_CITY" ng-model="STU_ADM_CITY" placeholder="City">
+            <input type="text" class="form-control  input-sm" name="STU_ADM_CITY" ng-model="Stud.STU_ADM_CITY" placeholder="City">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">State</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_STATE" ng-model="STU_ADM_STATE" placeholder="State">
+            <input type="text" class="form-control input-sm" name="STU_ADM_STATE" ng-model="Stud.STU_ADM_STATE" placeholder="State">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Pincode</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_PINCODE" ng-model="STU_ADM_PINCODE" placeholder="Pincode">
+            <input type="text" class="form-control input-sm" name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE" placeholder="Pincode">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Country</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_COUNTRY" ng-model="STU_ADM_COUNTRY">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
                 <option value="India">India</option>
                 <option value="America">America</option>
                 <option value="Australia">Australia</option>
@@ -161,17 +162,17 @@
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Phone</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_PHONE" ng-model="STU_ADM_PHONE" placeholder="Phone">
+            <input type="text" class="form-control input-sm" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE" placeholder="Phone">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Mobile</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_MOBILE" ng-model="STU_ADM_MOBILE" placeholder="Mobile">
+            <input type="text" class="form-control input-sm" name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE" placeholder="Mobile">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">E-mail</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_EMAIL" ng-model="STU_ADM_EMAIL" placeholder="E-mail">
+            <input type="text" class="form-control input-sm" name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" placeholder="E-mail">
             </div>
           </div>
           <p></p>
@@ -181,7 +182,7 @@
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Class</label>
-              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="STU_ADM_CB_COURSE">
+              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="Stud.STU_ADM_CB_COURSE">
                   <option value="class 1">class 1</option>
                   <option value="class 2">Class 2</option>
                   <option value="class 3">Class 3</option>
@@ -189,13 +190,13 @@
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Batch</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="STU_ADM_CB_BATCH">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="Stud.STU_ADM_CB_BATCH">
                   <option value="B.Tech">B.Tech</option>
               </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Roll Number</label>
-            <input type="text" name="STU_ADM_CB_ROLL_NO" ng-model="STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number">
+            <input type="text" name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number">
             </div>
           </div>
          <div class="row wrapper-md">
@@ -216,7 +217,7 @@
         <p></p>
             <label class="col-md-5 control-label">Student Admission number<span class="imp">*</span></label>
             <div class="col-md-7">
-              <input type="text" name="STU_PA_ADM_NO" ng-model="STU_PA_ADM_NO" class="form-control input-sm" placeholder="" value="STD063"/>
+              <input type="text" name="STU_PA_ADM_NO" ng-model="{{admission_no}}" class="form-control input-sm" placeholder="" value="" ng-disable="true"/>
             </div>
         </div>
       </div>
@@ -224,23 +225,24 @@
     <legend>
         Parent - Personal details
     </legend>
-    <div class="row">
+    <form name="step2" class="form-validation">
+        <div class="row">
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">First Name </label>
-              <input type="text" placeholder="First Name" name="STU_PA_FIRST_NAME" ng-model="STU_PA_FIRST_NAME" class="form-control input-sm">
+              <input type="text" placeholder="First Name" name="STU_PA_FIRST_NAME" ng-model="Stud.STU_PA_FIRST_NAME" class="form-control input-sm">
           </div>
              </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Last Name</label>
-              <input type="text"  placeholder="Last Name"  name="STU_PA_LAST_NAME" ng-model="STU_PA_LAST_NAME" class="form-control input-sm">
+              <input type="text"  placeholder="Last Name"  name="STU_PA_LAST_NAME" ng-model="Stud.STU_PA_LAST_NAME" class="form-control input-sm">
           </div>
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Relation</label>
-              <input type="text"  placeholder="Relation"  name="STU_PA_RELATION" ng-model="STU_PA_RELATION" class="form-control input-sm" >
+              <input type="text"  placeholder="Relation"  name="STU_PA_RELATION" ng-model="Stud.STU_PA_RELATION" class="form-control input-sm" >
           </div>         
             </div>
             <div class="col-sm-3">
@@ -260,27 +262,27 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Education</label>
-              <input type="text"  placeholder="Education"  name="STU_PA_EDUCATION" ng-model="STU_PA_EDUCATION" class="form-control input-sm">
+              <input type="text"  placeholder="Education"  name="STU_PA_EDUCATION" ng-model="Stud.STU_PA_EDUCATION" class="form-control input-sm">
           </div>
                      
              </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Occupation</label>
-              <input type="text" placeholder="Occupation" name="STU_PA_OCCUPATION" ng-model="STU_PA_OCCUPATION" class="form-control input-sm">
+              <input type="text" placeholder="Occupation" name="STU_PA_OCCUPATION" ng-model="Stud.STU_PA_OCCUPATION" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Income</label>
-              <input type="text"  placeholder="Income"  name="STU_PA_INCOME" ng-model="STU_PA_INCOME" class="form-control input-sm">
+              <input type="text"  placeholder="Income"  name="STU_PA_INCOME" ng-model="Stud.STU_PA_INCOME" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Email</label>
-              <input type="text"  placeholder="Email"  name="STU_PA_EMAIL" ng-model="STU_PA_EMAIL" class="form-control input-sm">
+              <input type="text"  placeholder="Email"  name="STU_PA_EMAIL" ng-model="Stud.STU_PA_EMAIL" class="form-control input-sm">
           </div>
                      
              </div>
@@ -290,27 +292,27 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Address Line 1</label>
-              <input type="text"  placeholder="Address Line 1"  name="STU_PA_ADD1" ng-model="STU_PA_ADD1" class="form-control input-sm">
+              <input type="text"  placeholder="Address Line 1"  name="STU_PA_ADD1" ng-model="Stud.STU_PA_ADD1" class="form-control input-sm">
           </div>
                      
              </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Address Line 2</label>
-              <input type="text"  placeholder="Address Line 2"  name="STU_PA_ADD2" ng-model="STU_PA_ADD2" class="form-control input-sm">
+              <input type="text"  placeholder="Address Line 2"  name="STU_PA_ADD2" ng-model="Stud.STU_PA_ADD2" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">City</label>
-              <input type="text"  placeholder="City"  name="STU_PA_CITY" ng-model="STU_PA_CITY" class="form-control input-sm">
+              <input type="text"  placeholder="City"  name="STU_PA_CITY" ng-model="Stud.STU_PA_CITY" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">State</label>
-              <input type="text"  placeholder="State"  name="STU_PA_STATE" ng-model="STU_PA_STATE" class="form-control input-sm">
+              <input type="text"  placeholder="State"  name="STU_PA_STATE" ng-model="Stud.STU_PA_STATE" class="form-control input-sm">
           </div>
                      
              </div>
@@ -320,7 +322,7 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Country</label>
-              <select name="STU_PA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="STU_PA_COUNTRY" data-style="btn-white btn-sm" >
+              <select name="STU_PA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="Stud.STU_PA_COUNTRY" data-style="btn-white btn-sm" >
               <option>select</option>
               <option selected>India</option>
               <option>France</option>
@@ -334,20 +336,20 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone 1</label>
-              <input type="text"  placeholder="Phone 1"  name="STU_PA_PHONE1" ng-model="STU_PA_PHONE1" class="form-control input-sm">
+              <input type="text"  placeholder="Phone 1"  name="STU_PA_PHONE1" ng-model="Stud.STU_PA_PHONE1" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone 2</label>
-              <input type="text"  placeholder="Phone 2"  name="STU_PA_PHONE2" ng-model="STU_PA_PHONE2" class="form-control input-sm">
+              <input type="text"  placeholder="Phone 2"  name="STU_PA_PHONE2" ng-model="Stud.STU_PA_PHONE2" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Mobile</label>
-              <input type="text"  placeholder="Mobile"  name="STU_PA_MOBILE" ng-model="STU_PA_MOBILE" class="form-control input-sm">
+              <input type="text"  placeholder="Mobile"  name="STU_PA_MOBILE" ng-model="Stud.STU_PA_MOBILE" class="form-control input-sm">
           </div>         
              </div>
         </div>
@@ -358,25 +360,25 @@
             <div class="col-sm-3">
               <div class="form-group">
                   <label class="control-label">Gaurdian Name </label>
-                  <input type="text" placeholder="Gaurdian Name" ng-model="STU_PA_GA_NAME" name="STU_PA_GA_NAME" class="form-control input-sm">
+                  <input type="text" placeholder="Gaurdian Name" ng-model="Stud.STU_PA_GA_NAME" name="STU_PA_GA_NAME" class="form-control input-sm">
               </div>
              </div>
              <div class="col-sm-3">
                 <div class="form-group">
                     <label class="control-label">Relation</label>
-                    <input type="text"  placeholder="Relation" ng-model="STU_PA_GA_RELATION" name="STU_PA_GA_RELATION" class="form-control input-sm">
+                    <input type="text"  placeholder="Relation" ng-model="Stud.STU_PA_GA_RELATION" name="STU_PA_GA_RELATION" class="form-control input-sm">
                 </div>         
               </div>
               <div class="col-sm-3">
                 <div class="form-group">
                     <label class="control-label">Address Line 1</label>
-                    <input type="text"  placeholder="Address Line 1" ng-model="STU_PA_GA_ADD1" name="STU_PA_GA_ADD1" class="form-control input-sm">
+                    <input type="text"  placeholder="Address Line 1" ng-model="Stud.STU_PA_GA_ADD1" name="STU_PA_GA_ADD1" class="form-control input-sm">
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="form-group">
                     <label class="control-label">Address Line 2</label>
-                    <input type="text"  placeholder="Address Line 2" ng-model="STU_PA_GA_ADD2" name="STU_PA_GA_ADD2" class="form-control input-sm">
+                    <input type="text"  placeholder="Address Line 2" ng-model="Stud.STU_PA_GA_ADD2" name="STU_PA_GA_ADD2" class="form-control input-sm">
                 </div>
              </div>
         </div>
@@ -384,20 +386,20 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">City</label>
-              <input type="text"  placeholder="City"  name="STU_PA_GA_CITY" ng-model="STU_PA_GA_CITY" class="form-control input-sm">
+              <input type="text"  placeholder="City"  name="STU_PA_GA_CITY" ng-model="Stud.STU_PA_GA_CITY" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">State</label>
-              <input type="text"  placeholder="State"  name="STU_PA_GA_STATE" ng-model="STU_PA_GA_STATE" class="form-control input-sm">
+              <input type="text"  placeholder="State"  name="STU_PA_GA_STATE" ng-model="Stud.STU_PA_GA_STATE" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Country</label>
-              <select name="STU_PA_GA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="STU_PA_GA_COUNTRY" data-style="btn-white btn-sm" >
+              <select name="STU_PA_GA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="Stud.STU_PA_GA_COUNTRY" data-style="btn-white btn-sm" >
               <option>select</option>
               <option selected>India</option>
               <option>France</option>
@@ -411,16 +413,17 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone</label>
-              <input type="text"  placeholder="Phone"  name="STU_PA_GA_PHONE1" ng-model="STU_PA_GA_PHONE1" class="form-control input-sm">
+              <input type="text"  placeholder="Phone"  name="STU_PA_GA_PHONE1" ng-model="Stud.STU_PA_GA_PHONE1" class="form-control input-sm">
           </div>         
              </div>
         </div>
         <div class="row wrapper-md">
           <div class="form-group">
               <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
-              <button type="submit" class="btn btn-default btn-rounded pull-right" ng-disabled="step2.$invalid" ng-click="steps.step3=true">Next</button>
+              <button type="submit" class="btn btn-default btn-rounded pull-right" ng-disabled="step2.$invalid" ng-click="steps.step3=true;saveStuParentDetails()">Next</button>
           </div>
         </div>
+        </form>
     </tab>
     <tab active="steps.step3" disabled="step1.$invalid" select="steps.percent=80">
     <tab-heading><i class="fa fa-graduation-cap"></i>&nbsp Previous Educational Details</tab-heading>
@@ -431,27 +434,27 @@
         <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Institution Name</label>
-              <input type="text"  placeholder="Institution Name"  name="STU_PRE_D_INSTITUTE_NAME" ng-model="STU_PRE_D_INSTITUTE_NAME" class="form-control input-sm">
+              <input type="text"  placeholder="Institution Name"  name="STU_PRE_D_INSTITUTE_NAME" ng-model="Stud.STU_PRE_D_INSTITUTE_NAME" class="form-control input-sm">
           </div>
                      
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Class</label>
-              <input type="text"  placeholder="Class"  name="STU_PRE_D_COURSE" ng-model="STU_PRE_D_COURSE" class="form-control input-sm">
+              <input type="text"  placeholder="Class"  name="STU_PRE_D_COURSE" ng-model="Stud.STU_PRE_D_COURSE" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Year</label>
-              <input type="text"  placeholder="Year"  name="STU_PRE_D_YEAR" ng-model="STU_PRE_D_YEAR" class="form-control input-sm">
+              <input type="text"  placeholder="Year"  name="STU_PRE_D_YEAR" ng-model="Stud.STU_PRE_D_YEAR" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Total marks</label>
-              <input type="text"  placeholder="Total marks"  name="STU_PRE_D_YEARS" ng-model="STU_PRE_D_YEARS" class="form-control input-sm">
+              <input type="text"  placeholder="Total marks"  name="STU_PRE_D_YEARS" ng-model="Stud.STU_PRE_D_YEARS" class="form-control input-sm">
           </div>         
             </div>
         </div>
@@ -461,7 +464,7 @@
         <div class="row">
             <div class="form-group col-md-3">
               <label class="control-label">Blood group</label>
-              <select class="form-control selectpicker input-sm" name="STU_PRE_ADD_BLOOD_GROUP" ng-model="STU_PRE_ADD_BLOOD_GROUP" data-live-search="true" data-style="btn-white btn-sm" >
+              <select class="form-control selectpicker input-sm" name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP" data-live-search="true" data-style="btn-white btn-sm" >
                 <option>UnKnown</option>
                 <option >A+</option>
                 <option >A-</option>
@@ -473,13 +476,13 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label class="control-label">Birth Place</label>
-                    <input type="text" name="STU_PRE_ADD_BIRTH_PLACE"  ng-model="STU_PRE_ADD_BIRTH_PLACE" class="form-control input-sm" placeholder="Birth Place">
+                    <input type="text" name="STU_PRE_ADD_BIRTH_PLACE"  ng-model="Stud.STU_PRE_ADD_BIRTH_PLACE" class="form-control input-sm" placeholder="Birth Place">
                 </div>         
           </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label class="control-label">Category</label>
-              <select name="STU_PRE_ADD_STUD_CATE"  class="form-control input-sm selectpicker" ng-model="STU_PRE_ADD_STUD_CATE" data-style="btn-white btn-sm" >
+              <select name="STU_PRE_ADD_STUD_CATE"  class="form-control input-sm selectpicker" ng-model="Stud.STU_PRE_ADD_STUD_CATE" data-style="btn-white btn-sm" >
               <option>select a Category</option>
               <option>Term 1 Fee</option>
               <option>fee</option>
@@ -489,13 +492,13 @@
           <div class="col-sm-3">
                 <div class="form-group">
                     <label class="control-label">Profile Image</label>
-                    <input type = "file" file-model = "myFile" name="STU_ADM_IMAGE_PATH" ng-model="STU_ADM_IMAGE_PATH"/>
+                    <input type = "file" file-model = "myFile" name="STU_PRE_ADD_IMAGE_PATH" ng-model="Stud.STU_PRE_ADD_IMAGE_PATH"/>
                 </div>         
           </div>
       </div>
       <br>
       <div class="col-md-4 col-md-offset-3">
-        <button class="btn btn-dark btn-sm" type="button">Save & Finish</button>
+        <button class="btn btn-dark btn-sm" type="submit" ng-click="saveStudAddDetails()">Save & Finish</button>
       </div>
         <div class="row wrapper-md">
           <div class="form-group">
