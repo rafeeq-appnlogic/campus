@@ -1,5 +1,5 @@
-app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope','$localStorage','$location','$ngBootbox',
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope,$localStorage,$location,$ngBootbox) {
+app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$rootScope','$localStorage','$location','$ngBootbox','$rootScope',
+  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$rootScope,$localStorage,$location,$ngBootbox,$rootScope) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -9,6 +9,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.post=[];
   $scope.itemsByPage=5;
   $scope.deletedItem=[];
+  $scope.show_pagination=true;
   $scope.data='';
   $scope.status='';
   $scope.rowCollection = [];
@@ -28,7 +29,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
             start: 0
         }
     };
-    $http.get('http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -40,21 +41,23 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
               var id=$scope.displayedCollection[index].EMP_C_ID;
               $http({
                 method : "DELETE",
-                url : "http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory",
+                url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
+                // http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory
                 params : {id : id},
               }).then(function mySucces(response) {
-                 setTimeout(function(){
-                    var status="error";
                     var data=response.data.message.message;
-                    $scope.showMessage(data,status);
-                    $scope.getMasterJobs(tableState);
-                    $scope.isLoading = false;
-                  },1100);
+                    $scope.showMessage(data,'success');
+                },function myError(response) {
+                  $scope.showMessage(response.data.message,'error'); 
                 })
-
-                 });
+              setTimeout(function(){
+                  $scope.getMasterJobs(tableState);
+                  $scope.isLoading = false;
+              },600);
+        });
   }
   $scope.addNewCategory = function() {
+    $scope.buttonStatus='Save';
     $scope.inserted = {
       EMP_C_ID: null,
       EMP_C_NAME: null,
@@ -69,16 +72,17 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory",
+        url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
         data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
       }).then(function mySucces(response) {
-        setTimeout(function(){
-          var status="success";
-          $scope.showMessage(response.data.message,status); 
-          $scope.getMasterJobs(tableState);
-          $scope.isLoading = false;
-        },500)   
-      });      
+          $scope.showMessage(response.data.message,'success'); 
+      }, function myError(response) {
+        $scope.showMessage(response.data.message,'error'); 
+      });
+      setTimeout(function(){
+        $scope.getMasterJobs(tableState);
+        $scope.isLoading = false;
+      },500)      
     },200);
 
   }
@@ -98,36 +102,85 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory",
+      url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
       params : {id : data},
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
   }
   $scope.applyAction = function() {
-    if($scope.bulkaction==1 && $scope.post.length > 0){
-      var totalLength=$scope.post.length;
-      for (var i = totalLength - 1; i >= 0; i--) {
-        if ($scope.post[i]==true) {
-          $scope.post[i]=false;
-          $scope.multipleDelete($scope.displayedCollection[i].EMP_C_ID,totalLength,i);
-          $scope.displayedCollection.splice(i, 1);
-        };
-      };
-      $scope.showMessage("Record Deleted Successfully","error");
-    }
-    if($scope.bulkaction==1 && $scope.post.length > 0){
-      var totalLength=$scope.itemsByPage;
-      for (var i = totalLength - 1; i >= 0; i--) {
-           $scope.multipleDelete($scope.displayedCollection[i].EMP_C_ID,totalLength,i);
-          $scope.displayedCollection.splice(i, 1);
-      };
-      $scope.selectall=false;
-      $scope.showMessage("Records Deleted Successfully","error");
-    }
-    setTimeout(function(){
-      $scope.getMasterJobs(tableState);
-    },500);
+    $ngBootbox.confirm('Are you sure you want to delete all this record ?')
+        .then(function() {
+          // if($scope.bulkaction==1 && $scope.post.length > 0){
+          //   var totalLength=$scope.post.length;
+          //   for (var i = totalLength - 1; i >= 0; i--) {
+          //     if ($scope.post[i]==true) {
+          //       $scope.post[i]=false;
+          //       $scope.multipleDelete($scope.displayedCollection[i].EMP_C_ID);
+          //       // $scope.displayedCollection.splice(i, 1);
+          //     };
+          //   };
+          //   $scope.showMessage("Record Deleted Successfully","success");
+          //   setTimeout(function(){
+          //     console.log('timeDelay');
+          //     $scope.getMasterJobs(tableState);
+          //   },700);
+          // }
+          // if($scope.selectall==1 && $scope.post.length > 0){
+          //   var totalLength=$scope.itemsByPage;
+          //   for (var i = totalLength - 1; i >= 0; i--) {
+          //        $scope.multipleDelete($scope.displayedCollection[i].EMP_C_ID);
+          //       // $scope.displayedCollection.splice(i, 1);
+          //   };
+          //   $scope.selectall=false;
+          //   $scope.showMessage("Records Deleted Successfully","success");
+          //   setTimeout(function(){
+          //     console.log('timeDelay');
+          //     $scope.getMasterJobs(tableState);
+          //   },700);
+          // }
+
+          if($scope.bulkaction==1){
+            if($scope.selectall==true || $scope.post.length > 0){
+              var totalLength=$scope.post.length;
+              // for (var i = totalLength - 1; i >= 0; i--) {
+                console.log(totalLength,'totalLength');
+              for(var i=0;i<totalLength;i++){
+
+                if(typeof $scope.displayedCollection[i]!='undefined'){
+                   if ($scope.post[i]==true) {
+                      $scope.post[i]=false;
+                      var cat_id=$scope.displayedCollection[i].EMP_C_ID;
+                      // $scope.multipleDelete(cat_id);
+                   }
+                }
+              }
+            }
+                // console.log($scope.post,'$scope.post$scope.post');
+                // if ($scope.post[i]==true) {
+                //   if($scope.displayedCollection[i]!='undefined'){
+                //     $scope.post[i]=false;
+                //     var cat_id=$scope.displayedCollection[i].EMP_C_ID;
+                //     $scope.multipleDelete(cat_id);
+                //   }else {
+
+                //   }
+                  // $scope.post[i]=false;
+                  // console.log($scope.displayedCollection,'$scope.displayedCollection[i]');
+                  // var cat_id=$scope.displayedCollection[i].EMP_C_ID;
+                  // // $scope.displayedCollection.splice(i, 1);
+                  // // console.log(cat_id,'cat_idcat_id');
+                  // $scope.multipleDelete(cat_id);
+            //     };
+            //   };
+            // }
+             $scope.selectall=false;
+             $scope.showMessage("Records Deleted Successfully","success");
+             setTimeout(function(){
+                $scope.getMasterJobs(tableState);
+             },700);
+          }
+        });
   }
 
   $scope.getMasterJobs = function (tableState) {
@@ -138,25 +191,36 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;
+          $scope.paginationShow();
+          
       }).error(function (data, status, headers, config) {
           $scope.isLoading = false;
       });
   };
    $scope.currentViewCalculation=function(){
-    var precal=$scope.currentPageNumber*$scope.itemsByPage;
+    var precal=$rootScope.currentPageNumber*$scope.itemsByPage;
     return precal-$scope.itemsByPage+1;
   }
   $scope.currentViewCalculationMax=function(){
-    var maxcal=$scope.currentPageNumber*$scope.itemsByPage;
-    console.log(maxcal+"====" +$scope.rowCollection.length)
+    var maxcal=$rootScope.currentPageNumber*$scope.itemsByPage;
     if(maxcal > $scope.rowCollection.length){
       return $scope.rowCollection.length;
     }else{
       return maxcal;
     }    
+  }
+  $scope.changeMode=function(){
+    $scope.buttonStatus='Update';
+  }
+  $scope.paginationShow=function(){
+    if($scope.displayedCollection.length > 5){
+      $scope.show_pagination=true;
+    }else{
+      $scope.show_pagination=false;
+    }
   }
 }]);

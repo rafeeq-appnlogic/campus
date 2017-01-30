@@ -7,11 +7,11 @@
     padding: 0;
     margin: -5px 0;
   }
-  .modal-dialog{
+  .bootbox .modal-dialog{
     width: 350px !important;
   }
 </style>
-<div>
+<div ng-cloak>
 
   <div class="bg-light lter b-b wrapper-md">
     <div class="row">
@@ -30,7 +30,7 @@
   <div class="wrapper-md" >
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="panel panel-default">
-    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Employee category</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewCategory()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i>Add Category</button></div>
+    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Employee category</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewCategory()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Category</button></div>
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
       <tr>
           <th style="width:185px !important">
@@ -84,7 +84,7 @@
         </thead>
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
-            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="row.EMP_C_ID" ng-change="callbackfunction()"><i></i></label></td>
             <td>
               <span editable-text="row.EMP_C_NAME" e-name="EMP_C_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.EMP_C_NAME}}
@@ -104,14 +104,14 @@
               <!-- form -->
               <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
                 <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row,$index)" class="btn btn-sm btn-info">
-                  save
+                  {{buttonStatus}}
                 </button>
                 <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.EMP_C_ID,$index)" class="btn btn-sm btn-default">
                   cancel
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
-                <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show();changeMode();"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
@@ -129,7 +129,7 @@
             <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
           </td> -->
           <td colspan="3" style="padding-top: 3%">
-              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+              <p ng-show="show_pagination">Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
           </td>
           <td colspan="3">
               <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
