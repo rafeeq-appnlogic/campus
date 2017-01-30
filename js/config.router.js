@@ -294,13 +294,13 @@ angular.module('app')
                   url: "/manage-class",
                   controller:"manageClassCtrl",
                   templateUrl: "tpl/academics/manageClass.html",
-                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster'])
+                  resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
               .state("app.Batch-View", {
                   url: "/app.batch-view",
                   controller:"manageBatchCtrl",
                   templateUrl: "tpl/academics/batchview.html",
-                  resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster'])
+                  resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
               .state("app.Manage-Batch", {
                 url: "/manage-batch",

@@ -1,5 +1,5 @@
-app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster', 
-  function($scope,$rootScope,$localStorage,$timeout, $http,$modal,editableOptions, editableThemes,toaster) {
+app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox', 
+  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -15,6 +15,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
   $scope.Batch=[];
   $scope.Savebutton=true;
   $scope.Updatebutton=false;
+  $scope.NoData=false;
   // $scope.Edit=false;
   // $scope.Save=false;
   $scope.rowCollection = [];
@@ -29,6 +30,14 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
             start: 0
         }
     };
+    //login auth//
+    if($localStorage.user_id==''){
+      $location.path('signin');
+    }else {
+      $location.path($location.url());      
+    }
+    //----------------------------//
+
     var id=$localStorage.Class_id;
     console.log(id,'BatchDetail');
     // alert("Class_id-"+id);
@@ -40,7 +49,14 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
     console.log(response,'tes')
         $scope.rowCollection = response.data.message;
         console.log(response.data.message,'datas');
-    });
+    },function myError(response){
+      // $scope.isLoading = true;
+      $scope.NoData=true;
+      var message="No Batch Found in This Course"
+      console.log($scope.NoData,'check nodata');
+      $scope.showMessage(message,"error");
+      console.log(response.message,'Row Data');
+      });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
 
@@ -61,36 +77,33 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
     // $scope.displayedCollection.push($scope.class);
   };
   $scope.saveBatch=function(){
-    // alert('in');
-    // console.log($scope.Batch,'Test');
-  $http({
-    method : "POST",
-    url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-    data : {'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN}
-   }).then(function mySucces(response) {
-    var status=response.data.status;
-    var message="Batch inserted Successfully";
-    var errorMessage="Batch insert Failed";
-    var success="success";
-    var error="error";
-    console.log(status,'status');
-    console.log(message,'message');
-    if(status  ='true'){
+    var ACA_BAT_CRT_USER_ID=$localStorage.user_id;
+    console.log(ACA_BAT_CRT_USER_ID,'insertid');
+    $http({
+      method : "POST",
+      url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
+      data : {'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID}
+     }).then(function mySucces(response) {
+      var status=response.data.status;
+      var message="Batch inserted Successfully";
+      var errorMessage="Batch insert Failed";
+      var success="success";
+      var error="error";
+      console.log(status,'status');
+      console.log(message,'message');
+      if(status  ='true'){
         $scope.showMessage(message,success);
     }else{
       $scope.showMessage(errorMessage,error);
     }
     $scope.getMasterJobs(tableState);
-    }, function myError(response) {
+    },function myError(response) {
        var error="error";
        var errorMessage="Batch insert Failed";
        $scope.showMessage(errorMessage,error);
     });
     // $scope.testForm=false;
-    }
-  // $scope.GetBatchView=function(id){
-  //   $localStorage.Class_id=id.ACA_COU_ID;
-  //   }
+  }
   $scope.EditBatch=function(id){
     // $scope.testForm=true;
     $scope.Save=false;
@@ -109,16 +122,26 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
       $scope.Batch=[];
       $scope.Batch=response.data.message[0];
     },function myError(response) {
-       var error="error";
-       var errorMessage="There is Not Batch avaiable in this Clsss";
-       $scope.showMessage(errorMessage,error);
+       // var error="error";
+       // $scope.isLoading = true;
+       // var errorMessage="There is Not Batch avaiable in this Clsss";
+       // $scope.showMessage(errorMessage,error);
+       alert('error');
+       // $scope.isLoading = true;
+       //  // $scope.NoData = true;
+       //  var message="No Data Found in Course Details"
+       //  console.log($scope.NoData,'check nodata');
+       //  $scope.showMessage(message,"error");
+       //  console.log(incomingData.message,'Row Data');
     });
   };
   $scope.updateBatch=function(){
+    var ACA_BAT_UPD_USER_ID=$localStorage.user_id;
+    console.log(ACA_BAT_UPD_USER_ID,'updateid');
     $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-    data : {'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN}
+    data : {'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID}
     }).then(function mySucces(response) {
     var status=response.data.status;
     var message="Batch is Updated Successfully";
@@ -140,7 +163,8 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
     });
     // $scope.testForm=false;
   }
-  $scope.DeleteClass=function(row){
+  $scope.DeleteBatch=function(row){
+    $ngBootbox.confirm('Are you sure you want to delete this record?').then(function(){
     var id=row.ACA_BAT_ID;
     $http({
       method:"DELETE",
@@ -152,13 +176,14 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
       console.log(response);
       var message=response.data.message;
       $scope.showMessage(message,success);
+      console.log(id,'remove');
+      $scope.displayedCollection.splice(id, 1);
       $scope.getMasterJobs(tableState);
     },function myError(response){
       var message=response.data.message;
       $scope.showMessage(message,error);
     });
-    console.log(id,'remove');
-    $scope.displayedCollection.splice(id, 1);
+    });
   }
   $scope.open = function($event) {
     $event.preventDefault();
@@ -229,11 +254,29 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$timeo
           $scope.rowCollection = response.data.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;
-      }).error(function (data, status, headers, config) {
-          console.error(data);
-          $scope.isLoading = false;
+
+      },function myError(response){
+          // $scope.isLoading = true;
+          $scope.NoData=true;
+          var message="No Batch Found in This Course"
+          console.log($scope.NoData,'check nodata');
+          $scope.showMessage(message,"error");
+          console.log(response.message,'Row Data');
       });
       $scope.displayedCollection = [].concat($scope.rowCollection);
       $scope.isLoading=false
   };
+    $scope.currentViewCalculation=function(){
+      var precal=$scope.currentPageNumber*$scope.itemsByPage;
+      return precal-$scope.itemsByPage+1;
+    }
+    $scope.currentViewCalculationMax=function(){
+      var maxcal=$scope.currentPageNumber*$scope.itemsByPage;
+      console.log(maxcal+"====" +$scope.rowCollection.length)
+      if(maxcal > $scope.rowCollection.length){
+        return $scope.rowCollection.length;
+      }else{
+        return maxcal;
+      }    
+    }
 }]);

@@ -15,11 +15,11 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
   $scope.rowCollection = [];
 
 // url refresh
-            if($localStorage.user_id==''){
-              $location.path('signin');
-            }else {
-              $location.path($location.url());      
-            }
+  if($localStorage.user_id==''){
+    $location.path('signin');
+  }else {
+    $location.path($location.url());      
+  }
 
 
   var tableState = {

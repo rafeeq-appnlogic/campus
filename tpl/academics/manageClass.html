@@ -3,20 +3,27 @@
     width: 50px;
     text-align: center;
   }
+/*  .modal-dialog{
+    width: 350px !important;
+  }*/
+  .bootbox .modal-dialog{
+    width: 350px !important;
+    padding-top: 200px;  
+  }
   .pagination li a input {
     padding: 0;
     margin: -5px 0;
   }
   .i-switch-md input:checked + i::after {
     color: green;
-    content: "Yes";
+    content: "Y";
     font-size: 15px;
     font-style: normal;
     margin-left: 19px;
 }
 .i-switch-md i::after {
     color: red;
-    content: "No";
+    content: "N";
     font-size: 15px;
     font-style: normal;
     text-align: center;
@@ -40,7 +47,7 @@
   <div class="bg-light lter b-b wrapper-md">
     <div class="row">
     <div class="col-md-4">
-      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Academics</b> | Manage Classes</h4>
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Academics</b> | Manage Courses</h4>
       </div>
       <div class="col-md-8">
       <ul class="breadcrumb pull-right">
@@ -55,9 +62,9 @@
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="panel panel-default">
     <div class="panel-heading" style="padding:10px;">
-    <span style="font-size:18px;"><b>Manage Classes</b></span>  
+    <span style="font-size:18px;"><b>Manage Courses</b></span>  
     <a data-toggle="modal" data-target="#myModal" ng-click="addNewClass()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
-    <i class="fa fa-plus"></i> &nbsp;Add Classes</a>
+    <i class="fa fa-plus"></i> &nbsp;Add Courses</a>
     </div>
     <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -88,18 +95,24 @@
         <thead>
           <tr>
             <th style="width:5px !important"></th>
-            <th>
+            <!-- <th>
               <st-select-distinct collection="rowCollection" predicate="ACA_COU_NAME"></st-select-distinct>
+            </th> -->
+            <th>
+              <input st-search="'ACA_COU_NAME'" placeholder="Search for Course Name" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'ACA_COU_SEC_NAME'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
+              <input st-search="'ACA_COU_SEC_NAME'" placeholder="Search for Selection Name" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="ACA_COU_CODE"></st-select-multiple>
+              <input st-search="'ACA_COU_CODE'" placeholder="Search for Courese Code" class="input-sm form-control" type="search"/>
             </th>
             <th>
+              <input st-search="'ACA_COU_GRADE_TYPE'" placeholder="Search for Grade Type" class="input-sm form-control" type="search"/>
+            </th>
+            <!-- <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
-            </th>
+            </th> -->
             <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_COU_ELECTIVE_SEL_YN"></st-select-multiple>
             </th>
@@ -110,7 +123,7 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_COU_NAME">Class Name</th>
+            <th st-sort="ACA_COU_NAME">Course Name</th>
             <th st-sort="ACA_COU_SEC_NAME">Section Name</th>
             <th st-sort="ACA_COU_CODE">Class Code</th>
             <th st-sort="ACA_COU_GRADE_TYPE">Grade Type</th>
@@ -128,7 +141,7 @@
             <td>{{row.ACA_COU_ELECTIVE_SEL_YN}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
-                <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary" ng-click="GetBatchView(row)"><i class="glyphicon glyphicon-file"></i></a>
+                <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary" ng-click="GetBatchView(row)"><i class="fa fa-eye"></i></a>
                 <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button>
               </div>  
@@ -140,11 +153,19 @@
             <td colspan="5" class="text-center">Loading ...</td>
           </tr>
         </tbody>
+        <tbody ng-if="NoData">
+          <tr>
+            <td colspan="8" class="text-center">No Data Found !</td>
+          </tr>
+        </tbody>
         <tfoot>
           <tr>
-          <td colspan="5" class="text-right">
-            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
+          <td colspan="3" style="padding-top: 3%">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
           </td>
+          <td colspan="4">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
           </tr>
         </tfoot>
       </table>
@@ -179,8 +200,9 @@
             </div>
             <div class="form-group col-md-4">
               <label>Grading System Type</label>
-               <!-- <select ui-jq="chosen" class="w-full"> -->
+               <!-- <select ui-jq="chosen" class="w-full" style="width: 250px !important;" ng-model="class.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required=""> -->
                <select class="form-control" ng-model="class.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
+                  <option value="select" ng-selected="true" ng-disabled="true">Select</option>
                  <option value="Normal">Normal</option>
                  <option value="CCE">CCE</option>
                </select>

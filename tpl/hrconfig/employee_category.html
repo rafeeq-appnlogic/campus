@@ -124,18 +124,12 @@
         </tbody>
         <tfoot>
           <tr>
-          <!-- <td colspan="2"></td> -->
-          <!-- <td colspan="5" class="text-right">
-            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
-          </td> -->
           <td colspan="3" style="padding-top: 3%">
               <p ng-show="show_pagination">Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
           </td>
           <td colspan="3">
               <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
             </td>
-
-          
           </tr>
         </tfoot>
       </table>

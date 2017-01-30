@@ -1,5 +1,5 @@
-app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster', 
-  function($scope,$rootScope,$localStorage,$timeout, $http,$modal,editableOptions, editableThemes,toaster) {
+app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox',
+  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -17,6 +17,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
   $scope.Updatebutton=false;
   $scope.Edit=false;
   $scope.Save=false;
+  $scope.NoData=false;
   $scope.rowCollection = [];
   $scope.saveDatas= [];
   // $scope.testForm=false;
@@ -28,12 +29,31 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
             start: 0
         }
     };
+  //login auth//
+  // alert($localStorage.user_id +'login id');
+  if($localStorage.user_id==''){
+    $location.path('signin');
+  }else {
+    $location.path($location.url());      
+  }
+  //----------------------------//
+
     $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(incomingData) {
-          $scope.rowCollection = incomingData.message;
-          console.log(incomingData,'Row Data');
+        $scope.rowCollection = incomingData.message;
+        console.log($scope.NoData,'check nodata');
+        console.log(incomingData,'Row Data');
+        // $scope.NoData=false;
+    }).error(function(incomingData){
+        //$scope.isLoading = true;
+        $scope.NoData = true;
+        var message="No Data Found in Course Details"
+        console.log($scope.NoData,'check nodata');
+        $scope.showMessage(message,"error");
+        console.log(incomingData.message,'Row Data');
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
+    //$scope.NoData=false;
 
   $scope.addNewClass = function() {
     // $scope.testForm=true;
@@ -54,17 +74,19 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
     };
     // $scope.displayedCollection.push($scope.class);
   };
+
   $scope.saveClass=function(){
+    var ACA_COU_CRT_USER_ID=$localStorage.user_id;
+    console.log(ACA_COU_CRT_USER_ID,'id');
   $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
-    data : {'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':'25-01-2016','ACA_BAT_END_DT':'25-01-2017'}
+    data : {'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_CRT_USER_ID':ACA_COU_CRT_USER_ID}
    }).then(function mySucces(response) {
+    console.log(response);
     var status=response.data.status;
-    var message="Class inserted Successfully";
-    var errorMessage="Class insert Failed";
+    var message="Course inserted Successfully";
     var success="success";
-    var error="error";
     console.log(status,'status');
     console.log(message,'message');
     if(status  ='true'){
@@ -74,12 +96,15 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
     }
     $scope.getMasterJobs(tableState);
     }, function myError(response) {
+        var errorMessage="Course insertion Failed !";
+        var error="error";
+        $scope.showMessage(errorMessage,error);
     });
    // $scope.testForm=false;
     }
   $scope.GetBatchView=function(id){
     $localStorage.Class_id=id.ACA_COU_ID;
-    alert($localStorage.Class_id);
+    // alert($localStorage.Class_id);
     }
   $scope.EditClass=function(id){
     // $scope.testForm=true;
@@ -105,12 +130,16 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
       // $scope.class.ACA_COU_ID=response.data.message[0]['ACA_COU_ID'];
     });
   };
-  $scope.updateClass=function(){    alert($scope.class.ACA_COU_ID)
+  $scope.updateClass=function(){   
+    alert($localStorage.user_id);
+    var ACA_COU_UPD_USER_ID=$localStorage.user_id;
+    console.log(ACA_COU_UPD_USER_ID,'updateid');
     $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
-    data : {'ACA_COU_ID' : $scope.class.ACA_COU_ID,'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':'25-01-2016','ACA_BAT_END_DT':'25-01-2017'}
+    data : {'ACA_COU_ID' : $scope.class.ACA_COU_ID,'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_UPD_USER_ID':ACA_COU_UPD_USER_ID}
     }).then(function mySucces(response) {
+    console.log(response);
     var status=response.data.status;
     var message="Class is Updated Successfully";
     var Errormessage="Class Update is Failed";
@@ -129,7 +158,10 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
     // $scope.testForm=false;
   }
   $scope.DeleteClass=function(row){
+    $ngBootbox.confirm('Are you sure you want to delete this record?')
+    .then(function() {
     var id=row.ACA_COU_ID;
+    console.log(id,'delete id');
     $http({
       method:"DELETE",
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
@@ -140,13 +172,14 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
       console.log(response);
       var message=response.data.message;
       $scope.showMessage(message,success);
+      $scope.displayedCollection.splice(id, 1);
+      $scope.getMasterJobs(tableState);
     },function myError(response){
 
     });
-    console.log(id,'remove');
-    $scope.displayedCollection.splice(id, 1);
-    $scope.getMasterJobs(tableState);
-  }
+    });
+    }
+
 
   $scope.open = function($event) {
     $event.preventDefault();
@@ -171,7 +204,10 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
       params : {ACA_COU_ID : data},
     }).then(function mySucces(response) {
+        // $scope.showMessage("Records Deleted Successfully","success");
+        // $scope.getMasterJobs(tableState);
     }, function myError(response) {
+        // $scope.showMessage("Records Delete Failed !","error");
     });
   }
 
@@ -187,13 +223,13 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
           $scope.displayedCollection.splice(i, 1);
         };
       };
-      $scope.showMessage("Record Deleted Successfully","error");
+      $scope.showMessage("Record Deleted Successfully","success");
     }
     if($scope.bulkaction==1 && $scope.post.length > 0){
       var totalLength=$scope.itemsByPage;
       for (var i = totalLength - 1; i >= 0; i--) {
-           $scope.multipleDelete($scope.displayedCollection[i].ACA_COU_ID,totalLength,i);
-          $scope.displayedCollection.splice(i, 1);
+            $scope.multipleDelete($scope.displayedCollection[i].ACA_COU_ID,totalLength,i);
+            $scope.displayedCollection.splice(i, 1);
       };
       $scope.selectall=false;
       $scope.showMessage("Records Deleted Successfully","error");
@@ -211,14 +247,34 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$timeo
       $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function (response, status, headers, config) {
           $scope.rowCollection = response.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
-
           //set the number of pages so the pagination can update
           // tableState.pagination.numberOfPages = response.numberOfPages;
           // $scope.displayedPages = Math.ceil(response.numberOfPages / length);
           $scope.isLoading = false;
-      }).error(function (data, status, headers, config) {
+      }).error(function (response,data, status, headers, config) {
           console.error(data);
-          $scope.isLoading = false;
+          // $scope.isLoading = true;
+          $scope.NoData = true;
+          var message="No Data Found in Course Details"
+          console.log($scope.NoData,'check nodata');
+          $scope.showMessage(message,"error");
+          console.log(response.message,'Row Data');
+
       });
   };
+
+  $scope.currentViewCalculation=function(){
+    var precal=$scope.currentPageNumber*$scope.itemsByPage;
+    // console.log(precal-$scope.itemsByPage+1,'ads');
+    return precal-$scope.itemsByPage+1;
+  }
+  $scope.currentViewCalculationMax=function(){
+    var maxcal=$scope.currentPageNumber*$scope.itemsByPage;
+    console.log(maxcal+"====" +$scope.rowCollection.length)
+    if(maxcal > $scope.rowCollection.length){
+      return $scope.rowCollection.length;
+    }else{
+      return maxcal;
+    }    
+  }
 }]);
