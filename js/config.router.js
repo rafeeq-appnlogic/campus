@@ -331,15 +331,23 @@ angular.module('app')
                 controller:"viewSubjectsctrl",
                 templateUrl: "tpl/academics/viewSubjects.html",
                 params:{id1:"id1"},
-                resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
+                resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
                .state("app.Grade-Level", {
                 url: "/grade-level",
                 controller:"gradeLevelctrl",
                 templateUrl: "tpl/academics/gradeLevel.html",
-                resolve: load(['smart-table','js/controllers/academics/gradeLevelctrl.js','xeditable','ui.bootstrap','toaster'])
+                resolve: load(['smart-table','js/controllers/academics/gradeLevelctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state('app.calendar', {
+                .state("app.View-Exam", {
+                url: "/eiew-exam",
+                templateUrl: "tpl/academics/viewOnlineExam.html",
+              })
+                .state("app.Add-Newexam", {
+                url: "/add-newexam",
+                templateUrl: "tpl/academics/addNewExam.html",
+              })
+              .state('app.calendar', { 
                   url: '/calendar',
                   templateUrl: 'tpl/academics/app_calendar.html',
                   resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
