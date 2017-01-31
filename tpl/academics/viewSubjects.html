@@ -7,29 +7,30 @@
     padding: 0;
     margin: -5px 0;
   }
+  .modal-dialog{
+    width: 350px !important;
+  }
 </style>
 <div>
 
   <div class="bg-light lter b-b wrapper-md">
     <div class="row">
     <div class="col-md-4">
-      <h4 class="m-n font-thin h4"><i class="icon-book-open"></i> &nbsp&nbsp<b>Manage Subjects</b> | View Subjects</h4>
+     <h4 class="m-n font-thin h4"><i class="icon-book-open"></i> &nbsp&nbsp<b>Manage Subjects</b> | View Subjects</h4>
       </div>
       <div class="col-md-8">
       <ul class="breadcrumb pull-right">
-        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
-        <li><a href="">Elements</a></li>
-        <li class="active">Components</li>
+        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="">Academics</a></li>
+        <li class="active">Add subject</li>
       </ul>
       </div>
     </div>
   </div>
-
   <div class="wrapper-md" >
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="panel panel-default">
-    <div class="panel-heading"><span style="font-size:18px;"><b>View</b></span>  <button class="btn btn-success btn btn-sm" ng-click="addNewSubject()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Subject</button>
-    </div>
+    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewSubject()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Subject</button></div>
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
       <tr>
           <th style="width:185px !important">
@@ -63,10 +64,10 @@
               <st-select-distinct collection="rowCollection" predicate="ACA_SUB_NAME"></st-select-distinct>
             </th>
             <th>
-              <input st-search="'ACA_SUB_CODE'" placeholder="search for code" class="input-sm form-control" type="search"/>
+              <input st-search="'ACA_SUB_CODE'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="ACA_SUB_MAXCLASS_WEEK"></st-select-multiple>
+              <input st-search="'ACA_SUB_MAXCLASS_WEEK'" placeholder="search for weekly classes" class="input-sm form-control" type="search"/>
             </th>
           </tr>
           <tr>
@@ -78,20 +79,17 @@
             <th st-sort="ACA_SUB_NAME">Subject</th>
             <th st-sort="ACA_SUB_CODE">Code</th>
             <th st-sort="ACA_SUB_MAXCLASS_WEEK">Weekly Classes</th>
-            <th>Action {{}}</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody ng-hide="isLoading">
-
-          <tr ng-show="displayedCollection.length=='0'">
+         <!-- <tr ng-show="displayedCollection.length=='0'">
           <td></td><td></td>
             <td colspan="3"> No data found add new subject</td>
-          </tr>
+          </tr> -->
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
             <td>
-             <!--  <input type="hidden" e-name="ACA_SUB_NAME" value="{{}}"/>
-              <input type="hidden" e-name="ACA_SUB_NAME" value="{{}}"/> -->
               <span editable-text="row.ACA_SUB_NAME" e-name="ACA_SUB_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.ACA_SUB_NAME}}
               </span>
@@ -110,14 +108,14 @@
               <!-- form -->
               <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
                 <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveSubject(row,$index)" class="btn btn-sm btn-info">
-                  save
+                   {{buttonStatus}}
                 </button>
                 <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.ACA_SUB_ID,$index)" class="btn btn-sm btn-default">
                   cancel
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
-                <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show();changeMode();"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
@@ -128,15 +126,22 @@
             <td colspan="5" class="text-center">Loading ...</td>
           </tr>
         </tbody>
-        <tfoot>
+        <tbody ng-show="displayedCollection.length=='0'">
           <tr>
-          <!-- <td colspan="2"></td> -->
-          <td colspan="5" class="text-right">
-            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
+            <td></td><td></td>
+            <td colspan="3"> No data found add new subject</td>
+          </tr>
+        </tbody>
+       <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
           </td>
-          <!-- <td colspan="2" class="">
-            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
-          </td> -->
+          <td colspan="3">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
           </tr>
         </tfoot>
       </table>

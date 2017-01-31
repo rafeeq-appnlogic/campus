@@ -7,18 +7,31 @@
     padding: 0;
     margin: -5px 0;
   }
+  .modal-dialog{
+    width: 350px !important;
+  }
 </style>
-<div class="bg-light lter b-b wrapper-md">
-  <h4 class="m-n font-thin h4"><i class="fa fa-book"></i> &nbsp&nbsp<b>Subject </b> | Manage Subjects </h4>
-</div>
-<!-- data table -->
-<div class="wrapper-md">
-  <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-      Manage Subjects
+<div>
+
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="fa fa-book"></i> &nbsp&nbsp<b>Subject </b> | Manage Subjects </h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="">Academics</a></li>
+        <li class="active">Manage Subjects</li>
+      </ul>
+      </div>
     </div>
-    <div class="panel-body">
-      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+  </div>
+  <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-default">
+    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Manage Subjects</b></span> </div>
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
       <tr>
           <th style="width:185px !important">
             <form class="form-inline">
@@ -51,9 +64,8 @@
               <st-select-distinct collection="rowCollection" predicate="ACA_COU_NAME"></st-select-distinct>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="ACA_BAT_NAME"></st-select-multiple>
+              <input st-search="'ACA_BAT_NAME'" placeholder="search for batch" class="input-sm form-control" type="search"/>
             </th>
-           
           </tr>
           <tr>
             <th>
@@ -61,31 +73,43 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_COU_NAME">Class</th>
-            <th st-sort="ACA_BAT_NAME">Batch</th>
+            <th st-sort="ACA_COU_NAME" style="width:30%;">Class</th>
+            <th st-sort="ACA_BAT_NAME" style="width:30%;">Batch</th>
             <th>Action</th>
           </tr>
         </thead>
-         <tbody ng-hide="isLoading">
+        <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
             <td>
-              <input type="hidden" id="ACA_COU_ID">
-              <span text="row.ACA_SUB_NAME" e-name="ACA_SUB_NAME" e-form="rowform">
+              <span editable-text="row.ACA_COU_NAME" e-name="ACA_COU_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.ACA_COU_NAME}}
               </span>
             </td>
             <td>
-             <input type="hidden" id="ACA_BAT_ID">
-              <span text="row.ACA_SUB_CODE" e-name="ACA_BAT_NAME" e-form="rowform">
+              <span editable-text="row.ACA_BAT_NAME" e-name="ACA_BAT_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.ACA_BAT_NAME}}
               </span>
             </td>
-            <td style="white-space: nowrap">
+             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                 <a ng-click="viewSubject(row,res)">View</a>
               </div>  
             </td>
+           <!--  <td style="white-space: nowrap">
+              <! <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row,$index)" class="btn btn-sm btn-info">
+                  save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.EMP_C_ID,$index)" class="btn btn-sm btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
+              </div>  
+            </td> --> 
           </tr>
         </tbody>
         <tbody ng-show="isLoading">
@@ -93,20 +117,24 @@
             <td colspan="5" class="text-center">Loading ...</td>
           </tr>
         </tbody>
+         <tbody ng-show="noData">
+          <tr>
+            <td colspan="6" class="text-center">No data found</td>
+          </tr>
+        </tbody>
         <tfoot>
           <tr>
-          <!-- <td colspan="2"></td> -->
-          <td colspan="5" class="text-right">
-            <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html"></div>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
           </td>
-          <!-- <td colspan="2" class="">
-            <div st-pagination="rowCollectionPage" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin"></div>
-          </td> -->
+          <td colspan="3">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
           </tr>
         </tfoot>
       </table>
-    </div><br>
+    </div>
   </div>
 </div>
-
-
