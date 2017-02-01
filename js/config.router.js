@@ -218,7 +218,9 @@ angular.module('app')
                 })          
                 .state("app.Employee-Admission", {
                   url: "/employee-admission",
+                  controller:"employeeMgmnt",
                   templateUrl: "tpl/employee_management/employee-admission.html",
+                  resolve: load(['js/controllers/employeeMgmnt/employeeMgmnt.js','toaster','ngBootbox'])
                 })
                 .state("app.Employee-Sub-Association", {
                   url: "/employee-sub-association",
