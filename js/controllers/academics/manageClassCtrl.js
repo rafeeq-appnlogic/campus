@@ -204,39 +204,34 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
       params : {ACA_COU_ID : data},
     }).then(function mySucces(response) {
-        // $scope.showMessage("Records Deleted Successfully","success");
-        // $scope.getMasterJobs(tableState);
     }, function myError(response) {
-        // $scope.showMessage("Records Delete Failed !","error");
     });
   }
-
   $scope.applyAction = function() {
-    console.log($scope.bulkaction,'delete check');
-    if($scope.bulkaction==1 && $scope.post.length > 0){
-      var totalLength=$scope.post.length;
-      console.log(totalLength,'length');
-      for (var i = totalLength - 1; i >= 0; i--) {
-        if ($scope.post[i]==true) {
-          $scope.post[i]=false;
-          $scope.multipleDelete($scope.displayedCollection[i].ACA_COU_ID,totalLength,i);
-          $scope.displayedCollection.splice(i, 1);
-        };
-      };
-      $scope.showMessage("Record Deleted Successfully","success");
-    }
-    if($scope.bulkaction==1 && $scope.post.length > 0){
-      var totalLength=$scope.itemsByPage;
-      for (var i = totalLength - 1; i >= 0; i--) {
-            $scope.multipleDelete($scope.displayedCollection[i].ACA_COU_ID,totalLength,i);
-            $scope.displayedCollection.splice(i, 1);
-      };
-      $scope.selectall=false;
-      $scope.showMessage("Records Deleted Successfully","error");
-    }
-    $scope.getMasterJobs(tableState);
+    if($scope.bulkaction==1){
+    $ngBootbox.confirm('Are you sure you want to delete all this record ?')
+        .then(function() {
+          if($scope.bulkaction==1){
+            if($scope.selectall==true || $scope.post.length > 0){
+              var totalLength=$scope.displayedCollection.length;
+              console.log(totalLength,'totalLengthtotalLengthtotalLength');
+              for(var i=0;i<totalLength;i++){
+                   if ($scope.post[i]==true) {
+                      var cat_id=$scope.displayedCollection[i].ACA_COU_ID;
+                      $scope.multipleDelete(cat_id);
+                   }
+              }
+            }
+             $scope.selectall=false;
+             $scope.showMessage("Records Deleted Successfully","success");
+             setTimeout(function(){
+                $scope.callbackbulk();
+                $scope.getMasterJobs(tableState);
+             },700);
+          }
+        });
+      }
   }
-
   $scope.getMasterJobs = function (tableState) {
       var start = 0;
       var length = 10;
@@ -247,9 +242,6 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function (response, status, headers, config) {
           $scope.rowCollection = response.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
-          //set the number of pages so the pagination can update
-          // tableState.pagination.numberOfPages = response.numberOfPages;
-          // $scope.displayedPages = Math.ceil(response.numberOfPages / length);
           $scope.isLoading = false;
       }).error(function (response,data, status, headers, config) {
           console.error(data);

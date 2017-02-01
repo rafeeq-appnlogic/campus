@@ -94,23 +94,32 @@
     };
   }])
   ; 
-  app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', function($scope, $modalInstance, items) {
+  app.controller('ModalInstanceCtrl', ['$scope','$rootScope','$modalInstance','$controller','items', function($scope,$rootScope,$modalInstance,ctrl,items) {
+    ctrl('FullcalendarCtrl',{$scope:$scope});
+  // app.controller('ModalInstanceCtrl', ['$scope','$modalInstance', 'items', function($scope, $modalInstance,items) {
     $scope.items = items;
     $scope.selected = {
       item: $scope.items[0]
     };
 
     $scope.ok = function () {
+      console.log($rootScope.EventTitle,'$scope.EventTitle');
+       // $scope.addEvent();
+      console.log('OKey');
       $modalInstance.close($scope.selected.item);
     };
 
     $scope.cancel = function () {
+      console.log('cancel');
       $modalInstance.dismiss('cancel');
     };
   }])
   ; 
-  app.controller('ModalDemoCtrl', ['$scope', '$modal', '$log', function($scope, $modal, $log) {
+  // app.controller('ModalDemoCtrl', ['$scope','$controller','$modal','$log', function($scope, $modal, $log,ctrl) {
+  //   ctrl('FullcalendarCtrl',{$scope:$scope});
+    app.controller('ModalDemoCtrl', ['$scope','$rootScope','$modal','$log', function($scope,$rootScope,$modal, $log) {
     $scope.items = ['item1', 'item2', 'item3'];
+    
     $scope.open = function (size) {
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',

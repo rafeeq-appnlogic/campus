@@ -157,7 +157,9 @@
         <tfoot>
           <tr>
           <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
               <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
           </td>
           <td colspan="3">
               <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>

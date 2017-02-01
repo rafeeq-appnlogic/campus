@@ -302,7 +302,7 @@ angular.module('app')
                   resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
               .state("app.Manage-Batch", {
-                  url: "/app.manage-batch",
+                  url: "/manage-batch",
                   controller:"manageBatchCtrl",
                   templateUrl: "tpl/academics/manageBatch.html",
                   resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
@@ -310,6 +310,7 @@ angular.module('app')
               .state("app.Calendar", {
                 url: "/calendar",
                 templateUrl: "tpl/academics/calendar.html",
+                resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
               })
                //added by gnanamani
                 .state("app.Apply-Leave", {
@@ -357,13 +358,15 @@ angular.module('app')
                   templateUrl: 'tpl/page_signin.html',
                   resolve: load( ['js/controllers/signin.js'] )
               })
+              // .state('app.modal', {
+              //     url: '/modal',
+              //     templateUrl: 'tpl/calendar/modal.html',
+              // })
               .state('app.edit-profile', {
                   url: '/edit-profile',
                   templateUrl: "tpl/edit-profile.html"
                   // resolve: load( ['js/controllers/signin.js'] )
-              })
-              ;
-
+              });
           function load(srcs, callback) {
             return {
                 deps: ['$ocLazyLoad', '$q',
@@ -394,8 +397,6 @@ angular.module('app')
                 }]
             }
           }
-
-
       }
     ]
   );

@@ -122,17 +122,6 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
       $scope.Batch=[];
       $scope.Batch=response.data.message[0];
     },function myError(response) {
-       // var error="error";
-       // $scope.isLoading = true;
-       // var errorMessage="There is Not Batch avaiable in this Clsss";
-       // $scope.showMessage(errorMessage,error);
-       alert('error');
-       // $scope.isLoading = true;
-       //  // $scope.NoData = true;
-       //  var message="No Data Found in Course Details"
-       //  console.log($scope.NoData,'check nodata');
-       //  $scope.showMessage(message,"error");
-       //  console.log(incomingData.message,'Row Data');
     });
   };
   $scope.updateBatch=function(){
@@ -212,31 +201,30 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
     });
   }
   $scope.applyAction = function() {
-    console.log($scope.bulkaction,'delete check');
-    if($scope.bulkaction==1 && $scope.post.length > 0){
-      var totalLength=$scope.post.length;
-      console.log(totalLength,'length');
-      for (var i = totalLength - 1; i >= 0; i--) {
-        if ($scope.post[i]==true) {
-          $scope.post[i]=false;
-          $scope.multipleDelete($scope.displayedCollection[i].ACA_BAT_ID,totalLength,i);
-          $scope.displayedCollection.splice(i, 1);
-        };
-      };
-      $scope.showMessage("Record Deleted Successfully","error");
-    }
-    if($scope.bulkaction==1 && $scope.post.length > 0){
-      var totalLength=$scope.itemsByPage;
-      for (var i = totalLength - 1; i >= 0; i--) {
-           $scope.multipleDelete($scope.displayedCollection[i].ACA_BAT_ID,totalLength,i);
-          $scope.displayedCollection.splice(i, 1);
-      };
-      $scope.selectall=false;
-      $scope.showMessage("Records Deleted Successfully","error");
-    }
-    $scope.getMasterJobs(tableState);
+    if($scope.bulkaction==1){
+    $ngBootbox.confirm('Are you sure you want to delete all this record ?')
+        .then(function() {
+          if($scope.bulkaction==1){
+            if($scope.selectall==true || $scope.post.length > 0){
+              var totalLength=$scope.displayedCollection.length;
+              console.log(totalLength,'totalLengthtotalLengthtotalLength');
+              for(var i=0;i<totalLength;i++){
+                   if ($scope.post[i]==true) {
+                      var cat_id=$scope.displayedCollection[i].ACA_BAT_ID;
+                      $scope.multipleDelete(cat_id);
+                   }
+              }
+            }
+             $scope.selectall=false;
+             $scope.showMessage("Records Deleted Successfully","success");
+             setTimeout(function(){
+                $scope.callbackbulk();
+                $scope.getMasterJobs(tableState);
+             },700);
+          }
+        });
+      }
   }
-
   $scope.getMasterJobs = function (tableState) {
       var id=$localStorage.Class_id;
       var start = 0;
