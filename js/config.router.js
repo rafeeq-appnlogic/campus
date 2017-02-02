@@ -265,7 +265,9 @@ angular.module('app')
               })
                 .state("app.View-DetailsNew", {
                 url: "/view-detailsnew",
+                controller:"stuProfileCtr",
                 templateUrl: "tpl/Student/view_detailsnew.html",
+                resolve: load(['js/controllers/studentconfig/stuProfileCtr.js'])
               })
               .state("app.Student-Admission", {
                 url: "/student-admission",
