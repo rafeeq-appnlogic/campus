@@ -11,9 +11,9 @@
     </script>
     <div class="col wrapper-md">
       <div class="clearfix m-b">
-        <button type="button" tooltip="Double click on calendar day to create event" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
+<!--         <button type="button" tooltip="Double click on calendar day to create event" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
           <i class="fa fa-plus"></i>Add
-        </button>
+        </button> -->
          <button type="button" tooltip="Double click on calendar day to create event" class="btn btn-sm btn-success btn-addon" ng-click="open()">
           <i class="fa fa-plus"></i>Add
         </button>
@@ -31,7 +31,12 @@
         <div class="fc-overlay">
           <div class="panel bg-white b-a pos-rlt">
             <span class="arrow"></span>
-            <div class="h4 font-thin m-b-sm">{{event.title}}</div>
+            <div class="h4 font-thin m-b-sm">
+            <h4>Title : {{event.title}}</h4>
+            <h5>From  : {{event.start | date:'dd-MM-yyyy'}}</h5>
+            <h5>To    : {{event.end | date:'dd-MM-yyyy'}}</h5>
+            <h5>Description : {{event.description}}</h5>
+            </div>
             <div class="line b-b b-light"></div>
             <div><i class="icon-calendar text-muted m-r-xs"></i> {{event.start | date:'medium'}}</div>
             <div class="ng-hide" ng-show='event.end'><i class="icon-clock text-muted m-r-xs"></i> {{event.end | date:'medium'}}</div>
@@ -45,9 +50,15 @@
     </div>
     <div class="col w-md w-auto-xs bg-light dk bg-auto b-l hide" id="aside">
       <div class="wrapper">
-        <div ng-repeat="e in events" class="bg-white-only r r-2x m-b-xs wrapper-sm {{e.className[0]}}">          
+        <div ng-repeat="e in events" class="bg-white-only r r-2x m-b-xs wrapper-sm {{e.className[0]}}">
+            <h5>Event Tilte : {{e.title}}</h5>
+            <h5>Start Date  : {{e.start | date:'dd-MM-yyyy'}}</h5>
+            <h5>End Date    : {{e.end | date:'dd-MM-yyyy'}}</h5>
+            <p>Description  : {{e.description}}</p>
           <!-- <input ng-model="e.title" class="form-control m-t-n-xs no-border no-padder no-bg"> -->
-          <textarea ng-model="e.title" class="form-control m-t-n-xs no-border no-padder no-bg"></textarea>
+          <!-- <textarea ng-model="e.title" class="form-control m-t-n-xs no-border no-padder no-bg">
+            {{e.title}}
+          </textarea> -->
           <a class="pull-right text-xs text-muted" ng-click="remove($index)"><i class="fa fa-trash-o"></i></a>
           <div class="text-xs text-muted">{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}</div>
         </div>

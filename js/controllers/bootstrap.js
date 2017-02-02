@@ -94,19 +94,21 @@
     };
   }])
   ; 
-  app.controller('ModalInstanceCtrl', ['$scope','$rootScope','$modalInstance','$controller','items', function($scope,$rootScope,$modalInstance,ctrl,items) {
-    ctrl('FullcalendarCtrl',{$scope:$scope});
+  app.controller('ModalInstanceCtrl', ['$scope','$rootScope','$modalInstance','$controller','items', function($scope,rootscope,$modalInstance,ctrl,items) {
+    // ctrl('FullcalendarCtrl',{$scope:$scope});
   // app.controller('ModalInstanceCtrl', ['$scope','$modalInstance', 'items', function($scope, $modalInstance,items) {
     $scope.items = items;
+    $scope.NewEvent=[];
+    // console.log($scope,'EventTitle1');
+
     $scope.selected = {
       item: $scope.items[0]
     };
-
+    
     $scope.ok = function () {
-      console.log($rootScope.EventTitle,'$scope.EventTitle');
-       // $scope.addEvent();
-      console.log('OKey');
+      console.log($scope.NewEvent,'OKey');
       $modalInstance.close($scope.selected.item);
+      rootscope.$emit("CallParentMethod",$scope.NewEvent);
     };
 
     $scope.cancel = function () {
@@ -119,7 +121,8 @@
   //   ctrl('FullcalendarCtrl',{$scope:$scope});
     app.controller('ModalDemoCtrl', ['$scope','$rootScope','$modal','$log', function($scope,$rootScope,$modal, $log) {
     $scope.items = ['item1', 'item2', 'item3'];
-    
+    // $scope.NewEvent=[];
+    // console.log($scope.NewEvent.EventTitle ,'EventTitle2');
     $scope.open = function (size) {
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',

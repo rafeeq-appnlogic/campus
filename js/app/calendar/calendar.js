@@ -2,53 +2,44 @@
  * calendarDemoApp - 0.1.3
  */
 
-app.controller('FullcalendarCtrl', ['$scope','$controller', function($scope,ctrl) {
-  console.log($scope,'$scope');
+app.controller('FullcalendarCtrl', ['$scope','$controller','$rootScope', function($scope,ctrl,$rootScope) {
     ctrl('ModalDemoCtrl',{$scope:$scope});
-    //ctrl('ModalInstanceCtrl',{$scope:$scope});
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-
+    $scope.currentDate=[];
     /* event source that pulls from google.com */
     $scope.eventSource = {
-            url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
-            className: 'gcal-event',           // an option!
-            currentTimezone: 'America/Chicago' // an option!
+        url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
+        className: 'gcal-event',           // an option!
+        currentTimezone: 'America/Chicago' // an option!
     };
 
     /* event source that contains custom events on the scope */
-    // $scope.events = [
-    //   {title:'All Day Event', start: new Date(y, m, 1), className: ['b-l b-2x b-info'], location:'New York', info:'This a all day event that will start from 9:00 am to 9:00 pm, have fun!'},
-    //   {title:'Dance class', start: new Date(y, m, 3), end: new Date(y, m, 4, 9, 30), allDay: false, className: ['b-l b-2x b-danger'], location:'London', info:'Two days dance training class.'},
-    //   {title:'Game racing', start: new Date(y, m, 6, 16, 0), className: ['b-l b-2x b-info'], location:'Hongkong', info:'The most big racing of this year.'},
-    //   {title:'Soccer', start: new Date(y, m, 8, 15, 0), className: ['b-l b-2x b-info'], location:'Rio', info:'Do not forget to watch.'},
-    //   {title:'Family', start: new Date(y, m, 9, 19, 30), end: new Date(y, m, 9, 20, 30), className: ['b-l b-2x b-success'], info:'Family party'},
-    //   {title:'Long Event', start: new Date(y, m, d - 5), end: new Date(y, m, d - 2), className: ['bg-success bg'], location:'HD City', info:'It is a long long event'},
-    //   {title:'Play game', start: new Date(y, m, d - 1, 16, 0), className: ['b-l b-2x b-info'], location:'Tokyo', info:'Tokyo Game Racing'},
-    //   {title:'Birthday Party', start: new Date(y, m, d + 1, 19, 0), end: new Date(y, m, d + 1, 22, 30), allDay: false, className: ['b-l b-2x b-primary'], location:'New York', info:'Party all day'},
-    //   {title:'Repeating Event', start: new Date(y, m, d + 4, 16, 0), alDay: false, className: ['b-l b-2x b-warning'], location:'Home Town', info:'Repeat every day'},      
-    //   {title:'Click for Google', start: new Date(y, m, 28), end: new Date(y, m, 29), url: 'http://google.com/', className: ['b-l b-2x b-primary']},
-    //   {title:'Feed cat', start: new Date(y, m+1, 6, 18, 0), className: ['b-l b-2x b-info']}
-    // ];
     $scope.events=[];
     /* alert on dayClick */
     $scope.precision = 400;
     $scope.lastClickTime = 0;
     $scope.alertOnEventClick = function( date, jsEvent, view ){
-      $scope.open();
       var time = new Date().getTime();
-      console.log(time,'time');
-      if(time - $scope.lastClickTime <= $scope.precision){
-          $scope.events.push({
-            title: 'New Event',
-            start: date,
-            className: ['b-l b-2x b-info']
-          });
-      }
-      $scope.lastClickTime = time;
-      console.log($scope.precision,'$scope.precision');
+      $scope.currentDate=[];
+      $scope.currentDate.push({'date':date,'jsEvent':jsEvent,'view':view});
+      console.log(date,'date');
+      $scope.open();
+      // if(time - $scope.lastClickTime <= $scope.precision){
+      //   $scope.open();
+      //   alert('alertOnEventClick');
+      //   $scope.eventName="Meeting"
+      //   console.log('alertOnEventClick');
+      //     $scope.events.push({
+      //       title: $scope.eventName,
+      //       start: date,
+      //       className: ['b-l b-2x b-info']
+      //     });
+      // }
+      // $scope.lastClickTime = time;
+      // console.log($scope.precision,'$scope.precision');
     };
     /* alert on Drop */
     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
@@ -62,6 +53,7 @@ app.controller('FullcalendarCtrl', ['$scope','$controller', function($scope,ctrl
     $scope.overlay = $('.fc-overlay');
     $scope.alertOnMouseOver = function( event, jsEvent, view ){
       $scope.event = event;
+      console.log($scope.event,'mouse over');
       $scope.overlay.removeClass('left right top').find('.arrow').removeClass('left right top pull-up');
       var wrap = $(jsEvent.target).closest('.fc-event');
       var cal = wrap.closest('.calendar');
@@ -97,26 +89,25 @@ app.controller('FullcalendarCtrl', ['$scope','$controller', function($scope,ctrl
         eventMouseover: $scope.alertOnMouseOver
       }
     };
-    
-    /* add custom event*/
-    // $scope.addEvent = function() {
-    //   $scope.events.push({
-    //     title: 'New Event',
-    //     start: new Date(y, m, d),
-    //     className: ['b-l b-2x b-info']
-    //   });
-    // };
+    $rootScope.$on("CallParentMethod", function(event,data){
+      console.log(data,'calendarEventEmit');
+       $scope.addEvent(data);       
+       // var data=$scope.NewEvent
+    });
+    $scope.addEvent = function(data) {
+      console.log($scope.currentDate[0],"$scope.currentDate.date");
+      $scope.color="bg-primary";
+      console.log('b-l b-2x b-default '+$scope.color+ ' bg');
+      $scope.events.push({
+        title: data.EventTitle,
+        start:data.StartDate,
+        end:data.EndDate,
+        description:data.EventDescription,
+        // className: data.EventType
+        className: ['b-l b-2x b-dark bg-primary bg']
+      });
+      console.log($scope.events,'events');
 
-    $scope.addEvent = function() {
-      // alert('addEvent');
-      console.log($scope.EventTitle,'title');
-      // alert($scope.EventTitle);
-      // $scope.events.push({
-      //   Title: '',
-      //   StartDate: '',
-      //   EndDate: '',
-      //   Description: '',
-      // });
     };
     /* remove event */
     $scope.remove = function(index) {
