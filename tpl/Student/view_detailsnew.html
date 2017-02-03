@@ -16,72 +16,62 @@
     <div style="background:url(img/c4.jpg) center center; background-size:cover">
       <div class="wrapper-lg bg-white-opacity">
         <div class="row m-t">
-          <div class="col-sm-7">
+          <div class="col-sm-10">
             <a href class="thumb-lg pull-left m-r">
               <img src="img/a0.jpg" class="img-circle1" style="margin-top: 17px;height: 120px;width: 100px">
             </a>
             <div class="clear m-b">
-              <!-- <div class="m-b m-t-sm">
-                <span class="h3 text-black">John.Smith</span>
-                <p class="row" style="font-size: 15px;margin-top: 0px;margin-bottom: 0px">
-                  <span class="col-md-4">Class Name</span> 
-                  <span class="col-md-1"> : </span> 
-                  <span class="col-md-6"> BE</span>
-                </p>
-                <p class="row" style="font-size: 15px;margin-top: 0px;margin-bottom: 0px">
-                  <span class="col-md-4">Batch Name</span> 
-                  <span class="col-md-1"> : </span> 
-                  <span class="col-md-6"> A</span>
-                </p>
-                <p class="row" style="font-size: 15px;margin-top: 0px;margin-bottom: 0px">
-                  <span class="col-md-4">Admission No</span> 
-                  <span class="col-md-1"> : </span> 
-                  <span class="col-md-6"> 544554</span>
-                </p>
-                <p class="row" style="font-size: 15px;margin-top: 0px;margin-bottom: 0px">
-                  <span class="col-md-4">Roll No</span> 
-                  <span class="col-md-1"> : </span> 
-                  <span class="col-md-6"> 46456</span>
-                </p>
-              </div> -->
+              
               <div class="m-b m-t-sm">
                 <form class="form-horizontal ng-pristine ng-valid">
-                <span class="h3 text-black">John.Smith</span>
-                <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
-                  <label class="col-lg-4"><b>Class  Name : </b></label>
+                <span class="h3 text-black">{{class.STU_ADM_FIRST_NAME}}</span>
+                <div class="row">
+                <div class="col-md-6">
+                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
+                  <label class="col-lg-6"><b>Class  Name : </b></label>
                   <div class="col-lg-6">
-                    <p class="">BE-ECE</p>
+                    <p class="">{{class.STU_ADM_CB_COURSE}}</p>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
+                  <label class="col-lg-6"><b>Batch Name : </b></label>
+                  <div class="col-lg-6">
+                    <p class="">{{class.STU_ADM_CB_BATCH}}</p>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col-md-6">
+                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
+                  <label class="col-lg-6"><b>Admission No : </b></label>
+                  <div class="col-lg-6">
+                    <p class="">{{class.STU_ADM_NO}}</p>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
+                  <label class="col-lg-6"><b>Roll No : </b></label>
+                  <div class="col-lg-6">
+                    <p class="">{{class.STU_ADM_CB_ROLL_NO}}</p>
+                  </div>
+                  </div>
                   </div>
                   </div>
                   <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
-                  <label class="col-lg-4"><b>Batch Name : </b></label>
-                  <div class="col-lg-6">
-                    <p class="">A3</p>
-                  </div>
-                  </div>
-                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
-                  <label class="col-lg-4"><b>Admission No : </b></label>
-                  <div class="col-lg-6">
-                    <p class="">4454654</p>
-                  </div>
-                  </div>
-                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
-                  <label class="col-lg-4"><b>Roll No : </b></label>
-                  <div class="col-lg-6">
-                    <p class="">654654</p>
+                  <div class="col-md-4">
+                    <button class="btn btn-sm btn-success btn-rounded" ng-click="GetStdDetail(class)"><i class="fa fa-edit"></i> Edit Details</button>
                   </div>
                   </div>
                 </form>
               </div>
-              <!-- <p class="m-b">
-                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
-                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
-                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a>
-              </p>
-              <a href class="btn btn-sm btn-success btn-rounded">Follow</a> -->
+             
             </div>
           </div>
-          <div class="col-sm-5">
+          <div class="col-sm-2">
             <div class="pull-right pull-none-xs text-center">
               <a href class="m-b-md inline m">
                 <span class="h3 block font-bold">2k</span>
@@ -96,401 +86,9 @@
         </div>
       </div>
     </div>
-    <!-- <div class="wrapper bg-white b-b">
-      <ul class="nav nav-pills nav-sm">
-        <li class="active"><a href>Personal Details</a></li>
-        <li><a href>Parent - Personal details</a></li>
-        <li><a href>Gaurdian - Details</a></li>
-        <li><a href>Previous Educational Details</a></li>
-        <li><a href>Additional Details</a></li>
-      </ul>
-    </div>
-    <div class="padder" style="background-color: white;padding-bottom: 10px"> 
-    <legend>Personal Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Admission Date</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Gender</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Nationality</b></label>
-            <div class="col-lg-6">
-              <p class="">Indian</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Mother Tongue</b></label>
-            <div class="col-lg-6">
-              <p class="">Tamil</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Religion</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Contact Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Pincode</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
-            <div class="col-lg-6">
-              <p class="">Indian</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
-            <div class="col-lg-6">
-              <p class="">Tamil</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>E-mail</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Parent - Personal details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Parent Name</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Education</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Occupation</b></label>
-            <div class="col-lg-6">
-              <p class="">Indian</p>
-            </div>
-          </div>
-
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Income</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Parent - Contact Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Email</b></label>
-            <div class="col-lg-6">
-              <p class="">Indian</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone 1</b></label>
-            <div class="col-lg-6">
-              <p class="">Tamil</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone 2</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Gaurdian - Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Gaurdian Name </b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line 1</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line 2</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
-            <div class="col-lg-6">
-              <p class="">City</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
-            <div class="col-lg-6">
-              <p class="">Tamil</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Previous Educational Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Institution Name</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Class</b></label>
-            <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Year</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Total Marks</b></label>
-            <div class="col-lg-6">
-              <p class="">Male</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Additional Details </legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Blood group</b></label>
-            <div class="col-lg-6">
-              <p class="">Indian</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Birth Place</b></label>
-            <div class="col-lg-6">
-              <p class="">Tamil</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Category</b></label>
-            <div class="col-lg-6">
-              <p class="">Hindu</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div> -->
-<!--     <form class="form-horizontal">
-        <div class="form-group Studata ">
-          <label class="col-lg-2 col-md-offset-1"><b>Admission Date</b></label>
-          <div class="col-lg-6">
-            <p class="">January 04, 2017</p>
-          </div>
-        </div>
-        <div class="form-group Studata ">
-          <label class="col-lg-2 col-md-offset-1"><b>Date of Birth</b></label>
-          <div class="col-lg-6">
-            <p class="">January 04, 2017</p>
-          </div>
-        </div>
-        <div class="form-group Studata ">
-          <label class="col-lg-2 col-md-offset-1"><b>Gender</b></label>
-          <div class="col-lg-6">
-            <p class="">Male</p>
-          </div>
-        </div>
-        <div class="form-group Studata ">
-          <label class="col-lg-2 col-md-offset-1"><b>Nationality</b></label>
-          <div class="col-lg-6">
-            <p class="">Indian</p>
-          </div>
-        </div>
-        <div class="form-group Studata ">
-          <label class="col-lg-2 col-md-offset-1"><b>Mother Tongue</b></label>
-          <div class="col-lg-6">
-            <p class="">Tamil</p>
-          </div>
-        </div>
-        <div class="form-group Studata ">
-          <label class="col-lg-2 col-md-offset-1"><b>Religion</b></label>
-          <div class="col-lg-6">
-            <p class="">Hindu</p>
-          </div>
-        </div>
-    </form> -->
-    <!-- </div> -->
+    
         <div class="wrapper bg-white b-b">
     <div ng-controller="TabsDemoCtrl">
-        <!-- <h4>Tabs</h4>
-        <p>Select a tab by setting active binding to true:</p>
-        <p>
-          <button class="btn btn-default btn-sm" ng-click="tabs[0].active = true">Select second tab</button>
-          <button class="btn btn-default btn-sm" ng-click="tabs[1].active = true">Select third tab</button>
-          <button class="btn btn-default btn-sm" ng-click="tabs[1].disabled = ! tabs[1].disabled">Enable / Disable third tab</button>
-        </p> -->
-
         <tabset class="tab-container">
           <tab>
            <tab-heading><i class="fa fa-user"></i>&nbsp Student Details</tab-heading>
@@ -501,19 +99,19 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Admission Date</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_ADM_DT}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_ADM_DOB}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Gender</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_ADM_GENDER}}</p>
             </div>
           </div>
         </form>
@@ -523,19 +121,19 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Nationality</b></label>
             <div class="col-lg-6">
-              <p class="">Indian</p>
+              <p class="">{{class.STU_ADM_NATIONALITY}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Mother Tongue</b></label>
             <div class="col-lg-6">
-              <p class="">Tamil</p>
+              <p class="">{{class.STU_ADM_MOTHER_TONGUE}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Religion</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_ADM_RELIGION}}</p>
             </div>
           </div>
         </form>
@@ -548,25 +146,25 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_ADM_ADD1}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_ADM_CITY}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_ADM_STATE}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Pincode</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_ADM_PINCODE}}</p>
             </div>
           </div>
         </form>
@@ -576,25 +174,25 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
             <div class="col-lg-6">
-              <p class="">Indian</p>
+              <p class="">{{class.STU_ADM_COUNTRY}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
             <div class="col-lg-6">
-              <p class="">Tamil</p>
+              <p class="">{{class.STU_ADM_PHONE}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_ADM_MOBILE}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>E-mail</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_ADM_EMAIL}}</p>
             </div>
           </div>
         </form>
@@ -610,19 +208,19 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Parent Name</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PA_FIRST_NAME}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PA_RELATION}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PA_DOB}}</p>
             </div>
           </div>
         </form>
@@ -632,20 +230,20 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Education</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PA_EDUCATION}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Occupation</b></label>
             <div class="col-lg-6">
-              <p class="">Indian</p>
+              <p class="">{{class.STU_PA_OCCUPATION}}</p>
             </div>
           </div>
 
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Income</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_PA_INCOME}}</p>
             </div>
           </div>
         </form>
@@ -658,25 +256,25 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PA_ADD1}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PA_CITY}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PA_STATE}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PA_COUNTRY}}</p>
             </div>
           </div>
         </form>
@@ -686,25 +284,25 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Email</b></label>
             <div class="col-lg-6">
-              <p class="">Indian</p>
+              <p class="">{{class.STU_PA_EMAIL}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Phone 1</b></label>
             <div class="col-lg-6">
-              <p class="">Tamil</p>
+              <p class="">{{class.STU_PA_PHONE1}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Phone 2</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_PA_PHONE2}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_PA_MOBILE}}</p>
             </div>
           </div>
         </form>
@@ -717,25 +315,25 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Gaurdian Name </b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PA_GA_NAME}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PA_GA_RELATION}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Address Line 1</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PA_GA_ADD1}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Address Line 2</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PA_GA_ADD2}}</p>
             </div>
           </div>
         </form>
@@ -745,25 +343,25 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
             <div class="col-lg-6">
-              <p class="">City</p>
+              <p class="">{{class.STU_PA_GA_CITY}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
             <div class="col-lg-6">
-              <p class="">Tamil</p>
+              <p class="">{{class.STU_PA_GA_STATE}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_PA_GA_COUNTRY}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_PA_GA_PHONE1}}</p>
             </div>
           </div>
         </form>
@@ -779,13 +377,13 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Institution Name</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PRE_D_INSTITUTE_NAME}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Class</b></label>
             <div class="col-lg-6">
-              <p class="">January 04, 2017</p>
+              <p class="">{{class.STU_PRE_D_COURSE}}</p>
             </div>
           </div>
         </form>
@@ -795,13 +393,13 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Year</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_PRE_D_YEAR}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Total Marks</b></label>
             <div class="col-lg-6">
-              <p class="">Male</p>
+              <p class="">{{class.STU_ADM_NO}}</p>
             </div>
           </div>
         </form>
@@ -814,13 +412,13 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Blood group</b></label>
             <div class="col-lg-6">
-              <p class="">Indian</p>
+              <p class="">{{class.STU_PRE_ADD_BLOOD_GROUP}}</p>
             </div>
           </div>
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Birth Place</b></label>
             <div class="col-lg-6">
-              <p class="">Tamil</p>
+              <p class="">{{class.STU_PRE_ADD_BIRTH_PLACE}}</p>
             </div>
           </div>
         </form>
@@ -830,7 +428,7 @@
           <div class="form-group Studata ">
             <label class="col-lg-4 col-md-offset-1"><b>Category</b></label>
             <div class="col-lg-6">
-              <p class="">Hindu</p>
+              <p class="">{{class.STU_PRE_ADD_STUD_CATE}}</p>
             </div>
           </div>
         </form>
@@ -851,6 +449,7 @@
         </tabset> -->
       </div>
     </div>
+
   </div>
   <div class="col w-lg bg-light lter b-l bg-auto">
     <div class="wrapper">

@@ -68,13 +68,34 @@
               <label class="control-label">Last Name</label>
               <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_LAST_NAME" name="STU_ADM_LAST_NAME" placeholder="Last Name">
           </div>
-          <div class="form-group col-md-3">
+          <!-- <div class="form-group col-md-3">
               <label class="control-label">Gender</label><br>
               <label class="radio-inline">
                 <input type="radio" name="STU_ADM_GENDER" ng-model="Stud.STU_ADM_GENDER">Male
               </label>
               <label class="radio-inline">
                 <input type="radio" name="STU_ADM_GENDER" ng-model="Stud.STU_ADM_GENDER">Female
+              </label>
+          </div> -->
+          <div class="form-group col-md-3">
+              <label class="control-label">Gender</label><br>
+              <label class="radio-inline">
+                <div class="radio">
+                  <label class="i-checks">
+                    <input type="radio" value="Male" ng-model="Stud.STU_ADM_GENDER">
+                    <i></i>
+                    Male
+                  </label>
+                </div>
+              </label>
+              <label class="radio-inline">
+                <div class="radio">
+                  <label class="i-checks">
+                    <input type="radio" value="Female" ng-model="Stud.STU_ADM_GENDER">
+                    <i></i>
+                    Female
+                  </label>
+                </div>
               </label>
           </div>
           
@@ -232,8 +253,8 @@
         <div class="row">
             <div class="col-sm-3">
           <div class="form-group">
-              <label class="control-label">First Name </label>
-              <input type="text" placeholder="First Name" name="STU_PA_FIRST_NAME" ng-model="Stud.STU_PA_FIRST_NAME" class="form-control input-sm">
+              <label class="control-label">First Name <span class="imp">*</span></label> 
+              <input type="text" placeholder="First Name" name="STU_PA_FIRST_NAME" ng-model="Stud.STU_PA_FIRST_NAME" class="form-control input-sm" required>
           </div>
              </div>
             <div class="col-sm-3">
@@ -244,8 +265,8 @@
              </div>
              <div class="col-sm-3">
           <div class="form-group">
-              <label class="control-label">Relation</label>
-              <input type="text"  placeholder="Relation"  name="STU_PA_RELATION" ng-model="Stud.STU_PA_RELATION" class="form-control input-sm" >
+              <label class="control-label">Relation <span class="imp">*</span></label>
+              <input type="text"  placeholder="Relation"  name="STU_PA_RELATION" ng-model="Stud.STU_PA_RELATION" class="form-control input-sm" required>
           </div>         
             </div>
             <div class="col-sm-3">
@@ -285,7 +306,7 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Email</label>
-              <input type="text"  placeholder="Email"  name="STU_PA_EMAIL" ng-model="Stud.STU_PA_EMAIL" class="form-control input-sm">
+              <input type="email"  placeholder="Email"  name="STU_PA_EMAIL" ng-model="Stud.STU_PA_EMAIL" class="form-control input-sm">
           </div>
                      
              </div>
@@ -339,20 +360,20 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone 1</label>
-              <input type="text"  placeholder="Phone 1"  name="STU_PA_PHONE1" ng-model="Stud.STU_PA_PHONE1" class="form-control input-sm">
+              <input type="number"  placeholder="Phone 1"  name="STU_PA_PHONE1" ng-model="Stud.STU_PA_PHONE1" class="form-control input-sm">
           </div>
                      
              </div>
              <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone 2</label>
-              <input type="text"  placeholder="Phone 2"  name="STU_PA_PHONE2" ng-model="Stud.STU_PA_PHONE2" class="form-control input-sm">
+              <input type="number"  placeholder="Phone 2"  name="STU_PA_PHONE2" ng-model="Stud.STU_PA_PHONE2" class="form-control input-sm">
           </div>         
             </div>
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Mobile</label>
-              <input type="text"  placeholder="Mobile"  name="STU_PA_MOBILE" ng-model="Stud.STU_PA_MOBILE" class="form-control input-sm">
+              <input type="number"  placeholder="Mobile"  name="STU_PA_MOBILE" ng-model="Stud.STU_PA_MOBILE" class="form-control input-sm">
           </div>         
              </div>
         </div>
@@ -416,7 +437,7 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Phone</label>
-              <input type="text"  placeholder="Phone"  name="STU_PA_GA_PHONE1" ng-model="Stud.STU_PA_GA_PHONE1" class="form-control input-sm">
+              <input type="number"  placeholder="Phone"  name="STU_PA_GA_PHONE1" ng-model="Stud.STU_PA_GA_PHONE1" class="form-control input-sm">
           </div>         
              </div>
         </div>

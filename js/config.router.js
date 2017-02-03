@@ -251,9 +251,11 @@ angular.module('app')
                 url: "/add-donation",
                 templateUrl: "tpl/Finance/addDonation.html",
               })
-                  .state("app.Student_Details", {
+              .state("app.Student_Details", {
                 url: "/student-details",
+                controller:"stuViewCtrl",
                 templateUrl: "tpl/Student/student_details.html",
+                resolve: load(['smart-table','js/controllers/studentconfig/stuViewCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
                 .state("app.Advanced-Search", {
                 url: "/advanced-search",
@@ -263,8 +265,8 @@ angular.module('app')
                 url: "/view-details",
                 templateUrl: "tpl/Student/view_details.html",
               })
-                .state("app.View-DetailsNew", {
-                url: "/view-detailsnew",
+              .state("app.viewStudDetails", {
+                url: "/viewStudDetails",
                 controller:"stuProfileCtr",
                 templateUrl: "tpl/Student/view_detailsnew.html",
                 resolve: load(['js/controllers/studentconfig/stuProfileCtr.js'])
