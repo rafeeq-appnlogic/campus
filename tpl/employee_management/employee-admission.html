@@ -22,6 +22,7 @@
   </div>
 </div>
 <div class="wrapper-md">
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
   <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
     <tab heading="Employee admission" active="steps.step1" select="steps.percent=10">
       <tab-heading><i class="fa fa-user"></i>&nbsp Employee admission</tab-heading>
@@ -36,7 +37,7 @@
             <label class="control-label">Joining Date</label>
             <div class="" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_JOIN_DT" is-open="opened" datepicker-options="" close-text="Close" name="EMP_JOIN_DT" ng-required="false" placeholder="Joining Date">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_JOIN_DT" is-open="opened" datepicker-options="" close-text="Close" name="EMP_JOIN_DT" ng-required="false" placeholder="Joining Date" required>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -45,11 +46,11 @@
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">First Name</label>
-              <input type="text" class="form-control input-sm" id="" ng-model="empAdm.EMP_FIRST_NAME" placeholder="First Name">
+              <input type="text" class="form-control input-sm" id="" ng-model="empAdm.EMP_FIRST_NAME" placeholder="First Name" required>
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Last Name</label>
-              <input type="text" class="form-control input-sm" id="" ng-model="empAdm.EMP_LAST_NAME" placeholder="Last Name" >
+              <input type="text" class="form-control input-sm" id="" ng-model="empAdm.EMP_LAST_NAME" placeholder="Last Name" required>
           </div>
         </div>
 

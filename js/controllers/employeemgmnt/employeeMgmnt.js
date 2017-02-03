@@ -8,16 +8,23 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
     $location.path($location.url());      
   }
 
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
+  }
+
   $scope.empAdm=[];
   $scope.empCont=[];
   $scope.empAdd=[];
+  $scope.return_id='';
 
 // Insert Employee Admission Details
   $scope.saveEmployeeDetails=function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+        url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
+        // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
         data : { 
+                'EMP_ID':$scope.return_id,
                 'EMP_NO':$scope.empAdm.EMP_NO,
                 'EMP_JOIN_DT':$scope.empAdm.EMP_JOIN_DT,
                 'EMP_FIRST_NAME':$scope.empAdm.EMP_FIRST_NAME,
@@ -57,9 +64,12 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
                 'EMP_WORK_PERMIT':$scope.empAdd.EMP_WORK_PERMIT      
         }
       }).then(function mySucces(response) {
-          console.log(response);
+          console.log(response.data.message);
+          $scope.return_id=response.data.message.INS_EMP_ID;
+          $scope.showMessage(response.data.message.message,"success");
       }, function myError(response) {
         console.log(response);
+        // $scope.showMessage(response.data.message.message,"error");
       });   
   }
 }]);
