@@ -1,0 +1,101 @@
+
+<div class="bg-light lter b-b wrapper-md">
+  <h4 class="m-n font-thin h4"><i class="icon-social-dropbox"></i> &nbsp&nbsp<b>Examination</b> | Online Exams </h4>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+     Add New Exam
+    </div>
+    <div class="panel-body">
+     <form class="bs-example form-horizontal ng-pristine ng-valid">
+        <div class="row">
+          <div class="form-group">
+            <label class=" col-md-3 control-label ">Name</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_NO">  
+            </div>              
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Start Date</label>
+            <div class="col-md-3" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DT" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">End Date</label>
+            <div class="col-md-3" ng-controller="DatepickerDemoCtrl">
+              <div class="input-group">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="STU_ADM_DT" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Maximum Time (Minutes)</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control input-sm" id="" name="STU_ADM_FIRST_NAME" placeholder="">
+            </div>   
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Pass Percentage(%)</label>
+            <div class="col-md-3">
+                <textarea type="text" class="form-control input-sm" id="" name="STU_ADM_MIDDLE_NAME" placeholder="" style="height:32px;"></textarea>
+            </div>   
+          </div>
+          <div class="form-group">
+              <label class="control-label col-md-3" >Exam Type</label>
+              <div class="col-md-9">
+                <label class="radio-inline col-md-1">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=false">General
+                </label>
+                <label class="radio-inline col-md-2">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=true">Subject Specific
+                </label>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-md-3">Select a batch</label>
+              <div class="col-md-3">
+               <select ui-jq="chosen" class="w-full">
+                  <option>Select a leave type</option>
+                  <option >Casual</option>
+                  <option >Sick leave</option>
+                </select>
+              </div>
+          </div>
+        
+        </div>
+        <div class="row">
+           <div class="form-group">
+            <label class="col-md-3 control-label">Exam Format</label>
+            <div class="col-md-9">
+                <label class="radio-inline col-md-1">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=false">Objective
+                </label>
+                <label class="radio-inline col-md-2">
+                  <input type="radio" name="leave" value="" ng-click="multipleDays=true">Hybrid
+                </label>
+              </div>
+          </div>
+        </div><br>
+        <div class="col-md-offset-3">
+          <button type="button" class="btn btn-success " ng-click="steps.percent=100" style="margin-left:60px;">Save</button>
+          <button type="button" class="btn btn-danger " ng-click="steps.percent=100">Cancel</button>
+        </div>
+     </form>
+    </div><br>
+    </div>
+      <hr>
+  </div>
+</div>
+
+
