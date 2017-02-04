@@ -309,7 +309,7 @@ angular.module('app')
                 url: "/student-admission",
                 controller:"stuAdmissionCtrl",
                 templateUrl: "tpl/Student/student_admission.html",
-                resolve: load(['js/controllers/studentconfig/stuAdmissionCtrl.js'])
+                resolve: load(['js/controllers/studentconfig/stuAdmissionCtrl.js','toaster','ngBootbox'])
               })
                 .state("app.Managestudent-Category", {
                 url: "/managestudent-category",
@@ -347,6 +347,12 @@ angular.module('app')
                   templateUrl: "tpl/academics/manageBatch.html",
                   resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
+              .state("app.manage-batchMaster", {
+                  url: "/manage-batchMaster",
+                  controller:"manageBatchMasterCtrl",
+                  templateUrl: "tpl/academics/manageBatchMaster.html",
+                  resolve: load(['smart-table','js/controllers/academics/manageBatchMasterCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
               .state("app.Calendar", {
                 url: "/calendar",
                 templateUrl: "tpl/academics/calendar.html",
@@ -368,7 +374,7 @@ angular.module('app')
                 resolve: load(['smart-table','js/controllers/academics/manageSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
               })
               .state("app.View-Subjects", {
-                url: "/view-subjects/:id1",
+                url: "/view-subjects",
                 controller:"viewSubjectsctrl",
                 templateUrl: "tpl/academics/viewSubjects.html",
                 params:{id1:"id1"},

@@ -11,7 +11,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
     	$scope.saveVal=false;
   		$scope.updateVal=true;
   		$scope.STD_ADM_ID=$localStorage.classDetails.STU_ADM_ID;
-  		alert($scope.STD_ADM_ID+"-"+$localStorage.classDetails.STU_ADM_ID);
+  		//alert($scope.STD_ADM_ID+"-"+$localStorage.classDetails.STU_ADM_ID);
 		$scope.Stud.STU_ADM_ADD1=$localStorage.classDetails.STU_ADM_ADD1;
 		$scope.Stud.STU_ADM_ADD2=$localStorage.classDetails.STU_ADM_ADD2;
 		$scope.Stud.STU_ADM_CB_BATCH=$localStorage.classDetails.STU_ADM_CB_BATCH;
@@ -79,14 +79,14 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 	$scope.saveStuAdmission = function(){
 		//alert($scope.Stud.dtform);
 		// console.log($scope.Stud.STU_ADM_NO);
-		alert($scope.STD_ADM_ID);
+		//alert($scope.STD_ADM_ID);
 		$scope.Savebutton=true;
     	$scope.Updatebutton=false;
 		$http({
 			method:'POST',
 			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentAdmission',
 			data: {
-				'STU_ADM_ID':$localStorage.classDetails.STU_ADM_ID,
+				'STU_ADM_ID':$scope.STD_ADM_ID,
 				'STU_ADM_NO' : $scope.Stud.STU_ADM_NO, 
 				'STU_ADM_DT' : '27-01-2017', 
 				'STU_ADM_FIRST_NAME' :$scope.Stud.STU_ADM_FIRST_NAME,

@@ -14,6 +14,19 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
   $scope.status='';
   $scope.rowCollection = [];
 
+
+  $scope.selectOptionVal=[
+  {value:'Y', name: 'Y'},
+  {value:'N', name: 'N'},
+  ];
+  $scope.selectSlitfunction = function(selectedData) {
+    if (angular.isObject(selectedData)) {
+      return selectedData.name;  
+    }else{
+      return selectedData;  
+    }  
+  }
+
   var tableState = {
         sort: {},
         search: {},
@@ -69,7 +82,8 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       ACA_SUB_ID: null,
       ACA_SUB_NAME: null,
       ACA_SUB_CODE: null,
-      ACA_SUB_MAXCLASS_WEEK: null
+      ACA_SUB_MAXCLASS_WEEK: null,
+      ACA_SUB_ASL_SUB_YN : null
     };
     $scope.displayedCollection.push($scope.inserted);
   };
@@ -81,7 +95,7 @@ $scope.saveSubject=function(user_data,$index){
        $http({
         method : "POST",
         url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
-        data : { 'ACA_SUB_ID':user_data.ACA_SUB_ID,'ACA_SUB_COU_ID':paramOne,'ACA_SUB_BAT_ID':paramTwo,'ACA_SUB_NAME' : user_data.ACA_SUB_NAME,'ACA_SUB_CODE' : user_data.ACA_SUB_CODE,'ACA_SUB_MAXCLASS_WEEK' : user_data.ACA_SUB_MAXCLASS_WEEK}
+        data : { 'ACA_SUB_ID':user_data.ACA_SUB_ID,'ACA_SUB_COU_ID':paramOne,'ACA_SUB_BAT_ID':paramTwo,'ACA_SUB_NAME' : user_data.ACA_SUB_NAME,'ACA_SUB_CODE' : user_data.ACA_SUB_CODE,'ACA_SUB_ASL_SUB_YN' : $scope.selectSlitfunction(user_data.ACA_SUB_ASL_SUB_YN),'ACA_SUB_MAXCLASS_WEEK' : user_data.ACA_SUB_MAXCLASS_WEEK}
       }).then(function mySucces(response) {
           console.log(response.data.status);
            var stat="success";

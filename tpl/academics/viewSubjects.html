@@ -77,8 +77,10 @@
               </label>
             </th>
             <th st-sort="ACA_SUB_NAME">Subject</th>
-            <th st-sort="ACA_SUB_CODE">Code</th>
-            <th st-sort="ACA_SUB_MAXCLASS_WEEK">Weekly Classes</th>
+            <th st-sort="ACA_SUB_CODE">Subject Code</th>
+            <th st-sort="ACA_SUB_CODE">Elective Subject Type</th>
+            <th st-sort="ACA_SUB_CODE">Course Name</th>
+            <!-- <th st-sort="ACA_SUB_MAXCLASS_WEEK">Weekly Classes</th> -->
             <th>Action</th>
           </tr>
         </thead>
@@ -100,9 +102,17 @@
               </span>
             </td>
             <td>
-              <span editable-text="row.ACA_SUB_MAXCLASS_WEEK" e-name="ACA_SUB_MAXCLASS_WEEK" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+            <span editable-select="row.ACA_SUB_ASL_SUB_YN" e-name="ACA_SUB_ASL_SUB_YN" e-form="rowform" e-ng-options="s.value as s.name for s in selectOptionVal">
+              {{selectSlitfunction(row.ACA_SUB_ASL_SUB_YN)}}
+            </span>
+            </td>
+            <td>
+            <span editable-select="row.ACA_SUB_ASL_SUB_YN" e-name="ACA_SUB_ASL_SUB_YN" e-form="rowform" e-ng-options="s.name for s in selectOptionVal">
+              {{selectSlitfunction(row.ACA_SUB_ASL_SUB_YN)}}
+            </span>
+              <!-- <span editable-text="row.ACA_SUB_MAXCLASS_WEEK" e-name="ACA_SUB_MAXCLASS_WEEK" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
                 {{row.ACA_SUB_MAXCLASS_WEEK}}
-              </span>
+              </span> -->
             </td>
             <td style="white-space: nowrap">
               <!-- form -->

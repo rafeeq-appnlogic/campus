@@ -101,9 +101,9 @@
             <th>
               <input st-search="'ACA_COU_NAME'" placeholder="Search for Course Name" class="input-sm form-control" type="search"/>
             </th>
-            <th>
+            <!-- <th>
               <input st-search="'ACA_COU_SEC_NAME'" placeholder="Search for Selection Name" class="input-sm form-control" type="search"/>
-            </th>
+            </th> -->
             <th>
               <input st-search="'ACA_COU_CODE'" placeholder="Search for Courese Code" class="input-sm form-control" type="search"/>
             </th>
@@ -113,9 +113,9 @@
             <!-- <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
             </th> -->
-            <th>
+            <!-- <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_COU_ELECTIVE_SEL_YN"></st-select-multiple>
-            </th>
+            </th> -->
           </tr>
           <tr>
             <th>
@@ -124,10 +124,10 @@
               </label>
             </th>
             <th st-sort="ACA_COU_NAME">Course Name</th>
-            <th st-sort="ACA_COU_SEC_NAME">Section Name</th>
+            <!-- <th st-sort="ACA_COU_SEC_NAME">Section Name</th> -->
             <th st-sort="ACA_COU_CODE">Class Code</th>
             <th st-sort="ACA_COU_GRADE_TYPE">Grade Type</th>
-            <th st-sort="ACA_COU_ELECTIVE_SEL_YN">Elective Selection</th>
+            <!-- <th st-sort="ACA_COU_ELECTIVE_SEL_YN">Elective Selection</th> -->
             <th>Action</th>
           </tr>
         </thead>
@@ -135,10 +135,10 @@
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
             <td>{{row.ACA_COU_NAME}}</td>
-            <td>{{row.ACA_COU_SEC_NAME}}</td>
+            <!-- <td>{{row.ACA_COU_SEC_NAME}}</td> -->
             <td>{{row.ACA_COU_CODE}}</td>
             <td>{{row.ACA_COU_GRADE_TYPE}}</td>
-            <td>{{row.ACA_COU_ELECTIVE_SEL_YN}}</td>
+            <!-- <td>{{row.ACA_COU_ELECTIVE_SEL_YN}}</td> -->
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                 <a ui-sref="app.Manage-Batch" class="btn btn-sm btn-primary" ng-click="GetBatchView(row)"><i class="fa fa-eye"></i></a>
@@ -192,10 +192,10 @@
               <label>Course Name</label>
               <input class="form-control" placeholder="Course Name" ng-model="class.ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
             </div>
-            <div class="form-group col-md-4">
+            <!-- <div class="form-group col-md-4">
               <label>Section Name</label>
               <input class="form-control" placeholder="Section Name" ng-model="class.ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
-            </div>
+            </div> -->
             <div class="form-group col-md-4">
               <label>Class Code</label>
               <input class="form-control" placeholder="Class Code" ng-model="class.ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
@@ -209,7 +209,7 @@
                  <option value="CCE">CCE</option>
                </select>
             </div>
-            <div class="form-group col-md-8">
+            <!-- <div class="form-group col-md-8">
               <label>Enable Elective Section</label>
                 <div class="">
                 <label class="i-switch i-switch-md bg-success m-t-xs m-r">
@@ -217,19 +217,19 @@
                   <i></i>
                 </label>
                 </div>
-            </div>
+            </div> -->
             <div ng-if="batch">
             <legend class="text-muted" style="font-size: 17px">Add Initail Batch for Creating Class</legend>
             <div class="form-group col-md-4 ">
               <label>Batch Name</label>
-              <input class="form-control" placeholder="Batch Name" type="text" ng-model="class.ACA_BAT_NAME" name="ACA_BAT_NAME" required="">
+              <input class="form-control" placeholder="Batch Name" type="text" ng-model="class.ACA_BAT_NAME" name="ACA_BAT_NAME">
               <input type="hidden" ng-model="class.ACA_COU_ID">
             </div>
             <div class="form-group col-md-4">
               <label>Start Date</label>
               <div ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="class.ACA_BAT_START_DT" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="class.ACA_BAT_START_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -240,7 +240,7 @@
               <label>End Date</label>
               <div ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="class.ACA_BAT_END_DT" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="class.ACA_BAT_END_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
