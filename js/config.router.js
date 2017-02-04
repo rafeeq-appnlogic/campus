@@ -191,11 +191,33 @@ angular.module('app')
               })
               .state("app.fn-category", {
                   url: "/configcategory",
-                  templateUrl: "tpl/Finance/categoryview.html"
+                  controller:"feecategoryctrl",
+                  templateUrl: "tpl/Finance/feecategoryview.html",
+                  resolve: load(['smart-table','js/controllers/finance/feecategoryctrl.js','toaster','ngBootbox'])
               })
-              .state("app.fn-particularview", {
+              .state("app.fn-particularview", { 
                   url: "/particularview",
-                  templateUrl: "tpl/Finance/particularview.html"
+                  controller:"feeparticularctrl",
+                  templateUrl: "tpl/Finance/particularview.html",
+                  resolve: load(['smart-table','js/controllers/finance/feeparticularctrl.js','toaster','ngBootbox'])
+              })
+               .state("app.fee-discount", { 
+                  url: "/discountview",
+                  controller:"feediscountctrl",
+                  templateUrl: "tpl/Finance/feeDiscount.html",
+                  resolve: load(['smart-table','js/controllers/finance/feediscountctrl.js','toaster','ngBootbox'])
+              })
+               .state("app.add-fine", { 
+                  url: "/fineview",
+                  controller:"finectrl",
+                  templateUrl: "tpl/Finance/addFine.html",
+                  resolve: load(['smart-table','js/controllers/finance/finectrl.js','toaster','ngBootbox'])
+              })
+               .state("app.fee-schedule", { 
+                  url: "/schedulefee",
+                  controller:"schedulefeectrl",
+                  templateUrl: "tpl/Finance/schedulefee.html",
+                  resolve: load(['smart-table','js/controllers/finance/schedulefeectrl.js','toaster','ngBootbox'])
               })
                 // added by vijayaraj
               .state("app.Bank-Details", {
