@@ -12,7 +12,8 @@ app.controller('employee_Profile', ['$scope', '$timeout','$http', 'toaster','$ro
 
   $http({
       method : "GET",
-      url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+      // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+      url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
       params :{id : $EMP_ID},
     }).then(function mySucces(response) {
       // console.log(response.data.result[0].EMP_NO,'responseresponse');

@@ -22,7 +22,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
         }
     };
 
-  $http.get('http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission').success(function(incomingData) {
+  $http.get($rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission").success(function(incomingData) {
     // console.log(incomingData.result,'incomingData.result');
         $scope.rowCollection = incomingData.result;
   });
@@ -76,7 +76,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+      url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
       params : {id : data},
     }).then(function mySucces(response) {
 
@@ -90,7 +90,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
               var id=$scope.displayedCollection[index].EMP_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+                url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
                 params : {id : id},
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
@@ -116,7 +116,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
       length = pagination.number || 10;  // Number of entries showed per page.
       // $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission").success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           // $scope.isLoading = false;

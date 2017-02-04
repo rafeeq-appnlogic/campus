@@ -30,7 +30,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
 
 // Insert Employee Admission Details
   $scope.saveEmployeeDetails=function(){
-    var tempArray={ 
+    var admissionData={ 
                 'EMP_ID':$scope.return_id,
                 'EMP_NO':$scope.empAdm.EMP_NO,
                 'EMP_JOIN_DT':$scope.empAdm.EMP_JOIN_DT,
@@ -70,15 +70,15 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
                 'EMP_ADHAR_NO':$scope.empAdd.EMP_ADHAR_NO,
                 'EMP_WORK_PERMIT':$scope.empAdd.EMP_WORK_PERMIT
               };
-              console.log(tempArray,"$scope.empAdm[0]");
-              angular.forEach(tempArray, function (value, key) {
+              console.log(admissionData,"$scope.empAdm[0]");
+              angular.forEach(admissionData, function (value, key) {
                 formdata.append(key, value);
               });
 
       $http({
         method : "POST",
-        // url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
-        url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+        url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
+        // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
         data: formdata,
         headers: {
                         'Content-Type': undefined
@@ -100,7 +100,8 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
   if($localStorage.edit_emp_id!=''){
   $http({
       method : "GET",
-      url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+      // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+      url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
       params :{id : $EMP_ID},
     }).then(function mySucces(response) {
       // console.log(response.data.result[0],'responseresponse');
