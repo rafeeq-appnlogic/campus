@@ -27,17 +27,17 @@
     <tab heading="Employee admission" active="steps.step1" select="steps.percent=10">
       <tab-heading><i class="fa fa-user"></i>&nbsp Employee admission</tab-heading>
       <legend class="pull-left width-full">Personal Details</legend>
-      <form name="step1" class="form-validation">
+      <form name="step1" class="form-validation" enctype="multipart/form-data">
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label ">Employee number</label>
-                <input type="text" class="form-control input-sm" name="EMP_NO" ng-model="empAdm.EMP_NO" required placeholder="Employee Number">            
+                <input type="text" class="form-control input-sm" name="EMP_NO" ng-model="empAdm.EMP_NO"  placeholder="Employee Number" required>            
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Joining Date</label>
             <div class="" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_JOIN_DT" is-open="opened" datepicker-options="" close-text="Close" name="EMP_JOIN_DT" ng-required="false" placeholder="Joining Date" required>
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_JOIN_DT" is-open="opened" datepicker-options="" close-text="Close" name="EMP_JOIN_DT" ng-="false" placeholder="Joining Date" required>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -80,7 +80,7 @@
             <label class="control-label">Date of Birth</label>
             <div class="" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_DOB" is-open="opened" datepicker-options="" close-text="Close" name="EMP_DOB" ng-required="false" placeholder="Date of Birth" required>
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_DOB" is-open="opened" datepicker-options="" close-text="Close" name="EMP_DOB" ng-="false" placeholder="Date of Birth" required>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -114,17 +114,17 @@
           <div class="form-group col-md-3">
             <label class="control-label">Nationality</label>
             <select class="form-control input-sm w-full" name="EMP_NATIONALITY" ng-model="empAdm.EMP_NATIONALITY" required>
-                <option ng-selected="empAdm.EMP_NATIONALITY=='Afghanistan'" value="Afghanistan">Afghanistan</option>
-                <option ng-selected="empAdm.EMP_NATIONALITY=='American Samoa'" value="American Samoa">American Samoa</option>
-                <option ng-selected="empAdm.EMP_NATIONALITY=='Antarctica'" value="Antarctica">Antarctica</option>
-                <option ng-selected="empAdm.EMP_NATIONALITY=='India'" value="India">India</option>
-                <option ng-selected="empAdm.EMP_NATIONALITY=='Srilanga'"  value="Srilanga">SriLanga</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="American Samoa">American Samoa</option>
+                <option value="Antarctica">Antarctica</option>
+                <option value="India">India</option>
+                <option value="Srilanga">SriLanga</option>
             </select>
           </div>
           <div class="form-group col-md-4">
             <label class="col-sm-4 control-label">Upload photo</label>
             <div class="col-sm-10">
-              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" file-upload="empAdm.EMP_PROFILE" type="file" multiple="" required>
+              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" file-upload1="empAdm.EMP_PROFILE" type="file" multiple="" name="EMP_PROFILE"  ng-model="empAdm.EMP_PROFILE" ng-files="getTheFiles($files)">
             </div>
           </div>
         </div>
@@ -277,7 +277,7 @@
           </div>
 
         <div class="m-t m-b">
-          <button type="button" class="btn btn-warning btn-rounded" ng-click="steps.step1=true">Prev</button>
+          <button type="button" class="btn btn-primary btn-rounded" ng-click="steps.step1=true">Prev</button>
           <button type="submit" ng-disabled="step2.$invalid" class="btn btn-success btn-rounded pull-right" ng-click="steps.step3=true">Next</button>
         </div>
       </form>
@@ -288,43 +288,43 @@
         <div class="row">
           <div class="form-group col-md-3">
             <label class="control-label">Account Name</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ACC_NAME" name="EMP_ACC_NAME" placeholder="Enter Account Name">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ACC_NAME" required name="EMP_ACC_NAME" placeholder="Enter Account Name">
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Account Number</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ACC_NO" placeholder="Enter Account Number">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ACC_NO" required placeholder="Enter Account Number">
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Bank Name</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_NAME" placeholder="Enter Bank Name">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_NAME" required placeholder="Enter Bank Name">
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Branch Name</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_BRANCH_NAME" placeholder="Enter Branch Name">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_BRANCH_NAME" required placeholder="Enter Branch Name">
           </div>
         </div>
         <legend class="pull-left width-full">Additional Details</legend>
         <div class="row">
           <div class="form-group col-md-3">
             <label class="control-label">Passport Number</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_PASSPORT_NO" placeholder="Enter Passport Number">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_PASSPORT_NO" required placeholder="Enter Passport Number">
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">PAN Number</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_PAN_NO" placeholder="Enter PAN Number">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_PAN_NO" required placeholder="Enter PAN Number">
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Adhar</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ADHAR_NO" placeholder="Enter Adhar Number">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ADHAR_NO" required placeholder="Enter Adhar Number">
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Work Permit</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_WORK_PERMIT" placeholder="Enter Work Permit">
+            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_WORK_PERMIT" required placeholder="Enter Work Permit">
           </div>
         </div>
       <div class="m-t m-b">
-        <button type="button" class="btn btn-warning btn-rounded" ng-click="steps.step2=true">Prev</button>
-        <button type="button" class="btn btn-success btn-rounded pull-right" ng-click="steps.percent=100;saveEmployeeDetails()" ui-sref="app.Employee-Details">Save & Finish</button>
+        <button type="button" class="btn btn-primary btn-rounded" ng-click="steps.step2=true">Prev</button>
+        <button type="button" class="btn btn-success btn-rounded pull-right" ui-sref="app.Employee-Details" ng-click="steps.percent=100;saveEmployeeDetails()" >Save & Finish</button>
       </div>
     </tab>
   </tabset>

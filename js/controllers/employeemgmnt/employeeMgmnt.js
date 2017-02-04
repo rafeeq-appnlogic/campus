@@ -8,9 +8,21 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
     $location.path($location.url());      
   }
 
+            var formdata = new FormData();
+            $scope.getTheFiles = function ($files) {
+                angular.forEach($files, function (value, key) {
+                    formdata.append(key, value);
+                });
+            };
+
+
+
   $scope.showMessage=function(data,status){
     toaster.pop(status, data);
   }
+  // $scope.empAdm=[];
+  // $scope.empCont=[];
+  // $scope.empAdd=[];
   $scope.empAdm=[];
   $scope.empCont=[];
   $scope.empAdd=[];
@@ -18,12 +30,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
 
 // Insert Employee Admission Details
   $scope.saveEmployeeDetails=function(){
-    // console.log($scope.empAdm.EMP_PROFILE,'profile');
-      $http({
-        method : "POST",
-        // url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
-        url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
-        data : { 
+    var tempArray={ 
                 'EMP_ID':$scope.return_id,
                 'EMP_NO':$scope.empAdm.EMP_NO,
                 'EMP_JOIN_DT':$scope.empAdm.EMP_JOIN_DT,
@@ -61,8 +68,21 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
                 'EMP_PASSPORT_NO':$scope.empAdd.EMP_PASSPORT_NO,
                 'EMP_PAN_NO':$scope.empAdd.EMP_PAN_NO,
                 'EMP_ADHAR_NO':$scope.empAdd.EMP_ADHAR_NO,
-                'EMP_WORK_PERMIT':$scope.empAdd.EMP_WORK_PERMIT      
-        }
+                'EMP_WORK_PERMIT':$scope.empAdd.EMP_WORK_PERMIT
+              };
+              console.log(tempArray,"$scope.empAdm[0]");
+              angular.forEach(tempArray, function (value, key) {
+                formdata.append(key, value);
+              });
+
+      $http({
+        method : "POST",
+        // url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
+        url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+        data: formdata,
+        headers: {
+                        'Content-Type': undefined
+                    }
       }).then(function mySucces(response) {
           console.log(response.data.message);
           $scope.return_id=response.data.message.INS_EMP_ID;
@@ -83,7 +103,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
       url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
       params :{id : $EMP_ID},
     }).then(function mySucces(response) {
-      console.log(response.data.result[0],'responseresponse');
+      // console.log(response.data.result[0],'responseresponse');
         $scope.return_id=response.data.result[0].EMP_ID;
         $scope.empAdm = response.data.result[0];
         $scope.empCont = response.data.result[0];

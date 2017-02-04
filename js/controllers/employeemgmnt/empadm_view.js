@@ -23,7 +23,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
     };
 
   $http.get('http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission').success(function(incomingData) {
-    console.log(incomingData.result,'incomingData.result');
+    // console.log(incomingData.result,'incomingData.result');
         $scope.rowCollection = incomingData.result;
   });
   $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -87,7 +87,6 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
   $scope.deleteData = function(index) {
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
-              $scope.isLoading = true;
               var id=$scope.displayedCollection[index].EMP_ID;
               $http({
                 method : "DELETE",

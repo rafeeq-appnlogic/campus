@@ -15,7 +15,7 @@ app.controller('employee_Profile', ['$scope', '$timeout','$http', 'toaster','$ro
       url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
       params :{id : $EMP_ID},
     }).then(function mySucces(response) {
-      console.log(response.data.result[0].EMP_NO,'responseresponse');
+      // console.log(response.data.result[0].EMP_NO,'responseresponse');
         $scope.rowCollection = response.data.result[0];
         $localStorage.empAdm_Id='';
     },function myError(response){
