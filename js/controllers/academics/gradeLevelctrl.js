@@ -66,10 +66,11 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
                 // http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory
                 params : {GRA_SYS_ID : id},
               }).then(function mySucces(response) {
-                    var data=response.data.message.message;
+                console.log(response.data.message);
+                    var data=response.data.message;
                     $scope.showMessage(data,'success');
-                /*},function myError(response) {
-                  $scope.showMessage(response.data.message,'error'); */
+                },function myError(response) {
+                  $scope.showMessage(response.data.message,'error'); 
                 });
               setTimeout(function(){
                   $scope.getMasterJobs(tableState);
@@ -228,10 +229,10 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
        $http({
         method : "get",
         url : "http://192.168.1.136/smartedu/api/ManageBatchModule/GradingSystem",
-        /*params : {GRA_SYS_ID : param},*/
+        params : {GRA_SYS_BAT_ID : param},
       }).then(function mySucces(response) {
-         console.log(response);
-          $scope.rowCollection = response.message;
+         console.log(response.data.message,'messs');
+          $scope.rowCollection = response.data.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;
           // $scope.paginationShow();

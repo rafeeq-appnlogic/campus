@@ -101,7 +101,7 @@ $scope.saveSubject=function(user_data,$index){
         $scope.isLoading = false;
       },500)      
     },200);
-
+    
   }
  /* $scope.saveSubject=function(user_data,$index){
     var paramOne = $localStorage.ACA_COU_ID;
