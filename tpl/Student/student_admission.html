@@ -226,14 +226,17 @@
          <div class="row wrapper-md">
             <div class="form-group">
               <!-- <div class="m-t m-b"> -->
-                <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveStuAdmission()" ng-disabled="step1.$invalid">Save & Next</button>
+                <!-- <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveStuAdmission()" ng-disabled="step1.$invalid">Save & Next</button> -->
               <!-- </div> -->
+              <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-disabled="step1.$invalid" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Savebutton">Save & Next</button>
+                <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveStuAdmission()"
+                ng-if="Updatebutton">Update & Next</button>
             </div>
           </div>
       </form>
     </tab>
     
-    <tab disabled="step1.$invalid" active="steps.step2" select="steps.percent=70">
+    <tab active="steps.step2" select="steps.percent=70">
     <tab-heading><i class="fa fa-group"></i>&nbsp Parent/Guardian details</tab-heading>
     <div class="row">
       <div class="col-md-6">
@@ -449,7 +452,7 @@
         </div>
         </form>
     </tab>
-    <tab active="steps.step3" disabled="step1.$invalid" select="steps.percent=80">
+    <tab active="steps.step3" select="steps.percent=80">
     <tab-heading><i class="fa fa-graduation-cap"></i>&nbsp Previous Educational Details</tab-heading>
     <legend>
       Previous Educational Details
@@ -522,7 +525,8 @@
       </div>
       <br>
       <div class="col-md-4 col-md-offset-3">
-        <button class="btn btn-dark btn-sm" type="submit" ng-click="saveStudAddDetails()">Save & Finish</button>
+        <button class="btn btn-dark btn-sm" type="submit" ng-if="saveVal" ng-disabled="step2.$invalid" ng-click="steps.step3=true;saveStudAddDetails()">Save & Finish</button>
+        <button class="btn btn-dark btn-sm" type="submit" ng-if="updateVal" ng-click="saveStudAddDetails()">Update & Finish</button>
       </div>
         <div class="row wrapper-md">
           <div class="form-group">
