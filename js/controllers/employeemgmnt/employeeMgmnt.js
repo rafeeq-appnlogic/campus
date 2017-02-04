@@ -43,7 +43,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
                 'EMP_JOB_TITLE':$scope.empAdm.EMP_JOB_TITLE,
                 'EMP_QUALI':$scope.empAdm.EMP_QUALI,
                 'EMP_EXPE_INFO':$scope.empAdm.EMP_EXPE_INFO,
-                'EMP_TOT_EXPE':$scope.empAdm.EMP_TOT_EXPE_YEAR,
+                'EMP_TOT_EXPE':$scope.empAdm.EMP_TOT_EXPE,
                 'EMP_ADD_1':$scope.empCont.EMP_ADD_1,
                 'EMP_ADD_2':$scope.empCont.EMP_ADD_2,
                 'EMP_CITY':$scope.empCont.EMP_CITY,
@@ -83,12 +83,11 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
       url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
       params :{id : $EMP_ID},
     }).then(function mySucces(response) {
-      console.log(response.data.result[0].EMP_NO,'responseresponse');
+      console.log(response.data.result[0],'responseresponse');
         $scope.return_id=response.data.result[0].EMP_ID;
         $scope.empAdm = response.data.result[0];
         $scope.empCont = response.data.result[0];
         $scope.empAdd = response.data.result[0];
-
         $localStorage.edit_emp_id='';
     },function myError(response){
       console.log(response);
