@@ -1,0 +1,417 @@
+<style type="text/css">
+.nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
+    background: #00ACAC none repeat scroll 0 0 !important;
+    color:#ffffff !important;
+}
+.btncolor{
+  background: #00ACAC !important;
+}
+.imp{
+   color:red !important;
+}
+</style>
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <div class="col">
+    <div style="background:url(img/c4.jpg) center center; background-size:cover">
+      <div class="wrapper-lg bg-white-opacity">
+        <div class="row m-t">
+          <div class="col-sm-7">
+            <a href class="thumb-lg pull-left m-r">
+              <img src="img/a0.jpg" class="img-circle1" style="margin-top: 17px;height: 120px;width: 100px">
+            </a>
+            <div class="clear m-b">
+              <div class="m-b m-t-sm">
+                <form class="form-horizontal ng-pristine ng-valid">
+                  <span class="h3 text-black">{{rowCollection.EMP_FIRST_NAME}}</span>
+                  <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
+                    <label class="col-lg-4"><b>Employee No : </b></label>
+                    <div class="col-lg-6">
+                      <p class="">{{rowCollection.EMP_NO}}</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <button class="btn btn-primary" ng-click="editdetails(rowCollection.EMP_ID)" ui-sref="app.Employee-Admission">Edit Details</button>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="pull-right pull-none-xs text-center">
+              <a href class="m-b-md inline m">
+                <span class="h3 block font-bold">2k</span>
+                <small>Followers</small>
+              </a>
+              <a href class="m-b-md inline m">
+                <span class="h3 block font-bold">250</span>
+                <small>Following</small>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="pull-right pull-none-xs text-center">
+              <a href class="m-b-md inline m">
+                <span class="h3 block font-bold">2k</span>
+                <small>Followers</small>
+              </a>
+              <a href class="m-b-md inline m">
+                <span class="h3 block font-bold">250</span>
+                <small>Following</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="wrapper bg-white b-b">
+    <div ng-controller="TabsDemoCtrl">
+        <tabset class="tab-container">
+          <tab>
+           <tab-heading><i class="fa fa-user"></i>&nbsp Employee Details</tab-heading>
+            <legend>Personal Details</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Employee No :</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_NO}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>First Name</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_FIRST_NAME}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Gender</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_GENDER}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Marital status</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_MARITAL_STATUS}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Blood Group</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_BLOOD_GROUP}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Joining Date</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_JOIN_DT}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Last Name</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_LAST_NAME}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_DOB}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Religion</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_RELIGION}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Nationality</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_NATIONALITY}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <legend>Work Information</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Department</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_DEPT}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Position</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_POSITION}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Qualification</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_QUALI}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Experience Info</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_EXPE_INFO}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Category</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_CATEGORY}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Grade</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_GRADE}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Job Title</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_JOB_TITLE}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Total Experience</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_TOT_EXPE}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+          </tab>
+          <tab>
+           <tab-heading><i class="fa fa-group"></i>&nbsp Contact Information</tab-heading>
+            <legend>Contact information</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Address1</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_ADD_1}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Email</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_EMAIL}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_COUNTRY}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_CITY}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Address2</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_ADD_2}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_STATE}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Pincode</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_PINCODE}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Mobile Number</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_MOBILE}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+          </tab>
+          <tab>
+            <tab-heading><i class="icon-credit-card"></i> &nbsp Additional Details</tab-heading>
+            <legend>Bank Details</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Account Name</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_ACC_NAME}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Account Number</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_ACC_NO}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Bank Name</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_BANK_NAME}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Branch Name</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_BANK_BRANCH_NAME}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <legend>Additional Details </legend>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Passport Number</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_PASSPORT_NO}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>PAN Number</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_PAN_NO}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <form class="form-horizontal ng-pristine ng-valid">
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Adhar Number</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_ADHAR_NO}}</p>
+            </div>
+          </div>
+          <div class="form-group Studata ">
+            <label class="col-lg-4 col-md-offset-1"><b>Work Permit</b></label>
+            <div class="col-lg-6">
+              <p class="">{{rowCollection.EMP_WORK_PERMIT}}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+  <div class="col w-lg bg-light lter b-l bg-auto">
+    <div class="wrapper">
+      <div class="">
+        <h4 class="m-t-xs m-b-xs">Who to follow</h4>
+        <ul class="list-group no-bg no-borders pull-in">
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="img/a4.jpg" alt="..." class="img-circle">
+              <i class="on b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Chris Fox</a></div>
+              <small class="text-muted">Designer, Blogger</small>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="img/a5.jpg" alt="..." class="img-circle">
+              <i class="on b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Mogen Polish</a></div>
+              <small class="text-muted">Writter, Mag Editor</small>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="img/a6.jpg" alt="..." class="img-circle">
+              <i class="busy b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Joge Lucky</a></div>
+              <small class="text-muted">Art director, Movie Cut</small>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="img/a7.jpg" alt="..." class="img-circle">
+              <i class="away b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Folisise Chosielie</a></div>
+              <small class="text-muted">Musician, Player</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="panel b-a">
+        <h4 class="font-thin padder">Latest Tweets</h4>
+        <ul class="list-group">
+          <li class="list-group-item">
+              <p>Wellcome <a href class="text-info">@Drew Wllon</a> and play this web application template, have fun1 </p>
+              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
+          </li>
+          <li class="list-group-item">
+              <p>Morbi nec <a href class="text-info">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
+              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
+          </li>
+          <li class="list-group-item">                     
+              <p><a href class="text-info">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
+              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
+          </li>
+        </ul>
+      </div>
+      <div class="panel b-light clearfix">
+        <div class="panel-body">
+          <a href class="thumb pull-left m-r">
+            <img src="img/a0.jpg" class="img-circle">
+          </a>
+          <div class="clear">
+            <a href class="text-info">@Mike Mcalidek <i class="fa fa-twitter"></i></a>
+            <small class="block text-muted">2,415 followers / 225 tweets</small>
+            <a href class="btn btn-xs btn-success m-t-xs">Follow</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

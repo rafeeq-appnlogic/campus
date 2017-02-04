@@ -60,7 +60,7 @@
               <label class="radio-inline">
                 <div class="radio">
                   <label class="i-checks">
-                    <input type="radio" value="option1" ng-model="empAdm.EMP_GENDER">
+                    <input type="radio" value="Male" ng-model="empAdm.EMP_GENDER">
                     <i></i>
                     Male
                   </label>
@@ -69,7 +69,7 @@
               <label class="radio-inline">
                 <div class="radio">
                   <label class="i-checks">
-                    <input type="radio" value="option1" ng-model="empAdm.EMP_GENDER">
+                    <input type="radio" value="Female" ng-model="empAdm.EMP_GENDER">
                     <i></i>
                     Female
                   </label>
@@ -89,7 +89,7 @@
           </div>
            <div class="form-group col-md-3">
             <label class="control-label">Marital status</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_MARITAL_STATUS" ng-model="empAdm.EMP_MARITAL_STATUS">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_MARITAL_STATUS" ng-model="empAdm.EMP_MARITAL_STATUS" required>
                 <option value="single">Single</option>
                 <option value="married">Married</option>
                 <option value="divorced">Divorced</option>
@@ -97,23 +97,23 @@
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Religion</label>
-              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_RELIGION" id="" placeholder="Religion">
+              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_RELIGION" id="" placeholder="Religion" required>
           </div>
         </div>
 
         <div class="row">
           <div class="form-group col-md-3">
             <label class="control-label">Blood Group</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_BLOOD_GROUP" ng-model="empAdm.EMP_BLOOD_GROUP">
-                <option value="A+">A+ve</option>
-                <option value="B+">B+ve</option>
-                <option value="O+">O+ve</option>
-                <option value="A-">A-ve</option>
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_BLOOD_GROUP" ng-model="empAdm.EMP_BLOOD_GROUP" required>
+                <option value="A+ve">A+ve</option>
+                <option value="B+ve">B+ve</option>
+                <option value="O+ve">O+ve</option>
+                <option value="A-ve">A-ve</option>
             </select>
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Nationality</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_NATIONALITY" ng-model="empAdm.EMP_NATIONALITY">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_NATIONALITY" ng-model="empAdm.EMP_NATIONALITY" required>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="American Samoa">American Samoa</option>
                 <option value="Antarctica">Antarctica</option>
@@ -124,7 +124,7 @@
           <div class="form-group col-md-4">
             <label class="col-sm-4 control-label">Upload photo</label>
             <div class="col-sm-10">
-              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" type="file" multiple="">
+              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" file-upload="empAdm.EMP_PROFILE" type="file" multiple="" required>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@
         <div class="row">
           <div class="form-group col-md-3">
             <label class="control-label">Department</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_DEPT" ng-model="empAdm.EMP_DEPT">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_DEPT" ng-model="empAdm.EMP_DEPT" required>
                 <option value="English">English</option>
                 <option value="Hindi">Hindi</option>
                 <option value="Science">Science</option>
@@ -146,7 +146,7 @@
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Category</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_CATEGORY" ng-model="empAdm.EMP_CATEGORY">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_CATEGORY" ng-model="empAdm.EMP_CATEGORY" required>
                 <option value="Finance">Finance</option>
                 <option value="HR">Human Resource</option>
                 <option value="Librarion">Librarion</option>
@@ -156,13 +156,14 @@
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Position</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_POSITION" ng-model="empAdm.EMP_POSITION">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_POSITION" ng-model="empAdm.EMP_POSITION" required>
                 <option value="System Admin">System Admin</option>
+                <option value="LabAssistant">Lab Assistant</option>
             </select>
           </div>
           <div class="form-group col-md-3">
             <label class="control-label">Grade</label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_GRADE" ng-model="empAdm.EMP_GRADE">
+            <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_GRADE" ng-model="empAdm.EMP_GRADE" required>
                 <option value="Grade1">Grade 1</option>
                 <option value="Grade2">Grade 2</option>
                 <option value="Grade3">Grade 3</option>
@@ -172,34 +173,34 @@
         <div class="row">
           <div class="form-group col-md-3">
               <label class="control-label">Job Title</label>
-              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_JOB_TITLE" placeholder="">
+              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_JOB_TITLE" placeholder="" required>
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Qualification</label>
-              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_QUALI" placeholder="">
+              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_QUALI" placeholder="" required>
           </div>
           <div class="form-group col-md-3">
               <label class="control-label">Experience info</label>
-              <textarea rows="3" class="form-control input-sm" ng-model="empAdm.EMP_EXPE_INFO"></textarea>
+              <textarea rows="3" class="form-control input-sm" ng-model="empAdm.EMP_EXPE_INFO" required></textarea>
           </div>
           <div class="form-group col-md-3">
               <label class="control-label col-md-12">Total experience</label>
-              <div class="form-group col-md-6">
-                <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_TOT_EXPE_YEAR" ng-model="empAdm.EMP_TOT_EXPE_YEAR">
+              <div class="form-group">
+                <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_TOT_EXPE_YEAR" ng-model="empAdm.EMP_TOT_EXPE_YEAR" required>
                     <option value="0">0 Year</option>
                     <option value="1">1 Year</option>
                     <option value="2">2 Year</option>
                     <option value="3">3 Year</option>
                 </select>
               </div>
-              <div class="form-group col-md-6">
+              <!-- <div class="form-group col-md-6">
                 <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_TOT_EXPE_MONTH" ng-model="empAdm.EMP_TOT_EXPE_MONTH">
                     <option value="0">0 Month</option>
                     <option value="1">1 Month</option>
                     <option value="2">2 Month</option>
                     <option value="3">3 Month</option>
                 </select>
-              </div>
+              </div> -->
           </div>
         </div>
         <div class="row wrapper-md">
@@ -216,19 +217,19 @@
         <div class="row">
             <div class="form-group col-md-3">
               <label class="control-label">Address Line 1</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_ADD_1" placeholder="Address 1">
+              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_ADD_1" placeholder="Address 1" required>
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">Address Line 1</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_ADD_2" placeholder="Address 2">
+              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_ADD_2" placeholder="Address 2" required>
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">E-mail</label>
-              <input type="email" class="form-control input-sm" ng-model="empCont.EMP_EMAIL" placeholder="Email">
+              <input type="email" class="form-control input-sm" ng-model="empCont.EMP_EMAIL" placeholder="Email" required>
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">City</label>
-              <select class="form-control input-sm w-full" name="EMP_CITY" ng-model="empCont.EMP_CITY">
+              <select class="form-control input-sm w-full" name="EMP_CITY" ng-model="empCont.EMP_CITY" required>
                   <option value="chennai">Chennai</option>
                   <option value="coimbatore">Coimbatore</option>
                   <option value="pondy">Pondicherry</option>
@@ -240,7 +241,7 @@
           <div class="row">
             <div class="form-group col-md-3">
               <label class="control-label">State</label>
-              <select  class="form-control input-sm w-full" ng-model="empCont.EMP_STATE" ng-model="empCont.EMP_STATE">
+              <select  class="form-control input-sm w-full" ng-model="empCont.EMP_STATE" ng-model="empCont.EMP_STATE" required>
                   <option value="Tamilnadu">Tamilnadu</option>
                   <option value="Mumbai">Mumbai</option>
                   <option value="Delhi">Delhi</option>
@@ -249,7 +250,7 @@
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">Country</label>
-              <select  class="form-control input-sm w-full" ng-model="empCont.EMP_COUNTRY" ng-model="empCont.EMP_COUNTRY">
+              <select class="form-control input-sm w-full" ng-model="empCont.EMP_COUNTRY" ng-model="empCont.EMP_COUNTRY" required>
                   <option value="australia">Australia</option>
                   <option value="India">India</option>
                   <option value="Dubai">Dubai</option>
@@ -257,21 +258,21 @@
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">Pincode</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_PINCODE" placeholder="Pincode">
+              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_PINCODE" ng-minlength="6" placeholder="600001" required>
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">Phone</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_PHONE" placeholder="Phone Number">
+              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_PHONE" ng-minlength="10" ng-maxlength="10" placeholder="9876543210" required>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-3">
               <label class="control-label">Office Phone</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_OFF_PHONE" placeholder="Office Number">
+              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_OFF_PHONE" ng-minlength="6" ng-maxlength="10" placeholder="421373" required>
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">Mobile</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_MOBILE" placeholder="Mobile Number">
+              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_MOBILE" ng-minlength="10" ng-maxlength="10" placeholder="9876543210" required>
             </div>
           </div>
 
@@ -302,7 +303,7 @@
             <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_BRANCH_NAME" placeholder="Enter Branch Name">
           </div>
         </div>
-        <legend class="pull-left width-full">Bank Details</legend>
+        <legend class="pull-left width-full">Additional Details</legend>
         <div class="row">
           <div class="form-group col-md-3">
             <label class="control-label">Passport Number</label>
@@ -323,7 +324,7 @@
         </div>
       <div class="m-t m-b">
         <button type="button" class="btn btn-warning btn-rounded" ng-click="steps.step2=true">Prev</button>
-        <button type="button" class="btn btn-success btn-rounded pull-right" ng-click="steps.percent=100;saveEmployeeDetails()">Save & Finish</button>
+        <button type="button" class="btn btn-success btn-rounded pull-right" ng-click="steps.percent=100;saveEmployeeDetails()" ui-sref="app.Employee-Details">Save & Finish</button>
       </div>
     </tab>
   </tabset>
