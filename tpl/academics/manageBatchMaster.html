@@ -97,13 +97,13 @@
               <st-select-distinct collection="rowCollection" predicate="ACA_BAT_NAME"></st-select-distinct>
             </th> -->
             <th>
-              <input st-search="'ACA_BAT_NAME'" placeholder="Search for Class Name" class="input-sm form-control" type="search"/>
+              <input st-search="'ACA_COU_NAME'" placeholder="Search for Class Name" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'ACA_BAT_START_DT'" placeholder="Search for Batch Name" class="input-sm form-control" type="search"/>
+              <input st-search="'ACA_BAT_NAME'" placeholder="Search for Batch Name" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'ACA_BAT_START_DT'" placeholder="Search for Batch Members" class="input-sm form-control" type="search"/>
+              <input st-search="'member'" placeholder="Search for Batch Members" class="input-sm form-control" type="search"/>
             </th>
             <th>
               <input st-search="'ACA_BAT_START_DT'" placeholder="Search for Start Date" class="input-sm form-control" type="search"/>
@@ -124,9 +124,9 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_BAT_NAME">Class Name</th>
+            <th st-sort="ACA_COU_NAME">Class Name</th>
             <th st-sort="ACA_BAT_NAME">Batch Name</th>
-            <th st-sort="ACA_BAT_NAME">Batch Members</th>
+            <th st-sort="member">Batch Members</th>
             <th st-sort="ACA_BAT_START_DT">Start Date</th>
             <th st-sort="ACA_BAT_END_DT">End Date</th>
             <!-- <th st-sort="ACA_BAT_IMP_PRE_BAT_SUB_YN">Subject</th>
@@ -143,7 +143,7 @@
             <td>{{row.ACA_BAT_START_DT | date:'dd-MM-yyyy'}}</td>
             <td>{{row.ACA_BAT_END_DT | date:'dd-MM-yyyy'}}</td>
  -->
-            <td>{{row.ACA_BAT_COU_ID}}</td>
+            <td>{{row.ACA_COU_NAME}}</td>
             <td>{{row.ACA_BAT_NAME}}</td>
             <td></td>
             <td>{{row.ACA_BAT_START_DT | date:'dd-MM-yyyy'}}</td>
