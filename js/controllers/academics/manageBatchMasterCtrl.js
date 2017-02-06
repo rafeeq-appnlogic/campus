@@ -49,7 +49,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     // alert("Class_id-"+id);
     $http({
       method : "GET",
-      url : $rootScope.endUrl+'ManageBatchModule/BatchDetail'
+      url : $rootScope.endUrl+'ManageClassModule/courseandbatchview'
     }).then(function mySucces(response) {
     console.log(response,'tes')
         $scope.rowCollection = response.data.message;
@@ -249,8 +249,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       $scope.isLoading = true;
       $http({
         method : "GET",
-        url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-        params :{ACA_COU_ID : id},
+        url : $rootScope.endUrl+'ManageClassModule/courseandbatchview'
       }).then(function mySucces(response, status, headers, config) {
         console.log(response);
           $scope.rowCollection = response.data.message;
