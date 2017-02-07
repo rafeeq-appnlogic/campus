@@ -457,7 +457,7 @@ angular.module('app')
               //   url: "/finance-category",
               //   templateUrl: "tpl/Finance/financeCategory.html",
               // })
-              }).state('app.repository', { 
+              .state('app.repository', { 
                   url: '/repository',
                   controller:"repositoryCtrl",
                   templateUrl: 'tpl/repository/repository.html',
