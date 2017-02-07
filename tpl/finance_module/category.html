@@ -1,0 +1,169 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+  .bootbox .modal-dialog{
+    width: 350px !important;
+  }
+</style>
+<div ng-cloak>
+
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Finance settings</b> | Finance Category</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+        <li><a href="">Finance</a></li>
+        <li class="active">Category</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-default">
+    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Category</b></span>  
+    <button class="btn btn-success m-b-sm" data-toggle="modal" data-target="#myModal" style="float: right !important;margin-top:-5px;margin-right: 10px;" ng-click="openModel()"><i class="fa fa-plus"></i> Add Category</button>
+    </div>
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-info" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>
+            <th>
+              <st-select-distinct collection="rowCollection" predicate="FINC_CA_NAME"></st-select-distinct>
+            </th>
+            <th>
+              <input st-search="'FINC_CA_DESC'" placeholder="search for Description" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'FINC_CA_INCOME_YN'" placeholder="search for income status" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="FINC_CA_NAME">Category Name</th>
+            <th st-sort="FINC_CA_DESC">Description</th>
+            <th st-sort="FINC_CA_INCOME_YN">Income</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="row.FINC_CA_ID" ng-change="callbackfunction()"><i></i></label></td>
+            <td>
+              {{row.FINC_CA_NAME}}
+            </td>
+            <td>
+              {{row.FINC_CA_DESC}}
+            </td>
+            <td>
+              {{row.FINC_CA_INCOME_YN}}
+            </td>
+            <td style="white-space: nowrap">
+              <div class="buttons">
+                <button class="btn btn-sm btn-info" ng-click="editCategory(row.FINC_CA_ID);" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="3">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Category</h4>
+      </div>
+      <div class="modal-body">
+         <form class="form-horizontal" name="modalForm">
+            <div class="form-group">
+              <label class="control-label col-sm-4">Category Name:</label>
+              <div class="col-sm-6">
+                <input type="hidden" class="form-control" ng-model="FINC_CA_ID">
+                <input type="text" class="form-control" ng-model="FINC_CA_NAME" placeholder="Enter Category Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" >Description :</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="FINC_CA_DESC" placeholder="Enter Description" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Is this under income?:</label>
+              <div class="col-sm-6">
+                <label class="i-switch i-switch-md m-t-xs m-r">
+                  <input type="checkbox" checked=""  ng-checked="FINC_CA_INCOME_YN=='Y'" ng-true-value="'Y'" ng-false-value="'N'" ng-model="FINC_CA_INCOME_YN">
+                  <i></i>
+                </label>
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="saveCategory()" ng-disabled="modalForm.$invalid">{{buttonStatus}}</button>
+      </div>
+    </div>
+  </div>
+</div>

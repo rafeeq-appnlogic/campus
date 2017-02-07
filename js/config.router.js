@@ -177,18 +177,18 @@ angular.module('app')
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetEmployeeLeave.html"
               })
               //added by senthil for finance module
-              .state("app.fn-assetview", {
-                  url: "/assetview",
-                  controller:"assetctrl",
-                  templateUrl: "tpl/Finance/assetview.html",
-                  resolve: load(['smart-table','js/controllers/finance/asset.js','xeditable','ui.bootstrap'])
-              })
-              .state("app.fn-liabilityview", {
-                  url: "/liabilityview",
-                  controller:"liabilityctrl",
-                  templateUrl: "tpl/Finance/liabilityview.html",
-                  resolve: load(['smart-table','js/controllers/finance/liability.js','xeditable','ui.bootstrap'])
-              })
+              // .state("app.fn-assetview", {
+              //     url: "/assetview",
+              //     controller:"assetctrl",
+              //     templateUrl: "tpl/Finance/assetview.html",
+              //     resolve: load(['smart-table','js/controllers/finance/asset.js','xeditable','ui.bootstrap'])
+              // })
+              // .state("app.fn-liabilityview", {
+              //     url: "/liabilityview",
+              //     controller:"liabilityctrl",
+              //     templateUrl: "tpl/Finance/liabilityview.html",
+              //     resolve: load(['smart-table','js/controllers/finance/liability.js','xeditable','ui.bootstrap'])
+              // })
               .state("app.fn-category", {
                   url: "/configcategory",
                   controller:"feecategoryctrl",
@@ -261,26 +261,26 @@ angular.module('app')
                   templateUrl: "tpl/employee_management/employee-sub_assoc.html",
                   resolve: load(['js/controllers/hrconfig.js'])
                 })
-                .state("app.Add-Expense", {
-                  url: "/add-expense",
-                  templateUrl: "tpl/Finance/addExpense.html",
-              })
-               .state("app.Add-Income", {
-                url: "/add-income",
-                templateUrl: "tpl/Finance/addIncome.html",
-              })
-               .state("app.Reverted-Transaction", {
-                url: "/reverted-transaction",
-                templateUrl: "tpl/Finance/revertedTransaction.html",
-              })
-               .state("app.Add-Advanced", {
-                url: "/add-advanced",
-                templateUrl: "tpl/Finance/advTransaction.html",
-              })
-               .state("app.Finance-Category", {
-                url: "/finance-category",
-                templateUrl: "tpl/Finance/financeCategory.html",
-              })
+              //   .state("app.Add-Expense", {
+              //     url: "/add-expense",
+              //     templateUrl: "tpl/Finance/addExpense.html",
+              // })
+              //  .state("app.Add-Income", {
+              //   url: "/add-income",
+              //   templateUrl: "tpl/Finance/addIncome.html",
+              // })
+              //  .state("app.Reverted-Transaction", {
+              //   url: "/reverted-transaction",
+              //   templateUrl: "tpl/Finance/revertedTransaction.html",
+              // })
+              //  .state("app.Add-Advanced", {
+              //   url: "/add-advanced",
+              //   templateUrl: "tpl/Finance/advTransaction.html",
+              // })
+              //  .state("app.Finance-Category", {
+              //   url: "/finance-category",
+              //   templateUrl: "tpl/Finance/financeCategory.html",
+              // })
                .state("app.Add-Donation", {
                 url: "/add-donation",
                 templateUrl: "tpl/Finance/addDonation.html",
@@ -412,6 +412,51 @@ angular.module('app')
                   url: '/edit-profile',
                   templateUrl: "tpl/edit-profile.html"
                   // resolve: load( ['js/controllers/signin.js'] )
+              })
+
+
+              .state("app.finance-asset", {
+                  url: "/asset",
+                  controller:"financeasset",
+                  templateUrl: "tpl/finance_module/asset.html",
+                  resolve: load(['smart-table','js/controllers/finance/financeasset.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.finance-liability", {
+                  url: "/liability",
+                  controller:"liablityCtrl",
+                  templateUrl: "tpl/finance_module/liability.html",
+                  resolve: load(['smart-table','js/controllers/finance/finance_liability.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.finance-category", {
+                  url: "/category",
+                  controller:"financecategory",
+                  templateUrl: "tpl/finance_module/category.html",
+                  resolve: load(['smart-table','js/controllers/finance/finance_category.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.Add-Expense", {
+                  url: "/add-expense",
+                  controller:"expenseCtrl",
+                  templateUrl: "tpl/finance_module/expense.html",
+                  resolve: load(['smart-table','js/controllers/finance/expense.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+               .state("app.Add-Income", {
+                url: "/add-income",
+                controller:"incomeCtrl",
+                templateUrl: "tpl/finance_module/income.html",
+                resolve: load(['smart-table','js/controllers/finance/income.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              //  .state("app.Reverted-Transaction", {
+              //   url: "/reverted-transaction",
+              //   templateUrl: "tpl/Finance/revertedTransaction.html",
+              // })
+              //  .state("app.Add-Advanced", {
+              //   url: "/add-advanced",
+              //   templateUrl: "tpl/Finance/advTransaction.html",
+              // })
+              //  .state("app.Finance-Category", {
+              //   url: "/finance-category",
+              //   templateUrl: "tpl/Finance/financeCategory.html",
+              // })
               }).state('app.repository', { 
                   url: '/repository',
                   controller:"repositoryCtrl",
