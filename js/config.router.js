@@ -414,8 +414,15 @@ angular.module('app')
                   // resolve: load( ['js/controllers/signin.js'] )
               }).state('app.repository', { 
                   url: '/repository',
+                  controller:"repositoryCtrl",
                   templateUrl: 'tpl/repository/repository.html',
-                  resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
+                  resolve: load(['js/controllers/repository/repositoryCtrl.js'])
+              })
+              .state('app.rep-createNew', { 
+                  url: '/createrepository',
+                  controller:"createRepositoryCtrl",
+                  templateUrl: 'tpl/repository/createrep.html',
+                  resolve: load(['js/controllers/repository/createRepositoryCtrl.js'])
               });
           function load(srcs, callback) {
             return {
