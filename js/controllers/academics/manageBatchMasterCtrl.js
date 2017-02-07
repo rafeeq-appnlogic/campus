@@ -91,12 +91,34 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     }
 
   $scope.saveBatch=function(){
+
+      var date = $scope.Batch.ACA_BAT_START_DT;
+      alert(date);
+      var day = ('0'+(date.getDate())).slice(-2);
+      var month=('0'+(date.getMonth()+1)).slice(-2);
+      var year = date.getFullYear();
+      $scope.datestart = day +'-'+ month +'-'+ year ;
+
+      var date1 = $scope.Batch.ACA_BAT_END_DT;
+      var day = ('0'+(date1.getDate())).slice(-2);
+      var month=('0'+(date1.getMonth()+1)).slice(-2);
+      var year = date1.getFullYear();
+      $scope.dateend = day +'-'+ month +'-'+ year ;
+
     var ACA_BAT_CRT_USER_ID=$localStorage.user_id;
     console.log(ACA_BAT_CRT_USER_ID,'insertid');
     $http({
       method : "POST",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-      data : {'ACA_BAT_COU_ID':$scope.getData,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID}
+      data : {
+        'ACA_BAT_COU_ID':$scope.getData,
+        'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,
+        'ACA_BAT_START_DT' : $scope.datestart,
+        'ACA_BAT_END_DT' : $scope.dateend,
+        'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,
+        'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,
+        'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,
+        'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID}
      }).then(function mySucces(response) {
       var status=response.data.status;
       var message="Batch inserted Successfully";
@@ -144,7 +166,15 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-    data : {'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID}
+    data : {
+      'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,
+      'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,
+      'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,
+      'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,
+      'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,
+      'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,
+      'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,
+      'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID}
     }).then(function mySucces(response) {
     var status=response.data.status;
     var message="Batch is Updated Successfully";

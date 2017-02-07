@@ -39,6 +39,9 @@
     top: -1px;
     transition: all 0.2s ease 0s;
 }
+.chosen-container.chosen-container-single{
+    width:100% !important;
+  }
 </style>
 <div>
 
@@ -124,9 +127,9 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_COU_NAME">Class Name</th>
+            <th st-sort="ACA_COU_NAME">Course Name</th>
             <th st-sort="ACA_BAT_NAME">Batch Name</th>
-            <th st-sort="member">Batch Members</th>
+            <th st-sort="member">No.Of Students</th>
             <th st-sort="ACA_BAT_START_DT">Start Date</th>
             <th st-sort="ACA_BAT_END_DT">End Date</th>
             <!-- <th st-sort="ACA_BAT_IMP_PRE_BAT_SUB_YN">Subject</th>
@@ -146,8 +149,8 @@
             <td>{{row.ACA_COU_NAME}}</td>
             <td>{{row.ACA_BAT_NAME}}</td>
             <td></td>
-            <td>{{row.ACA_BAT_START_DT | date:'dd-MM-yyyy'}}</td>
-            <td>{{row.ACA_BAT_END_DT | date:'dd-MM-yyyy'}}</td>
+            <td>{{row.ACA_BAT_START_DT}}</td>
+            <td>{{row.ACA_BAT_END_DT}}</td>
 <!--             <td>{{row.ACA_BAT_END_DT}}</td> -->
 <!--             <td>{{row.ACA_BAT_IMP_PRE_BAT_SUB_YN}}</td>
             <td>{{row.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN}}</td> -->
@@ -209,8 +212,8 @@
                   <option value="Normal">CSE</option>
                   <option value="CCE">MECH</option>
                 </select> -->
-                <select class="input-sm form-control w-sm inline v-middle" name="ACA_COU_NAME" ng-change="GetValue(item)"  ng-model="item" ng-options="batch.ACA_COU_NAME for batch in rowCollectionBatch" required>
-                  <option selected disabled value="" class="ItemlineHead1"> Select Batch</option>
+                <select ui-jq="chosen" class="form-control input-sm w-full" name="ACA_COU_NAME" ng-change="GetValue(item)"  ng-model="item" ng-options="batch.ACA_COU_NAME for batch in rowCollectionBatch" required>
+                  <option selected disabled value="" class="ItemlineHead1"> Select Course</option>
                </select>
               </div>
             </div>

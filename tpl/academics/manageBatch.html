@@ -97,7 +97,13 @@
               <st-select-distinct collection="rowCollection" predicate="ACA_BAT_NAME"></st-select-distinct>
             </th> -->
             <th>
+              <input st-search="'ACA_COU_NAME'" placeholder="Search for Course Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
               <input st-search="'ACA_BAT_NAME'" placeholder="Search for Batch Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'ACA_BAT_NAME'" placeholder="Search for Batch Mambers" class="input-sm form-control" type="search"/>
             </th>
             <th>
               <input st-search="'ACA_BAT_START_DT'" placeholder="Search for Start Date" class="input-sm form-control" type="search"/>
@@ -118,7 +124,7 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_BAT_NAME">Class Name</th>
+            <th st-sort="ACA_COU_NAME">Course Name</th>
             <th st-sort="ACA_BAT_NAME">Batch Name</th>
             <th st-sort="ACA_BAT_NAME">Batch Members</th>
             <th st-sort="ACA_BAT_START_DT">Start Date</th>
@@ -131,7 +137,7 @@
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
-            <td>{{row.ACA_BAT_NAME}}</td>
+            <td>{{row.ACA_COU_NAME}}</td>
             <td>{{row.ACA_BAT_NAME}}</td>
             <td>{{row.ACA_BAT_NAME}}</td>
             <td>{{row.ACA_BAT_START_DT | date:'dd-MM-yyyy'}}</td>
@@ -188,9 +194,8 @@
         <div class="modal-body">
       <div class="panel-body">
           <form class="bs-example form-horizontal form-validation ng-pristine ng-valid" name="Form">
-          <div class="form-group">
+          <!-- <div class="form-group">
               <label class="col-lg-4  control-label">Course Name</label>
-               <!-- <select ui-jq="chosen" class="w-full" style="width: 250px !important;" ng-model="class.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required=""> -->
               <div class="col-lg-6">
                 <select class="form-control input-sm" ng-model="class.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
                   <option value="select" ng-selected="true" ng-disabled="true">Select</option>
@@ -198,18 +203,18 @@
                   <option value="CCE">MECH</option>
                 </select>
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class="col-lg-4  control-label">Batch Name</label>
               <div class="col-lg-6">
-                  <input class="form-control" placeholder="Batch Name" ng-model="Batch.ACA_BAT_NAME" name="ACA_BAT_NAME" type="text">
+                  <input class="form-control" placeholder="Batch Name" ng-model="Batch.ACA_BAT_NAME" name="ACA_BAT_NAME" type="text" required>
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-4  control-label">Start Date</label>
                 <div ng-controller="DatepickerDemoCtrl" class="col-md-6">
                 <div class="input-group w-md" style="width: 256px">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="Batch.ACA_BAT_START_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="Batch.ACA_BAT_START_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" ng-required="true" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -220,7 +225,7 @@
               <label class="col-lg-4  control-label">End Date</label>
                 <div ng-controller="DatepickerDemoCtrl" class="col-md-6">
                 <div class="input-group w-md" style="width: 256px">
-                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="Batch.ACA_BAT_END_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="Batch.ACA_BAT_END_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" ng-required="true" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>

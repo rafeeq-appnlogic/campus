@@ -38,7 +38,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
   }
   //----------------------------//
 
-    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'ManageClassModule/courseandbatchview').success(function(incomingData) {
         $scope.rowCollection = incomingData.message;
         console.log($scope.NoData,'check nodata');
         console.log(incomingData,'Row Data');

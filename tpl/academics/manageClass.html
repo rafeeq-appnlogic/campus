@@ -108,7 +108,12 @@
               <input st-search="'ACA_COU_CODE'" placeholder="Search for Courese Code" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'ACA_COU_GRADE_TYPE'" placeholder="Search for Grade Type" class="input-sm form-control" type="search"/>
+              <!-- <input st-search="'ACA_COU_GRADE_TYPE'" placeholder="Search for Grade Type" class="input-sm form-control" type="search"/> -->
+              <st-select-distinct collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-distinct>
+            </th>
+            <th>
+              <!-- <input st-search="'ACA_COU_GRADE_TYPE'" placeholder="Search for Grade Type" class="input-sm form-control" type="search"/> -->
+              <input st-search="'BATCH_COUNT'" placeholder="Search for Batch Count" class="input-sm form-control" type="search"/>
             </th>
             <!-- <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
@@ -125,8 +130,9 @@
             </th>
             <th st-sort="ACA_COU_NAME">Course Name</th>
             <!-- <th st-sort="ACA_COU_SEC_NAME">Section Name</th> -->
-            <th st-sort="ACA_COU_CODE">Class Code</th>
+            <th st-sort="ACA_COU_CODE">Course Code</th>
             <th st-sort="ACA_COU_GRADE_TYPE">Grade Type</th>
+            <th st-sort="BATCH_COUNT">Batch Count</th>
             <!-- <th st-sort="ACA_COU_ELECTIVE_SEL_YN">Elective Selection</th> -->
             <th>Action</th>
           </tr>
@@ -138,6 +144,7 @@
             <!-- <td>{{row.ACA_COU_SEC_NAME}}</td> -->
             <td>{{row.ACA_COU_CODE}}</td>
             <td>{{row.ACA_COU_GRADE_TYPE}}</td>
+            <td>{{row.BATCH_COUNT}}</td>
             <!-- <td>{{row.ACA_COU_ELECTIVE_SEL_YN}}</td> -->
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
@@ -182,8 +189,8 @@
       <button data-dismiss="modal" class="close" type="button">
           <i class="fa  fa-times-circle "></i>
       </button>
-        <h4 class="modal-title" ng-if="Save" id="header">Add Class</h4>
-        <h4 class="modal-title" ng-if="Edit" id="header">Edit Class</h4>
+        <h4 class="modal-title" ng-if="Save" id="header">Add Course</h4>
+        <h4 class="modal-title" ng-if="Edit" id="header">Edit Course</h4>
         </div>
         <div class="modal-body">
       <div class="panel-body">
@@ -197,7 +204,7 @@
               <input class="form-control" placeholder="Section Name" ng-model="class.ACA_COU_SEC_NAME" name="ACA_COU_SEC_NAME" type="text" required="">
             </div> -->
             <div class="form-group col-md-4">
-              <label>Class Code</label>
+              <label>Course Code</label>
               <input class="form-control" placeholder="Class Code" ng-model="class.ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
             </div>
             <div class="form-group col-md-4">

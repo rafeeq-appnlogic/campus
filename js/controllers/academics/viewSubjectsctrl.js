@@ -13,11 +13,11 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
   $scope.data='';
   $scope.status='';
   $scope.rowCollection = [];
-
+  $scope.Subject = [];
 
   $scope.selectOptionVal=[
-  {value:'Y', name: 'Y'},
-  {value:'N', name: 'N'},
+  {value:'Main', name: 'Main'},
+  {value:'Elective', name: 'Elective'},
   ];
   $scope.selectSlitfunction = function(selectedData) {
     if (angular.isObject(selectedData)) {
@@ -40,8 +40,9 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     console.log(paramTwo);
     $http({
       method : "GET",
-      url : "http://192.168.1.136/smartedu/api/ManageBatchModule/ManageSubjectDetail",
-      params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
+      // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+      url : "http://192.168.1.136/smartedu/api/ManageBatchModule/manageSubjectView",
+      // params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
     }).then(function mySucces(resData) {
         console.log(resData);
         $scope.rowCollection = resData.data.message;
@@ -49,11 +50,11 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false
     
-  $scope.deleteData = function(index) {
+  $scope.deleteData = function(row) {
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
               $scope.isLoading = true;
-              var id=$scope.displayedCollection[index].ACA_SUB_ID;
+              var id=row.ACA_SUB_ID;
               $http({
                 method : "DELETE",
                 url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
@@ -77,31 +78,111 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
                  });
   }
   $scope.addNewSubject = function() {
-    $scope.buttonStatus='Save';
-    $scope.inserted = {
-      ACA_SUB_ID: null,
-      ACA_SUB_NAME: null,
-      ACA_SUB_CODE: null,
-      ACA_SUB_MAXCLASS_WEEK: null,
-      ACA_SUB_ASL_SUB_YN : null
+    // $scope.buttonStatus='Save';
+    // $scope.inserted = {
+    //   ACA_SUB_ID: null,
+    //   ACA_SUB_NAME: null,
+    //   ACA_SUB_CODE: null,
+    //   ACA_SUB_MAXCLASS_WEEK: null,
+    //   ACA_SUB_ASL_SUB_YN : null
+    // };
+    $scope.Save=true;
+    $scope.Edit=false;
+    $scope.subject=true;
+    $scope.Savebutton=true;
+    $scope.Updatebutton=false;
+    $scope.Subject = {
+      ACA_SUB_ID:null,
+      ACA_SUB_NAME:null,
+      ACA_SUB_CODE:null,
+      ACA_SUB_ELECT_YN:null,
+      ACA_SUB_COU_ID:null
     };
-    $scope.displayedCollection.push($scope.inserted);
+    //$scope.displayedCollection.push($scope.inserted);
   };
-$scope.saveSubject=function(user_data,$index){
+
+   $scope.GetValue = function(user){
+     // console.log(user.ACA_BAT_COU_ID);
+      $scope.getData = user.ACA_COU_ID;
+      var id = $scope.getData;
+      //alert(JSON.stringify(user))
+      console.log(JSON.stringify(user),"id");
+    }
+
+$http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail').success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionBatch = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+$scope.saveSubject=function(){
     $scope.isLoading = true;
-    var paramOne = $localStorage.ACA_COU_ID;
-    var paramTwo = $localStorage.ACA_BAT_ID;
+    // var paramOne = $localStorage.ACA_COU_ID;
+    // var paramTwo = $localStorage.ACA_BAT_ID;
+    //alert(JSON>stringify(user_data))
     setTimeout(function(){
        $http({
         method : "POST",
         url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
-        data : { 'ACA_SUB_ID':user_data.ACA_SUB_ID,'ACA_SUB_COU_ID':paramOne,'ACA_SUB_BAT_ID':paramTwo,'ACA_SUB_NAME' : user_data.ACA_SUB_NAME,'ACA_SUB_CODE' : user_data.ACA_SUB_CODE,'ACA_SUB_ASL_SUB_YN' : $scope.selectSlitfunction(user_data.ACA_SUB_ASL_SUB_YN),'ACA_SUB_MAXCLASS_WEEK' : user_data.ACA_SUB_MAXCLASS_WEEK}
+        data : {'ACA_SUB_COU_ID':$scope.getData,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN}
       }).then(function mySucces(response) {
           console.log(response.data.status);
            var stat="success";
           var stat1="error";
           var success="subject inserted Successfully";
           var failed="subject insert Failed";
+          if(response.data.status==true){
+            $scope.showMessage(success,stat);
+          }else{
+            $scope.showMessage(failed,stat1);
+          }
+      });/* function myError(response) {
+        $scope.showMessage(response.data.message,'error'); 
+      });*/
+      setTimeout(function(){
+        $scope.getMasterJobs(tableState);
+        $scope.isLoading = false;
+      },500)      
+    },200);
+    
+  }
+
+  $scope.EditSubject=function(id){
+    // $scope.testForm=true;
+    $scope.Save=false;
+    $scope.Edit=true;
+    $scope.subject=false;
+    $scope.Savebutton=false;
+    $scope.Updatebutton=true;
+    var id=id.ACA_SUB_ID;
+    // alert(user_id);
+    $http({
+      method : "GET",
+      url : $rootScope.endUrl+'ManageBatchModule/SubjectDetail',
+      params :{ACA_SUB_ID : id},
+    }).then(function mySucces(response) {
+      console.log(response,'test');
+      $scope.Subject=[];
+      $scope.Subject=response.data.message[0];
+    },function myError(response) {
+    });
+  };
+  $scope.updateSubject=function(){
+    $scope.isLoading = true;
+    // var paramOne = $localStorage.ACA_COU_ID;
+    // var paramTwo = $localStorage.ACA_BAT_ID;
+    //alert(JSON>stringify(user_data))
+    setTimeout(function(){
+       $http({
+        method : "POST",
+        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+        data : {'ACA_SUB_ID':$scope.Subject.ACA_SUB_ID,'ACA_SUB_COU_ID':$scope.getData,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN}
+      }).then(function mySucces(response) {
+          console.log(response.data.status);
+           var stat="success";
+          var stat1="error";
+          var success="subject updated Successfully";
+          var failed="subject updated Failed";
           if(response.data.status==true){
             $scope.showMessage(success,stat);
           }else{
@@ -257,8 +338,9 @@ $scope.saveSubject=function(user_data,$index){
       var paramTwo = $localStorage.ACA_BAT_ID;
        $http({
         method : "get",
-        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/ManageSubjectDetail",
-        params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
+        // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/manageSubjectView",
+        // params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
       }).then(function mySucces(response) {
           $scope.rowCollection = response.data.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);

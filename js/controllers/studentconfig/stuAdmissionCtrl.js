@@ -74,6 +74,42 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 		console.log($localStorage.classDetails);
 		$localStorage.classDetails=[];
 	}
+
+	var formdata = new FormData();
+    $scope.getTheFiles = function ($files) {
+        angular.forEach($files, function (value, key) {
+            formdata.append(key, value);
+        });
+    };
+
+    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail').success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionCourse = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+    $http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/BatchDetail').success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionBatch = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+    $scope.GetValue = function(user){
+     // console.log(user.ACA_BAT_COU_ID);
+      $scope.getData = user.ACA_COU_ID;
+      var id = $scope.getData;
+      //alert(JSON.stringify(user))
+      console.log(JSON.stringify(user),"id");
+    }
+
+    $scope.GetBatchValue = function(user){
+     // console.log(user.ACA_BAT_COU_ID);
+      $scope.getBatchData = user.ACA_BAT_ID;
+      var id = $scope.getData;
+      //alert(JSON.stringify(user))
+      console.log(JSON.stringify(user),"id");
+    }
+
 	//alert($scope.Stud.dtform);
 	//$controller('DatepickerDemoCtrl', {$scope:$scope});
 	$scope.saveStuAdmission = function(){
@@ -82,18 +118,32 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 		//alert($scope.STD_ADM_ID);
 		$scope.Savebutton=true;
     	$scope.Updatebutton=false;
+    	alert($scope.Stud.STU_ADM_DT);
+
+    	var date = $scope.Stud.STU_ADM_DT;
+      	var day = ('0'+(date.getDate())).slice(-2);
+      	var month=('0'+(date.getMonth()+1)).slice(-2);
+      	var year = date.getFullYear();
+      	$scope.admdate = day +'-'+ month +'-'+ year ;
+
+      	var dob = $scope.Stud.STU_ADM_DOB;
+      	var day = ('0'+(dob.getDate())).slice(-2);
+      	var month=('0'+(dob.getMonth()+1)).slice(-2);
+      	var year = dob.getFullYear();
+      	$scope.dobdate = day +'-'+ month +'-'+ year ;
+
 		$http({
 			method:'POST',
 			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentAdmission',
 			data: {
 				'STU_ADM_ID':$scope.STD_ADM_ID,
 				'STU_ADM_NO' : $scope.Stud.STU_ADM_NO, 
-				'STU_ADM_DT' : '27-01-2017', 
+				'STU_ADM_DT' : $scope.admdate, 
 				'STU_ADM_FIRST_NAME' :$scope.Stud.STU_ADM_FIRST_NAME,
 				'STU_ADM_MIDDLE_NAME' : $scope.Stud.STU_ADM_MIDDLE_NAME,
 				'STU_ADM_LAST_NAME' :$scope.Stud.STU_ADM_LAST_NAME,
-				'STU_ADM_DOB' : '27-01-2017',
-				'STU_ADM_GENDER' : $scope.STU_ADM_GENDER,
+				'STU_ADM_DOB' : $scope.dobdate,
+				'STU_ADM_GENDER' : $scope.Stud.STU_ADM_GENDER,
 				'STU_ADM_NATIONALITY' : $scope.Stud.STU_ADM_NATIONALITY,
 				'STU_ADM_MOTHER_TONGUE' : $scope.Stud.STU_ADM_MOTHER_TONGUE,
 				'STU_ADM_RELIGION' : $scope.Stud.STU_ADM_RELIGION,
@@ -106,8 +156,8 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 				'STU_ADM_PHONE' : $scope.Stud.STU_ADM_PHONE,
 				'STU_ADM_MOBILE' : $scope.Stud.STU_ADM_MOBILE,
 				'STU_ADM_EMAIL' : $scope.Stud.STU_ADM_EMAIL,
-				'STU_ADM_CB_COURSE' : $scope.Stud.STU_ADM_CB_COURSE,
-				'STU_ADM_CB_BATCH' : $scope.Stud.STU_ADM_CB_BATCH,
+				'STU_ADM_CB_COURSE' : $scope.getData,
+				'STU_ADM_CB_BATCH' : $scope.getBatchData,
 				'STU_ADM_CB_ROLL_NO' : $scope.Stud.STU_ADM_CB_ROLL_NO}
 		}).then(function(response){
 			//alert('Success');
@@ -116,6 +166,13 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 	}
 
 	$scope.saveStuParentDetails = function(){
+
+		var dobdate = $scope.Stud.STU_PA_DOB;
+      	var day = ('0'+(dobdate.getDate())).slice(-2);
+      	var month=('0'+(dobdate.getMonth()+1)).slice(-2);
+      	var year = dobdate.getFullYear();
+      	$scope.dobdate = day +'-'+ month +'-'+ year ;
+
 		$http({
 			method:'POST',
 			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentParentDetails',
@@ -124,7 +181,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 				 'STU_PA_FIRST_NAME' : $scope.Stud.STU_PA_FIRST_NAME,
 				  'STU_PA_LAST_NAME' :$scope.Stud.STU_PA_LAST_NAME,
 				  'STU_PA_RELATION' : $scope.Stud.STU_PA_RELATION,
-				  'STU_PA_DOB' :'30/1/2017',
+				  'STU_PA_DOB' :$scope.dobdate,
 				  'STU_PA_EDUCATION' : $scope.Stud.STU_PA_EDUCATION,
 				  'STU_PA_OCCUPATION' : $scope.Stud.STU_PA_OCCUPATION,
 				  'STU_PA_INCOME' : $scope.Stud.STU_PA_INCOME,
@@ -151,10 +208,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 	}
 
 	$scope.saveStudAddDetails = function(){
-		$http({
-			method:'POST',
-			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentPreviousEducation',
-			data: {
+		var admissionData = {
 				'STU_PRE_D_ADM_NO' : $scope.admission_no, 
 				'STU_PRE_D_INSTITUTE_NAME' : $scope.Stud.STU_PRE_D_INSTITUTE_NAME, 
 				'STU_PRE_D_COURSE' :$scope.Stud.STU_PRE_D_COURSE,
@@ -162,7 +216,30 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 				'STU_PRE_ADD_BLOOD_GROUP' : $scope.Stud.STU_PRE_ADD_BLOOD_GROUP,
 				'STU_PRE_ADD_BIRTH_PLACE' : $scope.Stud.STU_PRE_ADD_BIRTH_PLACE,
 				'STU_PRE_ADD_STUD_CATE' : $scope.Stud.STU_PRE_ADD_STUD_CATE,
-				'STU_PRE_ADD_IMAGE_PATH' : $scope.Stud.STU_PRE_ADD_IMAGE_PATH}
+				'STU_PRE_ADD_IMAGE_PATH' : $scope.Stud.STU_PRE_ADD_IMAGE_PATH
+			};
+
+			angular.forEach(admissionData, function (value, key) {
+                formdata.append(key, value);
+            });
+
+		$http({
+			method:'POST',
+			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentPreviousEducation',
+			data: formdata,
+       	 	headers: {
+                'Content-Type': undefined
+            }
+			// data: {
+			// 	'STU_PRE_D_ADM_NO' : $scope.admission_no, 
+			// 	'STU_PRE_D_INSTITUTE_NAME' : $scope.Stud.STU_PRE_D_INSTITUTE_NAME, 
+			// 	'STU_PRE_D_COURSE' :$scope.Stud.STU_PRE_D_COURSE,
+			// 	'STU_PRE_D_YEAR' : $scope.Stud.STU_PRE_D_YEAR, 
+			// 	'STU_PRE_ADD_BLOOD_GROUP' : $scope.Stud.STU_PRE_ADD_BLOOD_GROUP,
+			// 	'STU_PRE_ADD_BIRTH_PLACE' : $scope.Stud.STU_PRE_ADD_BIRTH_PLACE,
+			// 	'STU_PRE_ADD_STUD_CATE' : $scope.Stud.STU_PRE_ADD_STUD_CATE,
+			// 	'STU_PRE_ADD_IMAGE_PATH' : $scope.Stud.STU_PRE_ADD_IMAGE_PATH}
+
 		}).then(function(){
 			//alert('Success');
 		});

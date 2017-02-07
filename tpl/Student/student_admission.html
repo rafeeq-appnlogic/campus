@@ -43,7 +43,7 @@
             <label class="control-label">Admission Date</label> <span class="imp">*</span></label>
             <div class="" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dtform" is-open="opened" datepicker-options="" close-text="Close" name="STU_ADM_DT" ng-required="true">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="Stud.STU_ADM_DT" is-open="opened" datepicker-options="" close-text="Close" name="STU_ADM_DT" ng-required="true">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -105,7 +105,7 @@
             <label class="control-label ">Date of Birth</label> <span class="imp">*</span></label>
             <div class="" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-required="true" ng-model="dtform" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="STU_ADM_DOB">
+                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-required="true" ng-model="Stud.STU_ADM_DOB" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="STU_ADM_DOB">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -172,7 +172,7 @@
           <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Pincode</label>
-            <input type="text" class="form-control input-sm" name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE" placeholder="Pincode">
+            <input type="number" class="form-control input-sm" name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE" placeholder="Pincode">
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Country</label>
@@ -206,21 +206,27 @@
         <div class="row">
             <div class="form-group col-md-3">
             <label class="control-label">Class</label> <span class="imp">*</span></label>
-              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="Stud.STU_ADM_CB_COURSE" required>
+              <!-- <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="Stud.STU_ADM_CB_COURSE" required>
                   <option value="class 1">class 1</option>
                   <option value="class 2">Class 2</option>
                   <option value="class 3">Class 3</option>
-              </select>
+              </select> -->
+              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-change="GetValue(item)"  ng-model="item" ng-options="course.ACA_COU_NAME for course in rowCollectionCourse" required>
+                  <option selected disabled value="" class="ItemlineHead1"> Select Course</option>
+               </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Batch</label> <span class="imp">*</span></label>
-            <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="Stud.STU_ADM_CB_BATCH" required>
+           <!--  <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="Stud.STU_ADM_CB_BATCH" required>
                   <option value="B.Tech">B.Tech</option>
-              </select>
+              </select> -->
+               <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-change="GetBatchValue(item)"  ng-model="item" ng-options="batch.ACA_BAT_NAME for batch in rowCollectionBatch" required>
+                  <option selected disabled value="" class="ItemlineHead1"> Select Batch</option>
+               </select>
             </div>
             <div class="form-group col-md-3">
             <label class="control-label">Roll Number</label> <span class="imp">*</span></label>
-            <input type="text" name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number" required>
+            <input type="number" name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number" required>
             </div>
           </div>
          <div class="row wrapper-md">
@@ -275,12 +281,20 @@
             <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Date of Birth</label>
-              <span class="input-group">
+              <!-- <span class="input-group">
             <input type="text" class="form-control dateSet input-sm"  id="from_date" value="January 04, 2007">
             <span class="input-group-addon" >
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
-              </span>
+              </span> -->
+              <div class="" ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="Stud.STU_PA_DOB" is-open="opened" datepicker-options="" close-text="Close" name="STU_PA_DOB" ng-required="true">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
           </div>
                      
              </div>
@@ -519,14 +533,14 @@
           <div class="col-sm-3">
                 <div class="form-group">
                     <label class="control-label">Profile Image</label>
-                    <input type = "file" file-model = "myFile" name="STU_PRE_ADD_IMAGE_PATH" ng-model="Stud.STU_PRE_ADD_IMAGE_PATH"/>
+                    <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" type="file" multiple="" name="STU_PRE_ADD_IMAGE_PATH"  ng-model="Stud.STU_PRE_ADD_IMAGE_PATH" ng-files="getTheFiles($files)">
                 </div>         
           </div>
       </div>
       <br>
       <div class="col-md-4 col-md-offset-3">
-        <button class="btn btn-dark btn-sm" type="submit" ng-if="saveVal" ng-disabled="step2.$invalid" ng-click="steps.step3=true;saveStudAddDetails()">Save & Finish</button>
-        <button class="btn btn-dark btn-sm" type="submit" ng-if="updateVal" ng-click="saveStudAddDetails()">Update & Finish</button>
+        <button class="btn btn-dark btn-sm" type="submit" ng-if="saveVal" ng-disabled="step2.$invalid" ng-click="steps.step3=true;saveStudAddDetails()" ui-sref="app.Student_Details">Save & Finish</button>
+        <button class="btn btn-dark btn-sm" type="submit" ng-if="updateVal" ng-click="saveStudAddDetails()" ui-sref="app.Student_Details">Update & Finish</button>
       </div>
         <div class="row wrapper-md">
           <div class="form-group">

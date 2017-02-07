@@ -412,6 +412,10 @@ angular.module('app')
                   url: '/edit-profile',
                   templateUrl: "tpl/edit-profile.html"
                   // resolve: load( ['js/controllers/signin.js'] )
+              }).state('app.repository', { 
+                  url: '/repository',
+                  templateUrl: 'tpl/repository/repository.html',
+                  resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
               });
           function load(srcs, callback) {
             return {

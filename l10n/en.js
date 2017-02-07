@@ -21,6 +21,7 @@
     "FINANCE" : "Finance",
     "STUDENT" : "Students",
     "ACADEMICS" : "Academics",
+    "REPOSITORY" : "Repository",
     "CALENDAR" : "Calendar",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",

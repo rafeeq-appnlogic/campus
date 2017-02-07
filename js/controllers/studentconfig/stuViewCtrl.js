@@ -38,7 +38,7 @@ app.controller('stuViewCtrl', ['$scope','$rootScope','$localStorage','$location'
   }
   //----------------------------//
 
-    $http.get($rootScope.endUrl+'StudentAPI/studentDetails').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'StudentAPI/studentAdmissionView').success(function(incomingData) {
       // alert(incomingData);
         $scope.rowCollection = incomingData.message;
         console.log($scope.NoData,'check nodata');
