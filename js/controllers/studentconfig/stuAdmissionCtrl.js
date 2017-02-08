@@ -4,6 +4,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
   	$scope.Updatebutton=false;
   	$scope.saveVal=true;
   	$scope.updateVal=false;
+  	$scope.access_token=$localStorage.access_token;
 	$scope.Stud=[];
 	if($localStorage.classDetails.length != 0){
 		$scope.Savebutton=false;
@@ -82,13 +83,13 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
         });
     };
 
-    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionCourse = response.message;
           console.log($scope.rowCollectionBatch);
     });
 
-    $http.get($rootScope.endUrl+'ManageBatchModule/BatchDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageBatchModule/BatchDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
@@ -158,7 +159,8 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 				'STU_ADM_EMAIL' : $scope.Stud.STU_ADM_EMAIL,
 				'STU_ADM_CB_COURSE' : $scope.getData,
 				'STU_ADM_CB_BATCH' : $scope.getBatchData,
-				'STU_ADM_CB_ROLL_NO' : $scope.Stud.STU_ADM_CB_ROLL_NO}
+				'STU_ADM_CB_ROLL_NO' : $scope.Stud.STU_ADM_CB_ROLL_NO},
+				headers: {'access_token':$scope.access_token}
 		}).then(function(response){
 			//alert('Success');
 			$scope.admission_no=response.data.admission_no;
@@ -201,7 +203,8 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 				  'STU_PA_GA_CITY' : $scope.Stud.STU_PA_GA_CITY,
 				  'STU_PA_GA_STATE' : $scope.Stud.STU_PA_GA_STATE,
 				  'STU_PA_GA_COUNTRY' : $scope.Stud.STU_PA_GA_COUNTRY,
-				  'STU_PA_GA_PHONE1' : $scope.Stud.STU_PA_GA_PHONE1}
+				  'STU_PA_GA_PHONE1' : $scope.Stud.STU_PA_GA_PHONE1},
+				  headers: {'access_token':$scope.access_token}
 		}).then(function(){
 			//alert('Success');
 		});
@@ -228,7 +231,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 			url: $rootScope.endUrl+'StudentAPI/studentPreviousEducation',
 			data: formdata,
        	 	headers: {
-                'Content-Type': undefined
+                'Content-Type': undefined,'access_token':$scope.access_token
             }
 			// data: {
 			// 	'STU_PRE_D_ADM_NO' : $scope.admission_no, 

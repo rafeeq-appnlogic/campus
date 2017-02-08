@@ -1,5 +1,6 @@
 app.controller('createRepositoryCtrl', ['$scope','$controller','$http','$localStorage', function($scope,$controller,$http,$localStorage){
 	$scope.Study = [];
+  $scope.access_token=$localStorage.access_token;
 	var formdata = new FormData();
     $scope.getTheFiles = function ($files) {
         angular.forEach($files, function (value, key) {
@@ -7,13 +8,13 @@ app.controller('createRepositoryCtrl', ['$scope','$controller','$http','$localSt
         });
     };
 
-    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail').success(function(response){
+    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail',{headers:{'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionCourse = response.message;
           console.log($scope.rowCollectionBatch);
     });
 
-  	$http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/BatchDetail').success(function(response){
+  	$http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/BatchDetail',{headers:{'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
@@ -52,7 +53,7 @@ app.controller('createRepositoryCtrl', ['$scope','$controller','$http','$localSt
 			url:'http://192.168.1.136/smartedu/api/StudyRepoAPI/studyRepository',
 			data: formdata,
 			headers: {
-                'Content-Type': undefined
+                'Content-Type': undefined,'access_token':$scope.access_token
             }
 		}).then(function(response){
 				//alert('Success');

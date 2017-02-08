@@ -123,7 +123,7 @@ app.controller('stuViewCtrl', ['$scope','$rootScope','$localStorage','$location'
       start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
-      $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;

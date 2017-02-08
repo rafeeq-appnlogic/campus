@@ -37,6 +37,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
       $location.path($location.url());      
     }
     //----------------------------//
+    $scope.access_token=$localStorage.access_token;
 
     var id=$localStorage.Class_id;
     console.log(id,'BatchDetail');
@@ -45,6 +46,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
       method : "GET",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
       params :{ACA_COU_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     console.log(response,'tes')
         $scope.rowCollection = response.data.message;
@@ -82,7 +84,8 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
     $http({
       method : "POST",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-      data : {'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID}
+      data : {'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID},
+      headers: {'access_token':$scope.access_token}
      }).then(function mySucces(response) {
       var status=response.data.status;
       var message="Batch inserted Successfully";
@@ -117,6 +120,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
       method : "GET",
       url : $rootScope.endUrl+'ManageBatchModule/Batch',
       params :{ACA_BAT_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       console.log(response,'test');
       $scope.Batch=[];
@@ -130,7 +134,8 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
     $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-    data : {'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID}
+    data : {'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID},
+    headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     var status=response.data.status;
     var message="Batch is Updated Successfully";
@@ -159,6 +164,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
       method:"DELETE",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
       params:{ACA_BAT_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response){
       var success="success";
       var error="error";
@@ -196,6 +202,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
       method : "DELETE",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
       params : {ACA_BAT_ID : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -237,6 +244,7 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
         method : "GET",
         url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
         params :{ACA_COU_ID : id},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response, status, headers, config) {
         console.log(response);
           $scope.rowCollection = response.data.message;

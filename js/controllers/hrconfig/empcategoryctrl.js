@@ -21,6 +21,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
     $location.path($location.url());      
   }
 
+  $scope.access_token=$localStorage.access_token;
 
   var tableState = {
         sort: {},
@@ -29,7 +30,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
             start: 0
         }
     };
-    $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory',{headers:{'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -44,6 +45,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
                 url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
                 // http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory
                 params : {id : id},
+                headers:{'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
                     $scope.showMessage(data,'success');
@@ -73,7 +75,8 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       $http({
         method : "POST",
         url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
-        data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN}
+        data : { 'EMP_C_ID':user_data.EMP_C_ID,'EMP_C_NAME' : user_data.EMP_C_NAME,'EMP_C_PREFIX' : user_data.EMP_C_PREFIX,'EMP_C_ACTIVE_YN' : user_data.EMP_C_ACTIVE_YN},
+        headers:{'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.showMessage(response.data.message,'success'); 
       }, function myError(response) {
@@ -104,6 +107,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       method : "DELETE",
       url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
       params : {id : data},
+      headers:{'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -192,7 +196,7 @@ app.controller('empcategoryctrl', ['$scope', '$timeout','$http', 'editableOption
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory',{headers:{'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;

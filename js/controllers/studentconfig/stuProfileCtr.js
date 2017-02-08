@@ -14,10 +14,12 @@ app.controller('stuProfileCtr',['$scope','$http','$rootScope','$localStorage','$
  //        $scope.showMessage(message,"error");
  //        console.log(incomingData.message,'Row Data');
  //    });
+ $scope.access_token=$localStorage.access_token;
 $http({
       method : "GET",
       url : $rootScope.endUrl+'StudentAPI/studentDetails',
       params :{STU_ADM_NO: $localStorage.StdID},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       $scope.class=response.data.message[0];
     });

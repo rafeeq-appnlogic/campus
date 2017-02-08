@@ -13,9 +13,10 @@ app.controller('managestud_catctrl', ['$scope', '$timeout','$http', 'editableOpt
       }else {
         $location.path($location.url());      
       }
-
       
-    $http.get('http://localhost/smartedu/HrConfigCtrl/employeeCategory').success(function(incomingData) {
+      $scope.access_token=$localStorage.access_token;
+      
+    $http.get('http://localhost/smartedu/HrConfigCtrl/employeeCategory',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -27,6 +28,7 @@ app.controller('managestud_catctrl', ['$scope', '$timeout','$http', 'editableOpt
       method : "DELETE",
       url : "http://localhost/smartedu/HrConfigCtrl/employeeCategory",
       params : {id : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       }, function myError(response) {
     });
@@ -45,7 +47,8 @@ app.controller('managestud_catctrl', ['$scope', '$timeout','$http', 'editableOpt
       $http({
         method : "POST",
         url : "http://localhost/smartedu/HrConfigCtrl/employeeCategory",
-        data : { 'data' : user_data}
+        data : { 'data' : user_data},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
         console.log(response.data.message);
       }, function myError(response) {

@@ -192,7 +192,7 @@ angular.module('app')
               .state("app.fn-category", {
                   url: "/configcategory",
                   controller:"feecategoryctrl",
-                  templateUrl: "tpl/Finance/feecategoryview.html",
+                  templateUrl: "tpl/finance_module/feecategory.html",
                   resolve: load(['smart-table','js/controllers/finance/feecategoryctrl.js','toaster','ngBootbox'])
               })
               .state("app.fn-particularview", { 

@@ -15,7 +15,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
                 });
             };
 
-
+$scope.access_token=$localStorage.access_token;
 
   $scope.showMessage=function(data,status){
     toaster.pop(status, data);
@@ -81,7 +81,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
         // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
         data: formdata,
         headers: {
-                        'Content-Type': undefined
+                        'Content-Type': undefined,'access_token':$scope.access_token
                     }
       }).then(function mySucces(response) {
           console.log(response.data.message);
@@ -103,6 +103,7 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
       // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
       url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
       params :{id : $EMP_ID},
+      headers:{'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       // console.log(response.data.result[0],'responseresponse');
         $scope.return_id=response.data.result[0].EMP_ID;

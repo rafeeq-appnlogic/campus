@@ -14,6 +14,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
   $scope.status='';
   $scope.rowCollection = [];
   $scope.Subject = [];
+  $scope.access_token=$localStorage.access_token;
 
   $scope.selectOptionVal=[
   {value:'Main', name: 'Main'},
@@ -42,7 +43,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       method : "GET",
       // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
       url : $rootScope.endUrl+"ManageBatchModule/manageSubjectView",
-      // params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(resData) {
         console.log(resData);
         $scope.rowCollection = resData.data.message;
@@ -59,6 +60,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
                 method : "DELETE",
                 url : $rootScope.endUrl+"ManageBatchModule/SubjectDetail",
                 params : {ACA_SUB_ID : id},
+                headers: {'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                  setTimeout(function(){
                     var stat="success";
@@ -109,7 +111,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       console.log(JSON.stringify(user),"id");
     }
 
-$http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(response){
+$http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
@@ -160,6 +162,7 @@ $scope.saveSubject=function(){
       method : "GET",
       url : $rootScope.endUrl+'ManageBatchModule/SubjectDetail',
       params :{ACA_SUB_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       console.log(response,'test');
       $scope.Subject=[];
@@ -176,7 +179,8 @@ $scope.saveSubject=function(){
        $http({
         method : "POST",
         url : $rootScope.endUrl+"ManageBatchModule/SubjectDetail",
-        data : {'ACA_SUB_ID':$scope.Subject.ACA_SUB_ID,'ACA_SUB_COU_ID':$scope.getData,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN}
+        data : {'ACA_SUB_ID':$scope.Subject.ACA_SUB_ID,'ACA_SUB_COU_ID':$scope.getData,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           console.log(response.data.status);
            var stat="success";
@@ -245,6 +249,7 @@ $scope.saveSubject=function(){
       method : "DELETE",
       url : $rootScope.endUrl+"ManageBatchModule/SubjectDetail",
       params : {ACA_SUB_ID : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -340,7 +345,7 @@ $scope.saveSubject=function(){
         method : "get",
         // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
         url : $rootScope.endUrl+"ManageBatchModule/manageSubjectView",
-        // params : {ACA_COU_ID : paramOne,ACA_BAT_ID:paramTwo},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.rowCollection = response.data.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);

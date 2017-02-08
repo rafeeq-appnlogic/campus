@@ -21,8 +21,9 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
             start: 0
         }
     };
+$scope.access_token=$localStorage.access_token;
 
-  $http.get($rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission").success(function(incomingData) {
+  $http.get($rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",{headers:{'access_token':$scope.access_token}}).success(function(incomingData) {
     // console.log(incomingData.result,'incomingData.result');
         $scope.rowCollection = incomingData.result;
   });
@@ -78,6 +79,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
       method : "DELETE",
       url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
       params : {id : data},
+      headers:{'access_token':$scope.access_token}
     }).then(function mySucces(response) {
 
     }, function myError(response) {
@@ -92,6 +94,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
                 method : "DELETE",
                 url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
                 params : {id : id},
+                headers:{'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
                     $scope.showMessage('Record Deleted Successfully','success');
@@ -116,7 +119,7 @@ app.controller('empadmission_view', ['$scope', '$timeout','$http', 'toaster','$r
       length = pagination.number || 10;  // Number of entries showed per page.
       // $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get($rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission").success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",{headers:{'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           // $scope.isLoading = false;

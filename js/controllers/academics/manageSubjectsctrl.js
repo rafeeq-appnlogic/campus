@@ -13,6 +13,7 @@ app.controller('manageSubjectsctrl', ['$scope', '$timeout','$http', 'editableOpt
   $scope.data='';
   $scope.status='';
   $scope.rowCollection = [];
+  $scope.access_token=$localStorage.access_token;
 
   var tableState = {
         sort: {},
@@ -21,7 +22,7 @@ app.controller('manageSubjectsctrl', ['$scope', '$timeout','$http', 'editableOpt
             start: 0
         }
     };
-    $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
       $scope.rowCollection = incomingData.message;
       $scope.noData=false;
     });
@@ -138,7 +139,7 @@ app.controller('manageSubjectsctrl', ['$scope', '$timeout','$http', 'editableOpt
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;

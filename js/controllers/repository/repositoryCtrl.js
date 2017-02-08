@@ -13,16 +13,18 @@ app.controller('repositoryCtrl', ['$scope','$controller','$http','$rootScope','$
   if($localStorage.user_id==''){
     $location.path('signin');
   }else {
-    $location.path($location.url());      
+    $location.path($location.url());     
+
+    $scope.access_token=$localStorage.access_token; 
   }
 
-  	$http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail').success(function(response){
+  	$http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail',{headers:{'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionCourse = response.message;
           console.log($scope.rowCollectionBatch);
     });
 
-  	$http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/BatchDetail').success(function(response){
+  	$http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/BatchDetail',{headers:{'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
@@ -44,7 +46,7 @@ app.controller('repositoryCtrl', ['$scope','$controller','$http','$rootScope','$
       console.log(JSON.stringify(user),"id");
     }
 
-  	$http.get('http://192.168.1.136/smartedu/api/StudyRepoAPI/studyRepository').success(function(incomingData) {
+  	$http.get('http://192.168.1.136/smartedu/api/StudyRepoAPI/studyRepository',{headers:{'access_token':$scope.access_token}}).success(function(incomingData) {
         $scope.rowCollection = incomingData.message;
         console.log(incomingData.message[0],'check nodata');
         console.log(incomingData,'Row Data');

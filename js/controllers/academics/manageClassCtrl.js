@@ -22,6 +22,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
   $scope.saveDatas= [];
   // $scope.testForm=false;
   $scope.class.ACA_COU_ELECTIVE_SEL_YN="N";
+  $scope.access_token=$localStorage.access_token;
   var tableState = {
         sort: {},
         search: {},
@@ -38,7 +39,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
   }
   //----------------------------//
 
-    $http.get($rootScope.endUrl+'ManageClassModule/courseandbatchview').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'ManageClassModule/courseandbatchview',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
         $scope.rowCollection = incomingData.message;
         console.log($scope.NoData,'check nodata');
         console.log(incomingData,'Row Data');
@@ -81,7 +82,8 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
   $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
-    data : {'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_CRT_USER_ID':ACA_COU_CRT_USER_ID}
+    data : {'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_CRT_USER_ID':ACA_COU_CRT_USER_ID},
+    headers: {'access_token':$scope.access_token}
    }).then(function mySucces(response) {
     console.log(response);
     var status=response.data.status;
@@ -118,6 +120,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       method : "GET",
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
       params :{ACA_COU_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       $scope.class=[];
       $scope.class=response.data.message[0];
@@ -137,7 +140,8 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
     $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
-    data : {'ACA_COU_ID' : $scope.class.ACA_COU_ID,'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_UPD_USER_ID':ACA_COU_UPD_USER_ID}
+    data : {'ACA_COU_ID' : $scope.class.ACA_COU_ID,'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_UPD_USER_ID':ACA_COU_UPD_USER_ID},
+    headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     console.log(response);
     var status=response.data.status;
@@ -166,6 +170,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       method:"DELETE",
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
       params:{ACA_COU_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response){
       var success="success";
       var error="error";
@@ -203,6 +208,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       method : "DELETE",
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
       params : {ACA_COU_ID : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -239,7 +245,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
-      $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.message;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;

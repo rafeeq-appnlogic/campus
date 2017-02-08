@@ -23,6 +23,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
   // $scope.testForm=false;
   $scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN="N";
   $scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN="N";
+  $scope.access_token=$localStorage.access_token;
   var tableState = {
         sort: {},
         search: {},
@@ -38,7 +39,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     }
     //----------------------------//
 
-    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
@@ -49,7 +50,8 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     // alert("Class_id-"+id);
     $http({
       method : "GET",
-      url : $rootScope.endUrl+'ManageClassModule/courseandbatchview'
+      url : $rootScope.endUrl+'ManageClassModule/courseandbatchview',
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     console.log(response,'tes')
         $scope.rowCollection = response.data.message;
@@ -118,7 +120,8 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
         'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,
         'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,
         'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,
-        'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID}
+        'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID},
+        headers: {'access_token':$scope.access_token}
      }).then(function mySucces(response) {
       var status=response.data.status;
       var message="Batch inserted Successfully";
@@ -153,6 +156,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       method : "GET",
       url : $rootScope.endUrl+'ManageBatchModule/Batch',
       params :{ACA_BAT_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       console.log(response,'test');
       $scope.Batch=[];
@@ -174,7 +178,8 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,
       'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,
       'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,
-      'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID}
+      'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     var status=response.data.status;
     var message="Batch is Updated Successfully";
@@ -203,6 +208,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       method:"DELETE",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
       params:{ACA_BAT_ID : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response){
       var success="success";
       var error="error";
@@ -240,6 +246,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       method : "DELETE",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
       params : {ACA_BAT_ID : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -279,7 +286,8 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       $scope.isLoading = true;
       $http({
         method : "GET",
-        url : $rootScope.endUrl+'ManageClassModule/courseandbatchview'
+        url : $rootScope.endUrl+'ManageClassModule/courseandbatchview',
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response, status, headers, config) {
         console.log(response);
           $scope.rowCollection = response.data.message;
