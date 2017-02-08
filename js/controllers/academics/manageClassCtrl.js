@@ -39,7 +39,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
   }
   //----------------------------//
 
-    $http.get($rootScope.endUrl+'ManageClassModule/courseandbatchview',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+    $http.get($rootScope.endUrl+'ManageClassModule/courseViewDetails',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
         $scope.rowCollection = incomingData.message;
         console.log($scope.NoData,'check nodata');
         console.log(incomingData,'Row Data');
