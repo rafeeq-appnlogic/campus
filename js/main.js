@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope','$rootScope','$translate', '$localStorage', '$window','$location','$timeout' ,
-    function(              $scope,$rootScope,$translate,   $localStorage,   $window ,$location,$timeout) {
+  .controller('AppCtrl', ['$scope','$rootScope','$translate', '$localStorage', '$window','$location','$timeout' ,'$http',
+    function(              $scope,$rootScope,$translate,   $localStorage,   $window ,$location,$timeout,$http) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       if(isIE){ angular.element($window.document.body).addClass('ie');}
@@ -76,7 +76,12 @@ angular.module('app')
 
       $scope.logOut=function(){
         $localStorage.user_id='';
-        $location.path('login');
+		$localStorage.access_token='';
+		$http.get(" http://192.168.1.136/smartedu/api/GeneralAPI/logout")
+		.success(function(data){
+			$location.path('login');
+		}).error(function(err){
+		});
       }
 
       function isSmartDevice( $window )
