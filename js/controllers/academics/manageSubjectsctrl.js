@@ -21,7 +21,7 @@ app.controller('manageSubjectsctrl', ['$scope', '$timeout','$http', 'editableOpt
             start: 0
         }
     };
-    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassAndBatchDetail').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail').success(function(incomingData) {
       $scope.rowCollection = incomingData.message;
       $scope.noData=false;
     });
@@ -138,7 +138,7 @@ app.controller('manageSubjectsctrl', ['$scope', '$timeout','$http', 'editableOpt
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassAndBatchDetail').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail').success(function (response, status, headers, config) {
           $scope.rowCollection = response.aaData;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;

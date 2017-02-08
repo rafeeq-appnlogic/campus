@@ -37,7 +37,8 @@ app.controller('stuViewCtrl', ['$scope','$rootScope','$localStorage','$location'
     $location.path($location.url());      
   }
   //----------------------------//
-    $http.get($rootScope.endUrl+'StudentAPI/studentAdmissionView',{headers:{'access_token':$localStorage.access_token}}).success(function(incomingData) {
+    $scope.access_token=$localStorage.access_token;
+    $http.get($rootScope.endUrl+'StudentAPI/studentAdmissionView',{headers:{'access_token':$scope.access_token}}).success(function(incomingData) {
       // alert(incomingData);
         $scope.rowCollection = incomingData.message;
         console.log($scope.NoData,'check nodata');
@@ -84,6 +85,7 @@ app.controller('stuViewCtrl', ['$scope','$rootScope','$localStorage','$location'
     $http({
       method : "DELETE",
       url : $rootScope.endUrl+'ManageClassModule/ClassDetail',
+      headers:{'access_token':$scope.access_token},
       params : {ACA_COU_ID : data},
     }).then(function mySucces(response) {
     }, function myError(response) {

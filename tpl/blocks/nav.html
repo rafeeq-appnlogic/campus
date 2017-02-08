@@ -175,7 +175,7 @@
     </ul>
   </li>
 
-  <li>
+  <li ng-class="{active:$state.includes('app.acad')}">
     <a href class="auto">      
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-angle-right text"></i>
@@ -192,7 +192,7 @@
       </li>
       <li ui-sref-active="active">
         <!-- <a class="auto" ui-sref="app.Manage-Subjects"> -->
-        <a class="auto" ui-sref="app.View-Subjects">
+        <a class="auto" ui-sref="app.acad.View-Subjects">
           <span class="pull-right text-muted">
             <!-- <i class="fa fa-fw fa-angle-right text"></i>
             <i class="fa fa-fw fa-angle-down  text-warning text-active"></i> -->
@@ -229,7 +229,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.acad.timeT')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -239,7 +239,7 @@
           <span>Timetable</span>
         </a>
         <ul class="nav dker">
-          <li ui-sref-active="active">
+          <li ng-class="{active:$state.includes('app.acad.timeT.conf')}">
             <a href class="auto">
               <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -255,30 +255,30 @@
                 </a>
               </li> -->
               <li ui-sref-active="active">
-                <a ui-sref="app.fn-particularview">
+                <a ui-sref="app.acad.timeT.conf.weekdaysview">
                   <span>Create Weekdays</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <!-- <a ui-sref=""> -->
+                <a ui-sref="app.acad.timeT.conf.viewclasstime">
                   <span>Set Class Timings</span>
-                <!-- </a> -->
+                </a>
               </li>
             </ul>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Leave-Reset">
+            <a ui-sref="app.acad.timeT.manage-timetable">
               <span>Manage Timetable</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Leave-Application">
+            <a ui-sref="app.acad.timeT.view-timetable">
               <span>View Timetable</span>
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.acad.cb')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -288,17 +288,17 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Manage-Class">
+            <a ui-sref="app.acad.cb.Manage-Class">
               <span>Courses</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.manage-batchMaster">
+            <a ui-sref="app.acad.cb.manage-batchMaster">
               <span>Batches</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Calendar">
+            <a ui-sref="app.acad.cb.Calendar">
               <span>Calendar</span>
             </a>
           </li>
@@ -576,7 +576,7 @@
       </li>
     </ul>
   </li>
-  <li>
+  <li ng-class="{active:$state.includes('app.st')}">
     <a href class="auto">      
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-angle-right text"></i>
@@ -598,7 +598,7 @@
             <!-- <i class="fa fa-fw fa-angle-down text-warning text-active"></i> -->
           </span>
           <!-- <b class="label bg-warning pull-right">2</b> -->
-          <a ui-sref="app.Student_Details">
+          <a ui-sref="app.st.Student_Details">
             <span>Student Details</span>
           </a>
       </li>
@@ -606,18 +606,17 @@
           <span class="pull-right text-muted">
           </span> 
           <!-- <b class="label bg-info pull-right">2</b> -->
-          <a ui-sref="app.Student-Admission">
+          <a ui-sref="app.st.Student-Admission">
             <span>Admission</span>
           </a>
       </li>
 
-      <li>
+      <!-- <li>
           <a href class="auto">
             <span class="pull-right text-muted">
               <i class="fa fa-fw fa-angle-right text"></i>
               <i class="fa fa-fw fa-angle-down text-warning text-active"></i>
             </span>
-            <!-- <b class="label bg-info pull-right">2</b> -->
             <span>Configurations</span>
           </a>
           <ul class="nav dker">
@@ -632,7 +631,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
     </ul>
   </li>
   <li>

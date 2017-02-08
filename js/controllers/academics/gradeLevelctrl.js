@@ -32,7 +32,7 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
             start: 0
         }
     };
-    $http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/ViewBatchDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageBatchModule/ViewBatchDetail').success(function(response){
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
     });
@@ -43,7 +43,7 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
       console.log(id,"id");
       $http({
         method : "GET",
-        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/GradingSystem",
+        url : $rootScope.endUrl+"ManageBatchModule/GradingSystem",
         params : {GRA_SYS_BAT_ID : id},
       }).then(function mySucces(resData){
         console.log(resData.data.message);
@@ -62,7 +62,7 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
               var id=$scope.displayedCollection[index].GRA_SYS_ID;
               $http({
                 method : "DELETE",
-                url : "http://192.168.1.136/smartedu/api/ManageBatchModule/GradingSystem",
+                url : $rootScope.endUrl+"ManageBatchModule/GradingSystem",
                 // http://192.168.1.136/smartedu/api/HrConfigModule/employeeCategory
                 params : {GRA_SYS_ID : id},
               }).then(function mySucces(response) {
@@ -95,7 +95,7 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/GradingSystem",
+        url : $rootScope.endUrl+"ManageBatchModule/GradingSystem",
         data : { 'GRA_SYS_ID':user_data.GRA_SYS_ID,'GRA_SYS_BAT_ID':param,'GRA_SYS_NAME' : user_data.GRA_SYS_NAME,'GRA_SYS_SCORE_PER' : user_data.GRA_SYS_SCORE_PER,'GRA_SYS_SCORE_DESC' : user_data.GRA_SYS_SCORE_DESC}
       }).then(function mySucces(response) {
           $scope.displayedCollection[$index].GRA_SYS_ID=response.data.GRA_SYS_ID
@@ -135,7 +135,7 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://192.168.1.136/smartedu/api/ManageBatchModule/GradingSystem",
+      url : $rootScope.endUrl+"ManageBatchModule/GradingSystem",
       params : {id : data},
     }).then(function mySucces(response) {
     }, function myError(response) {
@@ -228,7 +228,7 @@ app.controller('gradeLevelctrl', ['$scope', '$timeout','$http', 'editableOptions
       var param= $scope.getData;
        $http({
         method : "get",
-        url : "http://192.168.1.136/smartedu/api/ManageBatchModule/GradingSystem",
+        url : $rootScope.endUrl+"ManageBatchModule/GradingSystem",
         params : {GRA_SYS_BAT_ID : param},
       }).then(function mySucces(response) {
          console.log(response.data.message,'messs');

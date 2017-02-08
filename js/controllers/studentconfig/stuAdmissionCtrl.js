@@ -1,4 +1,4 @@
-app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorage', function($scope,$controller,$http,$localStorage){
+app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http','$localStorage', function($scope,$rootScope,$controller,$http,$localStorage){
 	//console.log($scope,'ters');
 	$scope.Savebutton=true;
   	$scope.Updatebutton=false;
@@ -16,7 +16,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 		$scope.Stud.STU_ADM_ADD2=$localStorage.classDetails.STU_ADM_ADD2;
 		$scope.Stud.STU_ADM_CB_BATCH=$localStorage.classDetails.STU_ADM_CB_BATCH;
 		$scope.Stud.STU_ADM_CB_COURSE=$localStorage.classDetails.STU_ADM_CB_COURSE;
-		$scope.Stud.STU_ADM_CB_ROLL_NO=$localStorage.classDetails.STU_ADM_CB_ROLL_NO;
+		$scope.Stud.STU_ADM_CB_ROLL_NO=parseInt($localStorage.classDetails.STU_ADM_CB_ROLL_NO);
 		$scope.Stud.STU_ADM_CITY=$localStorage.classDetails.STU_ADM_CITY;
 		$scope.Stud.STU_ADM_COUNTRY=$localStorage.classDetails.STU_ADM_COUNTRY;
 		$scope.Stud.STU_ADM_CRT_DT=$localStorage.classDetails.STU_ADM_CRT_DT;
@@ -32,7 +32,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 		$scope.Stud.STU_ADM_NATIONALITY=$localStorage.classDetails.STU_ADM_NATIONALITY;
 		$scope.Stud.STU_ADM_NO=$localStorage.classDetails.STU_ADM_NO;
 		$scope.Stud.STU_ADM_PHONE=parseInt($localStorage.classDetails.STU_ADM_PHONE);
-		$scope.Stud.STU_ADM_PINCODE=$localStorage.classDetails.STU_ADM_PINCODE;
+		$scope.Stud.STU_ADM_PINCODE=parseInt($localStorage.classDetails.STU_ADM_PINCODE);
 		$scope.Stud.STU_ADM_RELIGION=$localStorage.classDetails.STU_ADM_RELIGION;
 		$scope.Stud.STU_ADM_STATE=$localStorage.classDetails.STU_ADM_STATE;
 		$scope.Stud.STU_PA_ADD1=$localStorage.classDetails.STU_PA_ADD1;
@@ -82,13 +82,13 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
         });
     };
 
-    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionCourse = response.message;
           console.log($scope.rowCollectionBatch);
     });
 
-    $http.get('http://192.168.1.136/smartedu/api/ManageBatchModule/BatchDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageBatchModule/BatchDetail').success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);
@@ -134,7 +134,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 
 		$http({
 			method:'POST',
-			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentAdmission',
+			url: $rootScope.endUrl+'StudentAPI/studentAdmission',
 			data: {
 				'STU_ADM_ID':$scope.STD_ADM_ID,
 				'STU_ADM_NO' : $scope.Stud.STU_ADM_NO, 
@@ -175,7 +175,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 
 		$http({
 			method:'POST',
-			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentParentDetails',
+			url: $rootScope.endUrl+'StudentAPI/studentParentDetails',
 			data: {
 				'STU_PA_ADM_NO' : $scope.admission_no,
 				 'STU_PA_FIRST_NAME' : $scope.Stud.STU_PA_FIRST_NAME,
@@ -225,7 +225,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$controller','$http','$localStorag
 
 		$http({
 			method:'POST',
-			url:'http://192.168.1.136/smartedu/api/StudentAPI/studentPreviousEducation',
+			url: $rootScope.endUrl+'StudentAPI/studentPreviousEducation',
 			data: formdata,
        	 	headers: {
                 'Content-Type': undefined

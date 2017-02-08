@@ -38,7 +38,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     }
     //----------------------------//
 
-    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail').success(function(response){
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail').success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionBatch = response.message;
           console.log($scope.rowCollectionBatch);

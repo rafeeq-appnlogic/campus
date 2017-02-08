@@ -285,7 +285,12 @@ angular.module('app')
                 url: "/add-donation",
                 templateUrl: "tpl/Finance/addDonation.html",
               })
-              .state("app.Student_Details", {
+
+              // Student
+              .state('app.st', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
+              .state("app.st.Student_Details", {
                 url: "/student-details",
                 controller:"stuViewCtrl",
                 templateUrl: "tpl/Student/student_details.html",
@@ -305,7 +310,7 @@ angular.module('app')
                 templateUrl: "tpl/Student/view_detailsnew.html",
                 resolve: load(['js/controllers/studentconfig/stuProfileCtr.js'])
               })
-              .state("app.Student-Admission", {
+              .state("app.st.Student-Admission", {
                 url: "/student-admission",
                 controller:"stuAdmissionCtrl",
                 templateUrl: "tpl/Student/student_admission.html",
@@ -335,28 +340,75 @@ angular.module('app')
                 url: "/apply-refundrule",
                 templateUrl: "tpl/Finance/applyFeesRefund.html",
               })
-              .state("app.Manage-Class", {
+
+              .state('app.acad', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+
+              .state('app.acad.cb', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+
+              .state('app.acad.timeT', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+
+              .state('app.acad.timeT.conf', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+
+              .state('app.acad.timeT.manage-timetable', { 
+                  url: '/Managetimetable',
+                  templateUrl: 'tpl/timetable/managetableview.html',
+              })
+              .state('app.acad.timeT.view-timetable', { 
+                  url: '/viewtimetable',
+                  templateUrl: 'tpl/timetable/viewtimetable.html',
+              })
+              .state('app.acad.timeT.conf.weekdaysview', { 
+                  url: '/weekdaysview',
+                  templateUrl: 'tpl/timetable/weekdaysview.html',
+              })
+              .state('app.acad.timeT.conf.viewclasstime', { 
+                  url: '/viewclasstime',
+                  templateUrl: 'tpl/timetable/viewclasstime.html',
+              })
+
+              .state("app.acad.cb.Manage-Class", {
                   url: "/manage-class",
                   controller:"manageClassCtrl",
                   templateUrl: "tpl/academics/manageClass.html",
                   resolve: load(['smart-table','js/controllers/academics/manageClassCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Manage-Batch", {
+              .state("app.acad.cb.Manage-Batch", {
                   url: "/manage-batch",
                   controller:"manageBatchCtrl",
                   templateUrl: "tpl/academics/manageBatch.html",
                   resolve: load(['smart-table','js/controllers/academics/manageBatchCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.manage-batchMaster", {
+              .state("app.acad.cb.manage-batchMaster", {
                   url: "/manage-batchMaster",
                   controller:"manageBatchMasterCtrl",
                   templateUrl: "tpl/academics/manageBatchMaster.html",
                   resolve: load(['smart-table','js/controllers/academics/manageBatchMasterCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Calendar", {
+              .state("app.acad.cb.Calendar", {
                 url: "/calendar",
                 templateUrl: "tpl/academics/calendar.html",
                 resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
+              })
+              .state("app.acad.Manage-Subjects", {
+                url: "/manage-subjects",
+                controller:"manageSubjectsctrl",
+                templateUrl: "tpl/academics/manageSubjects.html",
+                resolve: load(['smart-table','js/controllers/academics/manageSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
+              })
+              .state("app.acad.View-Subjects", {
+                url: "/view-subjects",
+                controller:"viewSubjectsctrl",
+                templateUrl: "tpl/academics/viewSubjects.html",
+                params:{id1:"id1"},
+                resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
                //added by gnanamani
                 .state("app.Apply-Leave", {
@@ -367,19 +419,7 @@ angular.module('app')
                 url: "/add-complaint",
                 templateUrl: "tpl/academics/addComplaint.html",
               })
-                .state("app.Manage-Subjects", {
-                url: "/manage-subjects",
-                controller:"manageSubjectsctrl",
-                templateUrl: "tpl/academics/manageSubjects.html",
-                resolve: load(['smart-table','js/controllers/academics/manageSubjectsctrl.js','xeditable','ui.bootstrap','toaster'])
-              })
-              .state("app.View-Subjects", {
-                url: "/view-subjects",
-                controller:"viewSubjectsctrl",
-                templateUrl: "tpl/academics/viewSubjects.html",
-                params:{id1:"id1"},
-                resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
-              })
+                
                .state("app.Grade-Level", {
                 url: "/grade-level",
                 controller:"gradeLevelctrl",
@@ -394,11 +434,11 @@ angular.module('app')
                 url: "/add-newexam",
                 templateUrl: "tpl/academics/addNewExam.html",
               })
-              .state('app.calendar', { 
-                  url: '/calendar',
-                  templateUrl: 'tpl/academics/app_calendar.html',
-                  resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
-              })
+              // .state('app.calendar', { 
+              //     url: '/calendar',
+              //     templateUrl: 'tpl/academics/app_calendar.html',
+              //     resolve: load(['moment','fullcalendar','ui.calendar','js/app/calendar/calendar.js'])
+              // })
               .state('login', {
                   url: '/signin',
                   templateUrl: 'tpl/page_signin.html',
@@ -469,6 +509,7 @@ angular.module('app')
                   templateUrl: 'tpl/repository/createrep.html',
                   resolve: load(['js/controllers/repository/createRepositoryCtrl.js'])
               });
+              
           function load(srcs, callback) {
             return {
                 deps: ['$ocLazyLoad', '$q',
