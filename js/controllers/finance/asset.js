@@ -1,5 +1,5 @@
-app.controller('assetctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','$location','$localStorage', 
-  function($scope, $timeout, $http, editableOptions, editableThemes,$location,$localStorage) {
+app.controller('assetctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','$location','$localStorage','$rootScope' ,
+  function($scope, $timeout, $http, editableOptions, editableThemes,$location,$localStorage,$rootScope) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -14,7 +14,9 @@ app.controller('assetctrl', ['$scope', '$timeout','$http', 'editableOptions', 'e
         $location.path($location.url());      
       }
       
-    $http.get('http://localhost/smartedu/api/FinanceModule/Asset').success(function(incomingData) {
+      $scope.access_token=$localStorage.access_token;
+
+    $http.get($rootScope.endUrl+'FinanceModule/Asset',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
       $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -24,8 +26,9 @@ app.controller('assetctrl', ['$scope', '$timeout','$http', 'editableOptions', 'e
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceModule/Asset",
+      url : $rootScope.endUrl+"FinanceModule/Asset",
       params : {id : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       }, function myError(response) {
     });
@@ -44,8 +47,9 @@ app.controller('assetctrl', ['$scope', '$timeout','$http', 'editableOptions', 'e
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceModule/Asset",
-        data : { 'FINC_AS_ID':user_data.FINC_AS_ID,'FINC_AS_TITLE' : user_data.FINC_AS_TITLE,'FINC_AS_DESC' : user_data.FINC_AS_DESC,'FINC_AS_AMT' : user_data.FINC_AS_AMT}
+        url : $rootScope.endUrl+"FinanceModule/Asset",
+        data : { 'FINC_AS_ID':user_data.FINC_AS_ID,'FINC_AS_TITLE' : user_data.FINC_AS_TITLE,'FINC_AS_DESC' : user_data.FINC_AS_DESC,'FINC_AS_AMT' : user_data.FINC_AS_AMT},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
         console.log(response.data.message);
       }, function myError(response) {

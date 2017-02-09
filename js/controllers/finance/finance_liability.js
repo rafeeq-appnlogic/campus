@@ -21,6 +21,7 @@ app.controller('liablityCtrl', ['$scope', '$timeout','$http', 'editableOptions',
     $location.path($location.url());      
   }
 
+$scope.access_token=$localStorage.access_token;
 
   var tableState = {
         sort: {},
@@ -29,7 +30,7 @@ app.controller('liablityCtrl', ['$scope', '$timeout','$http', 'editableOptions',
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/FinanceModule/liability').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceModule/liability',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -41,7 +42,7 @@ app.controller('liablityCtrl', ['$scope', '$timeout','$http', 'editableOptions',
               var id=$scope.displayedCollection[index].FINC_LI_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/FinanceModule/liability",
+                url : $rootScope.endUrl+"FinanceModule/liability",
                 params : {id : id},
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
@@ -71,8 +72,9 @@ app.controller('liablityCtrl', ['$scope', '$timeout','$http', 'editableOptions',
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceModule/liability",
-        data : { 'FINC_LI_ID':user_data.FINC_LI_ID,'FINC_LI_TITLE' : user_data.FINC_LI_TITLE,'FINC_LI_DESC' : user_data.FINC_LI_DESC,'FINC_LI_AMT' : user_data.FINC_LI_AMT}
+        url : $rootScope.endUrl+"FinanceModule/liability",
+        data : { 'FINC_LI_ID':user_data.FINC_LI_ID,'FINC_LI_TITLE' : user_data.FINC_LI_TITLE,'FINC_LI_DESC' : user_data.FINC_LI_DESC,'FINC_LI_AMT' : user_data.FINC_LI_AMT},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.showMessage(response.data.message,'success'); 
       }, function myError(response) {
@@ -101,8 +103,9 @@ app.controller('liablityCtrl', ['$scope', '$timeout','$http', 'editableOptions',
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceModule/liability",
+      url : $rootScope.endUrl+"FinanceModule/liability",
       params : {id : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -141,7 +144,7 @@ app.controller('liablityCtrl', ['$scope', '$timeout','$http', 'editableOptions',
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/FinanceModule/liability').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'FinanceModule/liability',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;          

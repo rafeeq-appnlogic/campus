@@ -28,14 +28,14 @@ $scope.access_token=$localStorage.access_token;
             start: 0
         }
     };
-    $http.get('http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceFeesModule/feesCategory',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false;
 
     // Get course Details
-    $http.get('http://192.168.1.136/smartedu/api/ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
           $scope.classList = response.message;
     });
 
@@ -47,7 +47,7 @@ $scope.access_token=$localStorage.access_token;
               var id=$scope.displayedCollection[index].FINC_S_CA_ID;
               $http({
                 method : "DELETE",
-                url : "http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory",
+                url : $rootScope.endUrl+"FinanceFeesModule/feesCategory",
                 params : {id : id},
                 headers: {'access_token':$scope.access_token}
               }).then(function mySucces(response) {
@@ -76,7 +76,7 @@ $scope.access_token=$localStorage.access_token;
     // console.log($scope.FINC_S_CA_ID,$scope.FINC_S_CA_NAME,$scope.FINC_S_CA_DESC,ClassData,'ssss');
       $http({
         method : "POST",
-        url : "http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory",
+        url : $rootScope.endUrl+"FinanceFeesModule/feesCategory",
         data : { 
           'FINC_S_CA_ID':$scope.FINC_S_CA_ID,'FINC_S_CA_NAME' : $scope.FINC_S_CA_NAME,
           'FINC_S_CA_DESC' : $scope.FINC_S_CA_DESC,'FINC_S_CA_BATCH' : $scope.FINC_S_CA_BATCH
@@ -108,7 +108,7 @@ $scope.access_token=$localStorage.access_token;
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory",
+      url : $rootScope.endUrl+"FinanceFeesModule/feesCategory",
       params : {id : data},
       headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
@@ -149,7 +149,7 @@ $scope.access_token=$localStorage.access_token;
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'FinanceFeesModule/feesCategory',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;          
@@ -176,7 +176,7 @@ $scope.access_token=$localStorage.access_token;
     $scope.buttonStatus='Update';
      $http({
       method : "GET",
-      url : 'http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory',
+      url : $rootScope.endUrl+'FinanceFeesModule/feesCategory',
       params :{id : curr_id},
       headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {

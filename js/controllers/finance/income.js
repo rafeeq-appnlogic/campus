@@ -18,7 +18,7 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
   }else {
     $location.path($location.url());      
   }
-
+$scope.access_token=$localStorage.access_token;
 
   var tableState = {
         sort: {},
@@ -27,13 +27,13 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/FinanceTxnModule/income').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false;
 
-    $http.get('http://localhost/smartedu/api/FinanceTxnModule/categoryList').success(function(response) {
+    $http.get($rootScope.endUrl+'FinanceTxnModule/categoryList',{headers: {'access_token':$scope.access_token}}).success(function(response) {
       console.log(response.result,'response');
           $scope.categoryList = response.result;
 
@@ -45,8 +45,9 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
               var id=$scope.displayedCollection[index].FINC_TXN_IN_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/FinanceTxnModule/income",
+                url : $rootScope.endUrl+"FinanceTxnModule/income",
                 params : {id : id},
+                headers: {'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
                     $scope.showMessage(data,'success');
@@ -73,13 +74,14 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
   $scope.saveIncome=function(user_data,$index){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceTxnModule/income",
+        url : $rootScope.endUrl+"FinanceTxnModule/income",
         data : { 
           'FINC_TXN_IN_ID':$scope.Inc.FINC_TXN_IN_ID,'FINC_TXN_IN_CA_ID' : $scope.Inc.FINC_TXN_IN_CA_ID,
           'FINC_TXN_IN_TITLE' : $scope.Inc.FINC_TXN_IN_TITLE,'FINC_TXN_IN_DESC' : $scope.Inc.FINC_TXN_IN_DESC,
           'FINC_TXN_IN_AMT' : $scope.Inc.FINC_TXN_IN_AMT,'FINC_TXN_IN_DT' : $scope.Inc.FINC_TXN_IN_DT,
           'FINC_TXN_IN_STATUS' : $scope.Inc.FINC_TXN_IN_STATUS
-        }
+        },
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.showMessage(response.data.message,'success'); 
       }, function myError(response) {
@@ -107,8 +109,9 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceTxnModule/income",
+      url : $rootScope.endUrl+"FinanceTxnModule/income",
       params : {id : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -147,7 +150,7 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/FinanceTxnModule/income').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;          
@@ -174,8 +177,9 @@ app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScop
     $scope.buttonStatus='Update';
      $http({
       method : "GET",
-      url : 'http://localhost/smartedu/api/FinanceTxnModule/income',
+      url : $rootScope.endUrl+'FinanceTxnModule/income',
       params :{id : curr_id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       $scope.Inc=response.data.result[0];
     });

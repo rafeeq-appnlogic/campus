@@ -18,7 +18,7 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
   }else {
     $location.path($location.url());      
   }
-
+$scope.access_token=$localStorage.access_token;
 
   var tableState = {
         sort: {},
@@ -27,14 +27,14 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/FinanceTxnModule/expense').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false;
 
     // categoryList
-    $http.get('http://localhost/smartedu/api/FinanceTxnModule/categoryList').success(function(response) {
+    $http.get($rootScope.endUrl+'FinanceTxnModule/categoryList',{headers: {'access_token':$scope.access_token}}).success(function(response) {
           $scope.categoryList = response.result;
     });
 
@@ -45,8 +45,9 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
               var id=$scope.displayedCollection[index].FINC_TXN_EX_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/FinanceTxnModule/expense",
+                url : $rootScope.endUrl+"FinanceTxnModule/expense",
                 params : {id : id},
+                headers: {'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
                     $scope.showMessage(data,'success');
@@ -74,13 +75,14 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
     console.log($scope.Exp.FINC_TXN_EX_DT,'$scope.Exp.FINC_TXN_EX_DT');
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceTxnModule/expense",
+        url : $rootScope.endUrl+"FinanceTxnModule/expense",
         data : { 
           'FINC_TXN_EX_ID':$scope.Exp.FINC_TXN_EX_ID,'FINC_TXN_EX_CA_ID' : $scope.Exp.FINC_TXN_EX_CA_ID,
           'FINC_TXN_EX_TITLE' : $scope.Exp.FINC_TXN_EX_TITLE,'FINC_TXN_EX_DESC' : $scope.Exp.FINC_TXN_EX_DESC,
           'FINC_TXN_EX_AMT' : $scope.Exp.FINC_TXN_EX_AMT,'FINC_TXN_EX_DT' : $scope.Exp.FINC_TXN_EX_DT,
           'FINC_TXN_EX_STATUS' : $scope.Exp.FINC_TXN_EX_STATUS
-        }
+        },
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.showMessage(response.data.message,'success'); 
       }, function myError(response) {
@@ -108,8 +110,9 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceTxnModule/expense",
+      url : $rootScope.endUrl+"FinanceTxnModule/expense",
       params : {id : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -148,7 +151,7 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/FinanceTxnModule/expense').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;          
@@ -175,8 +178,9 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
     $scope.buttonStatus='Update';
      $http({
       method : "GET",
-      url : 'http://localhost/smartedu/api/FinanceTxnModule/expense',
+      url : $rootScope.endUrl+'FinanceTxnModule/expense',
       params :{id : curr_id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       $scope.Exp=response.data.result[0];
     });

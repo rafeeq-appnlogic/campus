@@ -13,8 +13,9 @@ app.controller('liabilityctrl', ['$scope', '$timeout','$http', 'editableOptions'
       }else {
         $location.path($location.url());      
       }
+      $scope.access_token=$localStorage.access_token;
   
-    $http.get('http://localhost/smartedu/api/FinanceModule/liability').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceModule/liability',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
       $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -24,8 +25,9 @@ app.controller('liabilityctrl', ['$scope', '$timeout','$http', 'editableOptions'
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceModule/liability",
+      url : $rootScope.endUrl+"FinanceModule/liability",
       params : {id : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       }, function myError(response) {
     });
@@ -44,8 +46,9 @@ app.controller('liabilityctrl', ['$scope', '$timeout','$http', 'editableOptions'
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceModule/liability",
-        data : { 'FINC_LI_ID':user_data.FINC_LI_ID,'FINC_LI_TITLE' : user_data.FINC_LI_TITLE,'FINC_LI_DESC' : user_data.FINC_LI_DESC,'FINC_LI_AMT' : user_data.FINC_LI_AMT}
+        url : $rootScope.endUrl+"FinanceModule/liability",
+        data : { 'FINC_LI_ID':user_data.FINC_LI_ID,'FINC_LI_TITLE' : user_data.FINC_LI_TITLE,'FINC_LI_DESC' : user_data.FINC_LI_DESC,'FINC_LI_AMT' : user_data.FINC_LI_AMT},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
         console.log(response.data.message);
       }, function myError(response) {

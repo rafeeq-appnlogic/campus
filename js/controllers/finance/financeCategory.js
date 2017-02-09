@@ -1,5 +1,5 @@
-app.controller('financecategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','$location','$localStorage', 
-  function($scope, $timeout, $http, editableOptions, editableThemes,$location,$localStorage) {
+app.controller('financecategoryctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','$location','$localStorage','$rootScope', 
+  function($scope, $timeout, $http, editableOptions, editableThemes,$location,$localStorage,$rootScope) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -14,7 +14,9 @@ app.controller('financecategoryctrl', ['$scope', '$timeout','$http', 'editableOp
         $location.path($location.url());      
       }
 
-    $http.get('http://localhost/smartedu/api/HrConfigModule/employeeCategory').success(function(incomingData) {
+      $scope.access_token=$localStorage.access_token;
+
+    $http.get($rootScope.endUrl+'HrConfigModule/employeeCategory',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.aaData;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -24,8 +26,9 @@ app.controller('financecategoryctrl', ['$scope', '$timeout','$http', 'editableOp
     console.log(id,"id");
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
+      url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
       params : {id : id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       }, function myError(response) {
     });
@@ -46,8 +49,9 @@ app.controller('financecategoryctrl', ['$scope', '$timeout','$http', 'editableOp
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/HrConfigModule/employeeCategory",
-        data : { 'FINC_CA_ID':user_data.FINC_CA_ID,'FINC_CA_NAME' : user_data.FINC_CA_NAME,'FINC_CA_DESC' : user_data.FINC_CA_DESC,'FINC_CA_INCOME_YN' : user_data.FINC_CA_INCOME_YN}
+        url : $rootScope.endUrl+"HrConfigModule/employeeCategory",
+        data : { 'FINC_CA_ID':user_data.FINC_CA_ID,'FINC_CA_NAME' : user_data.FINC_CA_NAME,'FINC_CA_DESC' : user_data.FINC_CA_DESC,'FINC_CA_INCOME_YN' : user_data.FINC_CA_INCOME_YN},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
         console.log(response.data.message);
       }, function myError(response) {

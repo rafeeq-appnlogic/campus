@@ -95,7 +95,6 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
   $scope.saveBatch=function(){
 
       var date = $scope.Batch.ACA_BAT_START_DT;
-      alert(date);
       var day = ('0'+(date.getDate())).slice(-2);
       var month=('0'+(date.getMonth()+1)).slice(-2);
       var year = date.getFullYear();
@@ -286,7 +285,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
       $scope.isLoading = true;
       $http({
         method : "GET",
-        url : $rootScope.endUrl+'ManageClassModule/courseandbatchview',
+        url : $rootScope.endUrl+'ManageClassModule/batchview',
         headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response, status, headers, config) {
         console.log(response);

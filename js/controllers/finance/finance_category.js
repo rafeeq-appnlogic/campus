@@ -18,6 +18,7 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
     $location.path($location.url());      
   }
 
+$scope.access_token=$localStorage.access_token;
 
   var tableState = {
         sort: {},
@@ -26,7 +27,7 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/FinanceModule/category').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceModule/category',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -38,8 +39,9 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
               var id=$scope.displayedCollection[index].FINC_CA_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/FinanceModule/category",
+                url : $rootScope.endUrl+"FinanceModule/category",
                 params : {id : id},
+                headers: {'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
                     $scope.showMessage(data,'success');
@@ -63,8 +65,9 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
   $scope.saveCategory=function(user_data,$index){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceModule/category",
-        data : { 'FINC_CA_ID':$scope.FINC_CA_ID,'FINC_CA_NAME' : $scope.FINC_CA_NAME,'FINC_CA_DESC' : $scope.FINC_CA_DESC,'FINC_CA_INCOME_YN' : $scope.FINC_CA_INCOME_YN}
+        url : $rootScope.endUrl+"FinanceModule/category",
+        data : { 'FINC_CA_ID':$scope.FINC_CA_ID,'FINC_CA_NAME' : $scope.FINC_CA_NAME,'FINC_CA_DESC' : $scope.FINC_CA_DESC,'FINC_CA_INCOME_YN' : $scope.FINC_CA_INCOME_YN},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.showMessage(response.data.message,'success'); 
       }, function myError(response) {
@@ -92,8 +95,9 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceModule/category",
+      url : $rootScope.endUrl+"FinanceModule/category",
       params : {id : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -132,7 +136,7 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/FinanceModule/category').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'FinanceModule/category',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;          
@@ -159,8 +163,9 @@ app.controller('financecategory', ['$scope', '$timeout','$http', 'toaster','$roo
     $scope.buttonStatus='Update';
      $http({
       method : "GET",
-      url : 'http://localhost/smartedu/api/FinanceModule/category',
+      url : $rootScope.endUrl+'FinanceModule/category',
       params :{id : curr_id},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       console.log(response.data.result[0].FINC_CA_NAME,'response');
       $scope.FINC_CA_ID=response.data.result[0].FINC_CA_ID;

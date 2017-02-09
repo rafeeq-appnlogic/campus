@@ -21,7 +21,7 @@ app.controller('financeasset', ['$scope', '$timeout','$http', 'editableOptions',
     $location.path($location.url());      
   }
 
-
+$scope.access_token=$localStorage.access_token;
   var tableState = {
         sort: {},
         search: {},
@@ -29,7 +29,7 @@ app.controller('financeasset', ['$scope', '$timeout','$http', 'editableOptions',
             start: 0
         }
     };
-    $http.get('http://localhost/smartedu/api/FinanceModule/Asset').success(function(incomingData) {
+    $http.get($rootScope.endUrl+'FinanceModule/Asset',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -41,8 +41,9 @@ app.controller('financeasset', ['$scope', '$timeout','$http', 'editableOptions',
               var id=$scope.displayedCollection[index].FINC_AS_ID;
               $http({
                 method : "DELETE",
-                url : "http://localhost/smartedu/api/FinanceModule/Asset",
+                url : $rootScope.endUrl+"FinanceModule/Asset",
                 params : {id : id},
+                headers: {'access_token':$scope.access_token}
               }).then(function mySucces(response) {
                     var data=response.data.message.message;
                     $scope.showMessage(data,'success');
@@ -71,8 +72,9 @@ app.controller('financeasset', ['$scope', '$timeout','$http', 'editableOptions',
     setTimeout(function(){
       $http({
         method : "POST",
-        url : "http://localhost/smartedu/api/FinanceModule/Asset",
-        data : { 'FINC_AS_ID':user_data.FINC_AS_ID,'FINC_AS_TITLE' : user_data.FINC_AS_TITLE,'FINC_AS_DESC' : user_data.FINC_AS_DESC,'FINC_AS_AMT' : user_data.FINC_AS_AMT}
+        url : $rootScope.endUrl+"FinanceModule/Asset",
+        data : { 'FINC_AS_ID':user_data.FINC_AS_ID,'FINC_AS_TITLE' : user_data.FINC_AS_TITLE,'FINC_AS_DESC' : user_data.FINC_AS_DESC,'FINC_AS_AMT' : user_data.FINC_AS_AMT},
+        headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.showMessage(response.data.message,'success'); 
       }, function myError(response) {
@@ -101,8 +103,9 @@ app.controller('financeasset', ['$scope', '$timeout','$http', 'editableOptions',
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
       method : "DELETE",
-      url : "http://localhost/smartedu/api/FinanceModule/Asset",
+      url : $rootScope.endUrl+"FinanceModule/Asset",
       params : {id : data},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     }, function myError(response) {
     });
@@ -141,7 +144,7 @@ app.controller('financeasset', ['$scope', '$timeout','$http', 'editableOptions',
       length = pagination.number || 10;  // Number of entries showed per page.
       $scope.isLoading = true;
       $scope.rowCollection=[];
-      $http.get('http://localhost/smartedu/api/FinanceModule/Asset').success(function (response, status, headers, config) {
+      $http.get($rootScope.endUrl+'FinanceModule/Asset',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
           $scope.rowCollection = response.result;
           $scope.displayedCollection = [].concat($scope.rowCollection);
           $scope.isLoading = false;          

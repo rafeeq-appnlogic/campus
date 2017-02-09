@@ -11,7 +11,8 @@ app.controller('feeparticularctrl', ['$scope', '$timeout','$http', 'toaster','$r
   $scope.status='';
   $scope.rowCollection = [];
   $scope.Inc=[];
-  $scope.classList=[];
+  $scope.FeesCat=[];
+  $scope.BatchList=[];
 // url refresh
   if($localStorage.user_id==''){
     $location.path('signin');
@@ -33,9 +34,9 @@ $scope.access_token=$localStorage.access_token;
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false;
 
-    // Get course Details
-    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
-          $scope.classList = response.message;
+    // Get fees category Details
+    $http.get($rootScope.endUrl+'FinanceFeesModule/getFeesCategoryList',{headers: {'access_token':$scope.access_token}}).success(function(response){
+          $scope.FeesCat = response.message;
     });
 
 
@@ -43,7 +44,7 @@ $scope.access_token=$localStorage.access_token;
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
               $scope.isLoading = true;
-              var id=$scope.displayedCollection[index].FINC_S_CA_ID;
+              var id=$scope.displayedCollection[index].FINC_S_PA_ID;
               $http({
                 method : "DELETE",
                 url : $rootScope.endUrl+"FinanceFeesModule/particular",
@@ -79,8 +80,11 @@ $scope.access_token=$localStorage.access_token;
         method : "POST",
         url : $rootScope.endUrl+"FinanceFeesModule/particular",
         data : { 
-          'FINC_S_CA_ID':$scope.FINC_S_CA_ID,'FINC_S_CA_NAME' : $scope.FINC_S_CA_NAME,
-          'FINC_S_CA_DESC' : $scope.FINC_S_CA_DESC,'FINC_S_CA_BATCH' : $scope.FINC_S_CA_BATCH
+          'FINC_S_PA_ID':$scope.FINC_S_PA_ID,'FINC_S_PA_CA_ID' : $scope.FINC_S_PA_CA_ID,
+          'FINC_S_PA_NAME' : $scope.FINC_S_PA_NAME,'FINC_S_PA_DESC' : $scope.FINC_S_PA_DESC,
+          'FINC_S_PA_CREATE_TYPE' : $scope.FINC_S_PA_CREATE_TYPE,'FINC_S_PA_AMT' : $scope.FINC_S_PA_AMT,
+          'FINC_S_PA_STU_CATE' : $scope.FINC_S_PA_STU_CATE,'FINC_S_PA_ADM_NO' : $scope.FINC_S_PA_ADM_NO,
+          'FINC_S_PA_BATCH' : $scope.FINC_S_PA_BATCH
         },
         headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
@@ -126,7 +130,7 @@ $scope.access_token=$localStorage.access_token;
               console.log(totalLength,'totalLengthtotalLengthtotalLength');
               for(var i=0;i<totalLength;i++){
                    if ($scope.post[i]==true) {
-                      var cat_id=$scope.displayedCollection[i].FINC_S_CA_ID;
+                      var cat_id=$scope.displayedCollection[i].FINC_S_PA_ID;
                       $scope.multipleDelete(cat_id);
                    }
               }
@@ -182,10 +186,28 @@ $scope.access_token=$localStorage.access_token;
       headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       console.log(response.data.result[0],'responseEdit');
-      $scope.FINC_S_CA_ID=response.data.result[0].FINC_S_CA_ID;
-      $scope.FINC_S_CA_NAME=response.data.result[0].FINC_S_CA_NAME;
-      $scope.FINC_S_CA_DESC=response.data.result[0].FINC_S_CA_DESC;
-      $scope.FINC_S_CA_BATCH=response.data.result[0].FINC_S_CA_BATCH;
+      $scope.FINC_S_PA_ID=response.data.result[0].FINC_S_PA_ID;
+      $scope.FINC_S_PA_CA_ID=response.data.result[0].FINC_S_PA_CA_ID;
+      $scope.FINC_S_PA_NAME=response.data.result[0].FINC_S_PA_NAME;
+      $scope.FINC_S_PA_DESC=response.data.result[0].FINC_S_PA_DESC;
+      $scope.FINC_S_PA_CREATE_TYPE=response.data.result[0].FINC_S_PA_CREATE_TYPE;
+      $scope.FINC_S_PA_AMT=response.data.result[0].FINC_S_PA_AMT;
+      $scope.FINC_S_PA_STU_CATE=response.data.result[0].FINC_S_PA_STU_CATE;
+      $scope.FINC_S_PA_ADM_NO=response.data.result[0].FINC_S_PA_ADM_NO;
+      $scope.FINC_S_PA_BATCH=response.data.result[0].FINC_S_PA_BATCH;
+    });
+  }
+
+  // Get particular Batch Details
+  $scope.getBatchList=function(){
+    var selectd_Id=$scope.FINC_S_PA_CA_ID.FINC_S_CA_ID;
+    $http({
+      method : "GET",
+      url : $rootScope.endUrl+'FinanceFeesModule/getParticularBatch',
+      params :{id : selectd_Id},
+      headers: {'access_token':$scope.access_token}
+    }).then(function mySucces(response) {
+      $scope.BatchList = response.message;
     });
   }
 }]);
