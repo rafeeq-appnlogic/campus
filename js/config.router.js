@@ -513,14 +513,17 @@ angular.module('app')
 			  // added by karthik
 			  .state('app.mailTemp', {
                   url: '/page',
-                  template: '<div ui-view class="fade-in-down"></div>'
+                  template: '<div ui-view class="fade-in-down"></div>',
+				  resolve: load(['js/controllers/emailTemplate/emailTemplateCtrl.js'])
               })
 			  .state('app.mailTemp.view', {
                   url: '/Tempview',
+				  controller:"mailTempViewCtrl",
                   templateUrl: 'tpl/emailTemplate/emailTempView.html'
               })
 			  .state('app.mailTemp.create', {
                   url: '/Tempcreate',
+				  controller:"mailTempCreateCtrl",
                   templateUrl: 'tpl/emailTemplate/emailTempCreate.html'
               });
               

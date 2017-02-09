@@ -1,4 +1,4 @@
-<div ng-controller="MailNewCtrl">
+<div>
   <!-- header -->
   <div class="wrapper bg-light lter b-b">
     <div class="btn-group m-r-sm">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Content</label>
+        <label class="col-sm-2 control-label">Body</label>
         <div class="col-sm-10">
           <div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#editor">
             <div class="btn-group dropdown">
@@ -61,14 +61,14 @@
               <a class="btn btn-sm btn-default" data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)"><i class="fa text-base fa-align-justify"></i></a>
             </div>
           </div>
-          <div ui-jq="wysiwyg" class="form-control h-auto" style="min-height:200px;">
+          <div ui-jq="wysiwyg" id="editor" class="form-control h-auto" style="min-height:200px;">
             Go ahead&hellip;
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="col-lg-8 col-lg-offset-2">
-          <button class="btn btn-info w-xs">Send</button>
+          <button class="btn btn-info w-xs" ng-click="getMailto();">Submit</button>
         </div>
       </div>
     </form>
