@@ -20,6 +20,12 @@ app.controller('feeparticularctrl', ['$scope', '$timeout','$http', 'toaster','$r
     $location.path($location.url());      
   }
 
+  // $scope.studentcat=[];
+  $scope.studentcat=[
+  {id:'1',desc:'Test'},
+  {id:'2',desc:'Data'},
+  {id:'3',desc:'Demo'}
+  ];
 $scope.access_token=$localStorage.access_token;
   var tableState = {
         sort: {},
@@ -198,16 +204,15 @@ $scope.access_token=$localStorage.access_token;
     });
   }
 
-  // Get particular Batch Details
   $scope.getBatchList=function(){
-    var selectd_Id=$scope.FINC_S_PA_CA_ID.FINC_S_CA_ID;
+    var category_id=$scope.FINC_S_PA_CA_ID;
     $http({
       method : "GET",
       url : $rootScope.endUrl+'FinanceFeesModule/getParticularBatch',
-      params :{id : selectd_Id},
+      params :{id : category_id},
       headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
-      $scope.BatchList = response.message;
+      $scope.BatchList = response.data.message;
     });
   }
 }]);
