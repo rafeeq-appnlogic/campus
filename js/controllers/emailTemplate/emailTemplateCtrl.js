@@ -26,12 +26,10 @@ app.controller('mailTempViewCtrl', ['$scope','$controller','$http','$rootScope',
       console.log(JSON.stringify(user),"id");
     }
 
-    $scope.GetBatchValue = function(user){
-     // console.log(user.ACA_BAT_COU_ID);
-      $scope.getBatchData = user.ACA_BAT_ID;
-      var id = $scope.getData;
-      //alert(JSON.stringify(user))
-      console.log(JSON.stringify(user),"id");
+    $scope.editEmailTemp = function(user){
+		console.log(user.E_TEMP_ID);
+		$localStorage.emailTempId=user.E_TEMP_ID;
+		$localStorage.tempMode="edit";
     }
 
   	$http.get($rootScope.endUrl+'EmailTemplateModule/EmailTemplate',{headers:{'access_token':$scope.access_token}}).success(function(data) {
@@ -60,7 +58,7 @@ app.controller('mailTempCreateCtrl', ['$scope','$controller','$http','$rootScope
 		$location.path($location.url());
 		$scope.access_token=$localStorage.access_token; 
 	}
-
+	
 	$scope.mail = {type: '',subject: ''}
 	
 	$scope.getMailto=function(){
@@ -92,5 +90,18 @@ app.controller('mailTempCreateCtrl', ['$scope','$controller','$http','$rootScope
 		});
     }
 	
+	//Edit mode
+	
+	if($localStorage.tempMode=='edit'){
+		//alert($localStorage.emailTempId);
+		$localStorage.tempMode='add';
+		$http.get($rootScope.endUrl+'EmailTemplateModule/EmailTemplate',{params:{tempId:$localStorage.emailTempId},headers:{'access_token':$scope.access_token}}).success(function(data) {
+			console.log(data.message[0].E_TEMP_TYPE);
+			$scope.mail = {type: data.message[0].E_TEMP_TYPE,subject: data.message[0].E_TEMP_SUBJECT}
+			$('#editor').html(data.message[0].E_TEMP_BODY);
+		}).error(function(err){
+			
+		});
+	}
 	
 }]);

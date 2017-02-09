@@ -125,8 +125,7 @@
             <td>{{row.E_TEMP_CRT_DT}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
-                <a ui-sref="app.mailTemp.create" class="btn btn-sm btn-primary" ng-click="GetEmailTemp(row)"><i class="fa fa-eye"></i></a>
-                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button>
+                <a ui-sref="app.mailTemp.create" class="btn btn-sm btn-primary" ng-click="editEmailTemp(row)"><i class="fa fa-edit"></i></a>
                 <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
