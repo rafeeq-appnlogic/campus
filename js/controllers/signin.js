@@ -2,12 +2,12 @@
 
 /* Controllers */
   // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state','$localStorage','$timeout', function($scope, $http, $state,$localStorage,$timeout) {
+app.controller('SigninFormController', ['$scope', '$http', '$state','$localStorage','$timeout','$rootScope', function($scope, $http, $state,$localStorage,$timeout,$rootScope) {
     $scope.checkLogin=function(){
       $scope.authError = null;
       $http({
         method : "GET",
-        url : "http://192.168.1.136/smartedu/api/GeneralAPI/login",
+        url : $rootScope.endUrl+"GeneralAPI/login",
         params : {"USER_EMAIL": $scope.userid, "USER_PASSWORD": $scope.password},
       }).then(function(response){
         $localStorage.user_id=response.data.message[0].USER_FIRST_NAME;

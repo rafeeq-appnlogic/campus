@@ -508,6 +508,20 @@ angular.module('app')
                   controller:"createRepositoryCtrl",
                   templateUrl: 'tpl/repository/createrep.html',
                   resolve: load(['js/controllers/repository/createRepositoryCtrl.js'])
+              })
+			  
+			  // added by karthik
+			  .state('app.mailTemp', {
+                  url: '/page',
+                  template: '<div ui-view class="fade-in-down"></div>'
+              })
+			  .state('app.mailTemp.view', {
+                  url: '/Tempview',
+                  templateUrl: 'tpl/emailTemplate/emailTempView.html'
+              })
+			  .state('app.mailTemp.create', {
+                  url: '/Tempcreate',
+                  templateUrl: 'tpl/emailTemplate/emailTempCreate.html'
               });
               
           function load(srcs, callback) {

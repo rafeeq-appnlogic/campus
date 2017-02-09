@@ -77,7 +77,7 @@ angular.module('app')
       $scope.logOut=function(){
         $localStorage.user_id='';
 		$localStorage.access_token='';
-		$http.get(" http://192.168.1.136/smartedu/api/GeneralAPI/logout")
+		$http.get($rootScope.endUrl+"GeneralAPI/logout")
 		.success(function(data){
 			$location.path('login');
 		}).error(function(err){
