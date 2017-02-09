@@ -198,7 +198,7 @@ angular.module('app')
               .state("app.fn-particularview", { 
                   url: "/particularview",
                   controller:"feeparticularctrl",
-                  templateUrl: "tpl/Finance/particularview.html",
+                  templateUrl: "tpl/finance_module/feesparticular.html",
                   resolve: load(['smart-table','js/controllers/finance/feeparticularctrl.js','toaster','ngBootbox'])
               })
                .state("app.fee-discount", { 

@@ -3,11 +3,8 @@
     width: 50px;
     text-align: center;
   }
-/*  .modal-dialog{
-    width: 350px !important;
-  }*/
   .bootbox .modal-dialog{
-    width: 150px !important;
+    width: 350px !important;
     padding-top: 200px;  
   }
   .pagination li a input {
@@ -19,9 +16,6 @@
   }
   .search-field input {
     width: 100% !important;
-  }
-  .chosen-choices {
-    width: 255px;
   }
 </style>
 <div>
@@ -172,8 +166,10 @@
                 <option ng-repeat="class in classList" value="{{class.ACA_COU_ID}}">{{class.ACA_COU_NAME}}</option>
               </select> -->
 
-               <select ui-jq="chosen" multiple class="w-md" ng-model="FINC_S_CA_BATCH" ng-options="class.ACA_COU_ID as class.ACA_COU_NAME for class in classList">
-                </select>
+               <!-- <select ui-jq="chosen" multiple class="w-md" ng-model="FINC_S_CA_BATCH" ng-options="class.ACA_COU_ID as class.ACA_COU_NAME for class in classList">
+                </select> -->
+                <select class="w-md form-control" ng-model="FINC_S_CA_BATCH" ng-options="class.ACA_COU_ID as class.ACA_COU_NAME for class in classList" required>
+                </select> 
             </div>
           </div>        
           <div class="form-group">

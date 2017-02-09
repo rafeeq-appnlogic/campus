@@ -50,7 +50,7 @@ app.controller('manageBatchMasterCtrl', ['$scope','$rootScope','$localStorage','
     // alert("Class_id-"+id);
     $http({
       method : "GET",
-      url : $rootScope.endUrl+'ManageClassModule/courseandbatchview',
+      url : $rootScope.endUrl+'ManageClassModule/batchview',
       headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     console.log(response,'tes')

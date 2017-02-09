@@ -35,12 +35,9 @@ app.controller('mailTempViewCtrl', ['$scope','$controller','$http','$rootScope',
     }
 
   	$http.get($rootScope.endUrl+'EmailTemplateModule/EmailTemplate',{headers:{'access_token':$scope.access_token}}).success(function(data) {
-        $scope.rowCollection = data.message[0];
-        //console.log($scope.rowCollection,'check data');
-        //console.log(data,'Row Data');
-        // $scope.NoData=false;
+        $scope.rowCollection = data.message;
     }).error(function(err){
-        //$scope.isLoading = true;
+        $scope.isLoading = true;
         $scope.NoData = true;
         var message="No Data Found in Email Template"
         console.log($scope.NoData,'check nodata');
@@ -48,12 +45,9 @@ app.controller('mailTempViewCtrl', ['$scope','$controller','$http','$rootScope',
         console.log(err.message,'Row Data');
     });
 	setTimeout(function(){ 
-		console.log($scope.rowCollection,'rowCollection')
 		$scope.displayedCollection = [].concat($scope.rowCollection);
-		console.log($scope.displayedCollection,'data')
-	}, 1000);
-	//$scope.displayedCollection = ;
-    $scope.isLoading=false
+	    $scope.isLoading=false;
+	},700);
 
 }]);
 

@@ -71,15 +71,15 @@ $scope.access_token=$localStorage.access_token;
   };
 
   $scope.saveCategory=function($index){
-    $scope.classArray=$scope.FINC_S_CA_BATCH;
-    var ClassData=$scope.classArray.join(',');
+    // $scope.classArray=$scope.FINC_S_CA_BATCH;
+    // var ClassData=$scope.classArray.join(',');
     // console.log($scope.FINC_S_CA_ID,$scope.FINC_S_CA_NAME,$scope.FINC_S_CA_DESC,ClassData,'ssss');
       $http({
         method : "POST",
         url : "http://192.168.1.136/smartedu/api/FinanceFeesModule/feesCategory",
         data : { 
           'FINC_S_CA_ID':$scope.FINC_S_CA_ID,'FINC_S_CA_NAME' : $scope.FINC_S_CA_NAME,
-          'FINC_S_CA_DESC' : $scope.FINC_S_CA_DESC,'FINC_S_CA_BATCH' : ClassData
+          'FINC_S_CA_DESC' : $scope.FINC_S_CA_DESC,'FINC_S_CA_BATCH' : $scope.FINC_S_CA_BATCH
         },
         headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
@@ -184,10 +184,7 @@ $scope.access_token=$localStorage.access_token;
       $scope.FINC_S_CA_ID=response.data.result[0].FINC_S_CA_ID;
       $scope.FINC_S_CA_NAME=response.data.result[0].FINC_S_CA_NAME;
       $scope.FINC_S_CA_DESC=response.data.result[0].FINC_S_CA_DESC;
-      // $scope.FINC_S_CA_BATCH=131;
-      // angular.forEach(response.data.result[0].FINC_S_CA_BATCH, function(value, key) {
-      //    $scope.FINC_S_CA_BATCH.push(value);
-      // });  
+      $scope.FINC_S_CA_BATCH=response.data.result[0].FINC_S_CA_BATCH;
     });
   }
 }]);
