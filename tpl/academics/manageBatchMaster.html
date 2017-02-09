@@ -99,9 +99,9 @@
            <!--  <th>
               <st-select-distinct collection="rowCollection" predicate="ACA_BAT_NAME"></st-select-distinct>
             </th> -->
-            <!-- <th>
+            <th>
               <input st-search="'ACA_COU_NAME'" placeholder="Search for Class Name" class="input-sm form-control" type="search"/>
-            </th> -->
+            </th>
             <th>
               <input st-search="'ACA_BAT_NAME'" placeholder="Search for Batch Name" class="input-sm form-control" type="search"/>
             </th>
@@ -127,7 +127,7 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <!-- <th st-sort="ACA_COU_NAME">Course Name</th> -->
+            <th st-sort="ACA_COU_NAME">Course Name</th>
             <th st-sort="ACA_BAT_NAME">Batch Name</th>
             <th st-sort="STU_COUNT">No.Of Students</th>
             <th st-sort="ACA_BAT_START_DT">Start Date</th>
@@ -146,7 +146,7 @@
             <td>{{row.ACA_BAT_START_DT | date:'dd-MM-yyyy'}}</td>
             <td>{{row.ACA_BAT_END_DT | date:'dd-MM-yyyy'}}</td>
  -->
-            <!-- <td>{{row.ACA_COU_NAME}}</td> -->
+            <td>{{row.ACA_COU_NAME}}</td>
             <td>{{row.ACA_BAT_NAME}}</td>
             <td>{{row.STU_COUNT}}</td>
             <td>{{row.ACA_BAT_START_DT}}</td>
