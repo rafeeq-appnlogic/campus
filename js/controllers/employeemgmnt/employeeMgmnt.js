@@ -46,6 +46,7 @@ $scope.access_token=$localStorage.access_token;
   $scope.experience = '';
   $scope.totalExp = ('0Year 1Year 2Year 3Year 4Year').split(' ').map(function (totalExp) { return { abbrev: totalExp }; });
 
+
 // Insert Employee Admission Details
   $scope.saveEmployeeDetails=function(){
     var admissionData={ 
