@@ -27,24 +27,34 @@
     </div>
 </div>
 <div class="wrapper-md">
-  <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false,step4:false,step5:false,step6:false}">
-    <tab active="steps.step1" select="steps.percent=10">
-    <tab-heading><i class="fa fa-user"></i>&nbsp Student admission</tab-heading>
-      <legend>
-        Student Admission
-      </legend>
+  
+
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Student admission">
+        <md-content class="md-padding">
+
       <form name="step1" class="form-validation">
         <div class="row">
           <!-- <div class="form-group col-md-3">
               <label class="control-label ">Admission number <span class="imp">*</span></label>
                 <input type="text" class="form-control input-sm" ng-model="Stud.STU_ADM_NO" name="STU_ADM_NO" required>                
           </div> -->
-          <div class="form-group col-sm-3">
+          <!-- <div class="form-group col-sm-3">
             <div class="md-form-group float-label">
-              <!-- <input class="md-input" ng-model="user.firstName" required> -->
               <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_NO" name="STU_ADM_NO" required>
               <label>Admission number<span class="imp"> * </span></label>
             </div>
+          </div> -->
+          <div class="form-group col-sm-3">
+          <md-input-container class="md-block">
+            <label>Admission Number</label>
+            <input required name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
+            <div ng-messages="Stud.STU_ADM_NO.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
           </div>
           <!-- <div class="form-group col-md-3">
             <label class="control-label">Admission Date <span class="imp">*</span></label>
@@ -58,9 +68,10 @@
             </div>
           </div> -->
           <div class="form-group col-sm-3">
+          <br>
             <div flex-gt-xs>
-            <label>Admission Date</label>
-              <md-datepicker ng-model="Stud.STU_ADM_DT" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+            <!-- <label>Admission Date</label> -->
+              <md-datepicker ng-model="Stud.STU_ADM_DT" md-placeholder="Admission Date" md-open-on-focus></md-datepicker>
             </div>
           </div>
         </div>
@@ -358,19 +369,25 @@
             </div>
           </div>
       </form>
-    </tab>
-    
-    <tab active="steps.step2" select="steps.percent=70">
-    <tab-heading><i class="fa fa-group"></i>&nbsp Parent/Guardian details</tab-heading>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
+        </md-content>
+      </md-tab>
+      <md-tab label="Parent/Guardian Details">
+        <div class="row">
+      <div class="col-md-3">
+        <!-- <div class="form-group">
         <p></p>
             <label class="col-md-5 control-label">Student Admission number<span class="imp">*</span></label>
             <div class="col-md-7">
               <input type="text" name="STU_PA_ADM_NO" class="form-control input-sm" value="{{admission_no}}" ng-disabled=true />
             </div>
-        </div>
+        </div> -->
+        <div class="form-group">
+        <p></p>
+              <div class="md-form-group float-label">
+                <input type="number" class="form-control md-input" ng-model="Stud.STU_PA_ADM_NO" name="STU_PA_ADM_NO" required>
+                <label>Student Admission number <span class="imp">*</span></label>
+              </div>
+            </div>
       </div>
     </div><br>
     <legend>
@@ -711,13 +728,9 @@
           </div>
         </div>
         </form>
-    </tab>
-    <tab active="steps.step3" select="steps.percent=80">
-    <tab-heading><i class="fa fa-graduation-cap"></i>&nbsp Previous Educational Details</tab-heading>
-    <legend>
-      Previous Educational Details
-      </legend>
-      <div class="row">
+      </md-tab>
+      <md-tab label="Previous Educational Details">
+        <div class="row">
         <!-- <div class="col-sm-3">
           <div class="form-group">
               <label class="control-label">Institution Name</label>
@@ -825,6 +838,10 @@
             </div>
           </div>
         </div>
-    </tab>
-  </tabset>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+
+
 </div>

@@ -7,8 +7,8 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
   	$scope.access_token=$localStorage.access_token;
 
   	$scope.Stud=[];
-  	$scope.Stud.STU_ADM_DT=new Date();
-	$scope.Stud.STU_ADM_DOB=new Date();
+ //  	$scope.Stud.STU_ADM_DT=new Date();
+	// $scope.Stud.STU_ADM_DOB=new Date();
 
 	if($localStorage.classDetails.length != 0){
 		$scope.Savebutton=false;
