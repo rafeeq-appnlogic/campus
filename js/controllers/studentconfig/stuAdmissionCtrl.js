@@ -5,7 +5,11 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
   	$scope.saveVal=true;
   	$scope.updateVal=false;
   	$scope.access_token=$localStorage.access_token;
-	$scope.Stud=[];
+
+  	$scope.Stud=[];
+  	$scope.Stud.STU_ADM_DT=new Date();
+	$scope.Stud.STU_ADM_DOB=new Date();
+
 	if($localStorage.classDetails.length != 0){
 		$scope.Savebutton=false;
     	$scope.Updatebutton=true;
@@ -75,6 +79,15 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 		console.log($localStorage.classDetails);
 		$localStorage.classDetails=[];
 	}
+
+	$scope.STU_ADM_NATIONALITY = '';
+	$scope.nationality = ('Indian Australian American Srilangan Englishmen').split(' ').map(function (nation) { return { abbrev: nation }; });
+
+	$scope.STU_ADM_MOTHER_TONGUE = '';
+	$scope.mothertongue = ('Tamil English Hindi Malayalam Telugu').split(' ').map(function (lang) { return { abbrev: lang }; });
+
+	$scope.Stud.STU_ADM_COUNTRY = '';
+	$scope.countries = ('India England Australia Japan America').split(' ').map(function (country) { return { abbrev: country }; });
 
 	var formdata = new FormData();
     $scope.getTheFiles = function ($files) {
