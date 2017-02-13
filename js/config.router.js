@@ -107,7 +107,7 @@ angular.module('app')
                    templateUrl: "tpl/payroll/payslip_viewpayslipall.html"
               })
 
-                  .state("app.Emppayslip-Report", {
+              .state("app.Emppayslip-Report", {
                   url: "/emppayslip-report",
                   templateUrl: "tpl/payroll/EmpPayslipReport.html"
               })
@@ -365,13 +365,29 @@ angular.module('app')
                   url: '/viewtimetable',
                   templateUrl: 'tpl/timetable/viewtimetable.html',
               })
+              .state('app.acad.timeT.conf.classroomAlloview', { 
+                  url: '/classroomAlloview',
+                  controller:"classRoomAlloCtrl",
+                  templateUrl: 'tpl/timetable/classroomAlloview.html',
+                  resolve: load(['smart-table','js/controllers/timetable/classRoomAlloCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
               .state('app.acad.timeT.conf.weekdaysview', { 
                   url: '/weekdaysview',
+                  controller:"weekdaysviewCtrl",
                   templateUrl: 'tpl/timetable/weekdaysview.html',
+                  resolve: load(['smart-table','js/controllers/timetable/weekdaysviewCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
               .state('app.acad.timeT.conf.viewclasstime', { 
                   url: '/viewclasstime',
+                  controller:"classTimeViewCtrl",
                   templateUrl: 'tpl/timetable/viewclasstime.html',
+                  resolve: load(['smart-table','js/controllers/timetable/classTimeViewCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state('app.acad.timeT.conf.addclasstime', { 
+                  url: '/addclasstime',
+                  controller:"classTimeAddCtrl",
+                  templateUrl: 'tpl/timetable/addclasstime.html',
+                  resolve: load(['smart-table','js/controllers/timetable/classTimeAddCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
 
               .state("app.acad.cb.Manage-Class", {
@@ -525,7 +541,11 @@ angular.module('app')
                   url: '/Tempcreate',
 				  controller:"mailTempCreateCtrl",
                   templateUrl: 'tpl/emailTemplate/emailTempCreate.html'
-              });
+              })
+        .state('app.ngmaterial', {
+                  url: '/ngmaterial',
+                  templateUrl: 'tpl/material/ngmaterial.html'
+                });
               
           function load(srcs, callback) {
             return {

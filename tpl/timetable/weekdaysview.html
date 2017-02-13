@@ -1,0 +1,258 @@
+
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+
+  .bootbox .modal-dialog{
+    width: 350px !important;
+    padding-top: 200px;  
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+  .i-switch-md input:checked + i::after {
+    color: green;
+    content: "Y";
+    font-size: 15px;
+    font-style: normal;
+    margin-left: 19px;
+}
+.i-switch-md i::after {
+    color: red;
+    content: "N";
+    font-size: 15px;
+    font-style: normal;
+    text-align: center;
+    width: 22px;
+}
+.i-switch i::before {
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 30px;
+    bottom: -1px;
+    content: "";
+    left: -1px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    transition: all 0.2s ease 0s;
+}
+</style>
+<div>
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="glyphicon glyphicon-time"></i>&nbsp&nbsp<b>TimeTable</b> | Manage class timing sets</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+        <li><a href="">Elements</a></li>
+        <li class="active">Components</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <!-- <div class="panel panel-default">
+    <div class="panel-heading" style="padding:10px;">
+    <span style="font-size:18px;"><b>Class Timing Sets</b></span> 
+    <a ui-sref="app.acad.timeT.conf.addclasstime" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;"><i class="fa fa-plus"></i> &nbsp;Add Class Time</a> 
+    </div>
+    <div class="table table-responsive">
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>
+            
+            <th>
+              <input st-search="'STU_ADM_FIRST_NAME'" placeholder="Search for Name" class="input-sm form-control" type="search"/>
+            </th>
+            
+            <th></th>
+            
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="STU_ADM_FIRST_NAME">Name</th>
+            
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            
+            <td></td>
+            
+            <td style="white-space: nowrap">
+              <div class="buttons" ng-show="!rowform.$visible">
+                <a  class="btn btn-sm btn-primary" ng-click="GetStdDetail(row)"><i class="fa fa-eye"></i></a>
+                
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tbody ng-if="NoData">
+          <tr>
+            <td colspan="8" class="text-center">No Data Found !</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="4">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      </div>
+    </div> -->
+
+    <div class="panel panel-default">
+    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Class Timing Sets</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewCategory()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Class Time</button></div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr style="background-color: rgb(217,237,247)">
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox"><i></i>
+              </label>
+            </th>
+            <th>WeekDay</th>
+            <th>Class Timing Set</th>
+            <th style="width:30px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+        
+        <form editable-form name="editableForm" onaftersave="saveUser()">
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Monday</td>
+            <td><div class="form-group">
+                <div class="col-sm-9">
+                  <p class="form-control-static">
+                    <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">
+                      {{ showStatus(user) }}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </td>
+            <td>
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                  <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                    Edit
+                  </button>
+                  <!-- buttons to submit / cancel form -->
+                  <span ng-show="editableForm.$visible">
+                    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                      Save
+                    </button>
+                    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                      Cancel
+                    </button>
+                  </span>
+                </div>
+              </div>
+          </td>
+
+          </tr>
+        </form>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Tuesday</td>
+            <td>8c</td>
+            <td>Jul 22, 2013</td>
+            
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Wednesday</td>
+            <td>15c</td>
+            <td>Jul 15, 2013</td>
+            
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Thusday</td>
+            <td>4c</td>
+            <td>Jul 11, 2013</td>
+            
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Friday</td>
+            <td>4c</td>
+            <td>Jul 7, 2013</td>
+            
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Saturday</td>
+            <td>8c</td>
+            <td>Jul 3, 2013</td>
+            
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Sunday</td>
+            <td>15c</td>
+            <td>Jul 2, 2013</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+

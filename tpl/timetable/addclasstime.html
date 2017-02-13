@@ -1,0 +1,215 @@
+<style>
+.nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
+    /*background: #00acac none repeat scroll 0 0 !important;#333*/
+    background: #00ACAC none repeat scroll 0 0 !important;
+    color:#ffffff !important;
+}
+.btncolor{
+  background: #00ACAC !important;
+}
+.imp{
+   color:red !important;
+}
+</style>
+
+<div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="glyphicon glyphicon-time"></i>&nbsp&nbsp<b>TimeTable</b> | Manage class timing sets</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+        <li><a href="">Elements</a></li>
+        <li class="active">Components</li>
+      </ul>
+      </div>
+    </div>
+</div>
+<div class="wrapper-md">
+<div class="panel panel-default">
+        <div class="panel-heading font-bold">Create Class time Set</div>
+        <div class="panel-body">
+        <!-- <form role="form" class="ng-pristine ng-valid"> -->
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-8">
+            <input type="text" name="STY_REP_TITLE"  ng-model="Study.STY_REP_TITLE" class="form-control input-sm" placeholder="Class time set name">
+            </div>
+          </div>
+        </div>
+        <div>
+        <br>
+        <!-- <h5><b>Timing Details</b></h5> -->
+        <span style="font-size:18px;"><b>Timing Details</b></span>  <a data-toggle="modal" data-target="#myModal" ng-click="addNewSubject()" class="btn btn-primary btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Class Timing</a>
+        </div>
+        <hr>
+        <div class="wrapper-md" >
+            <div class="table table-responsive">
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>
+            <th>
+              <input st-search="'STU_ADM_FIRST_NAME'" placeholder="Search for Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'STU_ADM_FIRST_NAME'" placeholder="Search for Start time" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'STU_ADM_FIRST_NAME'" placeholder="Search for End time" class="input-sm form-control" type="search"/>
+            </th>
+            <!-- <th>
+              <input st-search="'STU_ADM_NO'" placeholder="Search for Admission Number" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'STU_ADM_CB_COURSE'" placeholder="Search for Course Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <st-select-distinct collection="rowCollection" predicate="STU_ADM_GENDER"></st-select-distinct>
+            </th> -->
+            <th></th>
+            <!-- <th>
+              <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
+            </th> -->
+            <!-- <th>
+              <st-select-multiple collection="rowCollection" predicate="ACA_COU_ELECTIVE_SEL_YN"></st-select-multiple>
+            </th> -->
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="STU_ADM_FIRST_NAME">Name</th>
+            <th st-sort="STU_ADM_FIRST_NAME">Start Time</th>
+            <th st-sort="STU_ADM_FIRST_NAME">End Time</th>
+            <!-- <th st-sort="STU_ADM_NO">Admission Number</th>
+            <th st-sort="STU_ADM_CB_COURSE">Course</th>
+            <th st-sort="STU_ADM_GENDER">Gender</th> -->
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <!-- <td>{{row.STU_ADM_NO}}</td>
+            <td>{{row.STU_ADM_CB_COURSE}}</td>
+            <td>{{row.STU_ADM_GENDER}}</td> -->
+            <td style="white-space: nowrap">
+              <div class="buttons" ng-show="!rowform.$visible">
+                <a  class="btn btn-sm btn-primary" ng-click="GetStdDetail(row)"><i class="fa fa-eye"></i></a>
+                <!-- <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button> -->
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tbody ng-if="NoData">
+          <tr>
+            <td colspan="8" class="text-center">No Data Found !</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="4">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      </div>
+      </div>
+
+        <br>
+       <!-- </form> -->
+      </div>
+</div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-md" style="padding-top: 87px">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+        <h4 class="modal-title" id="header">Add class timing</h4>
+        <h4 class="modal-title" ng-if="Edit" id="header">Edit class timing</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+          <form class="bs-example form-horizontal form-validation ng-pristine ng-valid" name="Form">
+            <div class="form-group">
+              <label class="col-lg-4  control-label"> Name</label>
+               <div class="col-lg-6">
+                  <input class="form-control" placeholder="Subject Name" ng-model="Subject.ACA_SUB_NAME" name="ACA_SUB_NAME" type="text" required="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4  control-label">Start Time</label>
+              <div class="col-lg-6" ng-controller="TimepickerDemoCtrl">
+                  <!-- <input class="form-control" placeholder="Subject Code" ng-model="Subject.ACA_SUB_CODE" name="ACA_SUB_CODE" type="text" required=""> -->
+                  <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4  control-label">End Time</label>
+              <div class="col-lg-6" ng-controller="TimepickerDemoCtrl">
+                  <!-- <input class="form-control" placeholder="Subject Code" ng-model="Subject.ACA_SUB_CODE" name="ACA_SUB_CODE" type="text" required=""> -->
+                  <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-offset-4 col-lg-8">
+                <button type="button" class="btn btn-sm btn-success" ng-click="saveSubject();Form.$setPristine()" data-dismiss="modal" class="close" ng-disabled="Form.$invalid" >&nbsp;Save</button>
+                  <button type="button" class="btn btn-sm btn-info" ng-click="updateSubject(row)" data-dismiss="modal" class="close" ng-if="Updatebutton" >&nbsp;Update</button>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+      </div>
+  </div>
+    </div>

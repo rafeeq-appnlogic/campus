@@ -1,0 +1,146 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+  .bootbox .modal-dialog{
+    width: 350px !important;
+  }
+</style>
+<div ng-cloak>
+
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="glyphicon glyphicon-time"></i>&nbsp&nbsp<b>TimeTable</b> | Class Room Allocation</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+        <li><a href="">Elements</a></li>
+        <li class="active">Components</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-default">
+    <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>Employee category</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewCategory()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Category</button></div>
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>
+            <th>
+              <st-select-distinct collection="rowCollection" predicate="EMP_C_NAME"></st-select-distinct>
+            </th>
+            <th>
+              <input st-search="'EMP_C_PREFIX'" placeholder="search for category prefix" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <st-select-multiple collection="rowCollection" predicate="EMP_C_ACTIVE_YN"></st-select-multiple>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="EMP_C_NAME">Class Name</th>
+            <th st-sort="EMP_C_PREFIX">Batch Name</th>
+            <th st-sort="EMP_C_ACTIVE_YN">Class Room</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="row.EMP_C_ID" ng-change="callbackfunction()"><i></i></label></td>
+            <td>
+              <!-- <span editable-text="row.EMP_C_NAME" e-name="EMP_C_NAME" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_C_NAME}}
+              </span> -->
+              <span editable-select="row.EMP_P_CATEGORY_ID" e-name="EMP_P_CATEGORY_ID" e-form="rowform" e-ng-options="s.name for s in selectCategory">
+              {{selectSlitfunction(row.EMP_P_CATEGORY_ID)}}
+              </span>
+            </td>
+            <td>
+              <!-- <span editable-text="row.EMP_C_PREFIX" e-name="EMP_C_PREFIX" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_C_PREFIX}}
+              </span> -->
+              <span editable-select="row.EMP_P_CATEGORY_ID" e-name="EMP_P_CATEGORY_ID" e-form="rowform" e-ng-options="s.name for s in selectCategory1">
+              {{selectSlitfunction1(row.EMP_P_CATEGORY_ID)}}
+              </span>
+            </td>
+            <td>
+              <span editable-text="row.EMP_C_ACTIVE_YN" e-name="EMP_C_ACTIVE_YN" e-form="rowform" onbeforesave="checkName($data, row.id)" e-required>
+                {{row.EMP_C_ACTIVE_YN}}
+              </span>
+            </td>
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form name="rowform" onbeforesave="saveUser($data, row.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == row" >
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveCategory(row,$index)" class="btn btn-sm btn-info">
+                  {{buttonStatus}}
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="removeRow(row.EMP_C_ID,$index)" class="btn btn-sm btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-sm btn-info" ng-click="rowform.$show();changeMode();"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="3">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
