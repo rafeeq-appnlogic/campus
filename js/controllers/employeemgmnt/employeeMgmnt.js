@@ -27,6 +27,24 @@ $scope.access_token=$localStorage.access_token;
   $scope.empCont=[];
   $scope.empAdd=[];
   $scope.return_id='';
+  $scope.EMP_JOIN_DT=new Date();
+
+  $scope.martial = '';
+  $scope.status = ('Single Married Divorced').split(' ').map(function (status) { return { abbrev: status }; });
+  $scope.bloodGroup = '';
+  $scope.bloodgp = ('A+ve B+ve O+ve A-ve').split(' ').map(function (bloodgp) { return { abbrev: bloodgp }; });
+  $scope.nationality = '';
+  $scope.nation = ('US Antarctica India SriLanga UK').split(' ').map(function (nation) { return { abbrev: nation }; });
+  $scope.department = '';
+  $scope.depart = ('English Hindi Science Maths Social SystemAdmin').split(' ').map(function (depart) { return { abbrev: depart }; });
+  $scope.category = '';
+  $scope.selectCat = ('Finance HumanResource Librarion Teacher SystemAdmin').split(' ').map(function (selectCat) { return { abbrev: selectCat }; });
+  $scope.position = '';
+  $scope.selectPosition = ('SystemAdmin LabAssistant').split(' ').map(function (selectPosition) { return { abbrev: selectPosition }; });
+  $scope.grade = '';
+  $scope.selectGrade = ('Grade1 Grade2 Grade3').split(' ').map(function (selectGrade) { return { abbrev: selectGrade }; });
+  $scope.experience = '';
+  $scope.totalExp = ('0Year 1Year 2Year 3Year 4Year').split(' ').map(function (totalExp) { return { abbrev: totalExp }; });
 
 // Insert Employee Admission Details
   $scope.saveEmployeeDetails=function(){
