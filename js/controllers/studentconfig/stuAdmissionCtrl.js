@@ -82,7 +82,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 
 	$scope.STU_ADM_NATIONALITY = '';
 	$scope.nationality = ('Indian Australian American Srilangan Englishmen').split(' ').map(function (nation) { return { abbrev: nation }; });
-
+console.log($scope.nationality ,'dsfgdgdfg');
 	$scope.STU_ADM_MOTHER_TONGUE = '';
 	$scope.mothertongue = ('Tamil English Hindi Malayalam Telugu').split(' ').map(function (lang) { return { abbrev: lang }; });
 
@@ -132,19 +132,19 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 		//alert($scope.STD_ADM_ID);
 		$scope.Savebutton=true;
     	$scope.Updatebutton=false;
-    	alert($scope.Stud.STU_ADM_DT);
+    	// alert($scope.Stud.STU_ADM_DT);
 
-    	var date = $scope.Stud.STU_ADM_DT;
-      	var day = ('0'+(date.getDate())).slice(-2);
-      	var month=('0'+(date.getMonth()+1)).slice(-2);
-      	var year = date.getFullYear();
-      	$scope.admdate = day +'-'+ month +'-'+ year ;
+    	// var date = $scope.Stud.STU_ADM_DT;
+     //  	var day = ('0'+(date.getDate())).slice(-2);
+     //  	var month=('0'+(date.getMonth()+1)).slice(-2);
+     //  	var year = date.getFullYear();
+     //  	$scope.admdate = day +'-'+ month +'-'+ year ;
 
-      	var dob = $scope.Stud.STU_ADM_DOB;
-      	var day = ('0'+(dob.getDate())).slice(-2);
-      	var month=('0'+(dob.getMonth()+1)).slice(-2);
-      	var year = dob.getFullYear();
-      	$scope.dobdate = day +'-'+ month +'-'+ year ;
+     //  	var dob = $scope.Stud.STU_ADM_DOB;
+     //  	var day = ('0'+(dob.getDate())).slice(-2);
+     //  	var month=('0'+(dob.getMonth()+1)).slice(-2);
+     //  	var year = dob.getFullYear();
+     //  	$scope.dobdate = day +'-'+ month +'-'+ year ;
 
 		$http({
 			method:'POST',
@@ -152,11 +152,11 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 			data: {
 				'STU_ADM_ID':$scope.STD_ADM_ID,
 				'STU_ADM_NO' : $scope.Stud.STU_ADM_NO, 
-				'STU_ADM_DT' : $scope.admdate, 
+				'STU_ADM_DT' : $scope.Stud.STU_ADM_DT, 
 				'STU_ADM_FIRST_NAME' :$scope.Stud.STU_ADM_FIRST_NAME,
 				'STU_ADM_MIDDLE_NAME' : $scope.Stud.STU_ADM_MIDDLE_NAME,
 				'STU_ADM_LAST_NAME' :$scope.Stud.STU_ADM_LAST_NAME,
-				'STU_ADM_DOB' : $scope.dobdate,
+				'STU_ADM_DOB' : $scope.Stud.STU_ADM_DOB,
 				'STU_ADM_GENDER' : $scope.Stud.STU_ADM_GENDER,
 				'STU_ADM_NATIONALITY' : $scope.Stud.STU_ADM_NATIONALITY,
 				'STU_ADM_MOTHER_TONGUE' : $scope.Stud.STU_ADM_MOTHER_TONGUE,
@@ -170,8 +170,10 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 				'STU_ADM_PHONE' : $scope.Stud.STU_ADM_PHONE,
 				'STU_ADM_MOBILE' : $scope.Stud.STU_ADM_MOBILE,
 				'STU_ADM_EMAIL' : $scope.Stud.STU_ADM_EMAIL,
-				'STU_ADM_CB_COURSE' : $scope.getData,
-				'STU_ADM_CB_BATCH' : $scope.getBatchData,
+				// 'STU_ADM_CB_COURSE' : $scope.getData,
+				// 'STU_ADM_CB_BATCH' : $scope.getBatchData,
+				'STU_ADM_CB_COURSE' : $scope.Stud.STU_ADM_CB_COURSE,
+				'STU_ADM_CB_BATCH' : $scope.Stud.STU_ADM_CB_BATCH,
 				'STU_ADM_CB_ROLL_NO' : $scope.Stud.STU_ADM_CB_ROLL_NO},
 				headers: {'access_token':$scope.access_token}
 		}).then(function(response){

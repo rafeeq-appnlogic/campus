@@ -48,13 +48,13 @@
             </div>
           </div> -->
           <div class="form-group col-sm-3">
-          <md-input-container class="md-block">
-            <label>Admission Number</label>
-            <input required name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
-            <div ng-messages="Stud.STU_ADM_NO.$error">
-              <div ng-message="required">This is required.</div>
-            </div>
-          </md-input-container>
+            <md-input-container class="md-block">
+              <label>Admission Number</label>
+              <input required name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
+              <div ng-messages="step1.STU_ADM_NO.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
           </div>
           <!-- <div class="form-group col-md-3">
             <label class="control-label">Admission Date <span class="imp">*</span></label>
@@ -93,26 +93,41 @@
           </div> -->
 
           <div class="form-group col-sm-3">
-            <div class="md-form-group float-label">
+            <!-- <div class="md-form-group float-label">
               <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_FIRST_NAME" name="STU_ADM_FIRST_NAME" required>
               <label>First Name <span class="imp"> * </span></label>
-            </div>
+            </div> -->
+            <md-input-container class="md-block">
+              <label>First Name</label>
+              <input required name="STU_ADM_FIRST_NAME" ng-model="Stud.STU_ADM_FIRST_NAME">
+              <div ng-messages="step1.STU_ADM_FIRST_NAME.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
           </div>
           <div class="form-group col-sm-3">
-            <div class="md-form-group float-label">
+            <!-- <div class="md-form-group float-label">
               <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_MIDDLE_NAME" name="STU_ADM_MIDDLE_NAME" required>
               <label>Middle Name<span class="imp"> * </span></label>
-            </div>
+            </div> -->
+            <md-input-container class="md-block">
+              <label>Middle Name</label>
+              <input name="STU_ADM_MIDDLE_NAME" ng-model="Stud.STU_ADM_MIDDLE_NAME">
+            </md-input-container>
           </div>
           <div class="form-group col-sm-3">
-            <div class="md-form-group float-label">
+            <!-- <div class="md-form-group float-label">
               <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_LAST_NAME" name="STU_ADM_LAST_NAME" required>
               <label>Last Name<span class="imp"> * </span></label>
-            </div>
+            </div> -->
+            <md-input-container class="md-block">
+              <label>Last Name</label>
+              <input name="STU_ADM_LAST_NAME" ng-model="Stud.STU_ADM_LAST_NAME">
+            </md-input-container>
           </div>
           
           <div class="form-group col-md-3">
-              <label class="control-label">Gender</label><br>
+              <!-- <label class="control-label">Gender</label><br>
               <label class="radio-inline">
                 <div class="radio">
                   <label class="i-checks">
@@ -130,7 +145,13 @@
                     Female
                   </label>
                 </div>
-              </label>
+              </label> -->
+              <br>
+              <md-radio-group layout="row" ng-model="Stud.STU_ADM_GENDER">
+                <md-radio-button value="Male" class="md-primary"> Male </md-radio-button>
+                <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
+              </md-radio-group>
+              
           </div>
           
           </div>
@@ -147,8 +168,8 @@
             </div>
           </div> -->
           <div class="form-group col-sm-3">
-            <label>Date of Birth</label>
-              <md-datepicker ng-model="Stud.STU_ADM_DOB" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+          <br>
+              <md-datepicker ng-model="Stud.STU_ADM_DOB" md-placeholder="Date of Birth" md-open-on-focus></md-datepicker>
           </div>
           
           <!-- <div class="col-sm-3">
@@ -164,13 +185,23 @@
             </div>
           </div> -->
           <div class="form-group col-md-3">
-            <md-input-container class="md-block" flex-gt-sm> 
+            <!-- <md-input-container class="md-block" flex-gt-sm> 
               <label>Nationality</label>
               <md-select ng-model="Stud.STU_ADM_NATIONALITY">
                 <md-option><em>None</em></md-option>
                 <md-option ng-repeat="nation in nationality" ng-value="nation.abbrev" ng-disabled="$index === 1">
                   {{nation.abbrev}}
                 </md-option>
+              </md-select>
+            </md-input-container> -->
+            <md-input-container class="md-block">
+              <label>Nationality</label>
+              <md-select name="STU_ADM_NATIONALITY" ng-model="Stud.STU_ADM_NATIONALITY">
+                <md-option value="Indian">India</md-option>
+                <md-option value="Australian">Australia</md-option>
+                <md-option value="American">America</md-option>
+                <md-option value="South African">South Africa</md-option>
+                <md-option value="Srilangan">Srilanga</md-option>
               </md-select>
             </md-input-container>
           </div>
@@ -185,13 +216,24 @@
                     <option value="Telugu">Telugu</option>
                     <option value="Malayalam">Malayalam</option>
                 </select> -->
-                <md-input-container class="md-block">
+                <!-- <md-input-container class="md-block">
                   <label>Mother Tongue</label>
                   <md-select ng-model="Stud.STU_ADM_MOTHER_TONGUE">
                     <md-option><em>None</em></md-option>
                     <md-option ng-repeat="lang in mothertongue" ng-value="lang.abbrev" ng-disabled="$index === 1">
                       {{lang.abbrev}}
                     </md-option>
+                  </md-select>
+                </md-input-container> -->
+                <md-input-container class="md-block">
+                  <label>Mother Tongue</label>
+                  <md-select name="STU_ADM_MOTHER_TONGUE" ng-model="Stud.STU_ADM_MOTHER_TONGUE">
+                    <md-option value="Tamil">Tamil</md-option>
+                    <md-option value="English">English</md-option>
+                    <md-option value="Hindi">Hindi</md-option>
+                    <md-option value="Kannadam">Kannadam</md-option>
+                    <md-option value="Telugu">Telugu</md-option>
+                    <md-option value="Malayalam">Malayalam</md-option>
                   </md-select>
                 </md-input-container>
               </div>
@@ -204,10 +246,14 @@
             </div>         
           </div> -->
           <div class="form-group col-sm-3">
-            <div class="md-form-group float-label">
+            <!-- <div class="md-form-group float-label">
               <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_RELIGION" name="STU_ADM_RELIGION" required>
               <label>Religion<span class="imp"></label>
-            </div>
+            </div> -->
+            <md-input-container class="md-block">
+              <label>Religion</label>
+              <input required name="STU_ADM_RELIGION" ng-model="Stud.STU_ADM_RELIGION">
+            </md-input-container>
           </div>
         </div>
         <p></p>
@@ -233,28 +279,47 @@
             <input type="text" class="form-control input-sm" name="STU_ADM_STATE" ng-model="Stud.STU_ADM_STATE" placeholder="State">
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_ADD1" name="STU_ADM_ADD1" required>
                 <label>Address Line 1 <span class="imp"> *</span></label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Address Line 1</label>
+                <input required name="STU_ADM_ADD1" ng-model="Stud.STU_ADM_ADD1">
+                <div ng-messages="step1.STU_ADM_ADD1.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_ADD2" name="STU_ADM_ADD2" required>
                 <label>Address Line 2</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Address Line 2</label>
+                <input name="STU_ADM_ADD2" ng-model="Stud.STU_ADM_ADD2">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_CITY" name="STU_ADM_CITY" required>
                 <label>City</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>City</label>
+                <input name="STU_ADM_CITY" ng-model="Stud.STU_ADM_CITY">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_ADM_STATE" name="STU_ADM_STATE" required>
                 <label>State</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>State</label>
+                <input name="STU_ADM_STATE" ng-model="Stud.STU_ADM_STATE">
+              </md-input-container>
             </div>
           </div>
           <div class="row">
@@ -263,10 +328,14 @@
             <input type="number" class="form-control input-sm" name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE" placeholder="Pincode">
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="number" class="form-control md-input" ng-model="Stud.STU_ADM_PINCODE" name="STU_ADM_PINCODE" required>
                 <label>Pincode</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Pincode</label>
+                <input name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE">
+              </md-input-container>
             </div>
             <!-- <div class="form-group col-md-3">
             <label class="control-label">Country</label>
@@ -279,13 +348,23 @@
             </select>
             </div> -->
             <div class="form-group col-md-3">
-            <md-input-container class="md-block">
+            <!-- <md-input-container class="md-block">
               <label>Country</label>
               <md-select ng-model="Stud.STU_ADM_COUNTRY">
                 <md-option><em>None</em></md-option>
                 <md-option ng-repeat="country in countries" ng-value="country.abbrev" ng-disabled="$index === 1">
                   {{country.abbrev}}
                 </md-option>
+              </md-select>
+            </md-input-container> -->
+            <md-input-container class="md-block">
+              <label>Country</label>
+              <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                <md-option value="India">India</md-option>
+                <md-option value="America">America</md-option>
+                <md-option value="Australia">Australia</md-option>
+                <md-option value="England">England</md-option>
+                <md-option value="Srilanga">Srilanga</md-option>
               </md-select>
             </md-input-container>
           </div>
@@ -298,16 +377,27 @@
             <input type="number" class="form-control input-sm" name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE" placeholder="Mobile" required>
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="number" class="form-control md-input" ng-model="Stud.STU_ADM_PHONE" name="STU_ADM_PHONE" required>
                 <label>Phone</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Phone</label>
+                <input type="number" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="number" class="form-control md-input" ng-model="Stud.STU_ADM_MOBILE" name="STU_ADM_MOBILE" required>
                 <label>Mobile <span class="imp">*</span></label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Mobile</label>
+                <input type="number" required name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE">
+                <div ng-messages="step1.STU_ADM_MOBILE.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
             </div>
           </div>
           <div class="row">
@@ -316,46 +406,78 @@
             <input type="email" class="form-control input-sm" name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" placeholder="E-mail" required>
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="email" class="form-control md-input" ng-model="Stud.STU_ADM_EMAIL" name="STU_ADM_EMAIL" required>
                 <label>E-mail <span class="imp">*</span></label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>E-mail</label>
+                <input type="email" required name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                <div ng-messages="step1.STU_ADM_EMAIL.$error" role="alert">
+                  <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">Your email must be between 10 and 100 characters long and look like an e-mail address.</div>
+                </div>
+              </md-input-container>
             </div>
           </div>
           <p></p>
         <legend>
         Class and Batch Details
       </legend>
-        <div class="row">
+        <div layout="row" layout-align="space-between center">
             <div class="form-group col-md-3">
-            <label class="control-label">Class</label> <span class="imp">*</span></label>
               <!-- <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-model="Stud.STU_ADM_CB_COURSE" required>
                   <option value="class 1">class 1</option>
                   <option value="class 2">Class 2</option>
                   <option value="class 3">Class 3</option>
               </select> -->
-              <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-change="GetValue(item)"  ng-model="item" ng-options="course.ACA_COU_NAME for course in rowCollectionCourse" required>
+              <!-- <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-change="GetValue(item)"  ng-model="item" ng-options="course.ACA_COU_NAME for course in rowCollectionCourse" required>
                   <option selected disabled value="" class="ItemlineHead1"> Select Course</option>
-               </select>
+               </select> -->
+                <md-input-container class="md-block">
+                  <label>Class</label>
+                  <md-select ng-model="Stud.STU_ADM_CB_COURSE">
+                    <md-option><em>None</em></md-option>
+                    <md-option ng-repeat="class in rowCollectionCourse" ng-value="class.ACA_COU_ID">
+                      {{class.ACA_COU_NAME}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
             </div>
             <div class="form-group col-md-3">
-            <label class="control-label">Batch</label> <span class="imp">*</span></label>
+            <!-- <label class="control-label">Batch</label> <span class="imp">*</span></label> -->
            <!--  <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_BATCH" ng-model="Stud.STU_ADM_CB_BATCH" required>
                   <option value="B.Tech">B.Tech</option>
               </select> -->
-               <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-change="GetBatchValue(item)"  ng-model="item" ng-options="batch.ACA_BAT_NAME for batch in rowCollectionBatch" required>
+               <!-- <select ui-jq="chosen" class="form-control input-sm w-full" name="STU_ADM_CB_COURSE" ng-change="GetBatchValue(item)"  ng-model="item" ng-options="batch.ACA_BAT_NAME for batch in rowCollectionBatch" required>
                   <option selected disabled value="" class="ItemlineHead1"> Select Batch</option>
-               </select>
+               </select> -->
+               <md-input-container class="md-block">
+                  <label>Batch</label>
+                  <md-select ng-model="Stud.STU_ADM_CB_BATCH">
+                    <md-option><em>None</em></md-option>
+                    <md-option ng-repeat="class in rowCollectionBatch" ng-value="class.ACA_BAT_ID">
+                      {{class.ACA_BAT_NAME}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
             </div>
             <!-- <div class="form-group col-md-3">
             <label class="control-label">Roll Number<span class="imp">*</span></label>
             <input type="number" name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO" class="form-control input-sm" placeholder="Roll Number" required>
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="number" class="form-control md-input" ng-model="Stud.STU_ADM_CB_ROLL_NO" name="STU_ADM_CB_ROLL_NO" required>
                 <label>Roll Number <span class="imp">*</span></label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+              <br>
+                <label>Roll Number</label>
+                <input type="number" required name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO">
+                <div ng-messages="step1.STU_ADM_CB_ROLL_NO.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
             </div>
           </div>
          <div class="row wrapper-md">
@@ -363,15 +485,19 @@
               <!-- <div class="m-t m-b"> -->
                 <!-- <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveStuAdmission()" ng-disabled="step1.$invalid">Save & Next</button> -->
               <!-- </div> -->
-              <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-disabled="step1.$invalid" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Savebutton">Save & Next</button>
+              <!-- <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-disabled="step1.$invalid" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Savebutton">Save & Next</button>
                 <button type="submit" class="btn btn-success btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveStuAdmission()"
-                ng-if="Updatebutton">Update & Next</button>
+                ng-if="Updatebutton">Update & Next</button> -->
+
+                <md-button type="submit" class="md-raised md-primary pull-right" ng-disabled="step1.$invalid" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Savebutton">Save & Next</md-button>
+                <md-button type="submit" class="md-raised md-primary" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Updatebutton">Update & Next</md-button>
             </div>
           </div>
       </form>
         </md-content>
       </md-tab>
       <md-tab label="Parent/Guardian Details">
+      <md-content class="md-padding">
         <div class="row">
       <div class="col-md-3">
         <!-- <div class="form-group">
@@ -383,10 +509,17 @@
         </div> -->
         <div class="form-group">
         <p></p>
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="number" class="form-control md-input" ng-model="Stud.STU_PA_ADM_NO" name="STU_PA_ADM_NO" required>
                 <label>Student Admission number <span class="imp">*</span></label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Student Admission number</label>
+                <input name="STU_PA_ADM_NO" ng-model="Stud.STU_PA_ADM_NO" disabled>
+                <div ng-messages="step1.STU_PA_ADM_NO.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
             </div>
       </div>
     </div><br>
@@ -414,40 +547,53 @@
           </div>         
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_FIRST_NAME" name="STU_PA_FIRST_NAME" required>
                 <label>First Name</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>First Name</label>
+                <input name="STU_PA_FIRST_NAME" ng-model="Stud.STU_PA_FIRST_NAME">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_LAST_NAME" name="STU_PA_LAST_NAME" required>
                 <label>Last Name</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Last Name</label>
+                <input name="STU_PA_LAST_NAME" ng-model="Stud.STU_PA_LAST_NAME">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_RELATION" name="STU_PA_RELATION" required>
                 <label>Relation</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Relation</label>
+                <input name="STU_PA_RELATION" ng-model="Stud.STU_PA_RELATION">
+              </md-input-container>
             </div>
           <div class="col-sm-3">
           <div class="form-group">
-              <label class="control-label">Date of Birth</label>
+              <br>
               <!-- <span class="input-group">
             <input type="text" class="form-control dateSet input-sm"  id="from_date" value="January 04, 2007">
             <span class="input-group-addon" >
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
               </span> -->
-              <div class="" ng-controller="DatepickerDemoCtrl">
+              <!-- <div class="" ng-controller="DatepickerDemoCtrl">
                 <div class="input-group w-md">
                   <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="Stud.STU_PA_DOB" is-open="opened" datepicker-options="" close-text="Close" name="STU_PA_DOB" ng-required="true">
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
                 </div>
-              </div>
+              </div> -->
+              <md-datepicker ng-model="Stud.STU_PA_DOB" md-placeholder="Date of Birth" md-open-on-focus></md-datepicker>
           </div>
                      
              </div>
@@ -481,28 +627,44 @@
                      
              </div> -->
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_EDUCATION" name="STU_PA_EDUCATION" required>
                 <label>Education</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Education</label>
+                <input name="STU_PA_EDUCATION" ng-model="Stud.STU_PA_EDUCATION">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_OCCUPATION" name="STU_PA_OCCUPATION" required>
                 <label>Occupation</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Occupation</label>
+                <input name="STU_PA_OCCUPATION" ng-model="Stud.STU_PA_OCCUPATION">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_INCOME" name="STU_PA_INCOME" required>
                 <label>Income</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Income</label>
+                <input name="STU_PA_INCOME" ng-model="Stud.STU_PA_INCOME">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_EMAIL" name="STU_PA_EMAIL" required>
                 <label>E-Mail</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>E-Mail</label>
+                <input type="email" name="STU_PA_EMAIL" ng-model="Stud.STU_PA_EMAIL">
+              </md-input-container>
             </div>
              
         </div>
@@ -536,35 +698,51 @@
              </div> -->
 
               <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_ADD1" name="STU_PA_ADD1" required>
                 <label>Address Line 1</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Address Line 1</label>
+                <input name="STU_PA_ADD1" ng-model="Stud.STU_PA_ADD1">
+              </md-input-container>
             </div>
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_ADD2" name="STU_PA_ADD2" required>
                 <label>Address Line 2</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Address Line 2</label>
+                <input name="STU_PA_ADD2" ng-model="Stud.STU_PA_ADD2">
+              </md-input-container>
             </div>
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_CITY" name="STU_PA_CITY" required>
                 <label>City</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>City</label>
+                <input name="STU_PA_CITY" ng-model="Stud.STU_PA_CITY">
+              </md-input-container>
             </div>
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_STATE" name="STU_PA_STATE" required>
                 <label>State</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>State</label>
+                <input name="STU_PA_STATE" ng-model="Stud.STU_PA_STATE">
+              </md-input-container>
             </div>
              
         </div>
         <div class="row">
             <div class="col-sm-3">
           <div class="form-group">
-              <label class="control-label">Country</label>
+              <!-- <label class="control-label">Country</label>
               <select name="STU_PA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="Stud.STU_PA_COUNTRY" data-style="btn-white btn-sm" >
               <option>select</option>
               <option selected>India</option>
@@ -572,7 +750,17 @@
               <option>Dubai</option>
               <option>newzland</option>
               <option>australia</option>
-            </select>
+            </select> -->
+            <md-input-container class="md-block">
+              <label>Country</label>
+              <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                <md-option value="India">India</md-option>
+                <md-option value="America">America</md-option>
+                <md-option value="Australia">Australia</md-option>
+                <md-option value="England">England</md-option>
+                <md-option value="Srilanga">Srilanga</md-option>
+              </md-select>
+            </md-input-container>
           </div>
                      
              </div>
@@ -597,22 +785,34 @@
              </div> -->
 
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_PHONE1" name="STU_PA_PHONE1" required>
                 <label>Phone 1</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Phone 1</label>
+                <input type="number" name="STU_PA_PHONE1" ng-model="Stud.STU_PA_PHONE1">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_PHONE2" name="STU_PA_PHONE2" required>
                 <label>Phone 2</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Phone 2</label>
+                <input type="number" name="STU_PA_PHONE2" ng-model="Stud.STU_PA_PHONE2">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_MOBILE" name="STU_PA_MOBILE" required>
                 <label>Mobile</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Mobile</label>
+                <input type="number" name="STU_PA_MOBILE" ng-model="Stud.STU_PA_MOBILE">
+              </md-input-container>
             </div>
         </div>
         <legend>
@@ -644,28 +844,44 @@
                 </div>
              </div> -->
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_NAME" name="STU_PA_GA_NAME" required>
                 <label>Gaurdian Name</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Gaurdian Name</label>
+                <input name="STU_PA_GA_NAME" ng-model="Stud.STU_PA_GA_NAME">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_RELATION" name="STU_PA_GA_RELATION" required>
                 <label>Relation</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Relation</label>
+                <input name="STU_PA_GA_RELATION" ng-model="Stud.STU_PA_GA_RELATION">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_ADD1" name="STU_PA_GA_ADD1" required>
                 <label>Address Line 1</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Address Line 1</label>
+                <input name="STU_PA_GA_ADD1" ng-model="Stud.STU_PA_GA_ADD1">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_ADD2" name="STU_PA_GA_ADD2" required>
                 <label>Address Line 2</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Address Line 2</label>
+                <input name="STU_PA_GA_ADD2" ng-model="Stud.STU_PA_GA_ADD2">
+              </md-input-container>
             </div>
         </div>
         <div class="row">
@@ -683,20 +899,28 @@
           </div>         
             </div> -->
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_CITY" name="STU_PA_GA_CITY" required>
                 <label>City</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>City</label>
+                <input name="STU_PA_GA_CITY" ng-model="Stud.STU_PA_GA_CITY">
+              </md-input-container>
             </div>
             <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_STATE" name="STU_PA_GA_STATE" required>
                 <label>State</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>State</label>
+                <input name="STU_PA_GA_STATE" ng-model="Stud.STU_PA_GA_STATE">
+              </md-input-container>
             </div>
             <div class="col-sm-3">
           <div class="form-group">
-              <label class="control-label">Country</label>
+              <!-- <label class="control-label">Country</label>
               <select name="STU_PA_GA_COUNTRY"  class="form-control input-sm selectpicker" ng-model="Stud.STU_PA_GA_COUNTRY" data-style="btn-white btn-sm" >
               <option>select</option>
               <option selected>India</option>
@@ -704,7 +928,17 @@
               <option>Dubai</option>
               <option>newzland</option>
               <option>australia</option>
-            </select>
+            </select> -->
+            <md-input-container class="md-block">
+              <label>Country</label>
+              <md-select name="STU_PA_GA_COUNTRY" ng-model="Stud.STU_PA_GA_COUNTRY">
+                <md-option value="India">India</md-option>
+                <md-option value="America">America</md-option>
+                <md-option value="Australia">Australia</md-option>
+                <md-option value="England">England</md-option>
+                <md-option value="Srilanga">Srilanga</md-option>
+              </md-select>
+            </md-input-container>
           </div>
                      
              </div>
@@ -715,10 +949,14 @@
           </div>         
              </div> -->
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PA_GA_PHONE1" name="STU_PA_GA_PHONE1" required>
                 <label>Phone</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Phone</label>
+                <input type="number" name="STU_PA_GA_PHONE1" ng-model="Stud.STU_PA_GA_PHONE1">
+              </md-input-container>
             </div>
         </div>
         <div class="row wrapper-md">
@@ -728,8 +966,10 @@
           </div>
         </div>
         </form>
+        </md-content>
       </md-tab>
       <md-tab label="Previous Educational Details">
+      <md-content class="md-padding">
         <div class="row">
         <!-- <div class="col-sm-3">
           <div class="form-group">
@@ -758,28 +998,44 @@
           </div>         
             </div> -->
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PRE_D_INSTITUTE_NAME" name="STU_PRE_D_INSTITUTE_NAME" required>
                 <label>Institution Name</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Institution Name</label>
+                <input name="STU_PRE_D_INSTITUTE_NAME" ng-model="Stud.STU_PRE_D_INSTITUTE_NAME">
+              </md-input-container>
             </div>
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PRE_D_COURSE" name="STU_PRE_D_COURSE" required>
                 <label>Class</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Class</label>
+                <input name="STU_PRE_D_COURSE" ng-model="Stud.STU_PRE_D_COURSE">
+              </md-input-container>
             </div>
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PRE_D_YEAR" name="STU_PRE_D_YEAR" required>
                 <label>Year</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Year</label>
+                <input name="STU_PRE_D_YEAR" ng-model="Stud.STU_PRE_D_YEAR">
+              </md-input-container>
             </div>
              <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PRE_D_YEARS" name="STU_PRE_D_YEARS" required>
                 <label>Total marks</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Total marks</label>
+                <input name="STU_PRE_D_YEARS" ng-model="Stud.STU_PRE_D_YEARS">
+              </md-input-container>
             </div>
         </div>
         <legend>
@@ -787,7 +1043,7 @@
         </legend>
         <div class="row">
             <div class="form-group col-md-3">
-              <label class="control-label">Blood group</label>
+              <!-- <label class="control-label">Blood group</label>
               <select class="form-control selectpicker input-sm" name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP" data-live-search="true" data-style="btn-white btn-sm" >
                 <option>UnKnown</option>
                 <option >A+</option>
@@ -795,7 +1051,17 @@
                 <option >A1+</option>
                 <option >A1-</option>
                 <option >B+</option>
-              </select>
+              </select> -->
+              <md-input-container class="md-block">
+                <label>Blood group</label>
+                <md-select name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP">
+                  <md-option value="A+">A+</md-option>
+                  <md-option value="A-">A-</md-option>
+                  <md-option value="A1+">A1+</md-option>
+                  <md-option value="A1-">A1-</md-option>
+                  <md-option value="O+">O+</md-option>
+                </md-select>
+              </md-input-container>
             </div>
             <!-- <div class="col-sm-3">
                 <div class="form-group">
@@ -804,19 +1070,30 @@
                 </div>         
           </div> -->
           <div class="form-group col-sm-3">
-              <div class="md-form-group float-label">
+              <!-- <div class="md-form-group float-label">
                 <input type="text" class="form-control md-input" ng-model="Stud.STU_PRE_ADD_BIRTH_PLACE" name="STU_PRE_ADD_BIRTH_PLACE" required>
                 <label>Birth Place</label>
-              </div>
+              </div> -->
+              <md-input-container class="md-block">
+                <label>Birth Place</label>
+                <input name="STU_PRE_ADD_BIRTH_PLACE" ng-model="Stud.STU_PRE_ADD_BIRTH_PLACE">
+              </md-input-container>
             </div>
           <div class="col-sm-3">
             <div class="form-group">
-              <label class="control-label">Category</label>
+             <!--  <label class="control-label">Category</label>
               <select name="STU_PRE_ADD_STUD_CATE"  class="form-control input-sm selectpicker" ng-model="Stud.STU_PRE_ADD_STUD_CATE" data-style="btn-white btn-sm" >
               <option>select a Category</option>
               <option>Term 1 Fee</option>
               <option>fee</option>
-                </select>
+                </select> -->
+              <md-input-container class="md-block">
+                <label>Category</label>
+                <md-select name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP">
+                  <md-option value="Term 1 Fee">Term 1 Fee</md-option>
+                  <md-option value="Fee-">Fee</md-option>
+                </md-select>
+              </md-input-container>
             </div>
           </div>
           <div class="col-sm-3">
@@ -838,6 +1115,7 @@
             </div>
           </div>
         </div>
+        </md-content>
       </md-tab>
     </md-tabs>
   </md-content>

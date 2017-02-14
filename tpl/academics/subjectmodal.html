@@ -1,0 +1,99 @@
+<style>
+md-dialog{
+  max-width: 35% !important;
+  /*max-height: 103% !important;*/
+}
+md-input-container {
+    margin: 26px 0 0 !important;
+}
+.m-b {
+    margin-bottom: 0px !important;
+}
+</style>
+
+<md-dialog aria-label="Mango (Fruit)">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 ng-if="Save">Add Subject</h4>
+        <h4 ng-if="Edit">Edit Subject</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="col-md-10 col-md-offset-1">
+        <!-- <md-input-container class="md-block">
+          <label>Country</label>
+          <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+            <md-option value="India">India</md-option>
+            <md-option value="America">America</md-option>
+            <md-option value="Australia">Australia</md-option>
+            <md-option value="England">England</md-option>
+            <md-option value="Srilanga">Srilanga</md-option>
+          </md-select>
+        </md-input-container> -->
+        <md-input-container class="md-block">
+          <label>Class</label>
+          <md-select ng-model="Subject.ACA_SUB_COU_ID">
+            <md-option><em>None</em></md-option>
+            <md-option ng-repeat="class in rowCollectionCourse" ng-value="class.ACA_COU_ID">
+              {{class.ACA_COU_NAME}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div class="col-md-10 col-md-offset-1">
+        <md-input-container class="md-block">
+          <label>Subject Name</label>
+          <input required name="ACA_SUB_NAME" ng-model="Subject.ACA_SUB_NAME">
+          <div ng-messages="Form.ACA_SUB_NAME.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div class="col-md-10 col-md-offset-1">
+        <md-input-container class="md-block">
+          <label>Subject Code</label>
+          <input name="ACA_SUB_CODE" ng-model="Subject.ACA_SUB_CODE">
+        </md-input-container>
+      </div>
+      <div class="col-md-10 col-md-offset-1">
+        <md-input-container class="md-block">
+          <label>Subject Type</label>
+          <md-select name="ACA_SUB_ELECT_YN" ng-model="Subject.ACA_SUB_ELECT_YN">
+            <md-option value="Main">Main</md-option>
+            <md-option value="Elective">Elective</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button> -->
+      <span flex></span>
+      <div class="m-b">
+      <!-- <md-button ng-click="cancel()" class="md-accent md-raised">
+       Cancel
+      </md-button> -->
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveSubject();Form.$setPristine()" ng-disabled="Form.$invalid" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="">
+      &nbsp Save &nbsp
+      <div class="md-ripple-container" style=""></div>
+      </button>
+      <!-- <md-button ng-click="saveSubject();Form.$setPristine()" ng-disabled="Form.$invalid" class="md-primary md-raised">
+        Save
+      </md-button> -->
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+

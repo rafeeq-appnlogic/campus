@@ -35,8 +35,11 @@
     <div class="panel panel-default">
     <!-- <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewSubject()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Subject</button></div> -->
 
-<div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <a data-toggle="modal" data-target="#myModal" ng-click="addNewSubject()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
-    <i class="fa fa-plus"></i> &nbsp;Add Subject</a></div>
+<div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <!-- <a data-toggle="modal" data-target="#myModal" ng-click="addNewSubject()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Subject</a> -->
+    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event)">
+      <i class="fa fa-plus"></i> &nbsp;Add Subject
+    </md-button></div>
 
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
       <tr>
@@ -125,8 +128,18 @@
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                 <!-- <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary" ng-click="GetBatchView(row)"><i class="glyphicon glyphicon-file"></i></a> -->
-                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditSubject(row)"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" ng-click="deleteData(row)"><i class="fa fa-trash-o"></i></button>
+                <!-- <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditSubject(row)"><i class="fa fa-edit"></i></button> -->
+                <!-- <md-button class="md-btn md-fab m-b indigo" ng-click="showAdvanced($event)">
+                  <i class="mdi-editor-mode-edit i-24"></i>
+                </md-button> -->
+                <button class="md-btn md-fab m-b indigo" ng-click="EditSubject(row)" md-ink-ripple="">
+                <i class="mdi-editor-mode-edit i-24"></i>
+                <div class="md-ripple-container" style=""></div></button>
+                <button class="md-btn md-fab m-b pink" ng-click="deleteData(row)" md-ink-ripple="">
+                <i class="mdi-action-delete i-24"></i>
+                <div class="md-ripple-container" style=""></div>
+                </button>
+                <!-- <button class="btn btn-sm btn-danger" ng-click="deleteData(row)"><i class="fa fa-trash-o"></i></button> -->
               </div>  
             </td>
           </tr>

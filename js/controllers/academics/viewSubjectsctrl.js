@@ -1,5 +1,5 @@
-app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$localStorage','$location','$ngBootbox','$rootScope',
-  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$localStorage,$location,$ngBootbox,$rootScope) {
+app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptions', 'editableThemes','toaster','$localStorage','$location','$ngBootbox','$rootScope','$mdDialog',
+  function($scope, $timeout, $http, editableOptions, editableThemes,toaster,$localStorage,$location,$ngBootbox,$rootScope,$mdDialog) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -80,14 +80,6 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
                  });
   }
   $scope.addNewSubject = function() {
-    // $scope.buttonStatus='Save';
-    // $scope.inserted = {
-    //   ACA_SUB_ID: null,
-    //   ACA_SUB_NAME: null,
-    //   ACA_SUB_CODE: null,
-    //   ACA_SUB_MAXCLASS_WEEK: null,
-    //   ACA_SUB_ASL_SUB_YN : null
-    // };
     $scope.Save=true;
     $scope.Edit=false;
     $scope.subject=true;
@@ -102,6 +94,93 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     };
     //$scope.displayedCollection.push($scope.inserted);
   };
+
+  $scope.showAdvanced = function(ev) {
+
+    $mdDialog.show({
+     controller: DialogController,
+      templateUrl: 'tpl/academics/subjectmodal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
+
+  function DialogController($scope, $mdDialog) {
+
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionCourse = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+    $scope.Save=true;
+    $scope.Edit=false;
+    $scope.subject=true;
+    $scope.Savebutton=true;
+    $scope.Updatebutton=false;
+    $scope.Subject = {
+      ACA_SUB_ID:null,
+      ACA_SUB_NAME:null,
+      ACA_SUB_CODE:null,
+      ACA_SUB_ELECT_YN:null,
+      ACA_SUB_COU_ID:null
+    };
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
+    $scope.saveSubject=function(){
+    $scope.isLoading = true;
+    // var paramOne = $localStorage.ACA_COU_ID;
+    // var paramTwo = $localStorage.ACA_BAT_ID;
+    //alert(JSON>stringify(user_data))
+    setTimeout(function(){
+       $http({
+        method : "POST",
+        url : $rootScope.endUrl+"ManageBatchModule/SubjectDetail",
+        headers: {'access_token':$scope.access_token},
+        data : {'ACA_SUB_COU_ID':$scope.getData,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN}
+      }).then(function mySucces(response) {
+          console.log(response.data.status);
+           var stat="success";
+          var stat1="error";
+          var success="subject inserted Successfully";
+          var failed="subject insert Failed";
+          if(response.data.status==true){
+            $scope.showMessage(success,stat);
+          }else{
+            $scope.showMessage(failed,stat1);
+          }
+      });/* function myError(response) {
+        $scope.showMessage(response.data.message,'error'); 
+      });*/
+      setTimeout(function(){
+        $scope.getMasterJobs(tableState);
+        $scope.isLoading = false;
+      },500)      
+    },200);
+    
+  }
+
+  }
+
 
    $scope.GetValue = function(user){
      // console.log(user.ACA_BAT_COU_ID);
