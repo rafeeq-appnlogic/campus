@@ -1316,7 +1316,7 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
           angular.element(body).css({
             position: 'fixed',
             width: '100%',
-            top: -viewportTop + 'px'
+            /*top: -viewportTop + 'px'*/
           });
         }
 
