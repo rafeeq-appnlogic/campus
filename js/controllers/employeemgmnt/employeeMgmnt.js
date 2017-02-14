@@ -29,7 +29,7 @@ $scope.access_token=$localStorage.access_token;
   $scope.return_id='';
   $scope.EMP_JOIN_DT=new Date();
 
-  $scope.martial = '';
+ /* $scope.martial = '';
   $scope.status = ('Single Married Divorced').split(' ').map(function (status) { return { abbrev: status }; });
   $scope.bloodGroup = '';
   $scope.bloodgp = ('A+ve B+ve O+ve A-ve').split(' ').map(function (bloodgp) { return { abbrev: bloodgp }; });
@@ -44,7 +44,7 @@ $scope.access_token=$localStorage.access_token;
   $scope.grade = '';
   $scope.selectGrade = ('Grade1 Grade2 Grade3').split(' ').map(function (selectGrade) { return { abbrev: selectGrade }; });
   $scope.experience = '';
-  $scope.totalExp = ('0Year 1Year 2Year 3Year 4Year').split(' ').map(function (totalExp) { return { abbrev: totalExp }; });
+  $scope.totalExp = ('0Year 1Year 2Year 3Year 4Year').split(' ').map(function (totalExp) { return { abbrev: totalExp }; });*/
 
 
 // Insert Employee Admission Details
