@@ -1,10 +1,13 @@
 <style>
-.nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
-    background: #00ACAC none repeat scroll 0 0 !important;
-    color:#ffffff !important;
+ .md-datepicker-input {
+  margin-top: 20px;
+  padding: 0px 0 10px;
 }
-.btncolor{
-  background: #00ACAC !important;
+.btn-sm, .btn-group-sm > .btn {
+    padding: 7px 3px;
+    font-size: 11px;
+    line-height: 1.5;
+    border-radius: 16px;
 }
 </style>
 <div class="bg-light lter b-b wrapper-md">
@@ -22,312 +25,407 @@
   </div>
 </div>
 <div class="wrapper-md">
-  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
-  <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
-    <tab heading="Employee admission" active="steps.step1" select="steps.percent=10">
-      <tab-heading><i class="fa fa-user"></i>&nbsp Employee admission</tab-heading>
-      <legend class="pull-left width-full">Personal Details</legend>
-      <form name="step1" class="form-validation" enctype="multipart/form-data">
-        <div class="row">
-          <div class="form-group col-md-3">
-              <label class="control-label ">Employee number</label>
-                <input type="text" class="form-control input-sm" name="EMP_NO" ng-model="empAdm.EMP_NO"  placeholder="Employee Number" required>            
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Joining Date</label>
-            <div class="" ng-controller="DatepickerDemoCtrl">
-              <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_JOIN_DT" is-open="opened" datepicker-options="" close-text="Close" name="EMP_JOIN_DT" ng-="false" placeholder="Joining Date" required>
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="form-group col-md-3">
-              <label class="control-label">First Name</label>
-              <input type="text" class="form-control input-sm" id="" ng-model="empAdm.EMP_FIRST_NAME" placeholder="First Name" required>
-          </div>
-          <div class="form-group col-md-3">
-              <label class="control-label">Last Name</label>
-              <input type="text" class="form-control input-sm" id="" ng-model="empAdm.EMP_LAST_NAME" placeholder="Last Name" required>
-          </div>
-        </div>
+  
 
-        <div class="row">
-          <div class="form-group col-md-3">
-              <label class="control-label">Gender</label><br>
-              <label class="radio-inline">
-                <div class="radio">
-                  <label class="i-checks">
-                    <input type="radio" value="Male" ng-model="empAdm.EMP_GENDER">
-                    <i></i>
-                    Male
-                  </label>
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Employee admission">
+        <md-content class="md-padding">
+            <legend class="pull-left width-full">Personal Details</legend>
+            <form name="studentForm">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Employee Number</label>
+                  <input required name="EMP_NO" ng-model="empAdm.EMP_NO">
+                  <div ng-messages="studentForm.EMP_NO.$error">
+                    <div ng-message="required">Employee number is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <div flex-gt-xs>
+                  <md-datepicker ng-model="empAdm.EMP_JOIN_DT" name="EMP_JOIN_DT" md-placeholder="Joining Date"
+                      md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"></md-datepicker>
                 </div>
-              </label>
-              <label class="radio-inline">
-                <div class="radio">
-                  <label class="i-checks">
-                    <input type="radio" value="Female" ng-model="empAdm.EMP_GENDER">
-                    <i></i>
-                    Female
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>First Name</label>
+                  <input required name="EMP_NO" ng-model="empAdm.EMP_FIRST_NAME">
+                  <div ng-messages="studentForm.EMP_FIRST_NAME.$error">
+                    <div ng-message="required">First name is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+             <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Last Name</label>
+                  <input required name="EMP_NO" ng-model="empAdm.EMP_LAST_NAME">
+                  <div ng-messages="studentForm.EMP_LAST_NAME.$error">
+                    <div ng-message="required">Last name is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-radio-group ng-model="data.group1">
+                  <label class="control-label" style="margin-left: 68px;margin-top: 5px;opacity: 0.4;">Gender</label><br>
+                  <label class="radio-inline">
+                    <md-radio-button value="Apple" class="md-primary">Male</md-radio-button>
                   </label>
+                  <label class="radio-inline">
+                     <md-radio-button value="Banana"> Female </md-radio-button>
+                  </label>
+                </md-radio-group>
+              </div>
+              <div class="form-group col-md-3">
+                <div flex-gt-xs>
+                  <md-datepicker ng-model="empAdm.EMP_DOB" name="EMP_DOB" md-placeholder="Date of Birth"
+                    md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"></md-datepicker>
                 </div>
-              </label>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Date of Birth</label>
-            <div class="" ng-controller="DatepickerDemoCtrl">
-              <div class="input-group w-md">
-                <input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="empAdm.EMP_DOB" is-open="opened" datepicker-options="" close-text="Close" name="EMP_DOB" ng-="false" placeholder="Date of Birth" required>
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
+              </div>
+               <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Marital Status</label>
+                  <md-select name="EMP_MARITAL_STATUS" ng-model="empAdm.EMP_MARITAL_STATUS" required>
+                    <md-option value="single">Single</md-option>
+                    <md-option value="married">Married</md-option>
+                    <md-option value="divorced">Divorced</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Religion</label>
+                  <input required name="EMP_NO" ng-model="empAdm.EMP_RELIGION">
+                  <div ng-messages="studentForm.EMP_RELIGION.$error">
+                    <div ng-message="required">Religion is required.</div>
+                  </div>
+                </md-input-container>
               </div>
             </div>
-          </div>
-           <div class="form-group col-md-3">
-            <label class="control-label">Marital status</label>
-            <select class="form-control input-sm w-full" name="EMP_MARITAL_STATUS" ng-model="empAdm.EMP_MARITAL_STATUS" required>
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="divorced">Divorced</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-              <label class="control-label">Religion</label>
-              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_RELIGION" id="" placeholder="Religion" required>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label class="control-label">Blood Group</label>
-            <select  class="form-control input-sm w-full" name="EMP_BLOOD_GROUP" ng-model="empAdm.EMP_BLOOD_GROUP" required>
-                <option value="A+ve">A+ve</option>
-                <option value="B+ve">B+ve</option>
-                <option value="O+ve">O+ve</option>
-                <option value="A-ve">A-ve</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Nationality</label>
-            <select class="form-control input-sm w-full" name="EMP_NATIONALITY" ng-model="empAdm.EMP_NATIONALITY" required>
-                <option value="Afghanistan">Afghanistan</option>
-                <option value="American Samoa">American Samoa</option>
-                <option value="Antarctica">Antarctica</option>
-                <option value="India">India</option>
-                <option value="Srilanga">SriLanga</option>
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label class="col-sm-4 control-label">Upload photo</label>
-            <div class="col-sm-10">
-              <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" file-upload1="empAdm.EMP_PROFILE" type="file" multiple="" name="EMP_PROFILE"  ng-model="empAdm.EMP_PROFILE" ng-files="getTheFiles($files)">
-            </div>
-          </div>
-        </div>
-
-        <legend class="pull-left width-full">Wrok Information</legend>
-
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label class="control-label">Department</label>
-            <select  class="form-control input-sm w-full" name="EMP_DEPT" ng-model="empAdm.EMP_DEPT" required>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Science">Science</option>
-                <option value="Maths">Maths</option>
-                <option value="Social">Social Studies</option>
-                <option value="System">System Admin</option>
-                <option value="Other">Other Languages</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Category</label>
-            <select class="form-control input-sm w-full" name="EMP_CATEGORY" ng-model="empAdm.EMP_CATEGORY" required>
-                <option value="Finance">Finance</option>
-                <option value="HR">Human Resource</option>
-                <option value="Librarion">Librarion</option>
-                <option value="Teacher">Teacher</option>
-                <option value="SystemAdmin">System Admin</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Position</label>
-            <select class="form-control input-sm w-full" name="EMP_POSITION" ng-model="empAdm.EMP_POSITION" required>
-                <option value="System Admin">System Admin</option>
-                <option value="LabAssistant">Lab Assistant</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Grade</label>
-            <select  class="form-control input-sm w-full" name="EMP_GRADE" ng-model="empAdm.EMP_GRADE" required>
-                <option value="Grade1">Grade 1</option>
-                <option value="Grade2">Grade 2</option>
-                <option value="Grade3">Grade 3</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-3">
-              <label class="control-label">Job Title</label>
-              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_JOB_TITLE" placeholder="" required>
-          </div>
-          <div class="form-group col-md-3">
-              <label class="control-label">Qualification</label>
-              <input type="text" class="form-control input-sm" ng-model="empAdm.EMP_QUALI" placeholder="" required>
-          </div>
-          <div class="form-group col-md-3">
-              <label class="control-label">Experience info</label>
-              <textarea rows="3" class="form-control input-sm" ng-model="empAdm.EMP_EXPE_INFO" required></textarea>
-          </div>
-          <div class="form-group col-md-3">
-              <label class="control-label col-md-12">Total experience</label>
-              <div class="form-group">
-                <select class="form-control input-sm w-full" name="EMP_TOT_EXPE" ng-model="empAdm.EMP_TOT_EXPE" required>
-                    <option value="0">0 Year</option>
-                    <option value="1">1 Year</option>
-                    <option value="2">2 Year</option>
-                    <option value="3">3 Year</option>
-                </select>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Blood Group</label>
+                  <md-select name="EMP_BLOOD_GROUP" ng-model="empAdm.EMP_BLOOD_GROUP" required>
+                    <md-option value="A+ve">A+ve</md-option>
+                    <md-option value="B+ve">B+ve</md-option>
+                    <md-option value="O+ve">O+ve</md-option>
+                    <md-option value="A-ve">A-ve</md-option>
+                  </md-select>
+                </md-input-container>
               </div>
-              <!-- <div class="form-group col-md-6">
-                <select ui-jq="chosen" class="form-control input-sm w-full" name="EMP_TOT_EXPE_MONTH" ng-model="empAdm.EMP_TOT_EXPE_MONTH">
-                    <option value="0">0 Month</option>
-                    <option value="1">1 Month</option>
-                    <option value="2">2 Month</option>
-                    <option value="3">3 Month</option>
-                </select>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Nationality</label>
+                  <md-select name="EMP_NATIONALITY" ng-model="empAdm.EMP_NATIONALITY" required>
+                    <md-option value="US">US</md-option>
+                    <md-option value="Antarctica">Antarctica</md-option>
+                    <md-option value="India">India</md-option>
+                    <md-option value="SriLanga">SriLanga</md-option>
+                    <md-option value="UK">UK</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-4">
+                  <label style="opacity: 0.4;margin-top: 22px;">Upload photo</label>
+                  <input class="ng-hide" id="input-file-id" multiple type="file" />
+                  <label for="input-file-id" class="md-button md-raised md-primary btn-sm" style="min-height: 29px !important;">Choose Files</label>
+              </div>
+                <!-- <div class="form-group col-md-4">
+                <label class="col-sm-6 control-label">Upload photo</label>
+                <div class="col-sm-10">
+                  <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" file-upload1="empAdm.EMP_PROFILE" type="file" multiple="" name="EMP_PROFILE"  ng-model="empAdm.EMP_PROFILE" ng-files="getTheFiles($files)">
+                </div>
               </div> -->
-          </div>
-        </div>
-        <div class="row wrapper-md">
-          <div class="form-group">
-            <button type="submit" class="btn btn-rounded pull-right btncolor" ng-click="steps.step2=true;saveBasicDetails();" ng-disabled="step1.$invalid">Next</button>
-          </div>
-        </div>
-      </form>
-    </tab>
-    <tab heading="Contact Information" disabled="step1.$invalid" active="steps.step2" select="steps.percent=30">
-    <tab-heading><i class="icon-call-end"></i>&nbsp Contact Information</tab-heading>
-      <legend class="pull-left width-full">Contact Information</legend>
-      <form name="step2" class="form-validation">
-        <div class="row">
-            <div class="form-group col-md-3">
-              <label class="control-label">Address Line 1</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_ADD_1" placeholder="Address 1" required>
             </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">Address Line 1</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_ADD_2" placeholder="Address 2" required>
+            <legend class="pull-left width-full">Wrok Information</legend>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Department</label>
+                  <md-select name="EMP_DEPT" ng-model="empAdm.EMP_DEPT" required>
+                    <md-option value="English">English</md-option>
+                    <md-option value="Hindi">Hindi</md-option>
+                    <md-option value="Science">Science</md-option>
+                    <md-option value="Maths">Maths</md-option>
+                    <md-option value="Social">Social</md-option>
+                    <md-option value="SystemAdmin">System Admin</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Category</label>
+                  <md-select name="EMP_CATEGORY" ng-model="empAdm.EMP_CATEGORY" required>
+                    <md-option value="Finance">Finance</md-option>
+                    <md-option value="Human">Human Resource</md-option>
+                    <md-option value="Librarion">Librarion</md-option>
+                    <md-option value="Teacher">Teacher</md-option>
+                    <md-option value="SystemAdmin">System Admin</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Position</label>
+                  <md-select name="EMP_POSITION" ng-model="empAdm.EMP_POSITION" required>
+                    <md-option value="LabAssistant">LabAssistant</md-option>
+                    <md-option value="SystemAdmin">System Admin</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Grade</label>
+                  <md-select name="EMP_GRADE" ng-model="empAdm.EMP_GRADE" required>
+                    <md-option value="Grade1">Grade 1</md-option>
+                    <md-option value="Grade2">Grade 2</md-option>
+                    <md-option value="Grade3">Grade 3</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
             </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">E-mail</label>
-              <input type="email" class="form-control input-sm" ng-model="empCont.EMP_EMAIL" placeholder="Email" required>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Job Title</label>
+                  <input required name="EMP_JOB_TITLE" ng-model="empAdm.EMP_JOB_TITLE">
+                 <!--  <div ng-messages="studentForm.EMP_JOB_TITLE.$error">
+                    <div ng-message="required">Title is required.</div>
+                  </div> -->
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Qualification</label>
+                  <input required name="EMP_QUALI" ng-model="empAdm.EMP_QUALI">
+                  <!-- <div ng-messages="studentForm.EMP_QUALI.$error">
+                    <div ng-message="required">Title is required.</div>
+                  </div> -->
+                </md-input-container>
+              </div>
+               <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Total experience</label>
+                  <md-select name="EMP_TOT_EXPE" ng-model="empAdm.EMP_TOT_EXPE" required>
+                    <md-option value="0Year">0 Year</md-option>
+                    <md-option value="1Year">1 Year</md-option>
+                    <md-option value="2Year">2 Year</md-option>
+                    <md-option value="3Year">3 Year</md-option>
+                    <md-option value="4Year">4 Year</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Experience info</label>
+                  <textarea ng-model="empAdm.EMP_EXPE_INFO" md-maxlength="150" rows="3" md-select-on-focus required></textarea>
+                </md-input-container>
+              </div>
+             
             </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">City</label>
-              <select class="form-control input-sm w-full" name="EMP_CITY" ng-model="empCont.EMP_CITY" required>
-                  <option value="chennai">Chennai</option>
-                  <option value="coimbatore">Coimbatore</option>
-                  <option value="pondy">Pondicherry</option>
-                  <option value="cuddalore">Cuddalore</option>
-                  <option value="vilupram">Vilupram</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-3">
-              <label class="control-label">State</label>
-              <select  class="form-control input-sm w-full" ng-model="empCont.EMP_STATE" ng-model="empCont.EMP_STATE" required>
-                  <option value="Tamilnadu">Tamilnadu</option>
-                  <option value="Mumbai">Mumbai</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Pune">Pune</option>
-              </select>
-            </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">Country</label>
-              <select class="form-control input-sm w-full" ng-model="empCont.EMP_COUNTRY" ng-model="empCont.EMP_COUNTRY" required>
-                  <option value="australia">Australia</option>
-                  <option value="India">India</option>
-                  <option value="Dubai">Dubai</option>
-              </select>
-            </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">Pincode</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_PINCODE" ng-minlength="6" placeholder="600001" required>
-            </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">Phone</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_PHONE" ng-minlength="10" ng-maxlength="10" placeholder="9876543210" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-3">
-              <label class="control-label">Office Phone</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_OFF_PHONE" ng-minlength="6" ng-maxlength="10" placeholder="421373" required>
-            </div>
-            <div class="form-group col-md-3">
-              <label class="control-label">Mobile</label>
-              <input type="text" class="form-control input-sm" ng-model="empCont.EMP_MOBILE" ng-minlength="10" ng-maxlength="10" placeholder="9876543210" required>
-            </div>
-          </div>
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="Contact Information">
+        <md-content class="md-padding">
+          <legend class="pull-left width-full">Contact Information</legend>
+          <form name="contactForm">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Address Line 1</label>
+                  <input required name="EMP_ADD_1" ng-model="empCont.EMP_ADD_1">
+                  <div ng-messages="contactForm.EMP_ADD_1.$error">
+                    <div ng-message="required">Address 1 is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Address Line 2</label>
+                  <input required name="EMP_ADD_2" ng-model="empCont.EMP_ADD_2">
+                 <!--  <div ng-messages="contactForm.EMP_ADD_2.$error">
+                    <div ng-message="required">Address 2 is required.</div>
+                  </div> -->
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Client Email</label>
+                  <input required type="email" name="EMP_EMAIL" ng-model="empCont.EMP_EMAIL"
+                         minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
 
-        <div class="m-t m-b">
-          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
-          <button type="submit" ng-disabled="step2.$invalid" class="btn btn-rounded pull-right btncolor" ng-click="steps.step3=true">Next</button>
-        </div>
-      </form>
-    </tab>
-    <tab heading="Additional Details" disabled="step2.$invalid" active="steps.step3" select="steps.percent=60">
-      <tab-heading><i class="icon-credit-card"></i>&nbsp Additional Details</tab-heading>
-        <legend class="pull-left width-full">Bank Details</legend>
-        <form name="step3" class="form-validation">
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label class="control-label">Account Name</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ACC_NAME" required name="EMP_ACC_NAME" placeholder="Enter Account Name" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Account Number</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ACC_NO" required placeholder="Enter Account Number" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Bank Name</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_NAME" required placeholder="Enter Bank Name" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Branch Name</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_BANK_BRANCH_NAME" required placeholder="Enter Branch Name" required>
-          </div>
-        </div>
-        <legend class="pull-left width-full">Additional Details</legend>
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label class="control-label">Passport Number</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_PASSPORT_NO" required placeholder="Enter Passport Number" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">PAN Number</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_PAN_NO" required placeholder="Enter PAN Number" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Adhar</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_ADHAR_NO" required placeholder="Enter Adhar Number">
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Work Permit</label>
-            <input type="text" class="form-control input-sm" ng-model="empAdd.EMP_WORK_PERMIT" required placeholder="Enter Work Permit">
-          </div>
-        </div>
-        <div class="m-t m-b">
-          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Prev</button>
-          <button type="button" class="btn btn-rounded pull-right btncolor" ng-disabled="step3.$invalid" ui-sref="app.Employee-Details" ng-click="steps.percent=100;saveEmployeeDetails()" >Save & Finish</button>
-        </div>
-      </form>
-    </tab>
-  </tabset>
+                <!--   <div ng-messages="contactForm.EMP_EMAIL.$error" role="alert">
+                  <div ng-message="required">Email id is required.</div>
+                  </div> -->
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>City</label>
+                  <md-select name="EMP_CITY" ng-model="empAdm.EMP_CITY" required>
+                    <md-option value="Chennai">Chennai</md-option>
+                    <md-option value="Coimbatore">Coimbatore</md-option>
+                    <md-option value="Pondicherry">Pondicherry</md-option>
+                    <md-option value="Cuddalore">Cuddalore</md-option>
+                    <md-option value="Vilupram">Vilupram</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <md-input-container class="md-block">
+                    <label>State</label>
+                    <md-select name="EMP_STATE" ng-model="empAdm.EMP_STATE" required>
+                      <md-option value="Tamilnadu">Tamilnadu</md-option>
+                      <md-option value="Mumbai">Mumbai</md-option>
+                      <md-option value="Delhi">Delhi</md-option>
+                      <md-option value="Pune">Pune</md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <div class="form-group col-md-3">
+                  <md-input-container class="md-block">
+                    <label>Country</label>
+                    <md-select name="EMP_COUNTRY" ng-model="empAdm.EMP_COUNTRY" required>
+                      <md-option value="Australia">Australia</md-option>
+                      <md-option value="India">India</md-option>
+                      <md-option value="Dubai">Dubai</md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <div class="form-group col-md-3">
+                  <md-input-container class="md-block">
+                    <label>Pincode</label>
+                    <input required type="number" name="EMP_PINCODE" ng-model="empCont.EMP_PINCODE">
+                    <!-- <div ng-messages="contactForm.EMP_PINCODE.$error">
+                      <div ng-message="required">Pincode is required.</div>
+                    </div> -->
+                  </md-input-container>
+                </div>
+                <div class="form-group col-md-3">
+                  <md-input-container class="md-block">
+                    <label>Phone</label>
+                    <input required type="number" name="EMP_PHONE" ng-model="empCont.EMP_PHONE">
+                    <div ng-messages="contactForm.EMP_PHONE.$error">
+                      <div ng-message="required">Phone nummber is required.</div>
+                    </div>
+                  </md-input-container>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                    <label>Office Phone</label>
+                    <input required type="number" name="EMP_OFF_PHONE" ng-model="empCont.EMP_OFF_PHONE">
+                    <!-- <div ng-messages="contactForm.EMP_OFF_PHONE.$error">
+                      <div ng-message="required">Office Phone nummber is required.</div>
+                    </div> -->
+                  </md-input-container>
+                </div>
+                <div class="form-group col-md-3">
+                  <md-input-container class="md-block">
+                    <label>Mobile</label>
+                    <input required type="number" name="EMP_MOBILE" ng-model="empCont.EMP_MOBILE">
+                   <!--  <div ng-messages="contactForm.EMP_MOBILE.$error">
+                      <div ng-message="required">Mobile nummber is required.</div>
+                    </div> -->
+                  </md-input-container>
+                </div>
+              </div>
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="Additional Details">
+        <md-content class="md-padding">
+          <legend class="pull-left width-full">Bank Details</legend>
+            <form name="bankForm">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Account Name</label>
+                  <input required name="EMP_ACC_NAME" ng-model="empAdd.EMP_ACC_NAME">
+                  <div ng-messages="bankForm.EMP_ACC_NAME.$error">
+                    <div ng-message="required"> Account Name is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Account Number</label>
+                  <input required type="number" ame="EMP_ACC_NO" ng-model="empAdd.EMP_ACC_NO">
+                  <div ng-messages="bankForm.EMP_ACC_NO.$error">
+                    <div ng-message="required"> Account Number is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Bank Name</label>
+                  <input name="EMP_BANK_NAME" ng-model="empAdd.EMP_BANK_NAME">
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Branch Name</label>
+                  <input name="EMP_BANK_BRANCH_NAME" ng-model="empAdd.EMP_BANK_BRANCH_NAME">
+                </md-input-container>
+              </div>
+            </div>
+            <legend class="pull-left width-full">Additional Details</legend>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Passport Number</label>
+                  <input required type="number" name="EMP_PASSPORT_NO" ng-model="empAdd.EMP_PASSPORT_NO">
+                  <div ng-messages="bankForm.EMP_PASSPORT_NO.$error">
+                    <div ng-message="required"> Passport Number is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>PAN Number</label>
+                  <input required type="number" name="EMP_PAN_NO" ng-model="empAdd.EMP_PAN_NO">
+                  <div ng-messages="bankForm.EMP_PAN_NO.$error">
+                    <div ng-message="required"> PAN Number is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Adhar Number</label>
+                  <input required type="number" name="EMP_ADHAR_NO" ng-model="empAdd.EMP_ADHAR_NO">
+                  <div ng-messages="bankForm.EMP_ADHAR_NO.$error">
+                    <div ng-message="required"> Adhar Number is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
+                  <label>Work Permit</label>
+                  <input  name="EMP_WORK_PERMIT" ng-model="empAdd.EMP_WORK_PERMIT">
+                </md-input-container>
+              </div>
+            </div>
+            <div class="m-t m-b">
+              <button type="button" class="btn btn-rounded pull-right btncolor" ui-sref="app.Employee-Details" ng-click="steps.percent=100;saveEmployeeDetails()" >Save & Finish</button>
+            </div>
+          </form>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+
+
+
 </div>
