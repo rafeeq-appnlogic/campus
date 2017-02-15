@@ -8,6 +8,9 @@ app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootS
     $location.path($location.url());      
   }
 
+$scope.data = { upload:[] }  // <= upload data get pushed here 
+$scope.data='http://www.chrysaliscis.com/images/avatar.png';
+
             var formdata = new FormData();
             $scope.getTheFiles = function ($files) {
                 angular.forEach($files, function (value, key) {
