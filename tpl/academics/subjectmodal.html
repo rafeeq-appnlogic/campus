@@ -71,6 +71,7 @@ md-input-container {
         </md-input-container>
       </div>
     </md-dialog-content>
+    <br>
 
     <md-dialog-actions layout="row">
       <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
@@ -85,8 +86,12 @@ md-input-container {
       Cancel
       <div class="md-ripple-container" style=""></div>
       </button>&nbsp
-      <button ng-click="saveSubject();Form.$setPristine()" ng-disabled="Form.$invalid" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="">
+      <button ng-click="saveSubject();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Savebutton">
       &nbsp Save &nbsp
+      <div class="md-ripple-container" style=""></div>
+      </button>
+      <button ng-click="updateSubject();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Updatebutton">
+      &nbsp Update &nbsp
       <div class="md-ripple-container" style=""></div>
       </button>
       <!-- <md-button ng-click="saveSubject();Form.$setPristine()" ng-disabled="Form.$invalid" class="md-primary md-raised">

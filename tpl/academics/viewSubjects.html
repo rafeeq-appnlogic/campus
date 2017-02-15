@@ -37,8 +37,8 @@
 
 <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <!-- <a data-toggle="modal" data-target="#myModal" ng-click="addNewSubject()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
     <i class="fa fa-plus"></i> &nbsp;Add Subject</a> -->
-    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event)">
-      <i class="fa fa-plus"></i> &nbsp;Add Subject
+    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event,'Add','data')">
+      <i class="mdi-content-add i-24"></i>Add Subject
     </md-button></div>
 
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -132,13 +132,15 @@
                 <!-- <md-button class="md-btn md-fab m-b indigo" ng-click="showAdvanced($event)">
                   <i class="mdi-editor-mode-edit i-24"></i>
                 </md-button> -->
-                <button class="md-btn md-fab m-b indigo" ng-click="EditSubject(row)" md-ink-ripple="">
+                <!-- <button class="md-btn md-fab m-b indigo" ng-click="EditSubject(row)" md-ink-ripple="">
                 <i class="mdi-editor-mode-edit i-24"></i>
-                <div class="md-ripple-container" style=""></div></button>
-                <button class="md-btn md-fab m-b pink" ng-click="deleteData(row)" md-ink-ripple="">
-                <i class="mdi-action-delete i-24"></i>
+                <div class="md-ripple-container" style=""></div></button> -->
+                <button md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)">&nbsp<i class="fa fa-edit"></i>&nbsp</button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="deleteData(row)">&nbsp<i class="fa fa-trash-o"></i>&nbsp</button>
+               <!--  <button class="md-btn md-fab m-b indigo" ng-click="deleteData(row)" md-ink-ripple="">
+                <i class="fa fa-trash-o"></i>
                 <div class="md-ripple-container" style=""></div>
-                </button>
+                </button> -->
                 <!-- <button class="btn btn-sm btn-danger" ng-click="deleteData(row)"><i class="fa fa-trash-o"></i></button> -->
               </div>  
             </td>

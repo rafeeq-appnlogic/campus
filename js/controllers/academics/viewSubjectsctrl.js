@@ -95,8 +95,14 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
     //$scope.displayedCollection.push($scope.inserted);
   };
 
-  $scope.showAdvanced = function(ev) {
-
+  $scope.showAdvanced = function(ev,mode,data) {
+    console.log(mode == 'Add');
+    if(mode == 'Add'){
+      $rootScope.temp_subject = null;
+    }else if(mode == 'Edit'){
+      $rootScope.temp_subject = data;
+    }
+    $scope.Subject=data;
     $mdDialog.show({
      controller: DialogController,
       templateUrl: 'tpl/academics/subjectmodal.html',
@@ -105,33 +111,44 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       clickOutsideToClose:true,
       fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
+    .then(function(mode,data) {
+      //$scope.status = 'You said the information was "' + answer + '".';
     }, function() {
-      $scope.status = 'You cancelled the dialog.';
+      //$scope.status = 'You cancelled the dialog.';
     });
   };
 
-  function DialogController($scope, $mdDialog) {
-
+  function DialogController($scope, $mdDialog, $localStorage, $rootScope) {
+    console.log($rootScope ,'Root');
+    $scope.access_token=$localStorage.access_token;
     $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
       console.log(response.message[0].ACA_COU_NAME,'- test');
           $scope.rowCollectionCourse = response.message;
           console.log($scope.rowCollectionBatch);
     });
 
-    $scope.Save=true;
-    $scope.Edit=false;
-    $scope.subject=true;
-    $scope.Savebutton=true;
-    $scope.Updatebutton=false;
-    $scope.Subject = {
-      ACA_SUB_ID:null,
-      ACA_SUB_NAME:null,
-      ACA_SUB_CODE:null,
-      ACA_SUB_ELECT_YN:null,
-      ACA_SUB_COU_ID:null
-    };
+    if($rootScope.temp_subject == null){
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.subject=true;
+      $scope.Savebutton=true;
+      $scope.Updatebutton=false;
+      $scope.Subject = {
+        ACA_SUB_ID:null,
+        ACA_SUB_NAME:null,
+        ACA_SUB_CODE:null,
+        ACA_SUB_ELECT_YN:null,
+        ACA_SUB_COU_ID:null
+      };
+    }else{
+        $scope.Save=false;
+        $scope.Edit=true;
+        $scope.subject=true;
+        $scope.Savebutton=false;
+        $scope.Updatebutton=true;
+        $scope.Subject = $rootScope.temp_subject;
+    }
+    
 
     $scope.hide = function() {
       $mdDialog.hide();
@@ -147,6 +164,7 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
 
 
     $scope.saveSubject=function(){
+      $mdDialog.hide();
     $scope.isLoading = true;
     // var paramOne = $localStorage.ACA_COU_ID;
     // var paramTwo = $localStorage.ACA_BAT_ID;
@@ -156,13 +174,48 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
         method : "POST",
         url : $rootScope.endUrl+"ManageBatchModule/SubjectDetail",
         headers: {'access_token':$scope.access_token},
-        data : {'ACA_SUB_COU_ID':$scope.getData,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN}
+        data : {'ACA_SUB_COU_ID':$scope.Subject.ACA_SUB_COU_ID,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN}
       }).then(function mySucces(response) {
           console.log(response.data.status);
            var stat="success";
           var stat1="error";
           var success="subject inserted Successfully";
           var failed="subject insert Failed";
+          if(response.data.status==true){
+            $scope.showMessage(success,stat);
+            $scope.getMasterJobs(tableState);
+          }else{
+            $scope.showMessage(failed,stat1);
+          }
+      });/* function myError(response) {
+        $scope.showMessage(response.data.message,'error'); 
+      });*/
+      // setTimeout(function(){
+      //   $scope.getMasterJobs(tableState);
+      //   $scope.isLoading = false;
+      // },500)      
+    },200);
+    
+  }
+
+  $scope.updateSubject=function(){
+    $mdDialog.hide();
+    $scope.isLoading = true;
+    // var paramOne = $localStorage.ACA_COU_ID;
+    // var paramTwo = $localStorage.ACA_BAT_ID;
+    //alert(JSON>stringify(user_data))
+    setTimeout(function(){
+       $http({
+        method : "POST",
+        url : $rootScope.endUrl+"ManageBatchModule/SubjectDetail",
+        data : {'ACA_SUB_ID':$scope.Subject.ACA_SUB_ID,'ACA_SUB_COU_ID':$scope.Subject.ACA_SUB_COU_ID,'ACA_SUB_NAME' : $scope.Subject.ACA_SUB_NAME,'ACA_SUB_CODE' : $scope.Subject.ACA_SUB_CODE,'ACA_SUB_ELECT_YN' : $scope.Subject.ACA_SUB_ELECT_YN},
+        headers: {'access_token':$scope.access_token}
+      }).then(function mySucces(response) {
+          console.log(response.data.status);
+           var stat="success";
+          var stat1="error";
+          var success="subject updated Successfully";
+          var failed="subject updated Failed";
           if(response.data.status==true){
             $scope.showMessage(success,stat);
           }else{
@@ -177,6 +230,38 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
       },500)      
     },200);
     
+  }
+
+  $scope.getMasterJobs = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      var paramOne = $localStorage.ACA_COU_ID;
+      var paramTwo = $localStorage.ACA_BAT_ID;
+       $http({
+        method : "get",
+        // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+        url : $rootScope.endUrl+"ManageBatchModule/manageSubjectView",
+        headers: {'access_token':$scope.access_token}
+      }).then(function mySucces(response) {
+          $scope.rowCollection = response.data.message;
+          console.log($scope.rowCollection.length , 'XXXXX');
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+          $scope.isLoading = false;
+      })/*.error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });*/
+  };
+
+  $scope.removeRow = function(curr_id,index) {
+    $scope.getMasterJobs(tableState);
+  }
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
   }
 
   }
