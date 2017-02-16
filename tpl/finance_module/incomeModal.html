@@ -1,0 +1,108 @@
+
+<style>
+  
+md-dialog {
+    max-height: 90% !important;
+    max-width: 81% !important;
+    min-width: 415px;
+  
+   
+}
+.m-b {
+    margin-bottom: 0px !important;
+}
+md-input-container {
+    margin: 7px 0;
+    padding: 0;
+}
+.md-button.md-icon-button {
+  
+    margin: 3px 6px;
+    padding: 7px;
+   
+}
+.md-datepicker-input {
+    min-width: 300px;
+    padding: 0 0 4px;
+}
+</style>
+<md-dialog aria-label="Expense">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 ng-if="Save">Add Income</h4>
+        <h4 ng-if="Edit">Edit Income</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+                 <input type="hidden" class="form-control" ng-model="Inc.FINC_TXN_IN_ID">
+                <md-input-container class="md-block align">
+                  <label>Title</label>
+                  <input required name="FINC_TXN_IN_TITLE" ng-model="Inc.FINC_TXN_IN_TITLE">
+                </md-input-container>
+            
+           
+                <md-input-container class="md-block align">
+                  <label>Description</label>
+                  <input required name="FINC_TXN_IN_DESC" ng-model="Inc.FINC_TXN_IN_DESC">
+                </md-input-container>
+           
+                <md-input-container class="md-block align">
+                  <label>Amount</label>
+                  <input required name="FINC_TXN_IN_AMT" ng-model="Inc.FINC_TXN_IN_AMT">
+                </md-input-container>
+             
+                <div flex-gt-xs>
+                  <md-datepicker ng-model="Inc.FINC_TXN_IN_DT" name="FINC_TXN_IN_DT" md-placeholder="Date"
+                      md-min-date="minDate" md-max-date="maxDate">
+
+                  </md-datepicker>
+                </div>
+            
+                <md-input-container class="md-block" style=" margin: 25px 0 !important;">
+                  <label>Category</label>
+                  <md-select ng-model="Inc.FINC_TXN_IN_CA_ID">
+                    <md-option><em>None</em></md-option>
+                    <md-option ng-repeat="category in categoryList" value="{{category.FINC_CA_ID}}" ng-disabled="$index === 1">
+                      {{category.FINC_CA_ID}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+              <!--   <md-input-container class="md-block">
+                  <label>Marital Status</label>
+                  <md-select name="EMP_MARITAL_STATUS" ng-model="empAdm.EMP_MARITAL_STATUS" required>
+                    <md-option value="single">Single</md-option>
+                    <md-option value="married">Married</md-option>
+                    <md-option value="divorced">Divorced</md-option>
+                  </md-select>
+                </md-input-container> -->
+
+              
+                <md-switch md-invert aria-label="Status" ng-checked="Inc.FINC_TXN_IN_STATUS=='Y'" ng-true-value="'Y'" ng-false-value="'N'" ng-model="Inc.FINC_TXN_IN_STATUS">
+                 Status
+                </md-switch>
+             
+            
+    </md-dialog-content>
+   <md-dialog-actions layout="row">
+      <span flex></span>
+      <div class="m-b">
+        <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+        Cancel
+        <div class="md-ripple-container" style=""></div>
+        </button>&nbsp
+        <button ng-click="saveIncome()" ng-disabled="Form.$invalid" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="">
+        &nbsp {{buttonStatus}} &nbsp
+      <!--   <div class="md-ripple-container" style=""></div> -->
+        </button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
