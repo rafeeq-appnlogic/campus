@@ -133,6 +133,7 @@ $scope.access_token=$localStorage.access_token;
       $scope.Inc.FINC_TXN_IN_DT = new Date($rootScope.temp_expencedata.FINC_TXN_IN_DT);
       $scope.Inc.FINC_TXN_IN_AMT = $rootScope.temp_expencedata.FINC_TXN_IN_AMT;
       $scope.Inc.FINC_TXN_IN_STATUS = $rootScope.temp_expencedata.FINC_TXN_IN_STATUS;
+      $scope.Inc.FINC_TXN_IN_CA_ID = $rootScope.temp_expencedata.FINC_TXN_IN_CA_ID;
 
       console.log($scope.Inc.FINC_TXN_IN_DT,'date');
      /* $scope.Exp = $rootScope.temp_expencedata;*/
