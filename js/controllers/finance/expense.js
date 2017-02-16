@@ -1,5 +1,5 @@
-app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox',
-  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox) {
+app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$mdDialog',
+  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox,$mdDialog) {
   $scope.isLoading=true;
   $scope.bulkaction="0";
   $scope.selectall=false;
@@ -12,14 +12,15 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
   $scope.rowCollection = [];
   $scope.Exp=[];
   $scope.categoryList=[];
+  $scope.FINC_TXN_EX_DT=new Date();
 // url refresh
   if($localStorage.user_id==''){
     $location.path('signin');
   }else {
     $location.path($location.url());      
   }
-$scope.access_token=$localStorage.access_token;
 
+ $scope.access_token=$localStorage.access_token;
   var tableState = {
         sort: {},
         search: {},
@@ -27,17 +28,14 @@ $scope.access_token=$localStorage.access_token;
             start: 0
         }
     };
+
     $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
     $scope.isLoading=false;
 
-    // categoryList
-    $http.get($rootScope.endUrl+'FinanceTxnModule/categoryList',{headers: {'access_token':$scope.access_token}}).success(function(response) {
-          $scope.categoryList = response.result;
-    });
-
+    
   $scope.deleteData = function(index) {
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
@@ -60,7 +58,7 @@ $scope.access_token=$localStorage.access_token;
               },600);
         });
   }
-  $scope.openModel = function() {
+ /* $scope.openModel = function() {
     $scope.buttonStatus='Save';
     $scope.Exp.FINC_TXN_EX_ID= null;
     $scope.Exp.FINC_TXN_EX_CA_ID=null;
@@ -70,8 +68,87 @@ $scope.access_token=$localStorage.access_token;
     $scope.Exp.FINC_TXN_EX_DT= null;
     $scope.Exp.FINC_TXN_EX_STATUS= 'N';
   };
+*/
+  $scope.showAdvanced = function(ev,mode,data) {
+    
+    console.log(mode =='Add');
+    console.log(mode ,'modetype');
+    console.log(data ,'datatype');
+    if(mode == 'Add')
+    {
+      $rootScope.temp_expencedata = null;
+    }else if(mode == 'Edit')
+    {
+      console.log(data , 'ccc');
+      $rootScope.temp_expencedata = data;
+    }
+    $scope.Exp=data;
+    
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tpl/finance_module/expenseModal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode, data) {
+      // $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
 
-  $scope.saveExpense=function(user_data,$index){
+   function DialogController($scope, $mdDialog, $rootScope, $localStorage) {
+    $scope.rowCollection = [];
+     $scope.Exp=[];
+    console.log($rootScope.temp_expencedata , 'aaaa');
+    $scope.categoryList=[];
+    $scope.buttonStatus='Save';
+    $scope.access_token=$localStorage.access_token;
+    if($rootScope.temp_expencedata == null)
+    {
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.buttonStatus='Save';
+     
+      $scope.Exp = {
+        FINC_TXN_EX_ID : null,
+        FINC_TXN_EX_CA_ID : null,
+        FINC_TXN_EX_TITLE : null,
+        FINC_TXN_EX_DESC : null,
+        FINC_TXN_EX_AMT :  null,
+        FINC_TXN_EX_DT : null,
+        FINC_TXN_EX_STATUS : 'N'
+    }
+    }else{
+      console.log($rootScope.temp_expencedata ,'zzzz');
+      $scope.Save=false;
+      $scope.Edit=true;
+      $scope.buttonStatus='Update';
+      $scope.Exp.FINC_TXN_EX_TITLE = $rootScope.temp_expencedata.FINC_TXN_EX_TITLE;
+      $scope.Exp.FINC_TXN_EX_DESC = $rootScope.temp_expencedata.FINC_TXN_EX_DESC;
+      $scope.Exp.FINC_TXN_EX_DT = new Date($rootScope.temp_expencedata.FINC_TXN_EX_DT);
+      $scope.Exp.FINC_TXN_EX_AMT = $rootScope.temp_expencedata.FINC_TXN_EX_AMT;
+      $scope.Exp.FINC_TXN_EX_STATUS = $rootScope.temp_expencedata.FINC_TXN_EX_STATUS;
+
+      console.log($scope.Exp.FINC_TXN_EX_DT,'date');
+     /* $scope.Exp = $rootScope.temp_expencedata;*/
+    }
+
+    $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+          $scope.rowCollection = incomingData.result;
+    });
+    $scope.displayedCollection = [].concat($scope.rowCollection);
+    $scope.isLoading=false;
+
+    // categoryList
+    $http.get($rootScope.endUrl+'FinanceTxnModule/categoryList',{headers: {'access_token':$scope.access_token}}).success(function(response) {
+          $scope.categoryList = response.result;
+    });
+
+    $scope.saveExpense=function(user_data,$index){
+      $mdDialog.hide();
     console.log($scope.Exp.FINC_TXN_EX_DT,'$scope.Exp.FINC_TXN_EX_DT');
       $http({
         method : "POST",
@@ -94,7 +171,47 @@ $scope.access_token=$localStorage.access_token;
       },500);     
 
   }
-  $scope.removeRow = function(curr_id,index) {
+
+   $scope.refreshPage = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
+          $scope.rowCollection = response.result;
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+          $scope.isLoading = false;          
+      }).error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });
+  };
+
+   $scope.removeRow = function(curr_id,index) {
+    $scope.refreshPage(tableState);
+  }
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
+  }
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
+  }
+
+ $scope.removeRow = function(curr_id,index) {
     $scope.refreshPage(tableState);
   }
   $scope.showMessage=function(data,status){
@@ -142,7 +259,6 @@ $scope.access_token=$localStorage.access_token;
         });
       }
   }
-
   $scope.refreshPage = function (tableState) {
       var start = 0;
       var length = 10;
@@ -159,6 +275,7 @@ $scope.access_token=$localStorage.access_token;
           $scope.isLoading = false;
       });
   };
+ 
    $scope.currentViewCalculation=function(){
     var precal=$rootScope.currentPageNumber*$scope.itemsByPage;
     return precal-$scope.itemsByPage+1;
@@ -174,7 +291,8 @@ $scope.access_token=$localStorage.access_token;
   $scope.changeMode=function(){
     $scope.buttonStatus='Update';
   }
-  $scope.editExpense=function(curr_id){
+  $scope.editExpense=function(curr_id,ev){
+    
     $scope.buttonStatus='Update';
      $http({
       method : "GET",

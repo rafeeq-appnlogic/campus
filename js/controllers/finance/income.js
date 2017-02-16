@@ -1,5 +1,5 @@
-app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox',
-  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox) {
+app.controller('incomeCtrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$mdDialog',
+  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox,$mdDialog) {
   $scope.isLoading=true;
   $scope.bulkaction="0";
   $scope.selectall=false;
@@ -60,7 +60,7 @@ $scope.access_token=$localStorage.access_token;
               },600);
         });
   }
-  $scope.openModel = function() {
+  /*$scope.openModel = function() {
     $scope.buttonStatus='Save';
     $scope.Inc.FINC_TXN_IN_ID= null;
     $scope.Inc.FINC_TXN_IN_CA_ID=null;
@@ -69,14 +69,94 @@ $scope.access_token=$localStorage.access_token;
     $scope.Inc.FINC_TXN_IN_AMT= null;
     $scope.Inc.FINC_TXN_IN_DT= null;
     $scope.Inc.FINC_TXN_IN_STATUS= 'N';
+  };*/
+
+ $scope.showAdvanced = function(ev,mode,data) {
+    
+    console.log(mode =='Add');
+    console.log(mode ,'modetype');
+    console.log(data ,'datatype');
+    if(mode == 'Add')
+    {
+      $rootScope.temp_expencedata = null;
+    }else if(mode == 'Edit')
+    {
+      console.log(data , 'ccc');
+      $rootScope.temp_expencedata = data;
+    }
+    $scope.Exp=data;
+    
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tpl/finance_module/incomeModal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode, data) {
+      // $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
   };
 
-  $scope.saveIncome=function(user_data,$index){
+  function DialogController($scope, $mdDialog, $rootScope, $localStorage) {
+    $scope.rowCollection = [];
+     $scope.Inc=[];
+    console.log($rootScope.temp_expencedata , 'aaaa');
+    $scope.categoryList=[];
+    $scope.buttonStatus='Save';
+    $scope.access_token=$localStorage.access_token;
+    if($rootScope.temp_expencedata == null)
+    {
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.buttonStatus='Save';
+     
+      $scope.Exp = {
+        FINC_TXN_IN_ID : null,
+        FINC_TXN_IN_CA_ID : null,
+        FINC_TXN_IN_TITLE : null,
+        FINC_TXN_IN_DESC : null,
+        FINC_TXN_IN_AMT :  null,
+        FINC_TXN_IN_DT : null,
+        FINC_TXN_IN_STATUS : 'N'
+    }
+    }else{
+      console.log($rootScope.temp_expencedata ,'zzzz');
+      $scope.Save=false;
+      $scope.Edit=true;
+      $scope.buttonStatus='Update';
+      $scope.Inc.FINC_TXN_IN_TITLE = $rootScope.temp_expencedata.FINC_TXN_IN_TITLE;
+      $scope.Inc.FINC_TXN_IN_DESC = $rootScope.temp_expencedata.FINC_TXN_IN_DESC;
+      $scope.Inc.FINC_TXN_IN_DT = new Date($rootScope.temp_expencedata.FINC_TXN_IN_DT);
+      $scope.Inc.FINC_TXN_IN_AMT = $rootScope.temp_expencedata.FINC_TXN_IN_AMT;
+      $scope.Inc.FINC_TXN_IN_STATUS = $rootScope.temp_expencedata.FINC_TXN_IN_STATUS;
+
+      console.log($scope.Inc.FINC_TXN_IN_DT,'date');
+     /* $scope.Exp = $rootScope.temp_expencedata;*/
+    }
+
+    $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+          $scope.rowCollection = incomingData.result;
+    });
+    $scope.displayedCollection = [].concat($scope.rowCollection);
+    $scope.isLoading=false;
+
+    // categoryList
+    $http.get($rootScope.endUrl+'FinanceTxnModule/categoryList',{headers: {'access_token':$scope.access_token}}).success(function(response) {
+          $scope.categoryList = response.result;
+    });
+
+    $scope.saveIncome=function(user_data,$index){
+      $mdDialog.hide();
+
       $http({
         method : "POST",
         url : $rootScope.endUrl+"FinanceTxnModule/income",
         data : { 
-          'FINC_TXN_IN_ID':$scope.Inc.FINC_TXN_IN_ID,'FINC_TXN_IN_CA_ID' : $scope.Inc.FINC_TXN_IN_CA_ID,
+          'FINC_TXN_IN_ID':$scope.Inc.FINC_TXN_IN_ID,'FINC_TXN_IN_CA_ID' : 'cat',
           'FINC_TXN_IN_TITLE' : $scope.Inc.FINC_TXN_IN_TITLE,'FINC_TXN_IN_DESC' : $scope.Inc.FINC_TXN_IN_DESC,
           'FINC_TXN_IN_AMT' : $scope.Inc.FINC_TXN_IN_AMT,'FINC_TXN_IN_DT' : $scope.Inc.FINC_TXN_IN_DT,
           'FINC_TXN_IN_STATUS' : $scope.Inc.FINC_TXN_IN_STATUS
@@ -93,6 +173,61 @@ $scope.access_token=$localStorage.access_token;
       },500);     
 
   }
+    $scope.refreshPage = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
+          $scope.rowCollection = response.result;
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+          $scope.isLoading = false;          
+      }).error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });
+    };
+     $scope.removeRow = function(curr_id,index) {
+      $scope.refreshPage(tableState);
+    }
+    $scope.showMessage=function(data,status){
+      toaster.pop(status, data);
+    }
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
+  }
+
+
+   $scope.refreshPage = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
+          $scope.rowCollection = response.result;
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+          $scope.isLoading = false;          
+      }).error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });
+  };
   $scope.removeRow = function(curr_id,index) {
     $scope.refreshPage(tableState);
   }
