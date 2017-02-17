@@ -78,11 +78,11 @@ $scope.access_token=$localStorage.access_token;
     console.log(data ,'datatype');
     if(mode == 'Add')
     {
-      $rootScope.temp_expencedata = null;
+      $rootScope.temp_incomedata = null;
     }else if(mode == 'Edit')
     {
       console.log(data , 'ccc');
-      $rootScope.temp_expencedata = data;
+      $rootScope.temp_incomedata = data;
     }
     $scope.Exp=data;
     
@@ -104,17 +104,17 @@ $scope.access_token=$localStorage.access_token;
   function DialogController($scope, $mdDialog, $rootScope, $localStorage) {
     $scope.rowCollection = [];
      $scope.Inc=[];
-    console.log($rootScope.temp_expencedata , 'aaaa');
+    console.log($rootScope.temp_incomedata , 'aaaa');
     $scope.categoryList=[];
     $scope.buttonStatus='Save';
     $scope.access_token=$localStorage.access_token;
-    if($rootScope.temp_expencedata == null)
+    if($rootScope.temp_incomedata == null)
     {
       $scope.Save=true;
       $scope.Edit=false;
       $scope.buttonStatus='Save';
      
-      $scope.Exp = {
+      $scope.Inc = {
         FINC_TXN_IN_ID : null,
         FINC_TXN_IN_CA_ID : null,
         FINC_TXN_IN_TITLE : null,
@@ -124,19 +124,20 @@ $scope.access_token=$localStorage.access_token;
         FINC_TXN_IN_STATUS : 'N'
     }
     }else{
-      console.log($rootScope.temp_expencedata ,'zzzz');
+      console.log($rootScope.temp_incomedata ,'zzzz');
       $scope.Save=false;
       $scope.Edit=true;
       $scope.buttonStatus='Update';
-      $scope.Inc.FINC_TXN_IN_TITLE = $rootScope.temp_expencedata.FINC_TXN_IN_TITLE;
-      $scope.Inc.FINC_TXN_IN_DESC = $rootScope.temp_expencedata.FINC_TXN_IN_DESC;
-      $scope.Inc.FINC_TXN_IN_DT = new Date($rootScope.temp_expencedata.FINC_TXN_IN_DT);
-      $scope.Inc.FINC_TXN_IN_AMT = $rootScope.temp_expencedata.FINC_TXN_IN_AMT;
-      $scope.Inc.FINC_TXN_IN_STATUS = $rootScope.temp_expencedata.FINC_TXN_IN_STATUS;
-      $scope.Inc.FINC_TXN_IN_CA_ID = $rootScope.temp_expencedata.FINC_TXN_IN_CA_ID;
+      $scope.Inc.FINC_TXN_IN_ID = $rootScope.temp_incomedata.FINC_TXN_IN_ID;
+      $scope.Inc.FINC_TXN_IN_TITLE = $rootScope.temp_incomedata.FINC_TXN_IN_TITLE;
+      $scope.Inc.FINC_TXN_IN_DESC = $rootScope.temp_incomedata.FINC_TXN_IN_DESC;
+      $scope.Inc.FINC_TXN_IN_DT = new Date($rootScope.temp_incomedata.FINC_TXN_IN_DT);
+      $scope.Inc.FINC_TXN_IN_AMT = $rootScope.temp_incomedata.FINC_TXN_IN_AMT;
+      $scope.Inc.FINC_TXN_IN_STATUS = $rootScope.temp_incomedata.FINC_TXN_IN_STATUS;
+      $scope.Inc.FINC_TXN_IN_CA_ID = $rootScope.temp_incomedata.FINC_TXN_IN_CA_ID;
 
       console.log($scope.Inc.FINC_TXN_IN_DT,'date');
-     /* $scope.Exp = $rootScope.temp_expencedata;*/
+     /* $scope.Exp = $rootScope.temp_incomedata;*/
     }
 
     $http.get($rootScope.endUrl+'FinanceTxnModule/expense',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {

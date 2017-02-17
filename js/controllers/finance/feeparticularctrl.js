@@ -1,5 +1,5 @@
-app.controller('feeparticularctrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox',
-  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox) {
+app.controller('feeparticularctrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$mdDialog',
+  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox,$mdDialog) {
   $scope.isLoading=true;
   $scope.bulkaction="0";
   $scope.selectall=false;
@@ -68,7 +68,7 @@ $scope.access_token=$localStorage.access_token;
               },600);
         });
   }
-  $scope.openModel = function() {
+ /* $scope.openModel = function() {
     $scope.buttonStatus='Save';
     $scope.FINC_S_PA_ID= null;
     $scope.FINC_S_PA_CA_ID=null;
@@ -79,9 +79,109 @@ $scope.access_token=$localStorage.access_token;
     $scope.FINC_S_PA_STU_CATE= null;
     $scope.FINC_S_PA_ADM_NO= null;
     $scope.FINC_S_PA_BATCH= null;
+  };*/
+
+  $scope.showAdvanced = function(ev,mode,data) {
+    
+    console.log(mode =='Add');
+    console.log(mode ,'modetype');
+    console.log(data ,'datatype');
+    if(mode == 'Add')
+    {
+      $rootScope.temp_particdata = null;
+    }else if(mode == 'Edit')
+    {
+      console.log(data , 'ccc');
+      $rootScope.temp_particdata = data;
+    }
+   
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tpl/finance_module/feeparticularModal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode, data) {
+      // $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
   };
 
-  $scope.saveParticular=function($index){
+  function DialogController($scope,$mdDialog, $rootScope, $localStorage) {
+    $scope.rowCollection = [];
+     $scope.partic=[];
+    console.log($rootScope.temp_particdata , 'aaaa');
+    $scope.categoryList=[];
+     $scope.studentcat=[];
+     $scope.studentcat=[
+    {id:'1',desc:'Test'},
+    {id:'2',desc:'Data'},
+    {id:'3',desc:'Demo'}
+    ];
+    $scope.buttonStatus='Save';
+    $scope.access_token=$localStorage.access_token;
+    if($rootScope.temp_particdata == null)
+    {
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.buttonStatus='Save';
+      $scope.partic = {
+        FINC_S_PA_ID : null,
+        FINC_S_PA_CA_ID : null,
+        FINC_S_PA_NAME : null,
+        FINC_S_PA_DESC : null,
+        FINC_S_PA_CREATE_TYPE : 'all',
+        FINC_S_PA_AMT : null,
+        FINC_S_PA_STU_CATE : null,
+        FINC_S_PA_ADM_NO : null,
+        FINC_S_PA_BATCH : null
+    }
+    }else{
+      console.log($rootScope.temp_particdata ,'zzzz');
+      $scope.Save=false;
+      $scope.Edit=true;
+      $scope.buttonStatus='Update';
+      $scope.FINC_S_PA_ID = $rootScope.temp_particdata.FINC_S_PA_ID;
+      $scope.FINC_S_PA_NAME = $rootScope.temp_particdata.FINC_S_PA_NAME;
+      $scope.FINC_S_PA_DESC = $rootScope.temp_particdata.FINC_S_PA_DESC;
+      $scope.FINC_S_PA_CREATE_TYPE = $rootScope.temp_particdata.FINC_S_PA_CREATE_TYPE;
+      $scope.FINC_S_PA_STU_CATE = $rootScope.temp_particdata.FINC_S_PA_STU_CATE;
+      $scope.FINC_S_PA_AMT = $rootScope.temp_particdata.FINC_S_PA_AMT;
+      $scope.FINC_S_PA_ADM_NO = $rootScope.temp_particdata.FINC_S_PA_ADM_NO;
+      $scope.FINC_S_PA_CA_ID = $rootScope.temp_particdata.FINC_S_PA_CA_ID;
+      /*$scope.getBatchList($scope.FINC_S_PA_CA_ID);*/
+      $http({
+        method : "GET",
+        url : $rootScope.endUrl+'FinanceFeesModule/getParticularBatch',
+        params :{id : $scope.FINC_S_PA_CA_ID},
+        headers: {'access_token':$scope.access_token}
+      }).then(function mySucces(response) {
+        $scope.BatchList = response.data.message;
+        $scope.FINC_S_PA_BATCH = $rootScope.temp_particdata.FINC_S_PA_BATCH;
+        console.log($scope.BatchList,'batch');
+      });
+      /* $scope.FINC_S_PA_BATCH = $rootScope.temp_particdata.FINC_S_PA_BATCH;*/
+
+      console.log($scope.FINC_S_PA_BATCH,'batch');
+     /* $scope.Exp = $rootScope.temp_particdata;*/
+    }
+
+    $http.get($rootScope.endUrl+'FinanceFeesModule/particular',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+          $scope.rowCollection = incomingData.result;
+    });
+    $scope.displayedCollection = [].concat($scope.rowCollection);
+    $scope.isLoading=false;
+
+    // Get fees category Details
+    $http.get($rootScope.endUrl+'FinanceFeesModule/getFeesCategoryList',{headers: {'access_token':$scope.access_token}}).success(function(response){
+          $scope.FeesCat = response.message;
+    });
+
+   $scope.saveParticular=function($index){
+      $mdDialog.hide();
       $http({
         method : "POST",
         url : $rootScope.endUrl+"FinanceFeesModule/particular",
@@ -94,7 +194,8 @@ $scope.access_token=$localStorage.access_token;
         },
         headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
-          $scope.showMessage(response.data.message,'success'); 
+          $scope.showMessage(response.data.message,'success');
+
       }, function myError(response) {
         $scope.showMessage(response.data.message,'error'); 
       });
@@ -103,6 +204,59 @@ $scope.access_token=$localStorage.access_token;
         $scope.isLoading = false;
       },500);
   }
+    $scope.refreshPage = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      $http.get($rootScope.endUrl+'FinanceFeesModule/particular',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
+          $scope.rowCollection = response.result;
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+          $scope.isLoading = false;          
+      }).error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });
+    };
+     $scope.removeRow = function(curr_id,index) {
+      $scope.refreshPage(tableState);
+    }
+    $scope.showMessage=function(data,status){
+      toaster.pop(status, data);
+    }
+
+    $scope.getBatchList=function(){
+      var category_id=$scope.FINC_S_PA_CA_ID;
+      $http({
+        method : "GET",
+        url : $rootScope.endUrl+'FinanceFeesModule/getParticularBatch',
+        params :{id : category_id},
+        headers: {'access_token':$scope.access_token}
+      }).then(function mySucces(response) {
+        $scope.BatchList = response.data.message;
+        console.log($scope.BatchList,'batch');
+      });
+    }
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
+  }
+
+
+  
   $scope.removeRow = function(curr_id,index) {
     $scope.refreshPage(tableState);
   }
@@ -204,7 +358,8 @@ $scope.access_token=$localStorage.access_token;
     });
   }
 
-  $scope.getBatchList=function(){
+ /* $scope.getBatchList=function(){
+    alert();
     var category_id=$scope.FINC_S_PA_CA_ID;
     $http({
       method : "GET",
@@ -213,6 +368,7 @@ $scope.access_token=$localStorage.access_token;
       headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
       $scope.BatchList = response.data.message;
+      console.log($scope.BatchList,'batch');
     });
-  }
+  }*/
 }]);

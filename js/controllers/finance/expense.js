@@ -126,6 +126,7 @@ app.controller('expenseCtrl', ['$scope', '$timeout','$http', 'toaster','$rootSco
       $scope.Save=false;
       $scope.Edit=true;
       $scope.buttonStatus='Update';
+      $scope.Exp.FINC_TXN_EX_ID = $rootScope.temp_expencedata.FINC_TXN_EX_ID;
       $scope.Exp.FINC_TXN_EX_TITLE = $rootScope.temp_expencedata.FINC_TXN_EX_TITLE;
       $scope.Exp.FINC_TXN_EX_DESC = $rootScope.temp_expencedata.FINC_TXN_EX_DESC;
       $scope.Exp.FINC_TXN_EX_DT = new Date($rootScope.temp_expencedata.FINC_TXN_EX_DT);

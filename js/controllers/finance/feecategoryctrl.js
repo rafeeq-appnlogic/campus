@@ -1,5 +1,5 @@
-app.controller('feecategoryctrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox',
-  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox) {
+app.controller('feecategoryctrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$mdDialog',
+  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox,$mdDialog) {
   $scope.isLoading=true;
   $scope.bulkaction="0";
   $scope.selectall=false;
@@ -62,15 +62,83 @@ $scope.access_token=$localStorage.access_token;
               },600);
         });
   }
-  $scope.openModel = function() {
+ /* $scope.openModel = function() {
     $scope.buttonStatus='Save';
     $scope.FINC_S_CA_ID= null;
     $scope.FINC_S_CA_NAME=null;
     $scope.FINC_S_CA_DESC= null;
     $scope.FINC_S_CA_BATCH= null;
+  };*/
+
+  $scope.showAdvanced = function(ev,mode,data) {
+    
+    console.log(mode =='Add');
+    console.log(mode ,'modetype');
+    console.log(data ,'datatype');
+    if(mode == 'Add')
+    {
+      $rootScope.temp_catdata = null;
+    }else if(mode == 'Edit')
+    {
+      console.log(data , 'ccc');
+      $rootScope.temp_catdata = data;
+    }
+   
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tpl/finance_module/feecategoryModal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode, data) {
+      // $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
   };
 
-  $scope.saveCategory=function($index){
+  function DialogController($scope,$mdDialog, $rootScope, $localStorage) {
+    $scope.rowCollection = [];
+     $scope.cat=[];
+    console.log($rootScope.temp_catdata , 'aaaa');
+    $scope.categoryList=[];
+    $scope.buttonStatus='Save';
+    $scope.access_token=$localStorage.access_token;
+    if($rootScope.temp_catdata == null)
+    {
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.buttonStatus='Save';
+      $scope.cat = {
+        FINC_S_CA_ID : null,
+        FINC_S_CA_NAME : null,
+        FINC_S_CA_DESC : null,
+        FINC_S_CA_BATCH : null
+    }
+    }else{
+      console.log($rootScope.temp_catdata ,'zzzz');
+      $scope.Save=false;
+      $scope.Edit=true;
+      $scope.buttonStatus='Update';
+      $scope.FINC_S_CA_ID = $rootScope.temp_catdata.FINC_S_CA_ID;
+      $scope.FINC_S_CA_NAME = $rootScope.temp_catdata.FINC_S_CA_NAME;
+      $scope.FINC_S_CA_DESC = $rootScope.temp_catdata.FINC_S_CA_DESC;
+      $scope.FINC_S_CA_BATCH = $rootScope.temp_catdata.FINC_S_CA_BATCH;
+
+      console.log($scope.FINC_S_CA_BATCH,'batch');
+     /* $scope.Exp = $rootScope.temp_catdata;*/
+    }
+
+    // Get course Details
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
+          $scope.classList = response.message;
+          console.log($scope.classList,'dropvalue');
+    });
+
+    $scope.saveCategory=function($index){
+      $mdDialog.hide();
     // $scope.classArray=$scope.FINC_S_CA_BATCH;
     // var ClassData=$scope.classArray.join(',');
     // console.log($scope.FINC_S_CA_ID,$scope.FINC_S_CA_NAME,$scope.FINC_S_CA_DESC,ClassData,'ssss');
@@ -92,6 +160,46 @@ $scope.access_token=$localStorage.access_token;
         $scope.isLoading = false;
       },500);
   }
+    $scope.refreshPage = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function (response, status, headers, config) {
+          $scope.rowCollection = response.result;
+          $scope.displayedCollection = [].concat($scope.rowCollection);
+          $scope.isLoading = false;          
+      }).error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });
+    };
+     $scope.removeRow = function(curr_id,index) {
+      $scope.refreshPage(tableState);
+    }
+    $scope.showMessage=function(data,status){
+      toaster.pop(status, data);
+    }
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
+  }
+
+
+  
   $scope.removeRow = function(curr_id,index) {
     $scope.refreshPage(tableState);
   }
