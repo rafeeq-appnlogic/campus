@@ -1,0 +1,136 @@
+
+<style>
+md-input-container {
+    margin: 4px 0;
+    padding: 0;
+}
+md-dialog .md-actions, md-dialog md-dialog-actions {
+    padding-right: 52px;
+}
+</style>
+<md-dialog aria-label="Mango (Fruit)">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 ng-if="Save">Add Particular</h4>
+        <h4 ng-if="Edit">Edit Particular</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-md-4">
+            <md-input-container class="md-block">
+              <label>Name</label>
+                <input class="form-control" ng-model="FINC_S_PA_ID" type="hidden">
+                <input required name="FINC_S_PA_NAME" ng-model="FINC_S_PA_NAME">
+              <div ng-messages="Form.FINC_S_PA_NAME.$error">
+                <div ng-message="required">Name is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <md-input-container class="md-block">
+              <label>Description</label>
+              <input name="FINC_S_PA_DESC" ng-model="FINC_S_PA_DESC">
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <label class="" style="opacity: 0.4;">Create Using</label><br>
+            <div class="radio-inline" style="margin-left:20px;">
+              <label class="i-checks i-checks-sm">
+                <input type="radio" ng-model="FINC_S_PA_CREATE_TYPE" value="all">
+                <i></i>
+                All
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label class="i-checks i-checks-sm">
+                <input type="radio" ng-model="FINC_S_PA_CREATE_TYPE" value="admno">
+                <i></i>
+                Admission no
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label class="i-checks i-checks-sm" style="margin-left: 87px;">
+                <input type="radio" ng-model="FINC_S_PA_CREATE_TYPE" value="stucat">
+                <i></i>
+                Student category
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4" ng-show="FINC_S_PA_CREATE_TYPE == 'stucat'">
+            <md-input-container class="md-block">
+              <label>Student category</label>
+              <md-select ng-model="FINC_S_PA_STU_CATE">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="cat in studentcat" ng-value="cat.id">
+                  {{cat.desc}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+           <div class="col-md-4" ng-show="FINC_S_PA_CREATE_TYPE == 'admno'">
+            <md-input-container class="md-block">
+              <label>Admisson No</label>
+              <input name="FINC_S_PA_DESC" ng-model="FINC_S_PA_DESC">
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <md-input-container class="md-block">
+              <label>Amount</label>
+              <input name="FINC_S_PA_AMT" ng-model="FINC_S_PA_AMT">
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <md-input-container class="md-block">
+              <label>Select a category</label>
+              <md-select ng-model="FINC_S_PA_CA_ID" ng-change="getBatchList()">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="category in FeesCat" ng-value="category.FINC_S_CA_ID">
+                  {{category.FINC_S_CA_NAME}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+           <div class="col-md-4">
+            <md-input-container class="md-block">
+              <label>Select a Batch</label>
+              <md-select ng-model="FINC_S_PA_BATCH">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="batch in BatchList" ng-value="batch.FINC_S_CA_ID">
+                  {{batch.FINC_S_CA_BATCH}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      
+      <span flex></span>
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveParticular();Form.$setPristine()"" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-disabled="Form.$invalid" >
+      &nbsp {{buttonStatus}} &nbsp
+      <div class="md-ripple-container" style=""></div>
+
+      </button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+
