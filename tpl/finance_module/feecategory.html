@@ -37,10 +37,12 @@
   <div class="wrapper-md" >
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="panel panel-default">
-    <div class="panel-heading" style="padding:10px;">
+    <div class="panel-heading" style="padding:19px;">
     <span style="font-size:18px;"><b>Category view</b></span>  
-    <a data-toggle="modal" data-target="#myModal" ng-click="openModel()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
-    <i class="fa fa-plus"></i> &nbsp;Add Category</a>
+
+      <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event,'Add','data')">
+        <i class="mdi-content-add i-24"></i> Add Category
+      </md-button>
     </div>
     <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -101,8 +103,8 @@
             <td>{{row.FINC_S_CA_BATCH}}</td>
             <td style="white-space: nowrap">
               <div class="buttons">
-                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="editCategory(row.FINC_S_CA_ID)"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
+                <button  md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)"><i class="fa fa-edit"></i></button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
           </tr>
