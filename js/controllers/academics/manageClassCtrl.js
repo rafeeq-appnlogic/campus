@@ -1,5 +1,5 @@
-app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox',
-  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox) {
+app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox','$mdDialog',
+  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox,$mdDialog) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -76,7 +76,81 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
     // $scope.displayedCollection.push($scope.class);
   };
 
+
+  $scope.showAdvanced = function(ev,mode,data) {
+    console.log(mode == 'Add');
+    if(mode == 'Add'){
+      $rootScope.temp_class = null;
+    }else if(mode == 'Edit'){
+      $rootScope.temp_class = data;
+    }
+    $scope.class=data;
+    $mdDialog.show({
+     controller: DialogController,
+      templateUrl: 'tpl/academics/classmodal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode,data) {
+      //$scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      //$scope.status = 'You cancelled the dialog.';
+    });
+  };
+
+  function DialogController($scope, $mdDialog, $localStorage, $rootScope) {
+    console.log($rootScope ,'Root');
+    $scope.access_token=$localStorage.access_token;
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionCourse = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+    if($rootScope.temp_class == null){
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.batch=true;
+      $scope.Savebutton=true;
+      $scope.Updatebutton=false;
+      $scope.class = {
+        ACA_COU_ID: null,
+        ACA_COU_NAME: null,
+        ACA_COU_SEC_NAME: null,
+        ACA_COU_CODE: null,
+        ACA_COU_ELECTIVE_SEL_YN:"N",
+        ACA_BAT_NAME:null,
+        ACA_BAT_START_DT:null,
+        ACA_BAT_END_DT:null
+      };
+    }else{
+        $scope.Save=false;
+        $scope.Edit=true;
+        $scope.batch=false;
+        $scope.subject=true;
+        $scope.Savebutton=false;
+        $scope.Updatebutton=true;
+        $scope.class = $rootScope.temp_class;
+    }
+    
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
   $scope.saveClass=function(){
+     $mdDialog.hide();
     var ACA_COU_CRT_USER_ID=$localStorage.user_id;
     console.log(ACA_COU_CRT_USER_ID,'id');
   $http({
@@ -104,6 +178,72 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
     });
    // $scope.testForm=false;
     }
+
+    $scope.updateClass=function(){   
+      $mdDialog.hide();
+    alert($localStorage.user_id);
+    var ACA_COU_UPD_USER_ID=$localStorage.user_id;
+    console.log(ACA_COU_UPD_USER_ID,'updateid');
+    $http({
+    method : "POST",
+    url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
+    data : {'ACA_COU_ID' : $scope.class.ACA_COU_ID,'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_UPD_USER_ID':ACA_COU_UPD_USER_ID},
+    headers: {'access_token':$scope.access_token}
+    }).then(function mySucces(response) {
+    console.log(response);
+    var status=response.data.status;
+    var message="Class is Updated Successfully";
+    var Errormessage="Class Update is Failed";
+    console.log(status,'status');
+    console.log(message,'message');
+    var success="success";
+    var error="error";
+    if(status  ='true'){
+        $scope.showMessage(message,success);
+    }else{
+      $scope.showMessage(Errormessage,error);
+    }
+    $scope.getMasterJobs(tableState);
+    }, function myError(response) {
+    });
+    // $scope.testForm=false;
+  }
+
+  $scope.getMasterJobs = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      var paramOne = $localStorage.ACA_COU_ID;
+      var paramTwo = $localStorage.ACA_BAT_ID;
+       $http({
+        method : "get",
+        // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+        url : $rootScope.endUrl+"ManageBatchModule/manageSubjectView",
+        headers: {'access_token':$scope.access_token}
+      }).then(function mySucces(response) {
+          $scope.rowCollection = response.data.message;
+          console.log(response.data.message , 'XXXXX');
+          $scope.displayedCollection = [].concat(response.data.message);
+          $scope.isLoading = false;
+      })/*.error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });*/
+  };
+
+  $scope.removeRow = function(curr_id,index) {
+    $scope.getMasterJobs(tableState);
+  }
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
+  }
+
+  }
+
+  
   $scope.GetBatchView=function(id){
     $localStorage.Class_id=id.ACA_COU_ID;
     // alert($localStorage.Class_id);
@@ -133,34 +273,7 @@ app.controller('manageClassCtrl', ['$scope','$rootScope','$localStorage','$locat
       // $scope.class.ACA_COU_ID=response.data.message[0]['ACA_COU_ID'];
     });
   };
-  $scope.updateClass=function(){   
-    alert($localStorage.user_id);
-    var ACA_COU_UPD_USER_ID=$localStorage.user_id;
-    console.log(ACA_COU_UPD_USER_ID,'updateid');
-    $http({
-    method : "POST",
-    url : $rootScope.endUrl+'ManageClassModule/ClassAndBatchDetail',
-    data : {'ACA_COU_ID' : $scope.class.ACA_COU_ID,'ACA_COU_NAME' : $scope.class.ACA_COU_NAME,'ACA_COU_SEC_NAME' : $scope.class.ACA_COU_SEC_NAME,'ACA_COU_CODE' : $scope.class.ACA_COU_CODE,'ACA_COU_GRADE_TYPE':$scope.class.ACA_COU_GRADE_TYPE,'ACA_COU_ELECTIVE_SEL_YN':$scope.class.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_NAME':$scope.class.ACA_BAT_NAME,'ACA_BAT_START_DT':$scope.class.ACA_BAT_START_DT,'ACA_BAT_END_DT':$scope.class.ACA_BAT_END_DT,'ACA_COU_UPD_USER_ID':ACA_COU_UPD_USER_ID},
-    headers: {'access_token':$scope.access_token}
-    }).then(function mySucces(response) {
-    console.log(response);
-    var status=response.data.status;
-    var message="Class is Updated Successfully";
-    var Errormessage="Class Update is Failed";
-    console.log(status,'status');
-    console.log(message,'message');
-    var success="success";
-    var error="error";
-    if(status  ='true'){
-        $scope.showMessage(message,success);
-    }else{
-      $scope.showMessage(Errormessage,error);
-    }
-    $scope.getMasterJobs(tableState);
-    }, function myError(response) {
-    });
-    // $scope.testForm=false;
-  }
+  
   $scope.DeleteClass=function(row){
     $ngBootbox.confirm('Are you sure you want to delete this record?')
     .then(function() {

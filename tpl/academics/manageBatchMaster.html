@@ -64,8 +64,11 @@
     <div class="panel panel-default">
     <div class="panel-heading" style="padding:10px;">
     <span style="font-size:18px;"><b>Manage Batch</b></span>  
-    <a data-toggle="modal" data-target="#myModal" ng-click="addBatch()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
-    <i class="fa fa-plus"></i> &nbsp;Add Batch</a>
+    <!-- <a data-toggle="modal" data-target="#myModal" ng-click="addBatch()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Batch</a> -->
+    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event,'Add','data')">
+      <i class="mdi-content-add i-24"></i>Add Batch
+    </md-button>
     </div>
     <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -157,8 +160,10 @@
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                 <!-- <a ui-sref="app.Batch-View" class="btn btn-sm btn-primary" ng-click="GetBatchView(row)"><i class="glyphicon glyphicon-file"></i></a> -->
-                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditBatch(row)"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" ng-click="DeleteBatch(row)"><i class="fa fa-trash-o"></i></button>
+                <!-- <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditBatch(row)"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="DeleteBatch(row)"><i class="fa fa-trash-o"></i></button> -->
+                <button md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)">&nbsp<i class="fa fa-edit"></i>&nbsp</button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="DeleteBatch(row)">&nbsp<i class="fa fa-trash-o"></i>&nbsp</button>
               </div>  
             </td>
           </tr>

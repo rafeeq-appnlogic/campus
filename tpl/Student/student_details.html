@@ -171,7 +171,10 @@
             <td>{{row.STU_ADM_GENDER}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
-                <a  class="btn btn-sm btn-primary" ng-click="GetStdDetail(row)"><i class="fa fa-eye"></i></a>
+                <!-- <a  class="btn btn-sm btn-primary" ng-click="GetStdDetail(row)"><i class="fa fa-eye"></i></a> -->
+
+                <button md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="GetStdDetail(row)">&nbsp<i class="fa fa-eye"></i>&nbsp</button>
+
                 <!-- <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button> -->
               </div>  

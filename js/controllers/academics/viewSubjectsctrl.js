@@ -249,8 +249,8 @@ app.controller('viewSubjectsctrl', ['$scope', '$timeout','$http', 'editableOptio
         headers: {'access_token':$scope.access_token}
       }).then(function mySucces(response) {
           $scope.rowCollection = response.data.message;
-          console.log($scope.rowCollection.length , 'XXXXX');
-          $scope.displayedCollection = [].concat($scope.rowCollection);
+          console.log(response.data.message , 'XXXXX');
+          $scope.displayedCollection = [].concat(response.data.message);
           $scope.isLoading = false;
       })/*.error(function (data, status, headers, config) {
           $scope.isLoading = false;

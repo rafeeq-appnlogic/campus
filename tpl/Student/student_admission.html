@@ -10,6 +10,53 @@
 .imp{
    color:red !important;
 }
+
+
+.selectdemoSelectHeader {
+  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
+  .selectdemoSelectHeader .demo-header-searchbox {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0; }
+  .selectdemoSelectHeader .demo-select-header {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10.667px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto; }
+  .selectdemoSelectHeader md-content._md {
+    max-height: 240px; }
+ md-input-container.md-default-theme .md-input, md-input-container .md-input{
+    border-bottom-color: #777777;
+  }
+  md-select.md-default-theme .md-select-value, md-select .md-select-value{
+    border-bottom-color: #777777 !important;
+    font-size: 18px !important;
+  }
+  .md-default-theme .md-datepicker-input-container, .md-datepicker-input-container{
+    border-bottom-color: #777777 !important;
+    font-size: 18px !important;
+  }
+  .md-datepicker-input{
+    font-size: 18px !important;
+    min-width: 178px !important;
+  }
+  md-input-container.md-default-theme .md-input, md-input-container label{
+    font-size: 18px !important;
+  }
+  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
+    transform: translate3d(0px, 20px, 0px) scale(0.75);
+  }
+  md-input-container{
+    margin-top: 8px;
+    margin-bottom: 0px;
+  }
+
 </style>
 
 <div class="bg-light lter b-b wrapper-md">
@@ -68,7 +115,7 @@
             </div>
           </div> -->
           <div class="form-group col-sm-3">
-          <br>
+          
             <div flex-gt-xs>
             <!-- <label>Admission Date</label> -->
               <md-datepicker ng-model="Stud.STU_ADM_DT" md-placeholder="Admission Date" md-open-on-focus></md-datepicker>
@@ -168,7 +215,6 @@
             </div>
           </div> -->
           <div class="form-group col-sm-3">
-          <br>
               <md-datepicker ng-model="Stud.STU_ADM_DOB" md-placeholder="Date of Birth" md-open-on-focus></md-datepicker>
           </div>
           
@@ -184,17 +230,23 @@
                 </select>
             </div>
           </div> -->
-          <div class="form-group col-md-3">
-            <!-- <md-input-container class="md-block" flex-gt-sm> 
+          <div class="form-group col-md-3" ng-init="reInitialize()">
+            <md-input-container class="md-block" flex-gt-sm> 
               <label>Nationality</label>
-              <md-select ng-model="Stud.STU_ADM_NATIONALITY">
-                <md-option><em>None</em></md-option>
-                <md-option ng-repeat="nation in nationality" ng-value="nation.abbrev" ng-disabled="$index === 1">
-                  {{nation.abbrev}}
+              <md-select ng-model="Stud.STU_ADM_NATIONALITY" md-on-close="clearSearchTerm()">
+              <md-select-header class="demo-select-header">
+                <input ng-model="searchTerm"
+                       type="search"
+                       placeholder=" Search for nationality.."
+                       class="demo-header-searchbox md-text">
+              </md-select-header>
+                <md-option ng-repeat="nation in nationality | filter:searchTerm" ng-value="nation">
+                  {{nation}}
                 </md-option>
               </md-select>
-            </md-input-container> -->
-            <md-input-container class="md-block">
+            </md-input-container>
+
+            <!-- <md-input-container class="md-block">
               <label>Nationality</label>
               <md-select name="STU_ADM_NATIONALITY" ng-model="Stud.STU_ADM_NATIONALITY">
                 <md-option value="Indian">India</md-option>
@@ -203,7 +255,26 @@
                 <md-option value="South African">South Africa</md-option>
                 <md-option value="Srilangan">Srilanga</md-option>
               </md-select>
-            </md-input-container>
+            </md-input-container> -->
+
+            <!-- <md-autocomplete flex 
+            
+                md-input-name="autocompleteField"
+                md-input-minlength="2"
+                md-input-maxlength="18"
+                md-no-cache="noCache"
+                md-selected-item="selectedItem"
+                md-search-text="searchText"
+                md-items="item in querySearch(searchText)"
+                md-item-text="item.display"
+                md-require-match
+                md-floating-label="Favorite state">
+              <md-item-template>
+                <span md-highlight-text="searchText">{{item.display}}</span>
+              </md-item-template>
+              
+            </md-autocomplete> -->
+
           </div>
           <div class="col-sm-3">
             <div class="form-group">
@@ -216,16 +287,21 @@
                     <option value="Telugu">Telugu</option>
                     <option value="Malayalam">Malayalam</option>
                 </select> -->
-                <!-- <md-input-container class="md-block">
+                <md-input-container class="md-block">
                   <label>Mother Tongue</label>
-                  <md-select ng-model="Stud.STU_ADM_MOTHER_TONGUE">
-                    <md-option><em>None</em></md-option>
-                    <md-option ng-repeat="lang in mothertongue" ng-value="lang.abbrev" ng-disabled="$index === 1">
-                      {{lang.abbrev}}
+                  <md-select ng-model="Stud.STU_ADM_MOTHER_TONGUE" md-on-close="clearSearchTerm()">
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           placeholder="Search for mother tongue.."
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                    <md-option ng-repeat="lang in mothertongue | filter:searchTerm" ng-value="lang">
+                      {{lang}}
                     </md-option>
                   </md-select>
-                </md-input-container> -->
-                <md-input-container class="md-block">
+                </md-input-container>
+                <!-- <md-input-container class="md-block">
                   <label>Mother Tongue</label>
                   <md-select name="STU_ADM_MOTHER_TONGUE" ng-model="Stud.STU_ADM_MOTHER_TONGUE">
                     <md-option value="Tamil">Tamil</md-option>
@@ -235,7 +311,7 @@
                     <md-option value="Telugu">Telugu</md-option>
                     <md-option value="Malayalam">Malayalam</md-option>
                   </md-select>
-                </md-input-container>
+                </md-input-container> -->
               </div>
           </div>
           
@@ -436,8 +512,13 @@
                 <md-input-container class="md-block">
                   <label>Class</label>
                   <md-select ng-model="Stud.STU_ADM_CB_COURSE">
-                    <md-option><em>None</em></md-option>
-                    <md-option ng-repeat="class in rowCollectionCourse" ng-value="class.ACA_COU_ID">
+                  <md-select-header class="demo-select-header" md-on-close="clearSearchTerm()">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           placeholder=" Search for class name.."
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                    <md-option ng-repeat="class in rowCollectionCourse | filter:searchTerm " ng-value="class.ACA_COU_ID">
                       {{class.ACA_COU_NAME}}
                     </md-option>
                   </md-select>
@@ -479,6 +560,30 @@
                 </div>
               </md-input-container>
             </div>
+            <div class="form-group col-sm-3">
+              <!-- <div class="md-form-group float-label">
+                <input type="number" class="form-control md-input" ng-model="Stud.STU_ADM_CB_ROLL_NO" name="STU_ADM_CB_ROLL_NO" required>
+                <label>Roll Number <span class="imp">*</span></label>
+              </div> -->
+              <!-- <md-input-container>
+                <label>Vegetables</label>
+                <md-select ng-model="selectedVegetables"
+                           md-on-close="clearSearchTerm()"
+                           data-md-container-class="selectdemoSelectHeader"
+                           multiple>
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           placeholder="Search for a vegetable.."
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-optgroup label="vegetables">
+                    <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+                      filter:searchTerm">{{vegetable}}</md-option>
+                  </md-optgroup>
+                </md-select>
+              </md-input-container> -->
+            </div>
           </div>
          <div class="row wrapper-md">
             <div class="form-group">
@@ -490,7 +595,7 @@
                 ng-if="Updatebutton">Update & Next</button> -->
 
                 <md-button type="submit" class="md-raised md-primary pull-right" ng-disabled="step1.$invalid" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Savebutton">Save & Next</md-button>
-                <md-button type="submit" class="md-raised md-primary" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Updatebutton">Update & Next</md-button>
+                <md-button type="submit" class="md-raised md-primary pull-right" ng-click="steps.step2=true;saveStuAdmission()" ng-if="Updatebutton">Update & Next</md-button>
             </div>
           </div>
       </form>

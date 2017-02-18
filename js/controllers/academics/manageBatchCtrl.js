@@ -1,5 +1,5 @@
-app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox', 
-  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox) {
+app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox','$mdDialog', 
+  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox,$mdDialog) {
   editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
@@ -78,14 +78,107 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
     };
     // $scope.displayedCollection.push($scope.class);
   };
-  $scope.saveBatch=function(){
+
+
+      $scope.showAdvanced = function(ev,mode,data) {
+    console.log(mode == 'Add');
+    if(mode == 'Add'){
+      $rootScope.temp_batch = null;
+    }else if(mode == 'Edit'){
+      $rootScope.temp_batch = data;
+    }
+    $scope.Batch=data;
+    $mdDialog.show({
+     controller: DialogController,
+      templateUrl: 'tpl/academics/batchmastermodal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode,data) {
+      //$scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      //$scope.status = 'You cancelled the dialog.';
+    });
+  };
+
+  function DialogController($scope, $mdDialog, $localStorage, $rootScope) {
+    console.log($rootScope ,'Root');
+    $scope.access_token=$localStorage.access_token;
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionCourse = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+    if($rootScope.temp_batch == null){
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.subject=true;
+      $scope.Savebutton=true;
+      $scope.Updatebutton=false;
+      $scope.Batch = {
+        ACA_BAT_NAME:null,
+        ACA_BAT_START_DT:null,
+        ACA_BAT_END_DT:null,
+        ACA_BAT_IMP_PRE_BAT_SUB_YN:"N",
+        ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN:"N"
+      };
+    }else{
+        $scope.Save=false;
+        $scope.Edit=true;
+        $scope.subject=true;
+        $scope.Savebutton=false;
+        $scope.Updatebutton=true;
+        $scope.Batch = $rootScope.temp_batch;
+        $scope.Batch.ACA_BAT_START_DT = new Date($rootScope.temp_batch.ACA_BAT_START_DT);
+        $scope.Batch.ACA_BAT_END_DT = new Date($rootScope.temp_batch.ACA_BAT_END_DT);
+    }
+    
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+
+    $scope.saveBatch=function(){
+      $mdDialog.hide();
+      var date = $scope.Batch.ACA_BAT_START_DT;
+      var day = ('0'+(date.getDate())).slice(-2);
+      var month=('0'+(date.getMonth()+1)).slice(-2);
+      var year = date.getFullYear();
+      $scope.datestart = month +'/'+ day +'/'+ year ;
+
+      var date1 = $scope.Batch.ACA_BAT_END_DT;
+      var day = ('0'+(date1.getDate())).slice(-2);
+      var month=('0'+(date1.getMonth()+1)).slice(-2);
+      var year = date1.getFullYear();
+      $scope.dateend = month +'/'+ day +'/'+ year ;
+
     var ACA_BAT_CRT_USER_ID=$localStorage.user_id;
     console.log(ACA_BAT_CRT_USER_ID,'insertid');
     $http({
       method : "POST",
       url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-      data : {'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID},
-      headers: {'access_token':$scope.access_token}
+      data : {
+        'ACA_BAT_COU_ID':$scope.Batch.ACA_BAT_COU_ID,
+        'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,
+        'ACA_BAT_START_DT' : $scope.datestart,
+        'ACA_BAT_END_DT' : $scope.dateend,
+        'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,
+        'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,
+        'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,
+        'ACA_BAT_CRT_USER_ID':ACA_BAT_CRT_USER_ID},
+        headers: {'access_token':$scope.access_token}
      }).then(function mySucces(response) {
       var status=response.data.status;
       var message="Batch inserted Successfully";
@@ -107,35 +200,25 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
     });
     // $scope.testForm=false;
   }
-  $scope.EditBatch=function(id){
-    // $scope.testForm=true;
-    $scope.Save=false;
-    $scope.Edit=true;
-    $scope.batch=false;
-    $scope.Savebutton=false;
-    $scope.Updatebutton=true;
-    var id=id.ACA_BAT_ID;
-    // alert(user_id);
-    $http({
-      method : "GET",
-      url : $rootScope.endUrl+'ManageBatchModule/Batch',
-      params :{ACA_BAT_ID : id},
-      headers: {'access_token':$scope.access_token}
-    }).then(function mySucces(response) {
-      console.log(response,'test');
-      $scope.Batch=[];
-      $scope.Batch=response.data.message[0];
-    },function myError(response) {
-    });
-  };
-  $scope.updateBatch=function(){
+
+    $scope.updateBatch=function(){
+      $mdDialog.hide();
     var ACA_BAT_UPD_USER_ID=$localStorage.user_id;
     console.log(ACA_BAT_UPD_USER_ID,'updateid');
     $http({
     method : "POST",
     url : $rootScope.endUrl+'ManageBatchModule/BatchDetail',
-    data : {'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,'ACA_BAT_COU_ID':id,'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID},
-    headers: {'access_token':$scope.access_token}
+    data : {
+      'ACA_BAT_ID':$scope.Batch.ACA_BAT_ID,
+      'ACA_BAT_COU_ID':$scope.Batch.ACA_BAT_COU_ID,
+      'ACA_BAT_NAME' : $scope.Batch.ACA_BAT_NAME,
+      'ACA_BAT_START_DT' : $scope.Batch.ACA_BAT_START_DT,
+      'ACA_BAT_END_DT' : $scope.Batch.ACA_BAT_END_DT,
+      'ACA_BAT_IMP_PRE_BAT_SUB_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_SUB_YN,
+      'ACA_COU_ELECTIVE_SEL_YN':$scope.Batch.ACA_COU_ELECTIVE_SEL_YN,
+      'ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN':$scope.Batch.ACA_BAT_IMP_PRE_BAT_MASTER_FEE_YN,
+      'ACA_BAT_UPD_USER_ID':ACA_BAT_UPD_USER_ID},
+      headers: {'access_token':$scope.access_token}
     }).then(function mySucces(response) {
     var status=response.data.status;
     var message="Batch is Updated Successfully";
@@ -157,6 +240,65 @@ app.controller('manageBatchCtrl', ['$scope','$rootScope','$localStorage','$locat
     });
     // $scope.testForm=false;
   }
+
+  $scope.getMasterJobs = function (tableState) {
+      var start = 0;
+      var length = 10;
+      var pagination = tableState.pagination;
+      start = pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+      length = pagination.number || 10;  // Number of entries showed per page.
+      $scope.isLoading = true;
+      $scope.rowCollection=[];
+      var paramOne = $localStorage.ACA_COU_ID;
+      var paramTwo = $localStorage.ACA_BAT_ID;
+       $http({
+        method : "get",
+        // url : "http://192.168.1.136/smartedu/api/ManageBatchModule/SubjectDetail",
+        url : $rootScope.endUrl+"ManageBatchModule/BatchDetail",
+        headers: {'access_token':$scope.access_token}
+      }).then(function mySucces(response) {
+          $scope.rowCollection = response.data.message;
+          console.log(response.data.message , 'XXXXX');
+          $scope.displayedCollection = [].concat(response.data.message);
+          $scope.isLoading = false;
+      })/*.error(function (data, status, headers, config) {
+          $scope.isLoading = false;
+      });*/
+  };
+
+  $scope.removeRow = function(curr_id,index) {
+    $scope.getMasterJobs(tableState);
+  }
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
+  }
+
+  }
+
+
+  
+  $scope.EditBatch=function(id){
+    // $scope.testForm=true;
+    $scope.Save=false;
+    $scope.Edit=true;
+    $scope.batch=false;
+    $scope.Savebutton=false;
+    $scope.Updatebutton=true;
+    var id=id.ACA_BAT_ID;
+    // alert(user_id);
+    $http({
+      method : "GET",
+      url : $rootScope.endUrl+'ManageBatchModule/Batch',
+      params :{ACA_BAT_ID : id},
+      headers: {'access_token':$scope.access_token}
+    }).then(function mySucces(response) {
+      console.log(response,'test');
+      $scope.Batch=[];
+      $scope.Batch=response.data.message[0];
+    },function myError(response) {
+    });
+  };
+  
   $scope.DeleteBatch=function(row){
     $ngBootbox.confirm('Are you sure you want to delete this record?').then(function(){
     var id=row.ACA_BAT_ID;

@@ -1,0 +1,124 @@
+<style>
+/*md-dialog{
+  max-width: 100% !important;
+}*/
+md-input-container {
+    margin: 26px 18px 0 !important;
+}
+.m-b {
+    margin-bottom: 0px !important;
+}
+</style>
+
+<md-dialog aria-label="Mango (Fruit)">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 ng-if="Save">Add Class Details</h4>
+        <h4 ng-if="Edit">Edit Class Details</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="col-md-12">
+        <!-- <md-input-container class="md-block">
+          <label>Country</label>
+          <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+            <md-option value="India">India</md-option>
+            <md-option value="America">America</md-option>
+            <md-option value="Australia">Australia</md-option>
+            <md-option value="England">England</md-option>
+            <md-option value="Srilanga">Srilanga</md-option>
+          </md-select>
+        </md-input-container> -->
+        <br>
+        <div class="row">
+        <div class="col-md-4">
+          <md-input-container class="md-block">
+            <label>Course Name</label>
+            <input required name="ACA_COU_NAME" ng-model="class.ACA_COU_NAME">
+            <div ng-messages="Form.ACA_COU_NAME.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div class="col-md-4">
+          <md-input-container class="md-block">
+            <label>Course Code</label>
+            <input required name="ACA_COU_CODE" ng-model="class.ACA_COU_CODE">
+            <div ng-messages="Form.ACA_COU_CODE.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div class="col-md-4">
+         <md-input-container class="md-block">
+            <label>Grading System Type</label>
+            <md-select name="ACA_COU_GRADE_TYPE" ng-model="class.ACA_COU_GRADE_TYPE">
+              <md-option value="Normal">Normal</md-option>
+              <md-option value="CCE">CCE</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
+      <br>
+      <div ng-if="batch">
+      <legend class="text-muted" style="font-size: 17px">Add Initail Batch for Creating Class</legend>
+      <div class="row">
+        <div class="col-md-4">
+          <md-input-container class="md-block">
+            <label>Batch Name</label>
+            <input required name="ACA_BAT_NAME" ng-model="class.ACA_BAT_NAME">
+            <div ng-messages="Form.ACA_BAT_NAME.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div class="col-md-4">
+          <md-input-container class="md-block">
+            <md-datepicker ng-model="class.ACA_BAT_START_DT" md-placeholder="Start Date" md-open-on-focus></md-datepicker>
+          </md-input-container>
+        </div>
+        <div class="col-md-4">
+          <md-input-container class="md-block">
+            <md-datepicker ng-model="class.ACA_BAT_END_DT" md-placeholder="End Date" md-open-on-focus></md-datepicker>
+          </md-input-container>
+        </div>
+      </div>
+      </div>
+    </md-dialog-content>
+    <br>
+
+    <md-dialog-actions layout="row">
+      <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button> -->
+      <span flex></span>
+      <div class="m-b">
+      <!-- <md-button ng-click="cancel()" class="md-accent md-raised">
+       Cancel
+      </md-button> -->
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveClass();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Savebutton">
+      &nbsp Save &nbsp
+      <div class="md-ripple-container" style=""></div>
+      </button>
+      <button ng-click="updateClass();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Updatebutton">
+      &nbsp Update &nbsp
+      <div class="md-ripple-container" style=""></div>
+      </button>
+      <!-- <md-button ng-click="saveSubject();Form.$setPristine()" ng-disabled="Form.$invalid" class="md-primary md-raised">
+        Save
+      </md-button> -->
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+

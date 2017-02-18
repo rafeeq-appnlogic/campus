@@ -15,8 +15,8 @@ md-input-container {
   <form name="Form" ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h4 ng-if="Save">Add Subject</h4>
-        <h4 ng-if="Edit">Edit Subject</h4>
+        <h4 ng-if="Save">Add Batch Details</h4>
+        <h4 ng-if="Edit">Edit Batch Details</h4>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -38,41 +38,35 @@ md-input-container {
           </md-select>
         </md-input-container> -->
         <md-input-container class="md-block">
-          <label>Class</label>
-          <md-select ng-model="Subject.ACA_SUB_COU_ID">
+          <label>Course Name</label>
+          <md-select ng-model="Batch.ACA_BAT_COU_ID">
             <md-option><em>None</em></md-option>
-            <md-option ng-repeat="class in rowCollectionCourse" ng-value="class.ACA_COU_ID">
-              {{class.ACA_COU_NAME}}
+            <md-option ng-repeat="batch in rowCollectionCourse" ng-value="batch.ACA_COU_ID">
+              {{batch.ACA_COU_NAME}}
             </md-option>
           </md-select>
         </md-input-container>
       </div>
       <div class="col-md-10 col-md-offset-1">
         <md-input-container class="md-block">
-          <label>Subject Name</label>
-          <input required name="ACA_SUB_NAME" ng-model="Subject.ACA_SUB_NAME">
-          <div ng-messages="Form.ACA_SUB_NAME.$error">
+          <label>Batch Name</label>
+          <input required name="ACA_BAT_NAME" ng-model="Batch.ACA_BAT_NAME">
+          <div ng-messages="Form.ACA_BAT_NAME.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
       </div>
       <div class="col-md-10 col-md-offset-1">
         <md-input-container class="md-block">
-          <label>Subject Code</label>
-          <input name="ACA_SUB_CODE" ng-model="Subject.ACA_SUB_CODE">
+          <md-datepicker ng-model="Batch.ACA_BAT_START_DT" md-placeholder="Start Date" md-open-on-focus></md-datepicker>
         </md-input-container>
       </div>
       <div class="col-md-10 col-md-offset-1">
         <md-input-container class="md-block">
-          <label>Subject Type</label>
-          <md-select name="ACA_SUB_ELECT_YN" ng-model="Subject.ACA_SUB_ELECT_YN">
-            <md-option value="Main">Main</md-option>
-            <md-option value="Elective">Elective</md-option>
-          </md-select>
+          <md-datepicker ng-model="Batch.ACA_BAT_END_DT" md-placeholder="End Date" md-open-on-focus></md-datepicker>
         </md-input-container>
       </div>
     </md-dialog-content>
-    <br>
     <br>
 
     <md-dialog-actions layout="row">
@@ -88,11 +82,11 @@ md-input-container {
       Cancel
       <div class="md-ripple-container" style=""></div>
       </button>&nbsp
-      <button ng-click="saveSubject();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Savebutton">
+      <button ng-click="saveBatch();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Savebutton">
       &nbsp Save &nbsp
       <div class="md-ripple-container" style=""></div>
       </button>
-      <button ng-click="updateSubject();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Updatebutton">
+      <button ng-click="updateBatch();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-if="Updatebutton">
       &nbsp Update &nbsp
       <div class="md-ripple-container" style=""></div>
       </button>

@@ -63,7 +63,11 @@
                   </div>
                   <div style="margin-top: 10px;line-height: 11.0px;margin-bottom: 0px" class="form-group Studata ">
                   <div class="col-md-4">
-                    <button class="btn btn-sm btn-success btn-rounded" ng-click="GetStdDetail(class)"><i class="fa fa-edit"></i> Edit Details</button>
+                    <!-- <button class="btn btn-sm btn-success btn-rounded" ng-click="GetStdDetail(class)"><i class="fa fa-edit"></i> Edit Details</button> -->
+                    <button class="md-btn md-raised m-b btn-fw purple" ng-click="GetStdDetail(class)" md-ink-ripple="">
+                    Edit Details
+                    <div class="md-ripple-container" style=""></div>
+                    </button>
                   </div>
                   </div>
                 </form>
@@ -86,370 +90,362 @@
         </div>
       </div>
     </div>
-    
-        <div class="wrapper bg-white b-b">
-    <div ng-controller="TabsDemoCtrl">
-        <tabset class="tab-container">
-          <tab>
-           <tab-heading><i class="fa fa-user"></i>&nbsp Student Details</tab-heading>
-            <legend>Personal Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Admission Date</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_DT}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_DOB}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Gender</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_GENDER}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Nationality</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_NATIONALITY}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Mother Tongue</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_MOTHER_TONGUE}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Religion</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_RELIGION}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Contact Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_ADD1}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_CITY}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_STATE}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Pincode</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_PINCODE}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_COUNTRY}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_PHONE}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_MOBILE}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>E-mail</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_EMAIL}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-          </tab>
-          <tab>
-           <tab-heading><i class="fa fa-group"></i>&nbsp Parent/Guardian Details</tab-heading>
-            <legend>Parent - Personal details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Parent Name</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_FIRST_NAME}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_RELATION}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_DOB}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Education</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_EDUCATION}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Occupation</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_OCCUPATION}}</p>
-            </div>
-          </div>
+    <div class="wrapper bg-white b-b">
+      <div ng-cloak>
+        <md-content>
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Student Details">
+              <md-content class="md-padding">
+                <legend>Personal Details</legend>
+                <div class="row">
+                  <div class="col-md-6">
+                    <form class="form-horizontal ng-pristine ng-valid">
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Admission Date</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_DT}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_DOB}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Gender</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_GENDER}}</p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-6">
+                    <form class="form-horizontal ng-pristine ng-valid">
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Nationality</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_NATIONALITY}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Mother Tongue</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_MOTHER_TONGUE}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Religion</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_RELIGION}}</p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <legend>Contact Details</legend>
+                <div class="row">
+                  <div class="col-md-6">
+                    <form class="form-horizontal ng-pristine ng-valid">
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_ADD1}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_CITY}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_STATE}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Pincode</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_PINCODE}}</p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-6">
+                    <form class="form-horizontal ng-pristine ng-valid">
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_COUNTRY}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_PHONE}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_MOBILE}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group Studata ">
+                        <label class="col-lg-4 col-md-offset-1"><b>E-mail</b></label>
+                        <div class="col-lg-6">
+                          <p class="">{{class.STU_ADM_EMAIL}}</p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </md-content>
+            </md-tab>
+            <md-tab label="Parent/Guardian Details">
+              <md-content class="md-padding">
+                  <legend>Parent - Personal details</legend>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Parent Name</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_FIRST_NAME}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_RELATION}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Date of Birth</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_DOB}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Education</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_EDUCATION}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Occupation</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_OCCUPATION}}</p>
+                          </div>
+                        </div>
 
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Income</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_INCOME}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Income</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_INCOME}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <legend>Parent - Contact Details</legend>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_ADD1}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_CITY}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_STATE}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_COUNTRY}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Email</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_EMAIL}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Phone 1</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_PHONE1}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Phone 2</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_PHONE2}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_MOBILE}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <legend>Gaurdian - Details</legend>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Gaurdian Name </b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_NAME}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_RELATION}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Address Line 1</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_ADD1}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Address Line 2</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_ADD2}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_CITY}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_STATE}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_COUNTRY}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PA_GA_PHONE1}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+              </md-content>
+            </md-tab>
+            <md-tab label="Previous Educational Details">
+              <md-content class="md-padding">
+                  <legend>Previous Educational Details</legend>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Institution Name</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PRE_D_INSTITUTE_NAME}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Class</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PRE_D_COURSE}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Year</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PRE_D_YEAR}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Total Marks</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_ADM_NO}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <legend>Additional Details </legend>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Blood group</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PRE_ADD_BLOOD_GROUP}}</p>
+                          </div>
+                        </div>
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Birth Place</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PRE_ADD_BIRTH_PLACE}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="form-group Studata ">
+                          <label class="col-lg-4 col-md-offset-1"><b>Category</b></label>
+                          <div class="col-lg-6">
+                            <p class="">{{class.STU_PRE_ADD_STUD_CATE}}</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+         </md-content>
+        </div>
     </div>
-    <legend>Parent - Contact Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_ADD1}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_CITY}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_STATE}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_COUNTRY}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Email</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_EMAIL}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone 1</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_PHONE1}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone 2</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_PHONE2}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Mobile</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_MOBILE}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Gaurdian - Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Gaurdian Name </b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_NAME}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Relation</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_RELATION}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line 1</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_ADD1}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Address Line 2</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_ADD2}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>City</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_CITY}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>State</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_STATE}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Country</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_COUNTRY}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Phone</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PA_GA_PHONE1}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-          </tab>
-          <tab>
-            <tab-heading><i class="fa fa-graduation-cap"></i> &nbsp Previous Educational Details</tab-heading>
-            <legend>Previous Educational Details</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Institution Name</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PRE_D_INSTITUTE_NAME}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Class</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PRE_D_COURSE}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Year</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PRE_D_YEAR}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Total Marks</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_ADM_NO}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <legend>Additional Details </legend>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Blood group</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PRE_ADD_BLOOD_GROUP}}</p>
-            </div>
-          </div>
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Birth Place</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PRE_ADD_BIRTH_PLACE}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <form class="form-horizontal ng-pristine ng-valid">
-          <div class="form-group Studata ">
-            <label class="col-lg-4 col-md-offset-1"><b>Category</b></label>
-            <div class="col-lg-6">
-              <p class="">{{class.STU_PRE_ADD_STUD_CATE}}</p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-          </tab>
-        </tabset>
-
-        <!-- <tabset vertical="true" type="pills" class="tab-container">
-          <tab heading="Vertical 1">Vertical content 1</tab>
-          <tab heading="Vertical 2">Vertical content 2</tab>
-        </tabset>
-
-        <tabset justified="true" class="tab-container">
-          <tab heading="Justified">Justified content</tab>
-          <tab heading="SJ">Short Labeled Justified content</tab>
-          <tab heading="Long Justified">Long Labeled Justified content</tab>
-        </tabset> -->
-      </div>
-    </div>
-
   </div>
   <div class="col w-lg bg-light lter b-l bg-auto">
     <div class="wrapper">

@@ -1,4 +1,4 @@
-app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http','$localStorage', function($scope,$rootScope,$controller,$http,$localStorage){
+app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http','$localStorage', '$q', '$timeout','$element', function($scope,$rootScope,$controller,$http,$localStorage, $q,$timeout,$element){
 	//console.log($scope,'ters');
 	$scope.Savebutton=true;
   	$scope.Updatebutton=false;
@@ -79,12 +79,64 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 		console.log($localStorage.classDetails);
 		$localStorage.classDetails=[];
 	}
+	
+ 	var allStates = 'Indian, Australian, American, Srilangan, Englishmen';
+    $scope.states        = loadAll(allStates);
+    $scope.selectedItem  = null;
+    $scope.searchText    = null;
+    $scope.querySearch   = querySearch;
+
+    function querySearch (query) {
+      var results = query ? $scope.states.filter( createFilterFor(query) ) : $scope.states;
+      var deferred = $q.defer();
+      $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+      return deferred.promise;
+    }
+
+    function loadAll(data) {
+      return data.split(/, +/g).map( function (state) {
+        return {
+          value: state.toLowerCase(),
+          display: state
+        };
+      });
+    }
+
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+
+      return function filterFn(state) {
+        return (state.value.indexOf(lowercaseQuery) === 0);
+      };
+
+    }
 
 	$scope.STU_ADM_NATIONALITY = '';
-	$scope.nationality = ('Indian Australian American Srilangan Englishmen').split(' ').map(function (nation) { return { abbrev: nation }; });
-console.log($scope.nationality ,'dsfgdgdfg');
+	// $scope.nationality = ('Indian Australian American Srilangan Englishmen').split(' ').map(function (nation) { return { abbrev: nation }; });
+
+	$scope.nationality = ['Indian' ,'Australian' ,'American' ,'Srilangan' ,'Englishmen'];
 	$scope.STU_ADM_MOTHER_TONGUE = '';
-	$scope.mothertongue = ('Tamil English Hindi Malayalam Telugu').split(' ').map(function (lang) { return { abbrev: lang }; });
+	$scope.mothertongue = ['Tamil' ,'English' ,'Hindi' ,'Malayalam' ,'Telugu'];
+	console.log($scope.mothertongue);
+	$scope.searchTerm;
+      $scope.clearSearchTerm = function() {
+        $scope.searchTerm = '';
+      };
+      // The md-select directive eats keydown events for some quick select
+      // logic. Since we have a search input here, we don't need that logic.
+      // $scope.reInitialize = function(){
+      // 	$element.find('input').on('keydown', function(ev) {
+      //     ev.stopPropagation();
+      // 	});
+      // }
+
+      $scope.reInitialize =function (){
+      	console.log($element.find('input.demo-header-searchbox') , 'Element')
+			$element.find('input.demo-header-searchbox').on('keydown', function(ev) {
+           		ev.stopPropagation();
+      		});
+      }
+      	
 
 	$scope.Stud.STU_ADM_COUNTRY = '';
 	$scope.countries = ('India England Australia Japan America').split(' ').map(function (country) { return { abbrev: country }; });
@@ -262,5 +314,27 @@ console.log($scope.nationality ,'dsfgdgdfg');
 			//alert('Success');
 		});
 	}
+
+
+	// $scope.vegetables = ['Corn' ,'Onions' ,'Kale' ,'Arugula' ,'Peas', 'Zucchini'];
+ //      $scope.searchTerm;
+ //      $scope.clearSearchTerm = function() {
+ //        $scope.searchTerm = '';
+ //      };
+ //      // The md-select directive eats keydown events for some quick select
+ //      // logic. Since we have a search input here, we don't need that logic.
+ //      // $scope.reInitialize = function(){
+ //      // 	$element.find('input').on('keydown', function(ev) {
+ //      //     ev.stopPropagation();
+ //      // 	});
+ //      // }
+
+ //      setTimeout(function(){
+ //      	console.log($element.find('input') , 'Element')
+	// 		$element.find('input').on('keydown', function(ev) {
+ //           		ev.stopPropagation();
+ //      		});
+ //      },1000);
+      
 
 }]);
