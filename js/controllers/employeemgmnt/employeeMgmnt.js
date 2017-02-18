@@ -1,6 +1,6 @@
-app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox',
-  function($scope, $timeout, $http,toaster,$rootScope,$localStorage,$location,$ngBootbox) {
-  
+app.controller('employeeMgmnt', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$element',
+  function($scope, $timeout, $http,toaster,$rootScope,$localStorage,$location,$ngBootbox,$element) {
+
 // url refresh
   if($localStorage.user_id==''){
     $location.path('signin');
@@ -23,14 +23,57 @@ $scope.access_token=$localStorage.access_token;
   $scope.showMessage=function(data,status){
     toaster.pop(status, data);
   }
+    
   // $scope.empAdm=[];
   // $scope.empCont=[];
   // $scope.empAdd=[];
   $scope.empAdm=[];
   $scope.empCont=[];
-  $scope.empAdd=[];
+  $scope.empAdd=[]; 
   $scope.return_id='';
   $scope.EMP_JOIN_DT=new Date();
+
+  $scope.EMP_MARITAL_STATUS = '';
+  $scope.maritalstatus = ['single' ,'Married','Divorced'];
+  $scope.EMP_BLOOD_GROUP = '';
+  $scope.bloodgroup = ['A+ve' ,'B+ve' ,'O+ve' ,'A-ve'];
+  $scope.STU_ADM_NATIONALITY = '';
+  $scope.nationality = ['Indian' ,'Australian' ,'American' ,'Srilangan' ,'Englishmen'];
+  $scope.EMP_DEPT = '';
+  $scope.department = ['English' ,'Hindi' ,'Maths' ,'Science' ,'Social'];
+  $scope.EMP_CATEGORY = '';
+  $scope.empcategory = ['Finance' ,'Human Resource' ,'Librarion' ,'Teacher' ,'System Admin'];
+  $scope.EMP_POSITION = '';
+  $scope.selectposition = ['Lab Assistant' ,'System Admin'];
+  $scope.EMP_GRADE = '';
+  $scope.empgrade = ['Grade 1' ,'Grade 2','Grade 3'];
+  $scope.EMP_TOT_EXPE = '';
+  $scope.experience = ['Grade 1' ,'Grade 2','Grade 3'];
+  $scope.EMP_CITY = '';
+  $scope.selectcity = ['Chennai' ,'Coimbatore','Pondicherry','Cuddalore','Villupram'];
+  $scope.EMP_STATE = '';
+  $scope.selectstate = ['Tamilnadu' ,'Mumbai','Delhi','Pune'];
+  $scope.EMP_COUNTRY = '';
+  $scope.selectcountry = ['Australia' ,'India','UK','Dubai'];
+ /* console.log($scope.mothertongue);*/
+  $scope.searchTerm;
+      $scope.clearSearchTerm = function() {
+        $scope.searchTerm = '';
+      };
+      // The md-select directive eats keydown events for some quick select
+      // logic. Since we have a search input here, we don't need that logic.
+      // $scope.reInitialize = function(){
+      //  $element.find('input').on('keydown', function(ev) {
+      //     ev.stopPropagation();
+      //  });
+      // }
+
+      $scope.reInitialize =function (){
+        console.log($element.find('input.demo-header-searchbox') , 'Element')
+      $element.find('input.demo-header-searchbox').on('keydown', function(ev) {
+              ev.stopPropagation();
+          });
+      }
 
  /* $scope.martial = '';
   $scope.status = ('Single Married Divorced').split(' ').map(function (status) { return { abbrev: status }; });
