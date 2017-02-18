@@ -1,0 +1,125 @@
+
+<style>
+md-input-container {
+    margin: 4px 0;
+    padding: 0;
+}
+/*md-dialog .md-actions, md-dialog md-dialog-actions {
+    padding-right: 52px;
+}*/
+.md-icon-button + .md-datepicker-input-container {
+    margin-left: 7px;
+}
+md-dialog {
+   
+    max-height: 80%;
+    max-width: 94%;
+    min-width: 655px;
+  }
+.md-datepicker-input {
+    
+    max-width: 372px;
+    min-width: 227px;
+  }
+md-icon {
+  height: 34px;
+}
+md-checkbox:last-of-type {
+    margin-left: 18px;
+    margin-top: 33px;
+}
+</style>
+<md-dialog aria-label="Mango (Fruit)">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 ng-if="Save">Add Schedule</h4>
+        <h4 ng-if="Edit">Edit Schedule</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-md-6">
+            <md-input-container class="md-block">
+              <label>Fees Category </label>
+              <md-select ng-model="FINC_FEE_M_DISC_TYPE">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="cat in studentcat" ng-value="cat.id">
+                  {{cat.desc}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+           <div class="col-md-6">
+            <md-input-container class="md-block">
+              <label>Name</label>
+                <input class="form-control" ng-model="FINC_TXN_IN_ID" type="hidden">
+                <input required name="FINC_TXN_IN_TITLE" ng-model="FINC_TXN_IN_TITLE">
+              <div ng-messages="Form.FINC_S_PA_NAME.$error">
+                <div ng-message="required">Name is required.</div>
+              </div>
+            </md-input-container>
+          </div>  
+        
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <md-input-container class="md-block" style="margin: 2px 0 !important;">
+              <label>Fine</label>
+              <md-select ng-model="FINC_TXN_IN_DESC">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="cat in studentcat" ng-value="cat.id">
+                  {{cat.desc}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div class="col-md-6">
+            <div flex-gt-xs>
+               <md-datepicker ng-model="startDate" md-placeholder="Start date" md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate">
+              
+              </md-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" style="margin-top: 20px;">
+            <div flex-gt-xs>
+               <md-datepicker ng-model="endDate" md-placeholder="End date" md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate">
+              </md-datepicker>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div flex-gt-sm="100">
+              <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                Active
+              </md-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      
+      <span flex></span>
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveIncome();Form.$setPristine()"" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-disabled="Form.$invalid" >
+      &nbsp {{buttonStatus}} &nbsp
+      <div class="md-ripple-container" style=""></div>
+
+      </button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+

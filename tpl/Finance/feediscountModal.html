@@ -1,0 +1,103 @@
+
+<style>
+md-input-container {
+    margin: 18px 0;
+    padding: 0;
+}
+md-dialog .md-actions, md-dialog md-dialog-actions {
+    padding-right: 52px;
+}
+md-dialog {
+    
+    max-width: 34%;
+</style>
+<md-dialog aria-label="Mango (Fruit)">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 ng-if="Save">Add Discount</h4>
+        <h4 ng-if="Edit">Edit Discount</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+          <div class="col-md-10 col-md-offset-1">
+            <md-input-container class="md-block">
+              <label>Discount type </label>
+              <md-select ng-model="FINC_FEE_M_DISC_TYPE">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="cat in studentcat" ng-value="cat.id">
+                  {{cat.desc}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div class="col-md-10 col-md-offset-1">
+            <md-input-container class="md-block">
+              <label>Name</label>
+                <input class="form-control" ng-model="FINC_TXN_IN_ID" type="hidden">
+                <input required name="FINC_TXN_IN_TITLE" ng-model="FINC_TXN_IN_TITLE">
+              <div ng-messages="Form.FINC_S_PA_NAME.$error">
+                <div ng-message="required">Name is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+         <div class="col-md-10 col-md-offset-1">
+            <md-input-container class="md-block" style="margin: 2px 0 !important;">
+              <label>Fees Category</label>
+              <md-select ng-model="FINC_TXN_IN_DESC">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="cat in studentcat" ng-value="cat.id">
+                  {{cat.desc}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div class="col-md-10 col-md-offset-1" style="margin-top:30px;">
+            <label class="" style="opacity: 0.4;"> &nbsp;Mode</label>
+            <div class="radio-inline">
+              <label class="i-checks i-checks-sm">
+                <input type="radio" ng-model="FINC_TXN_IN_STATUS" value="percentage">
+                <i></i>
+                Percentage
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label class="i-checks i-checks-sm">
+                <input type="radio" ng-model="FINC_TXN_IN_STATUS" value="amount">
+                <i></i>
+                Amount 
+              </label>
+            </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1">
+            <md-input-container class="md-block">
+              <label>Discount %</label>
+              <input type="number" name="FINC_TXN_IN_AMT" ng-model="FINC_TXN_IN_AMT">
+            </md-input-container>
+          </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      
+      <span flex></span>
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveIncome();Form.$setPristine()"" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" ng-disabled="Form.$invalid" >
+      &nbsp {{buttonStatus}} &nbsp
+      <div class="md-ripple-container" style=""></div>
+
+      </button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+
