@@ -36,8 +36,11 @@
     <div class="panel panel-default">
     <div class="panel-heading" style="padding:10px;">
     <span style="font-size:18px;"><b>Fine view</b></span>  
-    <a data-toggle="modal" data-target="#myModal" ng-click="addNewParticular()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
-    <i class="fa fa-plus"></i> &nbsp;Add Fine</a>
+   <!--  <a data-toggle="modal" data-target="#myModal" ng-click="addNewParticular()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Fine</a> -->
+    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event,'Add','data')" style="margin-top:-2px;">
+        <i class="mdi-content-add i-24"></i> Add Fine
+    </md-button>
     </div>
     <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -72,13 +75,13 @@
               <st-select-distinct collection="rowCollection" predicate="ACA_COU_NAME"></st-select-distinct>
             </th> -->
             <th>
-              <input st-search="'ACA_COU_NAME'" placeholder="Search for Name" class="input-sm form-control" type="search"/>
+              <input st-search="'FINC_TXN_IN_TITLE'" placeholder="Search for Name" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'ACA_COU_SEC_NAME'" placeholder="Search for ue date" class="input-sm form-control" type="search"/>
+              <input st-search="'FINC_TXN_IN_DT'" placeholder="Search for ue date" class="input-sm form-control" type="search"/>
             </th>
              <th>
-              <input st-search="'ACA_COU_SEC_NAME'" placeholder="Search for amount" class="input-sm form-control" type="search"/>
+              <input st-search="'FINC_TXN_IN_AMT'" placeholder="Search for amount" class="input-sm form-control" type="search"/>
             </th>
             <!-- <th>
               <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
@@ -90,21 +93,23 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_COU_NAME">Name</th>
-            <th st-sort="ACA_COU_SEC_NAME">Days after due date</th>
-            <th st-sort="ACA_COU_NAME">Fine amount</th>
+            <th st-sort="FINC_TXN_IN_TITLE">Name</th>
+            <th st-sort="FINC_TXN_IN_DT">Days after due date</th>
+            <th st-sort="FINC_TXN_IN_AMT">Fine amount</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
-            <td>{{row.ACA_COU_NAME}}</td>
-            <td>{{row.ACA_COU_SEC_NAME}}</td>
+            <td>{{row.FINC_TXN_IN_TITLE}}</td>
+            <td>{{row.FINC_TXN_IN_DT}}</td>
+            <td>{{row.FINC_TXN_IN_AMT}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                
-                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button>
+                <!-- <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button> -->
+                <button  md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
@@ -185,7 +190,7 @@
             </div>
           </div>
           <div class="paraID " id="paraID">
-             <div class="col-md-12" ng-show="hidden" style="padding-left:95%;">
+            <div class="col-md-12" ng-show="hidden" style="padding-left:95%;">
               <a style="color: red;" ng-click="wrapremoveDiv()"> <i class="fa  fa-times-circle "></i></a>
             </div>
           </div>

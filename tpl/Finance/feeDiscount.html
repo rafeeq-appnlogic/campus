@@ -36,8 +36,11 @@
     <div class="panel panel-default">
     <div class="panel-heading" style="padding:10px;">
     <span style="font-size:18px;"><b>Discount view</b></span>  
-    <a data-toggle="modal" data-target="#myModal" ng-click="addDiscount()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
-    <i class="fa fa-plus"></i> &nbsp;Add Discount</a>
+   <!--  <a data-toggle="modal" data-target="#myModal" ng-click="addDiscount()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Discount</a> -->
+    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event,'Add','data')" style="margin-top:-2px;">
+        <i class="mdi-content-add i-24"></i> Add Discount
+    </md-button>
     </div>
     <div class="table table-responsive">
     <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -63,7 +66,7 @@
             <th colspan="1">
                <div>
                 <label for=""> Batch &nbsp;</label>
-                <select class="input-sm form-control w-sm inline v-middle" name="Bankaccount" ng-change="GetValue(item)"  ng-model="item" ng-options="batch.ACA_BAT_NAME for batch in rowCollectionBatch" ng-change="selectBatch()" required>
+                <select class="input-sm form-control w-sm inline v-middle" name="Bankaccount" ng-change="GetValue(item)"  ng-model="item" ng-options="batch.FINC_S_PA_NAME for batch in rowCollectionBatch" ng-change="selectBatch()" required>
                   <option selected disabled value="" class="ItemlineHead1"> Select a batch</option>
                </select>
               </div>
@@ -71,7 +74,7 @@
              <th colspan="1" ng-show="sCategory">
                <div>
                 <label for="">Category &nbsp;</label>
-                <select class="input-sm form-control w-sm inline v-middle" name="Bankaccount" ng-change="GetValue(item)"  ng-model="item" ng-options="batch.ACA_BAT_NAME for batch in rowCollectionBatch" required>
+                <select class="input-sm form-control w-sm inline v-middle" name="Bankaccount" ng-change="GetValue(item)"  ng-model="item" ng-options="batch.FINC_S_PA_NAME for batch in rowCollectionBatch" required>
                   <option selected disabled value="" class="ItemlineHead1"> Select a category</option>
                </select>
               </div>
@@ -88,16 +91,16 @@
               <st-select-distinct collection="rowCollection" predicate="ACA_COU_NAME"></st-select-distinct>
             </th> -->
             <th>
-              <input st-search="'ACA_COU_NAME'" placeholder="Search for Name" class="input-sm form-control" type="search"/>
+              <input st-search="'FINC_TXN_IN_TITLE'" placeholder="Search for Name" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <input st-search="'ACA_COU_SEC_NAME'" placeholder="Search for Fees Category" class="input-sm form-control" type="search"/>
+              <input st-search="'FINC_TXN_IN_DESC'" placeholder="Search for Fees Category" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="ACA_COU_GRADE_TYPE"></st-select-multiple>
+              <st-select-multiple collection="rowCollection" predicate="FINC_TXN_IN_AMT"></st-select-multiple>
             </th>
             <th>
-              <input st-search="'ACA_COU_SEC_NAME'" placeholder="Search for Discount" class="input-sm form-control" type="search"/>
+              <input st-search="'FINC_TXN_IN_STATUS'" placeholder="Search for Discount" class="input-sm form-control" type="search"/>
             </th>
           </tr>
           <tr>
@@ -106,25 +109,26 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="ACA_COU_NAME">Name </th>
-            <th st-sort="ACA_COU_SEC_NAME">Fees Category</th>
-            <th st-sort="ACA_COU_NAME">Mode  </th>
-            <th st-sort="ACA_COU_NAME">Discount </th>
+            <th st-sort="FINC_TXN_IN_TITLE">Name </th>
+            <th st-sort="FINC_TXN_IN_DESC">Fees Category</th>
+            <th st-sort="FINC_TXN_IN_AMT">Mode  </th>
+            <th st-sort="FINC_TXN_IN_STATUS">Discount </th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
-            <td>{{row.ACA_COU_NAME}}</td>
-            <td>{{row.ACA_COU_SEC_NAME}}</td>
-            <td>{{row.ACA_COU_NAME}}</td>
-            <td>{{row.ACA_COU_SEC_NAME}}</td>
+            <td>{{row.FINC_TXN_IN_TITLE}}</td>
+            <td>{{row.FINC_TXN_IN_DESC}}</td>
+            <td>{{row.FINC_TXN_IN_AMT}}</td>
+            <td>{{row.FINC_TXN_IN_STATUS}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                
-                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button>
+               <!--  <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal" ng-click="EditClass(row)"><i class="fa fa-edit"></i></button> -->
+               <button  md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)"><i class="fa fa-edit"></i></button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button>
               </div>  
             </td>
           </tr>
