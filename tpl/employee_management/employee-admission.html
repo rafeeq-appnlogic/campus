@@ -116,6 +116,10 @@ pre {
     margin-top: 8px;
     margin-bottom: 0px;
   }
+  .md-tab {
+    font-size: 17px !important;
+    text-transform: !important;
+  }
 </style>
 <div class="bg-light lter b-b wrapper-md">
   <div class="row">
@@ -358,6 +362,18 @@ pre {
               </div>
               <div class="form-group col-md-3">
                 <md-input-container class="md-block">
+                  <label>Job Title</label>
+                  <input required name="EMP_JOB_TITLE" ng-model="empAdm.EMP_JOB_TITLE">
+                 <!--  <div ng-messages="studentForm.EMP_JOB_TITLE.$error">
+                    <div ng-message="required">Title is required.</div>
+                  </div> -->
+                </md-input-container>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <md-input-container class="md-block">
                   <label>Grade</label>
                  <!-- <md-select name="EMP_GRADE" ng-model="empAdm.EMP_GRADE" required>
                         <md-option value="Grade1">Grade 1</md-option>
@@ -375,17 +391,6 @@ pre {
                       {{grade}}
                     </md-option>
                   </md-select>
-                </md-input-container>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Job Title</label>
-                  <input required name="EMP_JOB_TITLE" ng-model="empAdm.EMP_JOB_TITLE">
-                 <!--  <div ng-messages="studentForm.EMP_JOB_TITLE.$error">
-                    <div ng-message="required">Title is required.</div>
-                  </div> -->
                 </md-input-container>
               </div>
               <div class="form-group col-md-3">
@@ -657,7 +662,7 @@ pre {
               </div>
             </div>
             <div class="m-t m-b">
-              <button type="button" class="btn btn-rounded pull-right btncolor" ui-sref="app.Employee-Details" ng-click="steps.percent=100;saveEmployeeDetails()" >Save & Finish</button>
+              <button type="button" class="btn btn-rounded pull-right btncolor btn-primary" ui-sref="app.Employee-Details" ng-click="steps.percent=100;saveEmployeeDetails()" >Save & Finish</button>
             </div>
           </form>
         </md-content>
