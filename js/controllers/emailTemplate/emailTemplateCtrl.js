@@ -31,6 +31,11 @@ app.controller('mailTempViewCtrl', ['$scope','$controller','$http','$rootScope',
 		$localStorage.emailTempId=user.E_TEMP_ID;
 		$localStorage.tempMode="edit";
     }
+	
+	$scope.deleteEmailTemp = function(user){
+		user.E_TEMP_ID;
+		
+    }
 
   	$http.get($rootScope.endUrl+'EmailTemplateModule/EmailTemplate',{headers:{'access_token':$scope.access_token}}).success(function(data) {
         $scope.rowCollection = data.message;
@@ -59,14 +64,16 @@ app.controller('mailTempCreateCtrl', ['$scope','$controller','$http','$rootScope
 		$scope.access_token=$localStorage.access_token; 
 	}
 	
-	$scope.mail = {type: '',subject: ''}
+	$scope.mail = {name: '',subject: ''}
 	
 	$scope.getMailto=function(){
 		var answerText = $('#editor').html();
+		$localStorage.tempMode='add';
+		
 		$http({
 		method : "POST",
 		url : $rootScope.endUrl+'EmailTemplateModule/EmailTemplate',
-		data : {'type' : $scope.mail.type,'subject' : $scope.mail.subject,'body' : answerText,'userId':$localStorage.user_id},
+		data : {'name' : $scope.mail.name,'subject' : $scope.mail.subject,'body' : answerText,'userId':$localStorage.user_id,'tempId':$localStorage.emailTempId},
 		headers: {'access_token':$scope.access_token}
 		}).then(function mySucces(response) {
 			console.log(response);
@@ -94,14 +101,22 @@ app.controller('mailTempCreateCtrl', ['$scope','$controller','$http','$rootScope
 	
 	if($localStorage.tempMode=='edit'){
 		//alert($localStorage.emailTempId);
-		$localStorage.tempMode='add';
+		$scope.submitBtn=false;
+		$scope.updateBtn=true;
 		$http.get($rootScope.endUrl+'EmailTemplateModule/EmailTemplate',{params:{tempId:$localStorage.emailTempId},headers:{'access_token':$scope.access_token}}).success(function(data) {
-			console.log(data.message[0].E_TEMP_TYPE);
-			$scope.mail = {type: data.message[0].E_TEMP_TYPE,subject: data.message[0].E_TEMP_SUBJECT}
+			console.log(data.message[0].E_TEMP_NAME);
+			$scope.mail = {name: data.message[0].E_TEMP_NAME,subject: data.message[0].E_TEMP_SUBJECT}
 			$('#editor').html(data.message[0].E_TEMP_BODY);
 		}).error(function(err){
 			
 		});
+	}else{
+		$scope.submitBtn=true;
+		$scope.updateBtn=false;
+	}
+	
+	$scope.getCancel=function(){
+		window.history.back();
 	}
 	
 }]);

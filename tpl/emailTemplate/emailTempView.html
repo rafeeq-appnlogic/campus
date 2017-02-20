@@ -96,7 +96,7 @@
           <tr>
             <th style="width:5px !important"></th>
             <th>
-              <input st-search="'E_TEMP_TYPE'" placeholder="Search for template type" class="input-sm form-control" type="search"/>
+              <input st-search="'E_TEMP_NAME'" placeholder="Search for template type" class="input-sm form-control" type="search"/>
             </th>
             <th>
               <input st-search="'E_TEMP_SUBJECT'" placeholder="Search for template subject" class="input-sm form-control" type="search"/>
@@ -111,7 +111,7 @@
                 <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
               </label>
             </th>
-            <th st-sort="E_TEMP_TYPE">Template Type</th>
+            <th st-sort="E_TEMP_NAME">Template Name</th>
             <th st-sort="E_TEMP_SUBJECT">Subject</th>
             <th st-sort="E_TEMP_CRT_DT">Created Date</th>
             <th>Action</th>
@@ -120,14 +120,14 @@
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
-            <td>{{row.E_TEMP_TYPE}}</td>
+            <td>{{row.E_TEMP_NAME}}</td>
             <td>{{row.E_TEMP_SUBJECT}}</td>
             <td>{{row.E_TEMP_CRT_DT}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                 <a ui-sref="app.mailTemp.create" class="btn btn-sm btn-primary" ng-click="editEmailTemp(row)"><i class="fa fa-edit"></i></a>
                 <button class="btn btn-sm btn-danger" ng-click="DeleteClass(row)"><i class="fa fa-trash-o"></i></button>
-              </div>  
+              </div>
             </td>
           </tr>
         </tbody>

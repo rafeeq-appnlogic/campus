@@ -11,7 +11,7 @@
       <div class="form-group">
         <label class="col-lg-2 control-label">Template Type:</label>
         <div class="col-lg-8">
-			<input type="text" class="form-control" ng-model="mail.type">
+			<input type="text" class="form-control" ng-model="mail.name">
           <!-- <select ui-jq="chosen" data-placeholder="Choose email" class="form-control" multiple ng-model="mail.to"> -->
             <!-- <option ng-repeat="list in tolist" value="{{list.email}}">{{list.name}} <{{list.email}}></option> -->
           <!-- </select> -->
@@ -68,7 +68,9 @@
       </div>
       <div class="form-group">
         <div class="col-lg-8 col-lg-offset-2">
-          <button class="btn btn-info w-xs" ng-click="getMailto();">Submit</button>
+          <button ng-if="submitBtn" class="btn btn-info w-xs" ng-click="getMailto();">Submit</button>
+          <button ng-if="updateBtn" class="btn btn-info w-xs" ng-click="getMailto();">Update</button>
+          <button class="btn btn-danger w-xs" ng-click="getCancel();">Cancel</button>
         </div>
       </div>
     </form>
