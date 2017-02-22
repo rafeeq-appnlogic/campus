@@ -176,6 +176,15 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
       console.log(JSON.stringify(user),"id");
     }
 
+    $scope.data = { upload:[] }  // <= upload data get pushed here 
+	$scope.data='http://www.chrysaliscis.com/images/avatar.png';
+    var formdata = new FormData();
+    $scope.getTheFiles = function ($files) {
+        angular.forEach($files, function (value, key) {
+            formdata.append(key, value);
+        });
+    };
+
 	//alert($scope.Stud.dtform);
 	//$controller('DatepickerDemoCtrl', {$scope:$scope});
 	$scope.saveStuAdmission = function(){
