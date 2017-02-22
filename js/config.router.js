@@ -62,9 +62,18 @@ angular.module('app')
                   url: "/employee-grade",
                   templateUrl: "tpl/hrconfig/employee_grade.html"
               })
-              .state("app.pr-category", {
-                  url: "/pr-category",
-                  templateUrl: "tpl/payroll/payroll_category.html"
+              // Modified by Vijayaraj 20-02-17
+              .state("app.payroll-category", {
+                  url: "/payroll-category",
+                  controller:"payrollcategory",
+                  templateUrl: "tpl/Payroll_PaySlip/Payroll_Category.html",
+                  resolve: load(['smart-table','js/controllers/payroll/payrollcategory.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.add-payroll-category", {
+                  url: "/add-payroll-category",
+                  controller:"payrollcategory",
+                  templateUrl: "tpl/Payroll_PaySlip/PayrollCategory_Add.html",
+                  resolve: load(['smart-table','js/controllers/payroll/payrollcategory.js','ui.bootstrap','toaster','ngBootbox'])
               })
               .state("app.pr-add", {
                   url: "/pr-add",

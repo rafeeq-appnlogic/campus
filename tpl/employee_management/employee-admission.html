@@ -1,16 +1,27 @@
-<style>
- .md-datepicker-input {
-  margin-top: 7px;/*
-  padding: 0px 0 10px;*/
-}
-.btn-sm, .btn-group-sm > .btn {
-    padding: 7px 3px;
-    font-size: 11px;
-    line-height: 1.5;
-    border-radius: 16px;
-}
+<style type="text/css">
+  md-input-container.md-default-theme .md-input, md-input-container .md-input{
+    border-bottom-color: #777777;
+  }
+  md-input-container.md-default-theme .md-input, md-input-container label{
+    font-size: 15px !important;
+  }
+  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
+    transform: translate3d(0px, 20px, 0px) scale(0.75);
+  }
+  md-input-container{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  md-input-container .md-errors-spacer{
+    min-height: 7px;
+  }
+  label{
+    font-size: 16px;
+    padding-top: 14px;
+    padding-right: 15px;
+  }
 
-[ng-app] > img {
+  [ng-app] > img {
   width: 100%;
 }
 
@@ -68,58 +79,16 @@ pre {
   margin: 30px;
   font-size: 10px;
 }
-
-.selectdemoSelectHeader {
-  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
-  .selectdemoSelectHeader .demo-header-searchbox {
-    border: none;
-    outline: none;
-    height: 100%;
-    width: 100%;
-    padding: 0; }
-  .selectdemoSelectHeader .demo-select-header {
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
-    padding-left: 10.667px;
-    height: 48px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: auto; }
-  .selectdemoSelectHeader md-content._md {
-    max-height: 240px; }
-    legend {
-      padding: 16px;
+  md-datepicker .md-datepicker-input {
+    width: calc(24.5vw - 64px);
+    max-width: calc(24.5vw - 64px);
+  }
+@media only screen and (max-width: 600px) {
+    md-datepicker .md-datepicker-input {
+      width: calc(87vw - 64px);
+      max-width: calc(87vw - 64px);
     }
-    md-input-container.md-default-theme .md-input, md-input-container .md-input{
-    border-bottom-color: #777777;
-  }
-  md-select.md-default-theme .md-select-value, md-select .md-select-value{
-    border-bottom-color: #777777 !important;
-    font-size: 18px !important;
-  }
-  .md-default-theme .md-datepicker-input-container, .md-datepicker-input-container{
-    border-bottom-color: #777777 !important;
-    font-size: 18px !important;
-  }
-  .md-datepicker-input{
-    font-size: 18px !important;
-    min-width: 178px !important;
-  }
-  md-input-container.md-default-theme .md-input, md-input-container label{
-    font-size: 18px !important;
-  }
-  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
-    transform: translate3d(0px, 20px, 0px) scale(0.75);
-  }
-  md-input-container{
-    margin-top: 8px;
-    margin-bottom: 0px;
-  }
-  .md-tab {
-    font-size: 17px !important;
-    text-transform: !important;
-  }
+}
 </style>
 <div class="bg-light lter b-b wrapper-md">
   <div class="row">
@@ -128,9 +97,9 @@ pre {
     </div>
     <div class="col-md-8">
     <ul class="breadcrumb pull-right">
-      <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
-      <li><a href="">Elements</a></li>
-      <li class="active">Components</li>
+      <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="">Employee Management</a></li>
+      <li class="active">Employee Admission</li>
     </ul>
     </div>
   </div>
@@ -140,530 +109,467 @@ pre {
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Employee admission">
-       <legend class="pull-left width-full">Personal Details</legend>
-        <md-content class="md-padding">
-           <!--  <legend class="pull-left width-full">Personal Details</legend> -->
-            <form name="studentForm">
-           
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Employee Number</label>
-                  <input required name="EMP_NO" ng-model="empAdm.EMP_NO">
-                  <div ng-messages="studentForm.EMP_NO.$error">
-                    <div ng-message="required">Employee number is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <div flex-gt-xs>
-                  <md-datepicker ng-model="empAdm.EMP_JOIN_DT" name="EMP_JOIN_DT" md-placeholder="Joining Date"
-                      md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"></md-datepicker>
-                </div>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>First Name</label>
-                  <input required name="EMP_NO" ng-model="empAdm.EMP_FIRST_NAME">
-                  <div ng-messages="studentForm.EMP_FIRST_NAME.$error">
-                    <div ng-message="required">First name is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-             <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Last Name</label>
-                  <input required name="EMP_NO" ng-model="empAdm.EMP_LAST_NAME">
-                  <div ng-messages="studentForm.EMP_LAST_NAME.$error">
-                    <div ng-message="required">Last name is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
+        <md-content layout-padding>
+    <form name="userForm">
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div flex flex-gt-xs="45">
+          <h3>Personal Information</h3>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Employee Number</label>
             </div>
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-radio-group ng-model="empAdm.EMP_GENDER">
-                  <label class="control-label" style="margin-left: 68px;opacity: 0.4;">Gender</label><br>
-                  <label class="radio-inline">
-                    <md-radio-button value="Male" class="md-primary">Male</md-radio-button>
-                  </label>
-                  <label class="radio-inline">
-                     <md-radio-button value="Female"> Female </md-radio-button>
-                  </label>
-                </md-radio-group>
-              </div>
-              <div class="form-group col-md-3">
-                <div flex-gt-xs>
-                  <md-datepicker ng-model="empAdm.EMP_DOB" name="EMP_DOB" md-placeholder="Date of Birth"
-                    md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"></md-datepicker>
-                </div>
-              </div>
-              <div class="form-group col-md-3">
-               <!--  <md-input-container class="md-block">
-                  <label>Marital Status</label>
-                  <md-select name="EMP_MARITAL_STATUS" ng-model="empAdm.EMP_MARITAL_STATUS" required>
-                    <md-option value="single">Single</md-option>
-                    <md-option value="married">Married</md-option>
-                    <md-option value="divorced">Divorced</md-option>
-                  </md-select>
-                </md-input-container> -->
-                <md-input-container class="md-block" flex-gt-sm> 
-                  <label>Marital Status</label>
-                  <md-select ng-model="empAdm.EMP_MARITAL_STATUS" md-on-close="clearSearchTerm()">
-                  <md-select-header class="demo-select-header">
-                    <input ng-model="searchTerm"
-                           type="search"
-                           placeholder=" Search for Marital Status.."
-                           class="demo-header-searchbox md-text">
-                  </md-select-header>
-                    <md-option ng-repeat="status in maritalstatus | filter:searchTerm" ng-value="status">
-                      {{status}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Religion</label>
-                  <input required name="EMP_NO" ng-model="empAdm.EMP_RELIGION">
-                  <div ng-messages="studentForm.EMP_RELIGION.$error">
-                    <div ng-message="required">Religion is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input ng-model="EMP_NO" >
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Joining Date</label>
             </div>
+            <div flex flex-gt-xs="70">
+               <md-input-container class="md-block" flex-gt-sm>
+                  <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>First Name</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input  ng-model="FIRST_NAME">
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Last Name</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input ng-model="LAST_NAME" >
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Gender</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-radio-group ng-model="empAdm.EMP_GENDER">
+                <label class="radio-inline">
+                  <md-radio-button value="Male" class="md-primary">Male</md-radio-button>
+                </label>
+                <label class="radio-inline">
+                   <md-radio-button value="Female"> Female </md-radio-button>
+                </label>
+              </md-radio-group>
+            </div>  
+          </div>
 
-            <div class="row">
-              <div class="form-group col-md-3" ng-init="reInitialize()">
-                <md-input-container class="md-block">
-                  <label>Blood Group</label>
-                  <md-select name="EMP_BLOOD_GROUP" ng-model="empAdm.EMP_BLOOD_GROUP" required>
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for Blood group.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="blood in bloodgroup | filter:searchTerm" ng-value="blood">
-                      {{blood}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-              <!--   <md-input-container class="md-block">
-                  <label>Nationality</label>
-                  <md-select name="EMP_NATIONALITY" ng-model="empAdm.EMP_NATIONALITY" required>
-                    <md-option value="US">US</md-option>
-                    <md-option value="Antarctica">Antarctica</md-option>
-                    <md-option value="India">India</md-option>
-                    <md-option value="SriLanga">SriLanga</md-option>
-                    <md-option value="UK">UK</md-option>
-                  </md-select>
-                </md-input-container> -->
-                <md-input-container class="md-block" flex-gt-sm> 
-                  <label>Nationality</label>
-                  <md-select ng-model="empAdm.EMP_NATIONALITY" md-on-close="clearSearchTerm()">
+
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Date of Birth</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Marital Status</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="MARITAL_STATUS">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
-                           placeholder=" Search for nationality.."
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                    <md-option ng-repeat="nation in nationality | filter:searchTerm" ng-value="nation">
-                      {{nation}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-4">
-                  <!-- <label style="opacity: 0.4;margin-top: 22px;">Upload photo</label> -->
-                  <!-- <input class="ng-hide" id="input-file-id" multiple type="file" />
-                  <label for="input-file-id" class="md-button md-raised md-primary btn-sm" style="min-height: 29px !important;">Choose Files</label> -->
-                  <div drop-zone ng-model="empAdm.EMP_PROFILE" class="one" style="width:100px;height: 100px;background-image: url({{data}});background-size: 100% 100%;background-repeat: no-repeat;">
-                  </div>
-                  <p>Upload photo</p>
-              </div>
-                <!-- <div class="form-group col-md-4">
-                <label class="col-sm-6 control-label">Upload photo</label>
-                <div class="col-sm-10">
-                  <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" file-upload1="empAdm.EMP_PROFILE" type="file" multiple="" name="EMP_PROFILE"  ng-model="empAdm.EMP_PROFILE" ng-files="getTheFiles($files)">
-                </div>
-              </div> -->
+                  <md-option ng-value="1">Single</md-option>
+                  <md-option ng-value="2">Marital</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Religion</label>
             </div>
-            <legend class="pull-left width-full">Wrok Information</legend>
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Department</label>
-                 <!--  <md-select name="EMP_DEPT" ng-model="empAdm.EMP_DEPT" required>
-                    <md-option value="English">English</md-option>
-                    <md-option value="Hindi">Hindi</md-option>
-                    <md-option value="Science">Science</md-option>
-                    <md-option value="Maths">Maths</md-option>
-                    <md-option value="Social">Social</md-option>
-                    <md-option value="SystemAdmin">System Admin</md-option>
-                  </md-select> -->
-                  <md-select ng-model="empAdm.EMP_DEPT" md-on-close="clearSearchTerm()">
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for Department.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="dept in department | filter:searchTerm" ng-value="dept">
-                      {{dept}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Category</label>
-                 <!--  <md-select name="EMP_CATEGORY" ng-model="empAdm.EMP_CATEGORY" required>
-                    <md-option value="Finance">Finance</md-option>
-                    <md-option value="Human">Human Resource</md-option>
-                    <md-option value="Librarion">Librarion</md-option>
-                    <md-option value="Teacher">Teacher</md-option>
-                    <md-option value="SystemAdmin">System Admin</md-option>
-                  </md-select> -->
-                  <md-select ng-model="empAdm.EMP_CATEGORY" md-on-close="clearSearchTerm()">
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for category.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="cat in empcategory | filter:searchTerm" ng-value="cat">
-                      {{cat}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Position</label>
-                 <!--  <md-select name="EMP_POSITION" ng-model="empAdm.EMP_POSITION" required>
-                    <md-option value="LabAssistant">LabAssistant</md-option>
-                    <md-option value="SystemAdmin">System Admin</md-option>
-                  </md-select> -->
-                   <md-select ng-model="empAdm.EMP_POSITION" md-on-close="clearSearchTerm()">
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for position.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="position in selectposition | filter:searchTerm" ng-value="position">
-                      {{position}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Job Title</label>
-                  <input required name="EMP_JOB_TITLE" ng-model="empAdm.EMP_JOB_TITLE">
-                 <!--  <div ng-messages="studentForm.EMP_JOB_TITLE.$error">
-                    <div ng-message="required">Title is required.</div>
-                  </div> -->
-                </md-input-container>
-              </div>
-              
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="RELIGION">
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">Hindu</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Blood Group</label>
             </div>
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Grade</label>
-                 <!-- <md-select name="EMP_GRADE" ng-model="empAdm.EMP_GRADE" required>
-                        <md-option value="Grade1">Grade 1</md-option>
-                        <md-option value="Grade2">Grade 2</md-option>
-                        <md-option value="Grade3">Grade 3</md-option>
-                      </md-select> -->
-                  <md-select ng-model="empAdm.EMP_GRADE" md-on-close="clearSearchTerm()">
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for grade.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="grade in empgrade | filter:searchTerm" ng-value="grade">
-                      {{grade}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Qualification</label>
-                  <input required name="EMP_QUALI" ng-model="empAdm.EMP_QUALI">
-                  <!-- <div ng-messages="studentForm.EMP_QUALI.$error">
-                    <div ng-message="required">Title is required.</div>
-                  </div> -->
-                </md-input-container>
-              </div>
-               <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Total experience</label>
-                 <!--  <md-select name="EMP_TOT_EXPE" ng-model="empAdm.EMP_TOT_EXPE" required>
-                    <md-option value="0Year">0 Year</md-option>
-                    <md-option value="1Year">1 Year</md-option>
-                    <md-option value="2Year">2 Year</md-option>
-                    <md-option value="3Year">3 Year</md-option>
-                    <md-option value="4Year">4 Year</md-option>
-                  </md-select> -->
-                  <md-select ng-model="empAdm.EMP_TOT_EXPE" md-on-close="clearSearchTerm()">
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for grade.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="exp in experience | filter:searchTerm" ng-value="exp">
-                      {{exp}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Experience info</label>
-                  <textarea ng-model="empAdm.EMP_EXPE_INFO" md-maxlength="150" rows="3" md-select-on-focus required></textarea>
-                </md-input-container>
-              </div>
-             
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="EMP_BLOOD_GROUP">
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">A +ve</md-option>
+                  <md-option ng-value="2">B +ve</md-option>
+                  <md-option ng-value="3">A -ve</md-option>
+                  <md-option ng-value="4">B -ve</md-option>
+                  <md-option ng-value="5">O +ve</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Nationality</label>
             </div>
-          </form>
-        </md-content>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="NATIONALITY">
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">India</md-option>
+                  <md-option ng-value="2">SriLanga</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Upload Profile</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <div drop-zone ng-model="EMP_PROFILE" class="one" style="width:100px;height: 100px;background-image: url({{data}});background-size: 100% 100%;background-repeat: no-repeat;">
+              </div>
+            </div>  
+          </div>
+        </div>
+        <div flex flex-gt-xs="10">
+        </div>
+        <div flex flex-gt-xs="45">
+          <h3>Work Information</h3>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Department</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="DEPARTMENT">
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">English</md-option>
+                  <md-option ng-value="2">Hindi</md-option>
+                  <md-option ng-value="3">Maths</md-option>
+                  <md-option ng-value="4">Science</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Category</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="CATEGORY" >
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">Finance</md-option>
+                  <md-option ng-value="2">Human Resource</md-option>
+                  <md-option ng-value="3">Teacher</md-option>
+                  <md-option ng-value="4">System Admin</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Position</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="POSITION" >
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">Lab Assistant</md-option>
+                  <md-option ng-value="2">System Admin</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Job Title</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input ng-model="JOB_TITLE" >
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Qualification</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input  ng-model="QUALIFICATION" >
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Total Experience</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="TOT_EXP_YEAR" >
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">1 Years</md-option>
+                  <md-option ng-value="2">2 Years</md-option>
+                </md-select>
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Experience Info</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input ng-model="EXP_INFO" >
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </form>
+  </md-content>
       </md-tab>
       <md-tab label="Contact Information">
-        <md-content class="md-padding">
-          <legend class="pull-left width-full">Contact Information</legend>
-          <form name="contactForm">
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Address Line 1</label>
-                  <input required name="EMP_ADD_1" ng-model="empCont.EMP_ADD_1">
-                  <div ng-messages="contactForm.EMP_ADD_1.$error">
-                    <div ng-message="required">Address 1 is required.</div>
+        <md-content layout-padding>
+          <form name="userForm">
+            <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+              <div flex flex-gt-xs="45">
+                <h3>Contact Information</h3>
+                <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Address 1</label>
                   </div>
-                </md-input-container>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="ADDRESS1">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Address 2</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="ADDRESS2">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Email Address</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="EMAIL">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Phone Number</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="PHONE_NUM">
+                    </md-input-container>
+                  </div>  
+                </div>
               </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Address Line 2</label>
-                  <input required name="EMP_ADD_2" ng-model="empCont.EMP_ADD_2">
-                 <!--  <div ng-messages="contactForm.EMP_ADD_2.$error">
-                    <div ng-message="required">Address 2 is required.</div>
-                  </div> -->
-                </md-input-container>
+              <div flex flex-gt-xs="10">
               </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Client Email</label>
-                  <input required type="email" name="EMP_EMAIL" ng-model="empCont.EMP_EMAIL"
-                         minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-
-                <!--   <div ng-messages="contactForm.EMP_EMAIL.$error" role="alert">
-                  <div ng-message="required">Email id is required.</div>
-                  </div> -->
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <!-- <md-input-container class="md-block">
-                  <label>City</label>
-                  <md-select name="EMP_CITY" ng-model="empCont.EMP_CITY" required>
-                    <md-option value="Chennai">Chennai</md-option>
-                    <md-option value="Coimbatore">Coimbatore</md-option>
-                    <md-option value="Pondicherry">Pondicherry</md-option>
-                    <md-option value="Cuddalore">Cuddalore</md-option>
-                    <md-option value="Vilupram">Vilupram</md-option>
-                  </md-select>
-                </md-input-container> -->
-                <md-input-container class="md-block" flex-gt-sm ng-init="reInitialize()"> 
-                  <label>City</label>
-                  <md-select ng-model="empCont.EMP_CITY" md-on-close="clearSearchTerm()">
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder=" Search for city.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-option ng-repeat="city in selectcity | filter:searchTerm" ng-value="city">
-                      {{city}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <!-- <md-input-container class="md-block">
+              <div flex flex-gt-xs="45">
+                <h3>&nbsp;</h3>
+                <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>City</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="CITY">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
                     <label>State</label>
-                    <md-select name="EMP_STATE" ng-model="empCont.EMP_STATE" required>
-                      <md-option value="Tamilnadu">Tamilnadu</md-option>
-                      <md-option value="Mumbai">Mumbai</md-option>
-                      <md-option value="Delhi">Delhi</md-option>
-                      <md-option value="Pune">Pune</md-option>
-                    </md-select>
-                  </md-input-container> -->
-                  <md-input-container class="md-block" flex-gt-sm> 
-                    <label>State</label>
-                    <md-select ng-model="empCont.EMP_STATE" md-on-close="clearSearchTerm()">
-                      <md-select-header class="demo-select-header">
-                        <input ng-model="searchTerm"
-                               type="search"
-                               placeholder=" Search for state.."
-                               class="demo-header-searchbox md-text">
-                      </md-select-header>
-                      <md-option ng-repeat="state in selectstate | filter:searchTerm" ng-value="state">
-                        {{state}}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="STATE">
+                    </md-input-container>
+                  </div>  
                 </div>
-                <div class="form-group col-md-3">
-                 <!--  <md-input-container class="md-block">
-                    <label>Country</label>
-                    <md-select name="EMP_COUNTRY" ng-model="empCont.EMP_COUNTRY" required>
-                      <md-option value="Australia">Australia</md-option>
-                      <md-option value="India">India</md-option>
-                      <md-option value="Dubai">Dubai</md-option>
-                    </md-select>
-                  </md-input-container> -->
-                   <md-input-container class="md-block" flex-gt-sm> 
-                    <label>State</label>
-                    <md-select ng-model="empCont.EMP_COUNTRY" md-on-close="clearSearchTerm()">
-                      <md-select-header class="demo-select-header">
-                        <input ng-model="searchTerm"
-                               type="search"
-                               placeholder=" Search for country.."
-                               class="demo-header-searchbox md-text">
-                      </md-select-header>
-                      <md-option ng-repeat="country in selectcountry | filter:searchTerm" ng-value="country">
-                        {{country}}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>PinCode</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="PINCODE">
+                    </md-input-container>
+                  </div>  
                 </div>
-                <div class="form-group col-md-3">
-                  <md-input-container class="md-block">
-                    <label>Pincode</label>
-                    <input required type="number" name="EMP_PINCODE" ng-model="empCont.EMP_PINCODE">
-                    <!-- <div ng-messages="contactForm.EMP_PINCODE.$error">
-                      <div ng-message="required">Pincode is required.</div>
-                    </div> -->
-                  </md-input-container>
-                </div>
-                <div class="form-group col-md-3">
-                  <md-input-container class="md-block">
-                    <label>Phone</label>
-                    <input required type="number" name="EMP_PHONE" ng-model="empCont.EMP_PHONE">
-                    <div ng-messages="contactForm.EMP_PHONE.$error">
-                      <div ng-message="required">Phone nummber is required.</div>
-                    </div>
-                  </md-input-container>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-3">
-                <md-input-container class="md-block">
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
                     <label>Office Phone</label>
-                    <input required type="number" name="EMP_OFF_PHONE" ng-model="empCont.EMP_OFF_PHONE">
-                    <!-- <div ng-messages="contactForm.EMP_OFF_PHONE.$error">
-                      <div ng-message="required">Office Phone nummber is required.</div>
-                    </div> -->
-                  </md-input-container>
-                </div>
-                <div class="form-group col-md-3">
-                  <md-input-container class="md-block">
-                    <label>Mobile</label>
-                    <input required type="number" name="EMP_MOBILE" ng-model="empCont.EMP_MOBILE">
-                   <!--  <div ng-messages="contactForm.EMP_MOBILE.$error">
-                      <div ng-message="required">Mobile nummber is required.</div>
-                    </div> -->
-                  </md-input-container>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="OFF_PHONE">
+                    </md-input-container>
+                  </div>  
                 </div>
               </div>
+            </div>
           </form>
         </md-content>
       </md-tab>
       <md-tab label="Additional Details">
-        <md-content class="md-padding">
-          <legend class="pull-left width-full">Bank Details</legend>
-            <form name="bankForm">
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Account Name</label>
-                  <input required name="EMP_ACC_NAME" ng-model="empAdd.EMP_ACC_NAME">
-                  <div ng-messages="bankForm.EMP_ACC_NAME.$error">
-                    <div ng-message="required"> Account Name is required.</div>
+        <md-content layout-padding>
+          <form name="userForm">
+            <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+              <div flex flex-gt-xs="45">
+                <h3>Bank Details</h3>
+                <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Account Name</label>
                   </div>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Account Number</label>
-                  <input required type="number" ame="EMP_ACC_NO" ng-model="empAdd.EMP_ACC_NO">
-                  <div ng-messages="bankForm.EMP_ACC_NO.$error">
-                    <div ng-message="required"> Account Number is required.</div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="Acc_Name">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Account Number</label>
                   </div>
-                </md-input-container>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="Acc_Num">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Bank Name</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="BANK_NAME">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Branch Name</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="BRANCH_NAME">
+                    </md-input-container>
+                  </div>  
+                </div>
               </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Bank Name</label>
-                  <input name="EMP_BANK_NAME" ng-model="empAdd.EMP_BANK_NAME">
-                </md-input-container>
+              <div flex flex-gt-xs="10">
               </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Branch Name</label>
-                  <input name="EMP_BANK_BRANCH_NAME" ng-model="empAdd.EMP_BANK_BRANCH_NAME">
-                </md-input-container>
+              <div flex flex-gt-xs="45">
+                  <h3>Additional Details</h3>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Passport Number</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="PASSPORT_NUM">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label> PAN Number </label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="PAN_NUM">
+                    </md-input-container>
+                  </div>  
+                </div>
+                 <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Adhar Number</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="ADHAR_NUM">
+                    </md-input-container>
+                  </div>  
+                </div>
+                <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Work Permit</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="WORk_PERMIT">
+                    </md-input-container>
+                  </div>  
+                </div>
               </div>
             </div>
-            <legend class="pull-left width-full">Additional Details</legend>
-            <div class="row">
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Passport Number</label>
-                  <input required type="number" name="EMP_PASSPORT_NO" ng-model="empAdd.EMP_PASSPORT_NO">
-                  <div ng-messages="bankForm.EMP_PASSPORT_NO.$error">
-                    <div ng-message="required"> Passport Number is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>PAN Number</label>
-                  <input required type="number" name="EMP_PAN_NO" ng-model="empAdd.EMP_PAN_NO">
-                  <div ng-messages="bankForm.EMP_PAN_NO.$error">
-                    <div ng-message="required"> PAN Number is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Adhar Number</label>
-                  <input required type="number" name="EMP_ADHAR_NO" ng-model="empAdd.EMP_ADHAR_NO">
-                  <div ng-messages="bankForm.EMP_ADHAR_NO.$error">
-                    <div ng-message="required"> Adhar Number is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-              <div class="form-group col-md-3">
-                <md-input-container class="md-block">
-                  <label>Work Permit</label>
-                  <input  name="EMP_WORK_PERMIT" ng-model="empAdd.EMP_WORK_PERMIT">
-                </md-input-container>
-              </div>
-            </div>
-            <div class="m-t m-b">
-              <button type="button" class="btn btn-rounded pull-right btncolor btn-primary" ui-sref="app.Employee-Details" ng-click="steps.percent=100;saveEmployeeDetails()" >Save & Finish</button>
-            </div>
+            <button class="btn btn-success btn-sm pull-right">Submit</button>
           </form>
         </md-content>
       </md-tab>
