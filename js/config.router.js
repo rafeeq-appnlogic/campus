@@ -251,19 +251,19 @@ angular.module('app')
                   url: "/employee-admission",
                   controller:"employeeMgmnt",
                   templateUrl: "tpl/employee_management/employee-admission.html",
-                  resolve: load(['js/controllers/employeeMgmnt/employeeMgmnt.js','toaster','ngBootbox'])
+                  resolve: load(['js/controllers/employeemgmnt/employeeMgmnt.js','toaster','ngBootbox'])
                 })
                 .state("app.Employee-Details", {
                   url: "/employee-details",
                   controller:"empadmission_view",
                   templateUrl: "tpl/employee_management/employee-details.html",
-                  resolve: load(['js/controllers/employeeMgmnt/empadm_view.js','toaster','ngBootbox','smart-table','xeditable','ui.bootstrap'])
+                  resolve: load(['js/controllers/employeemgmnt/empadm_view.js','toaster','ngBootbox','smart-table','xeditable','ui.bootstrap'])
                 })
                 .state("app.employee-view-profile", {
                   url: "/employee-view-profile",
                   controller:"employee_Profile",
                   templateUrl: "tpl/employee_management/employeeViewProfile.html",
-                  resolve: load(['js/controllers/employeeMgmnt/empprofileCtrl.js','toaster','ngBootbox'])
+                  resolve: load(['js/controllers/employeemgmnt/empprofileCtrl.js','toaster','ngBootbox'])
                 })
                 .state("app.Employee-Sub-Association", {
                   url: "/employee-sub-association",
