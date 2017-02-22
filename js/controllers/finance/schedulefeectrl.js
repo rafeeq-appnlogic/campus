@@ -60,6 +60,40 @@ $scope.access_token=$localStorage.access_token;
               },600);
         });
   }
+
+  $scope.multiple_mail_send = function() {
+    alert();
+    $scope.emp_id = 4;
+  
+      $http({
+        method : "POST",
+        url : 'http://localhost/smartedu/FeesCntrl/get_id',
+        data : { 'ID':$scope.emp_id}
+      })
+      .then(function mySucces(response) {
+        console.log(response.data,'email');
+         $scope.email = response.data;
+         //console.log($scope.email);
+
+          $http({
+          method : "POST",
+          url : 'http://localhost/smartedu/FeesCntrl/Multiple_send_email',
+          data : { 'mail_id':$scope.email}
+        })
+
+      }, function myError(response) {
+       
+      });
+
+  }
+
+
+
+
+
+
+
+
   /*$scope.openModel = function() {
     $scope.buttonStatus='Save';
     $scope.Inc.FINC_TXN_IN_ID= null;
