@@ -5,7 +5,7 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
   	$scope.saveVal=true;
   	$scope.updateVal=false;
   	$scope.access_token=$localStorage.access_token;
-
+	$localStorage.classDetails=[];
   	$scope.Stud=[];
  //  	$scope.Stud.STU_ADM_DT=new Date();
 	// $scope.Stud.STU_ADM_DOB=new Date();
