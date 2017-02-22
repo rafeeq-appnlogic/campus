@@ -38,8 +38,8 @@
             placeClass      : 'dd-placeholder',
             noDragClass     : 'dd-nodrag',
             emptyClass      : 'dd-empty',
-            expandBtnHTML   : '<button data-action="expand" type="button">Expand</button>',
-            collapseBtnHTML : '<button data-action="collapse" type="button">Collapse</button>',
+           // expandBtnHTML   : '<button data-action="expand" type="button">Expand</button>',
+            //collapseBtnHTML : '<button data-action="collapse" type="button">Collapse</button>',
             group           : 0,
             maxDepth        : 5,
             threshold       : 20
@@ -192,7 +192,7 @@
             this.dragEl     = null;
             this.dragRootEl = null;
             this.dragDepth  = 0;
-            this.hasNewRoot = false;
+            this.hasNewRoot = true;
             this.pointEl    = null;
         },
 
@@ -327,7 +327,7 @@
             mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
             // axis mouse is now moving on
             var newAx   = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
-
+console.log("teting")
             // do nothing on first move
             if (!mouse.moving) {
                 mouse.dirAx  = newAx;
@@ -353,7 +353,7 @@
 
             /**
              * move horizontal
-             */
+             *//*
             if (mouse.dirAx && mouse.distAxX >= opt.threshold) {
                 // reset move distance on x-axis for new phase
                 mouse.distAxX = 0;
@@ -391,7 +391,7 @@
                     }
                 }
             }
-
+*/
             var isEmpty = false;
 
             // find list item under cursor
