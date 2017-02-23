@@ -194,8 +194,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">Single</md-option>
-                  <md-option ng-value="2">Marital</md-option>
+                  <md-option ng-repeat="marital in maritalstatus" ng-value="marital">{{marital}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -212,9 +211,10 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">Christianity</md-option>
+                  <md-option ng-repeat="relig in religionlist" ng-value="relig">{{relig}}</md-option>
+<!--                   <md-option ng-value="1">Christianity</md-option>
                   <md-option ng-value="2">Islam</md-option>
-                  <md-option ng-value="3">Hinduism</md-option>
+                  <md-option ng-value="3">Hinduism</md-option> -->
                 </md-select>
               </md-input-container>
             </div>  
@@ -231,11 +231,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">A +ve</md-option>
-                  <md-option ng-value="2">B +ve</md-option>
-                  <md-option ng-value="3">A -ve</md-option>
-                  <md-option ng-value="4">B -ve</md-option>
-                  <md-option ng-value="5">O +ve</md-option>
+                  <md-option ng-repeat="blood in bloodgroup" ng-value="blood">{{blood}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -252,8 +248,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">India</md-option>
-                  <md-option ng-value="2">SriLanga</md-option>
+                  <md-option ng-repeat="nation in nationality" ng-value="nation">{{nation}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -284,10 +279,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">English</md-option>
-                  <md-option ng-value="2">Hindi</md-option>
-                  <md-option ng-value="3">Maths</md-option>
-                  <md-option ng-value="4">Science</md-option>
+                  <md-option ng-repeat="dept in department" ng-value="dept">{{dept}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -304,10 +296,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">Finance</md-option>
-                  <md-option ng-value="2">Human Resource</md-option>
-                  <md-option ng-value="3">Teacher</md-option>
-                  <md-option ng-value="4">System Admin</md-option>
+                  <md-option ng-repeat="cat in empcategory" ng-value="cat">{{cat}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -324,8 +313,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">Lab Assistant</md-option>
-                  <md-option ng-value="2">System Admin</md-option>
+                  <md-option ng-repeat="position in selectposition" ng-value="position">{{position}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -352,8 +340,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">Grade A</md-option>
-                  <md-option ng-value="2">Grade B</md-option>
+                  <md-option ng-repeat="grade in empgrade" ng-value="grade">{{grade}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -380,8 +367,7 @@ pre {
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">1 Years</md-option>
-                  <md-option ng-value="2">2 Years</md-option>
+                  <md-option ng-repeat="exp in experience" ng-value="exp">{{exp}}</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -474,8 +460,7 @@ pre {
                                  type="search"
                                  class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-option ng-value="1">Chennai</md-option>
-                        <md-option ng-value="2">Puducherry</md-option>
+                        <md-option ng-repeat="city in selectcity" ng-value="city">{{city}}</md-option>
                       </md-select>
                     </md-input-container>
                   </div>  
@@ -492,9 +477,7 @@ pre {
                                  type="search"
                                  class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-option ng-value="1">TamilNadu</md-option>
-                        <md-option ng-value="2">Mumbai</md-option>
-                        <md-option ng-value="3">Delhi</md-option>
+                        <md-option ng-repeat="state in selectstate" ng-value="state">{{state}}</md-option>
                       </md-select>
                     </md-input-container>
                   </div>  
@@ -511,10 +494,7 @@ pre {
                                  type="search"
                                  class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-option ng-value="0">India</md-option>
-                        <md-option ng-value="1">Australia</md-option>
-                        <md-option ng-value="2">SriLanga</md-option>
-                        <md-option ng-value="3">Pakistan</md-option>
+                        <md-option ng-repeat="country in selectcountry" ng-value="country">{{country}}</md-option>
                       </md-select>
                     </md-input-container>
                   </div>  
