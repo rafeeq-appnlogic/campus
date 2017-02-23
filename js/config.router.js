@@ -141,7 +141,9 @@ angular.module('app')
               .state("app.Generate-Payslip", {
                   url: "/generate-payslip",
                   // templateUrl: "tpl/payroll/GeneratePayslip.html"
-                  templateUrl: "tpl/payroll/new/GeneratePayslip.html"
+                  templateUrl: "tpl/payroll/new/GeneratePayslip.html",
+                  controller:"payrollGroup",
+                  resolve: load(['js/controllers/hrconfig/payrollGroup.js'])
               })
               .state("app.View-Payslip", {
                   url: "/view-payslip",
