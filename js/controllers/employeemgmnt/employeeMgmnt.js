@@ -16,6 +16,7 @@ $scope.data='http://www.chrysaliscis.com/images/avatar.png';
                 angular.forEach($files, function (value, key) {
                     formdata.append(key, value);
                 });
+                console.log($files,"$files")
             };
 
 $scope.access_token=$localStorage.access_token;
@@ -31,30 +32,30 @@ $scope.access_token=$localStorage.access_token;
   $scope.empCont=[];
   $scope.empAdd=[]; 
   $scope.return_id='';
-  $scope.EMP_JOIN_DT=new Date();
+  // $scope.EMP_JOIN_DT=new Date();
 
-  $scope.EMP_MARITAL_STATUS = '';
-  $scope.maritalstatus = ['single' ,'Married','Divorced'];
-  $scope.EMP_BLOOD_GROUP = '';
-  $scope.bloodgroup = ['A+ve' ,'B+ve' ,'O+ve' ,'A-ve'];
-  $scope.STU_ADM_NATIONALITY = '';
-  $scope.nationality = ['Indian' ,'Australian' ,'American' ,'Srilangan' ,'Englishmen'];
-  $scope.EMP_DEPT = '';
-  $scope.department = ['English' ,'Hindi' ,'Maths' ,'Science' ,'Social'];
-  $scope.EMP_CATEGORY = '';
-  $scope.empcategory = ['Finance' ,'Human Resource' ,'Librarion' ,'Teacher' ,'System Admin'];
-  $scope.EMP_POSITION = '';
-  $scope.selectposition = ['Lab Assistant' ,'System Admin'];
-  $scope.EMP_GRADE = '';
-  $scope.empgrade = ['Grade 1' ,'Grade 2','Grade 3'];
-  $scope.EMP_TOT_EXPE = '';
-  $scope.experience = ['Grade 1' ,'Grade 2','Grade 3'];
-  $scope.EMP_CITY = '';
-  $scope.selectcity = ['Chennai' ,'Coimbatore','Pondicherry','Cuddalore','Villupram'];
-  $scope.EMP_STATE = '';
-  $scope.selectstate = ['Tamilnadu' ,'Mumbai','Delhi','Pune'];
-  $scope.EMP_COUNTRY = '';
-  $scope.selectcountry = ['Australia' ,'India','UK','Dubai'];
+  // $scope.EMP_MARITAL_STATUS = '';
+  // $scope.maritalstatus = ['single' ,'Married','Divorced'];
+  // $scope.EMP_BLOOD_GROUP = '';
+  // $scope.bloodgroup = ['A+ve' ,'B+ve' ,'O+ve' ,'A-ve'];
+  // $scope.STU_ADM_NATIONALITY = '';
+  // $scope.nationality = ['Indian' ,'Australian' ,'American' ,'Srilangan' ,'Englishmen'];
+  // $scope.EMP_DEPT = '';
+  // $scope.department = ['English' ,'Hindi' ,'Maths' ,'Science' ,'Social'];
+  // $scope.EMP_CATEGORY = '';
+  // $scope.empcategory = ['Finance' ,'Human Resource' ,'Librarion' ,'Teacher' ,'System Admin'];
+  // $scope.EMP_POSITION = '';
+  // $scope.selectposition = ['Lab Assistant' ,'System Admin'];
+  // $scope.EMP_GRADE = '';
+  // $scope.empgrade = ['Grade 1' ,'Grade 2','Grade 3'];
+  // $scope.EMP_TOT_EXPE = '';
+  // $scope.experience = ['Grade 1' ,'Grade 2','Grade 3'];
+  // $scope.EMP_CITY = '';
+  // $scope.selectcity = ['Chennai' ,'Coimbatore','Pondicherry','Cuddalore','Villupram'];
+  // $scope.EMP_STATE = '';
+  // $scope.selectstate = ['Tamilnadu' ,'Mumbai','Delhi','Pune'];
+  // $scope.EMP_COUNTRY = '';
+  // $scope.selectcountry = ['Australia' ,'India','UK','Dubai'];
  /* console.log($scope.mothertongue);*/
   $scope.searchTerm;
       $scope.clearSearchTerm = function() {
@@ -142,8 +143,8 @@ $scope.access_token=$localStorage.access_token;
 
       $http({
         method : "POST",
-        url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
-        // url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
+        // url : $rootScope.endUrl+"HrEmployeeMgmntModule/employeeAdmission",
+        url : "http://localhost/smartedu/api/HrEmployeeMgmntModule/employeeAdmission",
         data: formdata,
         headers: {
                         'Content-Type': undefined,'access_token':$scope.access_token

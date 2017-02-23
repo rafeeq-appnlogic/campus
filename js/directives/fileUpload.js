@@ -60,6 +60,10 @@ angular.module('app').directive('ngFiles', ['$parse', function ($parse) {
                                 data:e.target.result,
                                 dataSize: e.target.result.length
                             };
+                            // config.scope.imageDetails=file;
+                            // console.log(config.scope.imageDetails);
+                            config.scope.getTheFiles(data);
+                            console.log(data);
                             config.scope.data=e.target.result;
                             for(var p in file){ data[p] = file[p] }                            
                             config.scope.$apply(function(){ config.model.$viewValue=data })

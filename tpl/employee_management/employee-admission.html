@@ -120,8 +120,9 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <input ng-model="EMP_NO" >
+                <input ng-model="empAdm.EMP_NO" >
               </md-input-container>
+              <input type="hidden" ng-model="empAdm.EMP_ID">
             </div>  
           </div>
            <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
@@ -130,7 +131,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
                <md-input-container class="md-block" flex-gt-sm>
-                  <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                  <md-datepicker ng-model="empAdm.EMP_JOIN_DT" md-placeholder="Enter date"></md-datepicker>
                 </md-input-container>
             </div>  
           </div>
@@ -140,7 +141,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <input  ng-model="FIRST_NAME">
+                <input ng-model="empAdm.EMP_FIRST_NAME">
               </md-input-container>
             </div>  
           </div>
@@ -150,7 +151,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <input ng-model="LAST_NAME" >
+                <input ng-model="empAdm.EMP_LAST_NAME" >
               </md-input-container>
             </div>  
           </div>
@@ -177,7 +178,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                <md-datepicker ng-model="empAdm.EMP_DOB" md-placeholder="Enter date"></md-datepicker>
               </md-input-container>
             </div>  
           </div>
@@ -187,7 +188,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="MARITAL_STATUS">
+                <md-select ng-model="empAdm.EMP_MARITAL_STATUS">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -205,13 +206,15 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="RELIGION">
+                <md-select ng-model="empAdm.EMP_RELIGION">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
                            class="demo-header-searchbox md-text">
                   </md-select-header>
-                  <md-option ng-value="1">Hindu</md-option>
+                  <md-option ng-value="1">Christianity</md-option>
+                  <md-option ng-value="2">Islam</md-option>
+                  <md-option ng-value="3">Hinduism</md-option>
                 </md-select>
               </md-input-container>
             </div>  
@@ -222,7 +225,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="EMP_BLOOD_GROUP">
+                <md-select ng-model="empAdm.EMP_BLOOD_GROUP">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -243,7 +246,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="NATIONALITY">
+                <md-select ng-model="empAdm.EMP_NATIONALITY">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -257,10 +260,10 @@ pre {
           </div>
           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
             <div flex flex-gt-xs="30">
-              <label>Upload Profile</label>
+              <label>{{imageDetails | json}}</label>
             </div>
             <div flex flex-gt-xs="70">
-              <div drop-zone ng-model="EMP_PROFILE" class="one" style="width:100px;height: 100px;background-image: url({{data}});background-size: 100% 100%;background-repeat: no-repeat;">
+              <div drop-zone ng-model="empAdm.EMP_PROFILE" class="one" style="width:100px;height: 100px;background-image: url({{data}});background-size: 100% 100%;background-repeat: no-repeat;">
               </div>
             </div>  
           </div>
@@ -275,7 +278,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="DEPARTMENT">
+                <md-select ng-model="empAdm.EMP_DEPT">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -295,7 +298,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="CATEGORY" >
+                <md-select ng-model="empAdm.EMP_CATEGORY">
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -315,7 +318,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="POSITION" >
+                <md-select ng-model="empAdm.EMP_POSITION" >
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -333,7 +336,25 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <input ng-model="JOB_TITLE" >
+                <input ng-model="empAdm.EMP_JOB_TITLE" >
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Grade</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block">
+                <md-select ng-model="empAdm.EMP_GRADE" >
+                  <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                           type="search"
+                           class="demo-header-searchbox md-text">
+                  </md-select-header>
+                  <md-option ng-value="1">Grade A</md-option>
+                  <md-option ng-value="2">Grade B</md-option>
+                </md-select>
               </md-input-container>
             </div>  
           </div>
@@ -343,7 +364,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <input  ng-model="QUALIFICATION" >
+                <input  ng-model="empAdm.EMP_QUALI" >
               </md-input-container>
             </div>  
           </div>
@@ -353,7 +374,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block">
-                <md-select ng-model="TOT_EXP_YEAR" >
+                <md-select ng-model="empAdm.EMP_TOT_EXPE" >
                   <md-select-header class="demo-select-header">
                     <input ng-model="searchTerm"
                            type="search"
@@ -371,7 +392,7 @@ pre {
             </div>
             <div flex flex-gt-xs="70">
               <md-input-container class="md-block" flex-gt-sm>
-                <input ng-model="EXP_INFO" >
+                <input ng-model="empAdm.EMP_EXPE_INFO" >
               </md-input-container>
             </div>  
           </div>
@@ -392,7 +413,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="ADDRESS1">
+                      <input ng-model="empCont.EMP_ADD_1">
                     </md-input-container>
                   </div>  
                 </div>
@@ -402,7 +423,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="ADDRESS2">
+                      <input ng-model="empCont.EMP_ADD_2">
                     </md-input-container>
                   </div>  
                 </div>
@@ -412,7 +433,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="EMAIL">
+                      <input ng-model="empCont.EMP_EMAIL">
                     </md-input-container>
                   </div>  
                 </div>
@@ -422,7 +443,17 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="PHONE_NUM">
+                      <input ng-model="empCont.EMP_PHONE">
+                    </md-input-container>
+                  </div>  
+                </div>
+                <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Mobile Phone</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <input ng-model="empCont.EMP_MOBILE">
                     </md-input-container>
                   </div>  
                 </div>
@@ -436,8 +467,16 @@ pre {
                     <label>City</label>
                   </div>
                   <div flex flex-gt-xs="70">
-                    <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="CITY">
+                    <md-input-container class="md-block">
+                      <md-select ng-model="empCont.EMP_CITY" >
+                        <md-select-header class="demo-select-header">
+                          <input ng-model="searchTerm"
+                                 type="search"
+                                 class="demo-header-searchbox md-text">
+                        </md-select-header>
+                        <md-option ng-value="1">Chennai</md-option>
+                        <md-option ng-value="2">Puducherry</md-option>
+                      </md-select>
                     </md-input-container>
                   </div>  
                 </div>
@@ -446,8 +485,37 @@ pre {
                     <label>State</label>
                   </div>
                   <div flex flex-gt-xs="70">
-                    <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="STATE">
+                   <md-input-container class="md-block">
+                      <md-select ng-model="empCont.EMP_STATE" >
+                        <md-select-header class="demo-select-header">
+                          <input ng-model="searchTerm"
+                                 type="search"
+                                 class="demo-header-searchbox md-text">
+                        </md-select-header>
+                        <md-option ng-value="1">TamilNadu</md-option>
+                        <md-option ng-value="2">Mumbai</md-option>
+                        <md-option ng-value="3">Delhi</md-option>
+                      </md-select>
+                    </md-input-container>
+                  </div>  
+                </div>
+                <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+                  <div flex flex-gt-xs="30">
+                    <label>Country</label>
+                  </div>
+                  <div flex flex-gt-xs="70">
+                    <md-input-container class="md-block">
+                      <md-select ng-model="empCont.EMP_COUNTRY" >
+                        <md-select-header class="demo-select-header">
+                          <input ng-model="searchTerm"
+                                 type="search"
+                                 class="demo-header-searchbox md-text">
+                        </md-select-header>
+                        <md-option ng-value="0">India</md-option>
+                        <md-option ng-value="1">Australia</md-option>
+                        <md-option ng-value="2">SriLanga</md-option>
+                        <md-option ng-value="3">Pakistan</md-option>
+                      </md-select>
                     </md-input-container>
                   </div>  
                 </div>
@@ -457,7 +525,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="PINCODE">
+                      <input ng-model="empCont.EMP_PINCODE">
                     </md-input-container>
                   </div>  
                 </div>
@@ -467,7 +535,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="OFF_PHONE">
+                      <input ng-model="empCont.EMP_OFF_PHONE">
                     </md-input-container>
                   </div>  
                 </div>
@@ -488,7 +556,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="Acc_Name">
+                      <input ng-model="empAdd.EMP_ACC_NAME">
                     </md-input-container>
                   </div>  
                 </div>
@@ -498,7 +566,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="Acc_Num">
+                      <input ng-model="empAdd.EMP_ACC_NO">
                     </md-input-container>
                   </div>  
                 </div>
@@ -508,7 +576,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="BANK_NAME">
+                      <input ng-model="empAdd.EMP_BANK_NAME">
                     </md-input-container>
                   </div>  
                 </div>
@@ -518,7 +586,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="BRANCH_NAME">
+                      <input ng-model="empAdd.EMP_BANK_BRANCH_NAME">
                     </md-input-container>
                   </div>  
                 </div>
@@ -533,7 +601,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="PASSPORT_NUM">
+                      <input ng-model="empAdd.EMP_PASSPORT_NO">
                     </md-input-container>
                   </div>  
                 </div>
@@ -543,7 +611,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="PAN_NUM">
+                      <input ng-model="empAdd.EMP_PAN_NO">
                     </md-input-container>
                   </div>  
                 </div>
@@ -553,7 +621,7 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="ADHAR_NUM">
+                      <input ng-model="empAdd.EMP_ADHAR_NO">
                     </md-input-container>
                   </div>  
                 </div>
@@ -563,13 +631,15 @@ pre {
                   </div>
                   <div flex flex-gt-xs="70">
                     <md-input-container class="md-block" flex-gt-sm>
-                      <input ng-model="WORk_PERMIT">
+                      <input ng-model="empAdd.EMP_WORK_PERMIT">
                     </md-input-container>
                   </div>  
                 </div>
               </div>
             </div>
-            <button class="btn btn-success btn-sm pull-right">Submit</button>
+            <div class="col-md-offset-5" style="padding: 10px;">
+              <button class="btn btn-primary btn-sm" ui-sref="app.Employee-Details" ng-click="saveEmployeeDetails()">Save & Finish</button>
+            </div>
           </form>
         </md-content>
       </md-tab>
