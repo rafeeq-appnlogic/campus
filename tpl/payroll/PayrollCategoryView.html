@@ -1,0 +1,229 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .bootbox .modal-dialog{
+    width: 350px !important;
+    padding-top: 200px;  
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+  .i-switch-md input:checked + i::after {
+    color: green;
+    content: "Y";
+    font-size: 15px;
+    font-style: normal;
+    margin-left: 19px;
+}
+.i-switch-md i::after {
+    color: red;
+    content: "N";
+    font-size: 15px;
+    font-style: normal;
+    text-align: center;
+    width: 22px;
+}
+.i-switch i::before {
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 30px;
+    bottom: -1px;
+    content: "";
+    left: -1px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    transition: all 0.2s ease 0s;
+}
+</style>
+<div>
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>HR</b> | Payroll Category</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> HR</a></li>
+        <li><a href="">Payroll & Paysilp</a></li>
+        <li class="active">Payroll Category</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-md">
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-default">
+    <div class="panel-heading" style="padding:10px;">
+    <span style="font-size:18px;"><b>Payroll Category</b></span>  
+    <!-- <md-button class="md-raised md-primary pull-right" ui-sref="app.pr-category-create">
+      <i class="mdi-content-add i-24"></i> Create Payroll Category
+    </md-button> -->
+    <md-button ng-click="showAdvanced($event,'Edit' ,row)" class="md-raised md-primary pull-right">
+      <i class="mdi-content-add i-24"></i> Create Payroll Category
+    </md-button>
+    <div class="table table-responsive">
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>  
+            <th>
+              <input st-search="'ACA_COU_NAME'" placeholder="Search for Payroll Category Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'ACA_COU_CODE'" placeholder="Search for Payroll Category Type" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'BATCH_COUNT'" placeholder="Search for Payroll Category Values" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="ACA_COU_NAME">Payroll Category Name</th>
+            <th st-sort="ACA_COU_GRADE_TYPE">Payroll Category Type</th>
+            <th st-sort="BATCH_COUNT">Payroll Category Value</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            <td>{{row.ACA_COU_NAME}}</td>
+            <td>{{row.ACA_COU_CODE}}</td>
+            <td>{{row.ACA_COU_GRADE_TYPE}}</td>
+            <td style="white-space: nowrap">
+              <div class="buttons" ng-show="!rowform.$visible">
+                <!-- <a><button md-ink-ripple class="md-btn md-raised btn-fw blue" ng-click="GetBatchView(row)">&nbsp<i class="fa fa-eye"></i>&nbsp</button></a> -->
+                <button md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit' ,row)">&nbsp<i class="fa fa-edit"></i>&nbsp</button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="DeleteClass1(row)">&nbsp<i class="fa fa-trash-o"></i>&nbsp</button>
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tbody ng-if="NoData">
+          <tr>
+            <td colspan="8" class="text-center">No Data Found !</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="4">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!--     <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg" style="padding-top: 87px">
+    <div class="modal-content">
+        <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button">
+          <i class="fa  fa-times-circle "></i>
+      </button>
+        <h4 class="modal-title" ng-if="Save" id="header">Add Course</h4>
+        <h4 class="modal-title" ng-if="Edit" id="header">Edit Course</h4>
+        </div>
+        <div class="modal-body">
+      <div class="panel-body">
+        <form role="form" class="form-validation" name="Form" >
+            <div class="form-group col-md-4 ">
+              <label>Course Name</label>
+              <input class="form-control" placeholder="Course Name" ng-model="class.ACA_COU_NAME" name="ACA_COU_NAME" type="text" required="">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Course Code</label>
+              <input class="form-control" placeholder="Class Code" ng-model="class.ACA_COU_CODE" name="ACA_COU_CODE" type="text" required="">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Grading System Type</label>
+               <select class="form-control" ng-model="class.ACA_COU_GRADE_TYPE" name="ACA_COU_GRADE_TYPE" required="">
+                  <option value="select" ng-selected="true" ng-disabled="true">Select</option>
+                 <option value="Normal">Normal</option>
+                 <option value="CCE">CCE</option>
+               </select>
+            </div>
+            <div ng-if="batch">
+            <legend class="text-muted" style="font-size: 17px">Add Initail Batch for Creating Class</legend>
+            <div class="form-group col-md-4 ">
+              <label>Batch Name</label>
+              <input class="form-control" placeholder="Batch Name" type="text" ng-model="class.ACA_BAT_NAME" name="ACA_BAT_NAME">
+              <input type="hidden" ng-model="class.ACA_COU_ID">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Start Date</label>
+              <div ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}"  ng-model="class.ACA_BAT_START_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-4 ">
+              <label>End Date</label>
+              <div ng-controller="DatepickerDemoCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="class.ACA_BAT_END_DT" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-md-12">
+            <button type="button" class="btn btn-sm btn-success" ng-click="saveClass();Form.$setPristine()" data-dismiss="modal" class="close" ng-disabled="Form.$invalid" ng-if="Savebutton">&nbsp;Save</button>
+            <button type="button" class="btn btn-sm btn-info" ng-click="updateClass(row)" data-dismiss="modal" class="close" ng-if="Updatebutton" ng-disabled="Form.$invalid">&nbsp;Update</button>
+              </div>
+          </form>
+        </div>
+    </div>
+      </div>
+  </div>
+    </div> -->

@@ -1,0 +1,248 @@
+<style>
+/*md-dialog{
+  max-width: 100% !important;
+}*/
+md-input-container {
+    margin: 26px 18px 0 !important;
+}
+.m-b {
+    margin-bottom: 0px !important;
+}
+</style>
+
+<!-- <md-dialog aria-label="Mango (Fruit)">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 >Create Payroll Category</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <md-input-container class="md-block">
+              <label>Category Name</label>
+              <input required name="ACA_COU_CODE" ng-model="ACA_COU_CODE">
+              <div ng-messages="Form.ACA_COU_CODE.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <md-input-container class="md-block">
+              <label>Category Name</label>
+              <input required name="ACA_COU_CODE" ng-model="ACA_COU_CODE">
+              <div ng-messages="Form.ACA_COU_CODE.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+              <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <md-radio-group ng-model="empAdm.EMP_GENDER">                
+                <label class="radio-inline">
+                  <md-radio-button value="Male" class="md-primary">Earnings</md-radio-button>
+                </label>
+                <label class="radio-inline">
+                   <md-radio-button value="Female" class="md-primary"> Deduction </md-radio-button>
+                </label>
+              </md-radio-group>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <md-input-container class="md-block">
+              <label>Category Name</label>
+              <input required name="ACA_COU_CODE" ng-model="ACA_COU_CODE">
+              <div ng-messages="Form.ACA_COU_CODE.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <br>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <div class="m-b" style="padding-right: 84px">
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveClass();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" >
+      &nbsp Save &nbsp
+      <div class="md-ripple-container" style=""></div>
+      </button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog> -->
+
+<md-dialog aria-label="Mango (Fruit)" style="width: 500px">
+  <!-- <form name="Form" ng-cloak> -->
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 >Create Payroll Category</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <form name="userForm">
+      <div class="col-md-12">
+   <!--    <div layout-gt-xs="row" layout-gt-md="row" layout-gt-sm="row" class="layout-gt-xs-row layout-gt-sm-row layout-gt-md-row">
+        <div class="flex-gt-xs-10 flex" flex="" flex-gt-xs="45"></div>
+        <div class="flex-gt-xs-80 flex" flex="" flex-gt-xs="45">
+          <div class="layout-gt-xs-row layout-gt-sm-row layout-gt-md-row" layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div style="margin-top: 33px" class="flex-gt-xs-30 flex" flex="" flex-gt-xs="30">
+              <label style="vertical-align: center">Category Name</label>
+            </div>
+            <div class="flex-gt-xs-70 flex" flex="" flex-gt-xs="70">
+              <md-input-container class="md-block md-icon-float flex-gt-sm" flex-gt-sm=""><label for="input_0" role="button" class="ng-scope" ng-click="delegateClick()" tabindex="-1">Category Name</label>
+                <input style="" aria-invalid="false" id="input_0" class="ng-pristine ng-valid md-input ng-empty ng-touched" name="social" ng-model="user.social"><div class="md-errors-spacer"></div>
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+        <div class="flex-gt-xs-10 flex" flex="" flex-gt-xs="45"></div>
+      </div> -->
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div class="flex-gt-xs-10"></div>
+        <div flex flex-gt-xs="80">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30" style="margin-top: 34px">
+              <label>Category Name</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" placeholder="Category Name" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+        <div flex flex-gt-xs="10"></div>
+      </div>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div class="flex-gt-xs-10"></div>
+        <div flex flex-gt-xs="80">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30" style="margin-top: 34px">
+              <label>Category Code</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" placeholder="Category Code" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+        <div flex flex-gt-xs="10"></div>
+      </div>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div class="flex-gt-xs-10"></div>
+        <div flex flex-gt-xs="80">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Category Type</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-radio-group ng-model="empAdm.EMP_GENDER">                
+                <label class="radio-inline">
+                  <md-radio-button value="Male" class="md-primary">Earnings</md-radio-button>
+                </label>
+                <label class="radio-inline">
+                   <md-radio-button value="Female" class="md-primary"> Deduction </md-radio-button>
+                </label>
+              </md-radio-group>
+            </div>  
+          </div>
+        </div>
+        <div flex flex-gt-xs="10"></div>
+      </div>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div class="flex-gt-xs-10"></div>
+        <div flex flex-gt-xs="80">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30" style="margin-top: 34px">
+              <label>Category Value</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" placeholder="Category Value" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+        <div flex flex-gt-xs="10"></div>
+      </div>
+<!--       <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div flex flex-gt-xs="45">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Category Code</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social1" placeholder="Category Code"/>
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+          <div flex flex-gt-xs="10"></div>
+        <div flex flex-gt-xs="45">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Category Value</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social1" placeholder="Category Value"/>
+              </md-input-container>
+            </div> 
+          </div>
+        </div>
+      </div> -->
+      </div>
+      <br>
+      <br>
+        <!-- <center>
+          <md-button class="md-raised md-primary">Create</md-button>
+          <md-button class="md-raised md-warn">Cancel</md-button>
+        </center> -->
+    </form>    
+    </md-dialog-content>
+    <br>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <div class="m-b" style="padding-right: 182px">
+      <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+      Cancel
+      <div class="md-ripple-container" style=""></div>
+      </button>&nbsp
+      <button ng-click="saveClass();Form.$setPristine()" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="" >
+      &nbsp Save &nbsp
+      <div class="md-ripple-container" style=""></div>
+      </button>
+      </div>
+    </md-dialog-actions>
+  <!-- </form> -->
+</md-dialog>

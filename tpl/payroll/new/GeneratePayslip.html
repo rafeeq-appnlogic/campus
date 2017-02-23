@@ -1,0 +1,450 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .bootbox .modal-dialog{
+    width: 350px !important;
+    padding-top: 200px;  
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+    md-input-container.md-default-theme .md-input, md-input-container .md-input{
+    border-bottom-color: #777777;
+  }
+  md-input-container.md-default-theme .md-input, md-input-container label{
+    font-size: 15px !important;
+  }
+  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
+    transform: translate3d(0px, 20px, 0px) scale(0.75);
+  }
+  md-input-container{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  md-input-container .md-errors-spacer{
+    min-height: 7px;
+  }
+  label{
+    font-size: 16px;
+    padding-top: 14px;
+    padding-right: 15px;
+  }
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <div class="row">
+  <div class="col-md-4">
+    <h4 class="m-n font-thin h4"><i class="fa fa-user"></i> &nbsp&nbsp<b>HR Management</b> | Payslip for Employee</h4>
+    </div>
+    <div class="col-md-8">
+    <ul class="breadcrumb pull-right">
+      <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+      <li><a href="">Elements</a></li>
+      <li class="active">Components</li>
+    </ul>
+    </div>
+  </div>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled" method="get">
+    <legend>Generate Employee Payslip - Siva  </legend>
+      <div class="form-group" ng-controller="DatepickerDemoCtrl" >
+          <label class="col-lg-2">Pay Period </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-md-3">
+          <div class="input-group w-md">
+            <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        </div>
+        </div>
+      <div class="form-group element ">
+          <label class="col-lg-2">Name </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>Siva(EMP045556)</b></p>
+          </div>
+      </div>
+      <div class="form-group element">
+          <label class="col-lg-2">Department </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>English</b></p>
+          </div>
+      </div>
+      <div class="form-group element">
+          <label class="col-lg-2">Position</label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>Junior</b></p>
+          </div>
+      </div>
+      <legend>Payroll Details</legend>
+        <div class="form-group element">
+          <label class="col-lg-2">Payroll Group </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b> Current Payslip </b></p>
+          </div>
+        </div>
+            <div class="form-group element">
+          <label class="col-lg-2">Payment Frequency</label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-3">
+            <p class=""><b>  Monthly </b></p>
+          </div>
+        </div>
+        <!-- <div class="col-md-12 row">
+        <div class="col-md-6 well" style="width: 49%;float: left; background-color: white;" >
+          <!-- <h4>Earnings</h4> -->
+          <!-- <legend>Earnings</legend>
+          <div class="form-group adjust element">
+          <label class="col-lg-4">Basic Pay </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+             <input class="form-control" placeholder="Basic Pay" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust element">
+          <label class="col-lg-4">Bonus</label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+             <input class="form-control" placeholder="Bonus" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust element">
+          <label class="col-lg-4"></label>
+          <label class="col-lg-1"></label>
+          <div class="col-lg-5" style="padding-bottom: 7px;padding-top: 7px">
+             <a  data-toggle="modal" data-target="#myModal"><span class="label bg-success"><i class="fa fa-plus "></i> &nbsp;Add </span></a>
+          </div>
+          </div> -->
+          <!-- <div class="form-group">
+          <label class="col-lg-4">Housing Allowance </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-lg-4">Human Resource Allowance  </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-lg-4">Transport Allowance  </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div> -->
+          <!-- <div class="form-group element" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px">
+          <label class="col-lg-4">Total Earnings </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>  -->
+
+        <!-- </div>
+        <div class="col-md-6 well" style="width: 49%;float: right;background-color: white;"> -->
+<!--         <legend>Deductions</legend>
+         <div class="form-group adjust element ">
+          <label class="col-lg-4">LOP </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="LOP" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust element">
+          <label class="col-lg-4">PF </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="PF" type="text">
+          </div>
+          </div>
+          <div class="form-group adjust element ">
+          <label class="col-lg-4"></label>
+          <label class="col-lg-1"></label>
+          <div class="col-lg-5" style="padding-bottom: 7px;padding-top: 7px">
+             <a  data-toggle="modal" data-target="#myModal"><span class="label bg-success"><i class="fa fa-plus "></i> &nbsp;Add </span></a>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-lg-4">Provident Fund   </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+          <div class="form-group element" style="font-size: 16px;background-color: ButtonFace;line-height: 21px;padding-top: 3px;">
+          <label class="col-lg-4">Total Deductions  </label>
+          <label class="col-lg-1"> : </label>
+          <div class="col-lg-5">
+            <p class=""><b> Rs. 20000.00</b></p>
+          </div>
+          </div>
+        </div>
+        </div> -->
+        <!-- <div class="col-md-12">
+            <div class="form-group" style="background-color: #F0F0F0;padding-top: 10px;padding-bottom: 2px;font-size: 16px;width: 1048px">
+              <label class="col-lg-2"><span class="label bg-primary">Net Pay </span><b> Net Pay</b></label>
+              <div class="col-lg-5">
+                <p class=""><b> Rs. 20000.00</b></p>
+              </div>
+            </div>
+            <div class="form-group">
+            <p></p>
+              <input class="btn btn-info btn-sm col-md-offset-5" value="Generate" type="button">
+              <input class="btn btn-danger btn-sm" value="Cancel" type="button">
+            </div>
+          </div> -->
+    <!-- <div flex-xs flex-gt-xs="50" layout="column">
+        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Card with image</span>
+            <span class="md-subhead">Large</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="50" layout="column">
+        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Card with image</span>
+            <span class="md-subhead">Large</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card> -->
+    <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <div class="col-md-12" style="padding-top: 14px;padding-bottom: 27px">
+        <legend style="margin-bottom: 7px">Earnings</legend>
+        <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>Basic</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>Housing Allowance</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+<!--           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>Human Resource Allowance</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div> -->
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>Transport Allowance</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+      </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <div class="col-md-12" style="padding-top: 14px;padding-bottom: 27px">
+        <legend style="margin-bottom: 7px">Deduction</legend>
+        <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>Income Tax</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>Provident Fund</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="45">
+              <label>ESI</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+      </md-card>
+    </div>  
+<!--     <form name="userForm">
+      <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+        <h3>Form</h3>
+      </div>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div flex flex-gt-xs="45">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+        <div flex flex-gt-xs="10">
+        </div>
+        <div flex flex-gt-xs="45">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex flex-gt-xs="30">
+              <label>Social Security</label>
+            </div>
+            <div flex flex-gt-xs="70">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+              </md-input-container>
+            </div>  
+          </div>
+        </div>
+
+      </div>
+    </form> -->
+
+
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+

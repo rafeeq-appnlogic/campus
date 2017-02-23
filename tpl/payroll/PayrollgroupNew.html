@@ -1,0 +1,138 @@
+<style type="text/css">
+  md-list-item.md-2-line, md-list-item.md-2-line > .md-no-style {
+    height: auto;
+    min-height: 46px !important;
+    border-bottom:1px solid #DDDDDD !important; 
+}md-list-item.md-2-line::before, md-list-item.md-2-line > .md-no-style::before {
+    content: "";
+    display: inline-block;
+    min-height: 50px;
+    visibility: hidden;
+}
+.dd-item, .dd-empty, .dd-placeholder {
+    display: inline !important;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0;
+    min-height: 20px;
+    padding: 0;
+    position: relative;
+}
+.dd-handle {
+    background: #fff none repeat scroll 0 0 !important;
+    border: 1px solid #ebebeb !important;
+    border-radius: 3px !important;
+    display: block !important;
+    padding: 10px !important;
+    text-decoration: none !important;
+    margin: 0px !important;
+    font-size: 15px!important;
+}
+.iconBar{
+  float: right;
+  color: gray;
+}
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>HR</b> | Payroll Group
+      </h4>
+    </div>
+    <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Payroll & Paysilp</a></li>
+        <li><a href="">Payroll Group</a></li>
+        <li class="active">Payroll Group</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="wrapper-md">
+<div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+  <div flex-xs flex-gt-xs="50" layout="column">
+    <md-card md-theme="dark-orange" md-theme-watch style="border: 1px solid #0066CC">
+      <div style="background-color: -moz-nativehyperlinktext">
+        <h4 style="margin-left: 14px;margin-top: 7px;color: white">Added payroll categories</h4>
+      </div>
+      <div ui-jq="nestable" class="dd" >
+          <li class="dd-item" data-id="1">
+          <div class="dd-handle">
+          <i class="fa fa-bars iconBar"></i> New Category - 50% GROSS  ( Earnings )
+          </div>
+          </li>
+          <li class="dd-item" data-id="2"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> New Category - 50% GROSS  ( Earnings )</div>
+          </li>
+          <li class="dd-item" data-id="3"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> Basic - 20% GROSS  ( Earnings )</div></li>
+          <li class="dd-item" data-id="4"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> IT - 5% GROSS  ( Deduction )</div></li>
+          <li class="dd-item" data-id="5"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> Housing Allowance - 20% GROSS  ( Earnings )</div></li>
+          <li class="dd-item" data-id="6"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> HOUSE - 10% GROSS  ( Earnings )</div></li>
+          <li class="dd-item" data-id="7"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> Transport Allowance - 20% GROSS  ( Earnings )</div></li>
+          <li class="dd-item" data-id="8"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> PF - 5% GROSS  ( Deduction )</div></li>
+          <li class="dd-item" data-id="9"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> Transport Allowance - 20% GROSS  ( Earnings )</div></li>
+      
+      </div>  
+    </md-card>
+  </div>
+  <div flex-xs flex-gt-xs="50" layout="column">
+    <md-card md-theme="dark-orange" md-theme-watch ui-jq="nestable" style="border: 1px solid #3CB371">
+      <div style="background-color: mediumseagreen">
+        <h4 style="margin-left: 14px;margin-top: 7px;color: white">Selected payroll categories</h4>
+      </div>
+      <div ui-jq="nestable" class="dd">
+        
+      <li class="dd-item" data-id="9"><div class="dd-handle"><i class="fa fa-bars iconBar"></i> Transport Allowance - 20% GROSS  ( Earnings )</div></li>
+       
+      </div>
+    </md-card>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--   <div class="row">
+    <div class="col-sm-6">
+		<h4 class="m-t-none m-b">Add payroll categories</small></h4>
+      <div ui-jq="nestable" class="dd" style="border:1px solid #000;">
+        <ol class="dd-list">
+          <li class="dd-item" data-id="1"><div class="dd-handle">Item 1</div></li>
+		  <li class="dd-item" data-id="2"><div class="dd-handle">Item 2</div></li>
+          <li class="dd-item" data-id="3"><div class="dd-handle">Item 3</div></li>
+          <li class="dd-item" data-id="4"><div class="dd-handle">Item 4</div></li>
+		  <li class="dd-item" data-id="5"><div class="dd-handle">Item 5</div></li>
+          <li class="dd-item" data-id="6"><div class="dd-handle">Item 6</div></li>
+		  <li class="dd-item" data-id="7"><div class="dd-handle">Item 7</div></li>
+		  <li class="dd-item" data-id="8"><div class="dd-handle">Item 8</div></li>
+          <li class="dd-item" data-id="9"><div class="dd-handle">Item 9</div></li>
+      </ol>
+      </div>
+    </div>
+    <div class="col-sm-6">
+		<h4 class="m-t-none m-b">Selected Payroll Categories</small></h4>
+      <div ui-jq="nestable" class="dd" style="border:1px solid #000;">
+        <ol class="dd-list">
+			<li class="dd-item" data-id="1"><div class="dd-handle">Item 1</div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 /**
  * Config for the router
@@ -62,18 +62,25 @@ angular.module('app')
                   url: "/employee-grade",
                   templateUrl: "tpl/hrconfig/employee_grade.html"
               })
-              // Modified by Vijayaraj 20-02-17
-              .state("app.payroll-category", {
-                  url: "/payroll-category",
-                  controller:"payrollcategory",
-                  templateUrl: "tpl/Payroll_PaySlip/Payroll_Category.html",
-                  resolve: load(['smart-table','js/controllers/payroll/payrollcategory.js','ui.bootstrap','toaster','ngBootbox'])
+              .state("app.pr-category", {
+                  url: "/pr-category",
+                  templateUrl: "tpl/payroll/payroll_category.html"
               })
-              .state("app.add-payroll-category", {
-                  url: "/add-payroll-category",
-                  controller:"payrollcategory",
-                  templateUrl: "tpl/Payroll_PaySlip/PayrollCategory_Add.html",
-                  resolve: load(['smart-table','js/controllers/payroll/payrollcategory.js','ui.bootstrap','toaster','ngBootbox'])
+              .state("app.pr-category-new", {
+                  url: "/pr-category-new",
+                  controller:"payrollCategory",
+                  templateUrl: "tpl/payroll/PayrollCategoryView.html",
+                  resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.pr-category-create",{
+                url:"/pr-category-create",
+                templateUrl:"tpl/payroll/PayrollCategoryCreate.html"
+              })
+              .state("app.pr-group-new",{
+                url:"/pr-group-new",
+                controller:"payrollGroup",
+                templateUrl:"tpl/payroll/PayrollgroupNew.html",
+                resolve:load(['js/controllers/hrconfig/payrollGroup.js'])
               })
               .state("app.pr-add", {
                   url: "/pr-add",
@@ -126,15 +133,22 @@ angular.module('app')
               })
               .state("app.PayslipFor-Employee", {
                   url: "/payslipfor-employee",
-                  templateUrl: "tpl/payroll/PayslipForEmployee.html"
+                  // templateUrl: "tpl/payroll/PayslipForEmployee.html",
+                  templateUrl: "tpl/payroll/new/PayslipForEmployee.html",
+                  controller:"payrollCategory",
+                  resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
               .state("app.Generate-Payslip", {
                   url: "/generate-payslip",
-                  templateUrl: "tpl/payroll/GeneratePayslip.html"
+                  // templateUrl: "tpl/payroll/GeneratePayslip.html"
+                  templateUrl: "tpl/payroll/new/GeneratePayslip.html"
               })
               .state("app.View-Payslip", {
                   url: "/view-payslip",
-                  templateUrl: "tpl/payroll/ViewPayslip.html"
+                  // templateUrl: "tpl/payroll/ViewPayslip.html",
+                  templateUrl: "tpl/payroll/new/ViewPayslip.html",
+                  controller:"payrollCategory",
+                  resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
               .state("app.Payslip-View", {
                   url: "/payslip-view",
@@ -251,19 +265,19 @@ angular.module('app')
                   url: "/employee-admission",
                   controller:"employeeMgmnt",
                   templateUrl: "tpl/employee_management/employee-admission.html",
-                  resolve: load(['js/controllers/employeemgmnt/employeeMgmnt.js','toaster','ngBootbox'])
+                  resolve: load(['js/controllers/employeeMgmnt/employeeMgmnt.js','toaster','ngBootbox'])
                 })
                 .state("app.Employee-Details", {
                   url: "/employee-details",
                   controller:"empadmission_view",
                   templateUrl: "tpl/employee_management/employee-details.html",
-                  resolve: load(['js/controllers/employeemgmnt/empadm_view.js','toaster','ngBootbox','smart-table','xeditable','ui.bootstrap'])
+                  resolve: load(['js/controllers/employeeMgmnt/empadm_view.js','toaster','ngBootbox','smart-table','xeditable','ui.bootstrap'])
                 })
                 .state("app.employee-view-profile", {
                   url: "/employee-view-profile",
                   controller:"employee_Profile",
                   templateUrl: "tpl/employee_management/employeeViewProfile.html",
-                  resolve: load(['js/controllers/employeemgmnt/empprofileCtrl.js','toaster','ngBootbox'])
+                  resolve: load(['js/controllers/employeeMgmnt/empprofileCtrl.js','toaster','ngBootbox'])
                 })
                 .state("app.Employee-Sub-Association", {
                   url: "/employee-sub-association",
