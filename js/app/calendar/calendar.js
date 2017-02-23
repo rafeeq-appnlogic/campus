@@ -116,6 +116,8 @@ app.controller('FullcalendarCtrl', ['$scope','$controller','$rootScope', functio
 
     /* Change View */
     $scope.changeView = function(view, calendar) {
+      console.log(view ,'view');
+      console.log(calendar ,'calendar');
       $('.calendar').fullCalendar('changeView', view);
     };
 

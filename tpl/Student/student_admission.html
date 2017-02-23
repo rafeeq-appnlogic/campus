@@ -52,7 +52,18 @@ md-input-container.md-default-theme .md-input, md-input-container .md-input{
     white-space: nowrap;
 }
 
-  [ng-app] > img {
+/*.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; }
+.tabsdemoDynamicHeight md-content md-tabs {
+  background: #f6f6f6;
+  border: 1px solid #e1e1e1; }
+  .tabsdemoDynamicHeight md-content md-tabs md-tabs-canvas {
+    background: white; }
+.tabsdemoDynamicHeight md-content h3:first-child {
+  margin-top: 0; }*/
+
+
+[ng-app] > img {
   width: 100%;
 }
 
@@ -141,9 +152,9 @@ md-datepicker .md-datepicker-input {
 <div class="wrapper-md">
   
 
-<div ng-cloak>
+<div ng-cloak class="tabsdemoDynamicHeight">
   <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
       <md-tab label="Student admission">
       <md-content class="md-padding">
       <form name="userForm">
@@ -457,6 +468,9 @@ md-datepicker .md-datepicker-input {
           </div>
         </div>
       </div>
+      <br>
+      <md-button class="md-raised md-primary pull-right" ng-click="nextTab();saveStuAdmission()">Save & Next</md-button>
+      <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Next</button> -->
       </form>
       </md-content>
       </md-tab>
@@ -744,6 +758,11 @@ md-datepicker .md-datepicker-input {
           </div>
         </div>
       </div>
+      <br>
+      <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink" ng-click="prevTab()">Previous</button>
+      <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Next</button> -->
+      <md-button class="md-raised md-primary" ng-click="prevTab()">Previous</md-button>
+      <md-button class="md-raised md-primary pull-right" ng-click="nextTab()">Save & Next</md-button>
       </form>
       </md-content>
       </md-tab>
@@ -853,9 +872,13 @@ md-datepicker .md-datepicker-input {
           </div>
         </div>
         </div>
-        <div class="col-md-7 col-md-offset-5">
+        <!-- <div class="col-md-7 col-md-offset-5">
         <md-button class="md-raised md-primary">Submit</md-button>
-        </div>
+        </div> -->
+        <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink" ng-click="prevTab()">Previous</button>
+        <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Finish</button> -->
+        <md-button class="md-raised md-primary" ng-click="prevTab()">Previous</md-button>
+        <md-button class="md-raised md-primary pull-right">Save & Finish</md-button>
       </form>
       </md-content>
       </md-tab>

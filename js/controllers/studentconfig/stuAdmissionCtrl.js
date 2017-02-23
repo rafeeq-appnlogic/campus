@@ -324,6 +324,17 @@ app.controller('stuAdmissionCtrl', ['$scope','$rootScope','$controller','$http',
 		});
 	}
 
+	$scope.max = 2;
+  	$scope.selectedIndex = 0;
+  	$scope.nextTab = function() {
+    	var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+    	$scope.selectedIndex = index;
+  	};
+  	$scope.prevTab = function() {
+    	var index = ($scope.selectedIndex == $scope.max) ? 1 : $scope.selectedIndex - 1;
+    	$scope.selectedIndex = index;
+  	};
+
 
 	// $scope.vegetables = ['Corn' ,'Onions' ,'Kale' ,'Arugula' ,'Peas', 'Zucchini'];
  //      $scope.searchTerm;
