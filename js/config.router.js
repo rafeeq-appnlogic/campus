@@ -361,10 +361,10 @@ angular.module('app')
                 url: "/view-refundrule",
                 templateUrl: "tpl/Finance/viewFeesRefund.html",
               })
-                .state("app.Apply-RefundRule", {
-                url: "/apply-refundrule",
-                templateUrl: "tpl/Finance/applyFeesRefund.html",
-              })
+              //   .state("app.Apply-RefundRule", {
+              //   url: "/apply-refundrule",
+              //   templateUrl: "tpl/Finance/applyFeesRefund.html",
+              // })
 
               .state('app.acad', {
                 template: '<div ui-view class="fade-in"></div>'
@@ -525,6 +525,24 @@ angular.module('app')
                 controller:"incomeCtrl",
                 templateUrl: "tpl/finance_module/income.html",
                 resolve: load(['smart-table','js/controllers/finance/income.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.view-refund", {
+                url: "/view-refunds",
+                controller:"refundview",
+                templateUrl: "tpl/finance_module/viewrefunds.html",
+                resolve: load(['smart-table','js/controllers/finance/refundview.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.apply-refund", {
+                url: "/refund-apply",
+                controller:"refundview",
+                templateUrl: "tpl/finance_module/applyrefund.html",
+                resolve: load(['smart-table','js/controllers/finance/refundview.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.applyrefund-details", {
+                url: "/refund-apply-details",
+                controller:"refundview",
+                templateUrl: "tpl/finance_module/applyrefund_details.html",
+                resolve: load(['smart-table','js/controllers/finance/refundview.js','ui.bootstrap','toaster','ngBootbox'])
               })
               //  .state("app.Reverted-Transaction", {
               //   url: "/reverted-transaction",

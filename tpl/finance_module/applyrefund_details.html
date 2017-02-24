@@ -1,0 +1,167 @@
+<div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><b>Finance Fees</b> | Apply Refund </h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="">Finance Fees</a></li>
+        <li class="active">Apply Refund</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      Apply Refund
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label class="col-sm-5 control-label"><b>Select fee collection</b></label>
+          <div class="col-sm-7">
+            <select class="form-control">
+              <option selected>Fee for  std_ c1-g4 - 03-23-2016 </option>
+            </select>                      
+          </div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-sm-5 control-label"><b>Fees Receipt Number :</b></label>
+              <div class="col-sm-7">
+                <label class="control-label">12345</label>                      
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-5 control-label"><b>Fee Category Name :</b></label>
+              <div class="col-sm-7">
+                <label class="control-label">Fee strut - 2016 </label>                     
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-sm-5 control-label"><b>Student category :</b></label>
+              <div class="col-sm-7">
+                <label class="control-label">N.A </label>                     
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-5 control-label"><b>Fee Collection Name :</b></label>
+              <div class="col-sm-7">
+                <label class="control-label">Fee for std_ c1-g4 </label>                     
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div> -->
+      </form>
+      <br>
+      <table class="table"  border="1">
+        <thead style="background-color: rgb(223,237,250)">
+          <th width="10%">Sl.No</th>
+          <th width="75%">Particulars</th>
+          <th width="15%"><span style="float: right;">Amount (Rs.)</span></th>
+        </thead>
+        <tbody>
+          <tr>
+            <table class="table" border="1" style="margin-top: -21px;">
+              <thead>
+                <th width="10%"></th>
+                <th width="75%">Batch-wise</th>
+                <th width="15%"></th>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Tuition Fee</td>
+                    <td><span style="float: right;">4000.00</span></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Admission fee</td>
+                    <td><span style="float: right;">12000.00</span></td>
+                  </tr>
+              </tbody>
+            </table>
+          </tr>
+          <tr>
+            <table class="table" border="1" style="margin-top: -21px;">
+              <thead>
+                <th width="10%"></th>
+                <th width="75%">Discount</th>
+                <th width="15%"></th>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>discount</td>
+                    <td><span style="float: right;">2000.00</span></td>
+                  </tr>
+              </tbody>
+            </table>
+          </tr>
+          <tr>
+            <table class="table" style="margin-top: -21px;">
+              <thead>
+                <th width="10%"></th>
+                <th width="75%"><span style="float: right;">Total fees</span></th>
+                <th width="15%"><span style="float: right;">14000.00</span></th>
+              </thead>
+            </table>
+          </tr>
+          <tr>
+            <table class="table" style="margin-top: -21px;">
+              <thead>
+                <th width="10%"></th>
+                <th width="75%"><span style="float: right;">Amount refunded</span></th>
+                <th width="15%"><span style="float: right;">2000.00</span></th>
+              </thead>
+            </table>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pull-right" style="margin-right: 20px;">
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Revert</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Revert transaction</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+              <label class="col-md-2 control-label"><b>Reson</b></label>
+              <div class="col-md-7">
+                <textarea rows="3" class="form-control"></textarea>                    
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Revert transaction</button>
+      </div>
+    </div>
+  </div>
+</div>
