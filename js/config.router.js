@@ -315,10 +315,10 @@ angular.module('app')
               //   url: "/finance-category",
               //   templateUrl: "tpl/Finance/financeCategory.html",
               // })
-               .state("app.Add-Donation", {
-                url: "/add-donation",
-                templateUrl: "tpl/Finance/addDonation.html",
-              })
+              //  .state("app.Add-Donation", {
+              //   url: "/add-donation",
+              //   templateUrl: "tpl/Finance/addDonation.html",
+              // })
 
               // Student
               .state('app.st', {
@@ -552,6 +552,24 @@ angular.module('app')
                 controller:"refundview",
                 templateUrl: "tpl/finance_module/applyrefund_details.html",
                 resolve: load(['smart-table','js/controllers/finance/refundview.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.donation-view", {
+                  url: "/donation-view",
+                  controller:"donationCtrl",
+                  templateUrl: "tpl/finance_module/viewdonation.html",
+                  resolve: load(['smart-table','js/controllers/finance/donation.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.fees-defaulter", {
+                  url: "/fees-defaulter",
+                  controller:"feesdefaultCtrl",
+                  templateUrl: "tpl/finance_module/feesdefaulter_view.html",
+                  resolve: load(['smart-table','js/controllers/finance/feesdefaults.js','ui.bootstrap','toaster','ngBootbox'])
+              })
+              .state("app.fees-defaulter-Details", {
+                  url: "/fees-defaulter",
+                  controller:"feesdefaultCtrl",
+                  templateUrl: "tpl/finance_module/feesdefaulter_details.html",
+                  resolve: load(['smart-table','js/controllers/finance/feesdefaults.js','ui.bootstrap','toaster','ngBootbox'])
               })
               //  .state("app.Reverted-Transaction", {
               //   url: "/reverted-transaction",
