@@ -1,0 +1,81 @@
+
+<style>
+  
+md-dialog {
+    max-height: 90% !important;
+    max-width: 81% !important;
+    min-width: 415px;
+   margin-top: 90px;
+   
+}
+.m-b {
+    margin-bottom: 0px !important;
+}
+md-input-container {
+    margin: 7px 0;
+    padding: 0;
+}
+.md-button.md-icon-button {
+  
+    margin: 3px 6px;
+    padding: 7px;
+   
+}
+.md-datepicker-input {
+    min-width: 300px;
+    padding: 0 0 4px;
+}
+</style>
+<md-dialog aria-label="Expense">
+  <form name="Form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4 >Donation</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <input type="hidden" class="form-control" ng-model="Exp.FINC_TXN_EX_ID">
+        <md-input-container class="md-block align">
+        <label>Donor Name</label>
+        <input required name="FINC_CA_DESC" ng-model="Exp.FINC_TXN_EX_TITLE">
+        </md-input-container>
+
+
+        <md-input-container class="md-block align">
+        <label>Description</label>
+        <input required name="FINC_TXN_EX_DESC" ng-model="Exp.FINC_TXN_EX_DESC">
+        </md-input-container>
+
+        <div flex-gt-xs>
+        <md-datepicker ng-model="Exp.FINC_TXN_EX_DT" name="FINC_TXN_EX_DT" md-placeholder="Date"
+            md-min-date="minDate" md-max-date="maxDate">
+
+        </md-datepicker>
+        </div>
+
+        <md-input-container class="md-block align">
+        <label>Amount</label>
+        <input required name="FINC_TXN_EX_AMT" ng-model="Exp.FINC_TXN_EX_AMT">
+        </md-input-container>
+    </md-dialog-content>
+   <md-dialog-actions layout="row">
+      <span flex></span>
+      <div class="m-b">
+        <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
+        Cancel
+        <div class="md-ripple-container" style=""></div>
+        </button>&nbsp
+        <button ng-click="createDonar()" ng-disabled="Form.$invalid" class="md-btn md-raised m-b btn-fw green" md-ink-ripple="">
+        &nbsp {{buttonStatus}} &nbsp
+        </button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+

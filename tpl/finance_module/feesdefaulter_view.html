@@ -1,0 +1,127 @@
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+  .bootbox .modal-dialog{
+    width: 350px !important;
+  }
+</style>
+<div ng-cloak>
+
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+      <h4 class="m-n font-thin h4"><i class="fa fa-users"></i> &nbsp&nbsp<b>Finance Fees</b> | Fees Defaulter</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="">Finance Fees</a></li>
+        <li class="active">Fees Defaulter</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-default">
+    <div class="panel-heading" style="padding:10px;"><span style="font-size:18px;"><b>Fees Defaulter</b></span></div>
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
+              </div>
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-info" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+        <thead>
+          <tr>
+            <th style="width:5px !important"></th>
+            <th>
+              <input st-search="'adm_No'" placeholder="search for Description" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <input st-search="'roll_no'" placeholder="search for Date" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <st-select-distinct collection="rowCollection" predicate="stu_name"></st-select-distinct>
+            </th>
+            <th>
+              <input st-search="'batch'" placeholder="search for batch" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="adm_No">Admission no. </th>
+            <th st-sort="roll_no">Roll number</th>
+            <th st-sort="stu_name">Student Name</th>
+            <th st-sort="batch">Current batch</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody ng-hide="isLoading">
+          <tr ng-repeat="row in displayedCollection">
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="row.FINC_TXN_EX_ID" ng-change="callbackfunction()"><i></i></label></td>
+            <td>
+              {{row.adm_No}}
+            </td>
+            <td>
+              {{row.roll_no}}
+            </td>
+            <td>
+              {{row.stu_name}}
+            </td>
+            <td>
+              {{row.batch}}
+            </td>
+            <td style="white-space: nowrap">
+              <div class="buttons">
+               <!--  <button  md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)"><i class="fa fa-edit"></i></button> -->
+                <button md-ink-ripple class="md-btn pink btn-sm" ui-sref="app.fees-defaulter-Details">Pay Fees</button>
+              </div>  
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="3">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
