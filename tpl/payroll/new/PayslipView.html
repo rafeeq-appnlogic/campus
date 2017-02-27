@@ -1,0 +1,231 @@
+<style type="text/css">
+  md-input-container.md-default-theme .md-input, md-input-container .md-input{
+    border-bottom-color: #777777;
+  }
+  md-input-container.md-default-theme .md-input, md-input-container label{
+    font-size: 15px !important;
+  }
+  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
+    transform: translate3d(0px, 20px, 0px) scale(0.75);
+  }
+  md-input-container{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  md-input-container .md-errors-spacer{
+    min-height: 7px;
+  }
+  label{
+    font-size: 15px;
+    padding-top: 14px;
+    padding-right: 15px;
+  }
+  .textbold{
+    font-weight: bold;
+    font-size: 15px;
+    padding-right: 15px;
+    padding-top: 12px;
+    color: #58666E;
+  }
+    md-card {
+    box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 8px !important;
+}
+/*md-card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}*/
+</style>
+<div class="bg-light lter b-b wrapper-md">
+  <div class="row">
+  <div class="col-md-4">
+    <h4 class="m-n font-thin h4"><i class="fa fa-user"></i> &nbsp&nbsp<b>HR Management</b> | Employee Payslip</h4>
+    </div>
+    <div class="col-md-8">
+    <ul class="breadcrumb pull-right">
+      <li><a href=""><i class="fa fa-home"></i> Breadcrumb</a></li>
+      <li><a href="">Elements</a></li>
+      <li class="active">Components</li>
+    </ul>
+    </div>
+  </div>
+</div>
+<!-- data table -->
+<div class="wrapper-md">
+  <md-content layout-padding>
+    <form name="userForm">
+      <legend>Employee Payslip</legend>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div  flex-gt-xs="35">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <label>Pay period</label>
+            </div>
+            <div flex-gt-xs="10">
+              <!-- <label>: </label> -->
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">February 2017</label>
+            </div>  
+          </div>
+        </div>
+        <div flex-gt-xs="15" class="flex-gt-xs-15"></div>
+        <div  flex-gt-xs="35">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <label>Payroll Group</label>
+            </div>
+            <div flex-gt-xs="10">
+              <!-- <label>: </label> -->
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">New Group</label>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div  flex-gt-xs="35">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <label>Employee Name</label>
+            </div>
+            <div flex-gt-xs="10">
+              <!-- <label>: </label> -->
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">Arun (EC6768)</label>
+            </div>  
+          </div>
+        </div>
+        <div flex-gt-xs="15" class="flex-gt-xs-15"></div>
+        <div  flex-gt-xs="35">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <label>Employee Department</label>
+            </div>
+            <div flex-gt-xs="10">
+              <!-- <label>: </label> -->
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">Tamil</label>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div  flex-gt-xs="35">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <label>Employee Position</label>
+            </div>
+            <div flex-gt-xs="10">
+            <!-- <label>: </label> -->
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">Senior</label>
+            </div>  
+          </div>
+        </div>
+        <div flex-gt-xs="15" class="flex-gt-xs-15"></div>
+        <div  flex-gt-xs="35">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <label>Employee Grade</label>
+            </div>
+            <div flex-gt-xs="10">
+              <!-- <label>: </label> -->
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold"> A - Grade</label>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <br>
+      <legend>Payroll Categories of this Payroll Group</legend>
+      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+        <div flex-gt-xs="50">
+        <md-card class="md-padding">
+          <legend>Earnings</legend>
+          <div layout-gt-xs="row">
+             <div flex-gt-xs="45">
+              <label>Basic</label>
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">Rs. 7000.00</label>
+            </div>  
+          </div>
+           <div layout-gt-xs="row">
+             <div flex-gt-xs="45">
+              <label>Travel</label>
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">Rs. 1500.00</label>
+            </div>  
+          </div>
+          <div layout-gt-xs="row">
+             <div flex-gt-xs="45">
+              <label>PF</label>
+            </div>
+            <div  flex-gt-xs="45">
+              <label class="textbold">Rs. 1500.00</label>
+            </div>  
+          </div>
+          </md-card>
+        </div>
+        <!-- <div flex-gt-xs="10"></div> -->
+        <div flex-gt-xs="50">
+          <md-card class="md-padding">
+          <legend>Deduction</legend>
+           <div layout-gt-xs="row">
+               <div flex-gt-xs="45">
+                <label>LOP</label>
+              </div>
+              <div  flex-gt-xs="45">
+                <label class="textbold">Rs. 7000.00</label>
+              </div>  
+            </div>
+             <div layout-gt-xs="row">
+               <div flex-gt-xs="45">
+                <label>ESI</label>
+              </div>
+              <div  flex-gt-xs="45">
+                <label class="textbold">Rs. 1500.00</label>
+              </div>  
+            </div>
+            <div layout-gt-xs="row">
+               <div flex-gt-xs="45">
+                <label>PF</label>
+              </div>
+              <div  flex-gt-xs="45">
+                <label class="textbold">Rs. 1500.00</label>
+              </div>  
+            </div>
+            </md-card>
+        </div>
+        </div>
+        <div flex-gt-xs="100">
+        <md-card class="md-padding _md" style="padding-top: 0px;margin-top: 0px;margin-bottom: 0px;padding-bottom: 8px">
+          <div layout-gt-xs="row" class="layout-gt-xs-row">
+             <div flex-gt-xs="20" class="flex-gt-xs-20">
+              <label class="textbold">Net Pay</label>
+            </div>
+            <div flex-gt-xs="45" class="flex-gt-xs-45" style="margin-left: 15px">
+              <label class="textbold">Rs. 15000.00</label>
+            </div>  
+          </div>
+          </md-card>
+        </div>
+      </div>
+      
+    </form>
+  </md-content>
+</div>
+

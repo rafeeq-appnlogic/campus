@@ -32,6 +32,17 @@
     padding-top: 14px;
     padding-right: 15px;
   }
+  md-card {
+    /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);*/
+    box-shadow:0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 1px 0 rgba(0, 0, 0, 0.20), 0 0px 0px 0px rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+.newEleme{
+  padding-top: 0px;padding-bottom: 0px;
+}
 </style>
 <div class="bg-light lter b-b wrapper-md">
   <div class="row">
@@ -47,7 +58,6 @@
     </div>
   </div>
 </div>
-<!-- data table -->
 <div class="wrapper-md">
   <div class="panel panel-default">
     <div class="panel-body">
@@ -101,28 +111,67 @@
             <p class=""><b>  Monthly </b></p>
           </div>
         </div>
-    <md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+
+    <!-- <md-content class="" layout-xs="column" layout="row">
+      <div flex-xs flex-gt-xs="100" layout="column">
+          <legend style="">Payroll Details</legend> -->
+        <!-- <md-card> -->
+         <!--  <div class="col-md-12">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" >
+            <div flex flex-gt-xs="20">
+              <label>Payroll Group </label>
+            </div>
+            <div flex flex-gt-xs="20">
+              <label>Net Pay</label>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-12" >
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" >
+            <div flex flex-gt-xs="20">
+              <label>Payroll Group </label>
+            </div>
+            <div flex flex-gt-xs="20">
+              <label>Net Pay</label>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-12" >
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" >
+            <div flex flex-gt-xs="20">
+              <label>Payroll Group </label>
+            </div>
+            <div flex flex-gt-xs="20">
+              <label>Net Pay</label>
+            </div>
+          </div>
+          </div> -->
+        <!-- </md-card> -->
+   <!--    </div>
+    </md-content> -->
+    <!-- <md-content class="md-padding" layout-xs="column" layout="row"> -->
+    <md-content class="" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="45" layout="column">
+      <!-- <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch> -->
         <div class="col-md-12" style="padding-top: 14px;padding-bottom: 27px">
-        <legend style="margin-bottom: 7px">Earnings <i ng-click="appendClonedDiv()" class="fa fa-plus-square" style="float: right;color: green;cursor: pointer"></i></legend>
+        <legend style="margin-bottom: 7px">Earnings <i ng-click="addEarnings()" class="fa fa-plus-square" style="float: right;color: green;cursor: pointer"></i></legend>
         <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
             <div flex flex-gt-xs="45">
               <label>Basic</label>
             </div>
             <div flex flex-gt-xs="55">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social"/>
+                <input type="number" name="social" ng-model="social1"/>
               </md-input-container>
             </div>  
           </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-keyup="sumdata()">
             <div flex flex-gt-xs="45">
               <label>Housing Allowance</label>
             </div>
             <div flex flex-gt-xs="55">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social"/>
+                <input type="number" name="social" ng-model="social2"/>
               </md-input-container>
             </div>  
           </div>
@@ -132,39 +181,48 @@
             </div>
             <div flex flex-gt-xs="55">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social"/>
+                <input type="number" name="social" ng-model="social3">
               </md-input-container>
             </div>  
           </div>
-          <div id="paraID"></div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" id="wrapDIV" class="hidden" >
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" id="wrapDIV" ng-repeat="x in Earningsdata" >
             <div flex flex-gt-xs="35">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social"  />
+                <input name="social"  ng-model="x.lablefiled" />
               </md-input-container>
             </div>
             <div flex flex-gt-xs="10"></div>
             <div flex flex-gt-xs="55">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social"/>
+              <md-input-container class="md-block" flex-gt-sm >
+                <input type="number" name="social" ng-model="x.valueFiled" ng-click="extra()"/>
               </md-input-container>
             </div>  
-            <i class="fa fa-minus-square" ng-click="removeDiv(this)" style="font-size: 22px;padding-top: 12px;color: red;cursor: pointer"></i>
+            <i class="fa fa-minus-square" ng-click="removeEarnings($index)" style="font-size: 22px;padding-top: 12px;color: red;cursor: pointer"></i>
+          </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" >
+            <div flex flex-gt-xs="45">
+              <label>Total Earnings</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <!-- <label>{{social1+social2+social3}}</label> -->
+              <label>{{TotalEarning()}}</label>
+            </div>
           </div>
         </div>
-      </md-card>
+      <!-- </md-card>      --> 
     </div>
-    <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+    <div flex-xs flex-gt-xs="10" layout="column"></div>
+    <div flex-xs flex-gt-xs="45" layout="column">
+      <!-- <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch> -->
         <div class="col-md-12" style="padding-top: 14px;padding-bottom: 27px">
-        <legend style="margin-bottom: 7px">Deduction</legend>
+        <legend style="margin-bottom: 7px">Deduction <i ng-click="addDeduction()" class="fa fa-plus-square" style="float: right;color: green;cursor: pointer"></i></legend>
         <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
             <div flex flex-gt-xs="45">
               <label>Income Tax</label>
             </div>
             <div flex flex-gt-xs="55">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                <input type="number" name="social" ng-model="socialdec1" type="number"  />
               </md-input-container>
             </div>  
           </div>
@@ -174,7 +232,7 @@
             </div>
             <div flex flex-gt-xs="55">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                <input type="number" name="social" ng-model="socialdec2" type="number" />
               </md-input-container>
             </div>  
           </div>
@@ -184,129 +242,52 @@
             </div>
             <div flex flex-gt-xs="55">
               <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                <input type="number" name="social" ng-model="socialdec3" type="number" />
               </md-input-container>
             </div>  
           </div>
+          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" id="wrapDIV" ng-repeat="x in Deductiondata" >
+            <div flex flex-gt-xs="35">
+              <md-input-container class="md-block" flex-gt-sm>
+                <input type="text" name="social" ng-model="x.lablefiled"  />
+              </md-input-container>
+            </div>
+            <div flex flex-gt-xs="10"></div>
+            <div flex flex-gt-xs="55">
+              <md-input-container class="md-block" flex-gt-sm >
+                <input type="number" name="social" ng-model="x.valueFiled"/>
+              </md-input-container>
+            </div>  
+            <i class="fa fa-minus-square" ng-click="removeDeduction($index)" style="font-size: 22px;padding-top: 12px;color: red;cursor: pointer"></i>
+          </div>
+            <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" >
+            <div flex flex-gt-xs="45">
+              <label>Total Deduction</label>
+            </div>
+            <div flex flex-gt-xs="55">
+              <label>{{TotalDeduction()}}</label>
+            </div>
+          </div>
         </div>
-      </md-card>
-    </div>  
-<!--     <form name="userForm">
-      <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-        <h3>Form</h3>
+      <!-- </md-card> -->
+    </div>
+    </md-content>
+    <md-content class="" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="100" layout="column">
+    <!-- <md-card> -->
+    <div class="col-md-12" style="padding-top: 0px;padding-bottom: 6px">
+    <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" >
+      <div flex flex-gt-xs="20">
+        <label><b>Net Pay</b></label>
       </div>
-      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-        <div flex flex-gt-xs="45">
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        <div flex flex-gt-xs="10">
-        </div>
-        <div flex flex-gt-xs="45">
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Social Security</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-
+      <div flex flex-gt-xs="20">
+        <label><b>Rs,{{Netpay()}}</b></label>
       </div>
-    </form> -->
-
-
+    </div>
+    </div>
+    <!-- </md-card> -->
+    </div>
+    </md-content>
     </form>
       </div>
     </div>

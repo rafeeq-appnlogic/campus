@@ -11,6 +11,36 @@
     padding: 0;
     margin: -5px 0;
   }
+    md-input-container.md-default-theme .md-input, md-input-container .md-input{
+    border-bottom-color: #777777;
+  }
+  md-input-container.md-default-theme .md-input, md-input-container label{
+    font-size: 15px !important;
+  }
+  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
+    transform: translate3d(0px, 20px, 0px) scale(0.75);
+  }
+  md-input-container{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  md-input-container .md-errors-spacer{
+    min-height: 7px;
+  }
+  label{
+    font-size: 15px;
+    padding-top: 14px;
+    padding-right: 15px;
+  }
+  .textbold{
+    font-weight: bold;
+    font-size: 15px;
+    padding-right: 15px;
+    padding-top: 12px;
+    color: #58666E;
+
+  }
+
 </style>
 <div class="bg-light lter b-b wrapper-md">
   <div class="row">
@@ -29,7 +59,7 @@
 <div class="wrapper-md">
   <div class="panel panel-default">
     <div class="panel-body">
-      <form role="form" class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled">
+      <!-- <form role="form" class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled">
             <legend>Generate Payslips - Keerthi (EMP003)</legend>
             <div class="form-group adjust">
                 <label class="col-lg-2">Name </label>
@@ -59,7 +89,57 @@
                   <p class=""><b>Current Payslip</b></p>
                 </div>
             </div>
+      </form> -->
+    <!-- <md-content layout-padding> -->
+    <md-content>
+      <form name="myform">
+        <legend>Generate Payslip</legend>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs="45">
+              <div layout-gt-sm="row">
+                <div flex-gt-xs="40">
+                  <label>Employee Name</label>
+                </div>
+                <div flex-gt-xs="10"></div>
+                <div flex-gt-xs="40">
+                  <label class="textbold">Kumaran</label>
+                </div>
+              </div>
+              <div layout-gt-sm="row">
+                <div flex-gt-xs="40">
+                  <label >Employee Department</label>
+                </div>
+                <div flex-gt-xs="10"></div>
+                <div flex-gt-xs="40">
+                  <label class="textbold">Tamil</label>
+                </div>
+              </div>
+            </div>
+            <div flex-gt-xs="10"></div>
+            <div flex-gt-xs="45">
+              <div layout-gt-sm="row">
+                <div flex-gt-xs="40">
+                  <label>Employee Position </label>
+                </div>
+                <div flex-gt-xs="10"></div>
+                <div flex-gt-xs="40">
+                  <label class="textbold">Manager</label>
+                </div>
+              </div>
+              <div layout-gt-sm="row">
+                <div flex-gt-xs="40">
+                  <label>Payroll Group</label>
+                </div>
+                <div flex-gt-xs="10"></div>
+                <div flex-gt-xs="40">
+                  <label class="textbold" >Current Payslip</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
+    </md-content>
     <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="table table-responsive">
       <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
@@ -119,7 +199,7 @@
             <td>{{row.ACA_COU_GRADE_TYPE}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
-                <button md-ink-ripple class="md-btn md-raised btn-fw blue" ui-sref="app.View-Payslip">&nbsp<i class="fa  icon-eye"></i>&nbsp</button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw blue" ui-sref="app.Payslip-View">&nbsp<i class="fa  icon-eye"></i>&nbsp</button>
                 <button md-ink-ripple class="md-btn md-raised btn-fw green" ui-sref="app.View-Payslip">&nbsp<i class="fa fa-file-pdf-o"></i>&nbsp</button>
                 <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="DeleteClass1(row)">&nbsp<i class="fa fa-trash-o"></i>&nbsp</button>
               </div>  

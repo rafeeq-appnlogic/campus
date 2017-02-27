@@ -154,7 +154,8 @@ angular.module('app')
               })
               .state("app.Payslip-View", {
                   url: "/payslip-view",
-                  templateUrl: "tpl/payroll/PayslipView.html"
+                  // templateUrl: "tpl/payroll/PayslipView.html"
+                  templateUrl: "tpl/payroll/new/PayslipView.html"
                 })
               // .state("app.PayslipFor-PayrollGroup", {
                   // url: "/payslipfor-payrollgroup",
