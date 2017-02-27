@@ -40,7 +40,7 @@
   }
   //----------------------------//
 
-    $http.get($rootScope.endUrl+'ManageClassModule/courseViewDetails',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+    $http.get($rootScope.endUrl+'Json/payroll',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
         $scope.rowCollection = incomingData.message;
         console.log($scope.NoData,'check nodata');
         console.log(incomingData,'Row Data');
@@ -79,7 +79,7 @@
 
 
   $scope.showAdvanced = function(ev,mode,data) {
-    console.log(mode == 'Add');
+    console.log(data == 'Add');
     if(mode == 'Add'){
       $rootScope.temp_class = null;
     }else if(mode == 'Edit'){
@@ -88,7 +88,7 @@
     $scope.class=data;
     $mdDialog.show({
      controller: DialogController,
-      templateUrl: 'tpl/payroll/classmodal.html',
+      templateUrl: 'tpl/payroll/genPayslipModel.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
@@ -389,4 +389,177 @@
       return maxcal;
     }    
   }
+}]);
+
+app.controller('payslipPayrollGroup', ['$scope','$rootScope','$localStorage','$location','$timeout','$http','$modal','editableOptions', 'editableThemes','toaster','$ngBootbox','$mdDialog',
+  function($scope,$rootScope,$localStorage,$location,$timeout, $http,$modal,editableOptions, editableThemes,toaster,$ngBootbox,$mdDialog) {
+  alert("Get")
+  editableThemes.bs3.inputClass = 'input-sm';
+  editableThemes.bs3.buttonsClass = 'btn-sm';
+  editableOptions.theme = 'bs3';  
+  $scope.isLoading=true;
+  $scope.batch=true;
+  $scope.bulkaction="0";
+  $scope.selectall=false;
+  $scope.post=[];
+  $scope.itemsByPage=5;
+  $scope.deletedItem=[];
+  $scope.data='';
+  $scope.status='';
+  $scope.class=[];
+  $scope.Savebutton=true;
+  $scope.Updatebutton=false;
+  $scope.Edit=false;
+  $scope.Save=false;
+  $scope.NoData=false;
+  $scope.rowCollection = [];
+  $scope.saveDatas= [];
+  // $scope.testForm=false;
+  $scope.class.ACA_COU_ELECTIVE_SEL_YN="N";
+  $scope.access_token=$localStorage.access_token;
+  var tableState = {
+        sort: {},
+        search: {},
+        pagination: {
+            start: 0
+        }
+    };
+  //login auth//
+  // alert($localStorage.user_id +'login id');
+  if($localStorage.user_id==''){
+    $location.path('signin');
+  }else {
+    $location.path($location.url());      
+  }
+  //----------------------------//
+
+    $http.get($rootScope.endUrl+'ManageClassModule/courseViewDetails',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+        $scope.rowCollection = incomingData.message;
+        console.log($scope.NoData,'check nodata');
+        console.log(incomingData,'Row Data');
+        // $scope.NoData=false;
+    }).error(function(incomingData){
+        //$scope.isLoading = true;
+        $scope.NoData = true;
+        var message="No Data Found in Course Details"
+        console.log($scope.NoData,'check nodata');
+        $scope.showMessage(message,"error");
+        console.log(incomingData.message,'Row Data');
+    });
+    $scope.displayedCollection = [].concat($scope.rowCollection);
+    $scope.isLoading=false
+    //$scope.NoData=false;
+
+  $scope.addNewClass = function() {
+    // $scope.testForm=true;
+    $scope.Save=true;
+    $scope.Edit=false;
+    $scope.batch=true;
+    $scope.Savebutton=true;
+    $scope.Updatebutton=false;
+    $scope.class = {
+      ACA_COU_ID: null,
+      ACA_COU_NAME: null,
+      ACA_COU_SEC_NAME: null,
+      ACA_COU_CODE: null,
+      ACA_COU_ELECTIVE_SEL_YN:"N",
+      ACA_BAT_NAME:null,
+      ACA_BAT_START_DT:null,
+      ACA_BAT_END_DT:null
+    };
+    // $scope.displayedCollection.push($scope.class);
+  };
+
+
+  $scope.showAdvanced = function(ev,mode,data) {
+    console.log(mode == 'Add');
+    if(mode == 'Add'){
+      $rootScope.temp_class = null;
+    }else if(mode == 'Edit'){
+      $rootScope.temp_class = data;
+    }
+    $scope.class=data;
+    $mdDialog.show({
+     controller: DialogController,
+      templateUrl: 'tpl/payroll/classmodal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(mode,data) {
+      //$scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      //$scope.status = 'You cancelled the dialog.';
+    });
+  };
+
+  function DialogController($scope, $mdDialog, $localStorage, $rootScope) {
+    console.log($rootScope ,'Root');
+    $scope.access_token=$localStorage.access_token;
+    $http.get($rootScope.endUrl+'ManageClassModule/ClassDetail',{headers: {'access_token':$scope.access_token}}).success(function(response){
+      console.log(response.message[0].ACA_COU_NAME,'- test');
+          $scope.rowCollectionCourse = response.message;
+          console.log($scope.rowCollectionBatch);
+    });
+
+    if($rootScope.temp_class == null){
+      $scope.Save=true;
+      $scope.Edit=false;
+      $scope.batch=true;
+      $scope.Savebutton=true;
+      $scope.Updatebutton=false;
+      $scope.class = {
+        ACA_COU_ID: null,
+        ACA_COU_NAME: null,
+        ACA_COU_SEC_NAME: null,
+        ACA_COU_CODE: null,
+        ACA_COU_ELECTIVE_SEL_YN:"N",
+        ACA_BAT_NAME:null,
+        ACA_BAT_START_DT:null,
+        ACA_BAT_END_DT:null
+      };
+    }else{
+        $scope.Save=false;
+        $scope.Edit=true;
+        $scope.batch=false;
+        $scope.subject=true;
+        $scope.Savebutton=false;
+        $scope.Updatebutton=true;
+        $scope.class = $rootScope.temp_class;
+    }
+    
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+
+	
+  $scope.removeRow = function(curr_id,index) {
+    $scope.getMasterJobs(tableState);
+  }
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
+  }
+
+  }
+  
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened = true;
+  };
+
+  $scope.showMessage=function(data,status){
+    toaster.pop(status, data);
+  }
+
 }]);
