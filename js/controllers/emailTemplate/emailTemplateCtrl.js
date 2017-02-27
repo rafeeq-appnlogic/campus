@@ -19,11 +19,35 @@ app.controller('mailTempViewCtrl', ['$scope','$controller','$http','$rootScope',
   }
 
     $scope.GetValue = function(user){
-     // console.log(user.ACA_BAT_COU_ID);
-      $scope.getData = user.ACA_COU_ID;
-      var id = $scope.getData;
-      //alert(JSON.stringify(user))
-      console.log(JSON.stringify(user),"id");
+      // alert("User Data")
+	  
+	  $http({
+				//url : 'http://localhost/smartedu/Payslip/pdf_generate',
+				url : 'http://localhost/PDF_Generate/mpdf-codeigniter/',
+				method : 'GET',
+				responseType : 'arraybuffer',
+				headers: {
+					'Content-type' : 'application/pdf'
+				},
+				cache: true,
+			}).success(function(data) {
+				var blob = new Blob([data], { type: 'application/pdf' });
+				var fileURL = URL.createObjectURL(blob);
+				//alert(fileURL)
+				var fileName = "1099.pdf";
+				var contentFile = blob;
+				var a= document.createElement('a');
+				a.href= fileURL; 
+				a.target= '_blank';
+				//a.download= 'yourfilename.pdf';
+				document.body.appendChild(a);
+				a.click();
+			}).error(function(data){
+				alert("error"+data);
+			});
+	  
+	  
+	  
     }
 
     $scope.editEmailTemp = function(user){
