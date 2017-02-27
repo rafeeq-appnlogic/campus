@@ -1,5 +1,5 @@
-app.controller('schedulefeectrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$mdDialog',
-  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox,$mdDialog) {
+app.controller('schedulefeectrl', ['$scope', '$timeout','$http', 'toaster','$rootScope','$localStorage','$location','$ngBootbox','$mdDialog','$window',
+  function($scope, $timeout, $http, toaster,$rootScope,$localStorage,$location,$ngBootbox,$mdDialog,$window) {
   $scope.isLoading=true;
   $scope.bulkaction="0";
   $scope.selectall=false;
@@ -9,9 +9,11 @@ app.controller('schedulefeectrl', ['$scope', '$timeout','$http', 'toaster','$roo
   $scope.show_pagination=true;
   $scope.data='';
   $scope.status='';
+  $scope.sampleData = [];
   $scope.rowCollection = [];
   $scope.Inc=[];
   $scope.categoryList=[];
+   $scope.email = [];
 // url refresh
   if($localStorage.user_id==''){
     $location.path('signin');
@@ -27,7 +29,18 @@ $scope.access_token=$localStorage.access_token;
             start: 0
         }
     };
-    $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
+    console.log();
+    $scope.sampleData=[
+    {id:'1',name:'mani',mail:'gnanamani894@gmail.com',catageory:'term1',mode:'amount',discount:'Y'},
+    {id:'2',name:'arun',mail:'gnanamani@cloudlogic.in',catageory:'term2',mode:'amount',discount:'N'},
+    {id:'3',name:'vijay',mail:'vijayaraj@appnlogic.com',catageory:'term3',mode:'amount',discount:'Y'}
+    ];
+    $scope.displayedCollection = [].concat($scope.sampleData);
+    console.log($scope.displayedCollection);
+     $scope.isLoading=false;
+/* 
+
+   /* $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
           $scope.rowCollection = incomingData.result;
     });
     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -37,12 +50,12 @@ $scope.access_token=$localStorage.access_token;
       console.log(response.result,'response');
           $scope.categoryList = response.result;
 
-    });
+    });*/
   $scope.deleteData = function(index) {
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
               $scope.isLoading = true;
-              var id=$scope.displayedCollection[index].FINC_TXN_IN_ID;
+              var id=$scope.displayedCollection[index].id;
               $http({
                 method : "DELETE",
                 url : $rootScope.endUrl+"FinanceTxnModule/income",
@@ -62,12 +75,37 @@ $scope.access_token=$localStorage.access_token;
   }
 
   $scope.multiple_mail_send = function() {
-    alert();
-    $scope.emp_id = 4;
-  
+     console.log($scope.displayedCollection,"$scope.displayedCollection")
+      $scope.mail =[];
+      $scope.emp_id =[];
+     var totalLength=$scope.displayedCollection.length;
+      for(var i=0;i<totalLength;i++){
+           if ($scope.post[i]==true) {
+              var mail_id=$scope.displayedCollection[i].mail;
+              var emp_id=$scope.displayedCollection[i].id;
+              $scope.mail.push(mail_id);
+              $scope.emp_id.push(emp_id);
+              console.log(mail_id,'totalLengthtotalLengthtotalLength');
+              //console.log(emp_id,'totalLengthtotalLengthtotalLength');
+           }
+      }
+      
+      
+      console.log($scope.mail,"multiple_Id");
       $http({
+          method : "POST",
+          url : 'http://localhost/smartedu/FeesCntrl/Multiple_send_email',
+          data : {'mail_id':$scope.mail,'id':$scope.emp_id}
+      })
+      .then(function mySucces(response) {
+        bootbox.alert('<h4><center>Email Send Successfully<center></h4>');
+      }, function myError(response) {
+       
+      });
+    //$scope.emp_id = 4;
+    /*  $http({
         method : "POST",
-        url : 'http://localhost/smartedu/FeesCntrl/get_id',
+        url : 'http://localhost/smartedu/FeesCntrl/getmail_id',
         data : { 'ID':$scope.emp_id}
       })
       .then(function mySucces(response) {
@@ -84,16 +122,57 @@ $scope.access_token=$localStorage.access_token;
       }, function myError(response) {
        
       });
+*/
+  }
+  $scope.multiple_pdf = function() {
+      console.log($scope.displayedCollection,"$scope.displayedCollection")
+       $scope.emp_id = [];
+      var totalLength=$scope.displayedCollection.length;
+      for(var i=0;i<totalLength;i++){
+           if ($scope.post[i]==true) {
+              var pdf_id=$scope.displayedCollection[i].id;
+              $scope.emp_id.push(pdf_id);
+              console.log($scope.emp_id,'totalLengthtotalLengthtotalLength22');
+           }
+      }
+      $http({
+        method : "POST",
+        url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+        data : { 'pdfId':$scope.emp_id}
+      })
+      .then(function mySucces(response) {
+        console.log(response.config.data.pdfId,'pdf');
+        var contData = response.config.data.pdfId.length;
+         console.log( contData,'totaaaallll');
+          window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+        // for(var $i = 0; $i< contData; $i++){
+        //   window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+        // }
+         
+         $scope.pdf = response.data;
+         //$scope.generatePdf($scope.pdf);
+         
 
+      }, function myError(response) {
+       
+      });
   }
 
+ /* $scope.generatePdf=function(curr_id){
+     $http({
+          method : "POST",
+          url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+          data : { 'mail_id':curr_id}
+        }).then(function mySucces(response) {
+            angular.element('#newTap').attr('src','http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate');
+            console.log(angular.element('#newTap'),'hjkkkkkkkkkkkkkk');
+           
+           
+           
+        }
+  }
 
-
-
-
-
-
-
+*/
   /*$scope.openModel = function() {
     $scope.buttonStatus='Save';
     $scope.Inc.FINC_TXN_IN_ID= null;
@@ -276,6 +355,21 @@ $scope.access_token=$localStorage.access_token;
       for (var i = totalLength - 1; i >= 0; i--) {
           $scope.post[i]=$scope.selectall;
       };
+      $scope.callbackfunction();
+  }
+
+  $scope.callbackfunction=function(){
+    $scope.total_checkbox=[];
+    var totalLength=$scope.displayedCollection.length;
+      for(var i=0;i<totalLength;i++){
+           if ($scope.post[i]==true) {
+              var curr_id=$scope.displayedCollection[i].id;
+              console.log('catid',curr_id);
+              $scope.total_checkbox.push(curr_id);
+           }
+      }
+      console.log($scope.total_checkbox,'total_checkbox');
+      $localStorage.idList=$scope.total_checkbox;
   }
   $scope.multipleDelete = function(data,total_length,curr_length) {
     $http({
@@ -355,4 +449,67 @@ $scope.access_token=$localStorage.access_token;
       $scope.Inc=response.data.result[0];
     });
   }
+
+
+// $scope.generatePDF = function() {
+//   $localStorage.idList;
+//   $http({
+//       method : "POST",
+//       url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+//       data : { 'pdfId':$localStorage.idList}
+//     }).then(function mySucces(response) {
+//       // window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/", '_blank');
+//       var collection = $localStorage.idList;
+//         for(var $i = 0; $i< collection.length; $i++){
+//           window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/"+collection[$i], '_blank');
+//         }
+//         //$localStorage.idList='';
+//     });
+// }
+
+
+
+  // $scope.multiple_pdf = function() {
+  //     console.log($scope.displayedCollection,"$scope.displayedCollection")
+  //      $scope.emp_id = [];
+  //     var totalLength=$scope.displayedCollection.length;
+  //     for(var i=0;i<totalLength;i++){
+  //          if ($scope.post[i]==true) {
+  //             var pdf_id=$scope.displayedCollection[i].id;
+  //             // $scope.emp_id.push(pdf_id);
+  //             // console.log(pdf_id,'totalLengthtotalLengthtotalLength');
+  //              $http({
+  //               method : "POST",
+  //               url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+  //               data : { 'pdfId':$scope.displayedCollection[i].id}
+  //             }).then(function mySucces(response) {
+  //               console.log(response,"response");
+  //                window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+  //               /*for(var $i = 0; $i< contData; $i++){
+  //                  window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+  //               }*/
+  //             });
+  //          }
+  //     }
+      // $http({
+      //   method : "POST",
+      //   url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+      //   data : { 'pdfId':$scope.emp_id}
+      // })
+      // .then(function mySucces(response) {
+      //   //console.log(response.config.data.pdfId,'pdf');
+      //   // var contData = response.config.data.pdfId.length;
+      //   //  console.log( contData,'totaaaallll');
+      
+      //   // for(var $i = 0; $i< contData; $i++){
+      //   //   window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+      //   // }
+         
+      //    //$scope.pdf = response.data;
+      //    //console.log($scope.email);
+      //    //$scope.generatePdf($scope.pdf);
+         
+
+      // });
+  //}
 }]);
