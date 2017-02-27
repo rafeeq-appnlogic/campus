@@ -72,7 +72,7 @@
             <tr>
             <td></td>
             <td></td>
-            <td ><button class="btn btn-primary btn-sm">Add Particular</button></td>
+            <td ><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addParticular">Add Particular</button></td>
             </tr>
           </tbody>
         </table>
@@ -100,7 +100,7 @@
             </tr>
             <td></td>
             <td></td>
-            <td ><button class="btn btn-primary btn-sm">Add Discount</button></td>
+            <td ><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addDiscount">Add Discount</button></td>
             </tr>
           </tbody>
         </table>
@@ -123,7 +123,7 @@
             </tr>
             <td></td>
             <td></td>
-            <td ><button class="btn btn-primary btn-sm">Add Fine</button></td>
+            <td ><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addFine">Add Fine</button></td>
             </tr>
           </tbody>
         </table>
@@ -229,28 +229,103 @@
 </div>
 
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<!--Particular  Modal -->
+<div id="addParticular" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Revert transaction</h4>
+        <h4 class="modal-title">Create Particular</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group">
-              <label class="col-md-2 control-label"><b>Reson</b></label>
-              <div class="col-md-7">
-                <textarea rows="3" class="form-control"></textarea>                    
-              </div>
+            <label class="col-md-2 control-label"><b>Name</b></label>
+            <div class="col-md-7">
+              <input type="text" name="" class="form-control">                 
             </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label"><b>Amount</b></label>
+            <div class="col-md-7">
+              <input type="text" name="" class="form-control">                 
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Revert transaction</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Discount  Modal -->
+<div id="addDiscount" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Discount</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-md-2 control-label"><b>Name</b></label>
+            <div class="col-md-7">
+              <input type="text" name="" class="form-control">                 
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="col-md-2 control-label"><b>Mode</b>&nbsp;&nbsp;</label>
+              <label class="radio-inline">
+                    <input type="radio" name="gender" value="male"> Percentage
+                </label>
+                <label class="radio-inline">
+                     <input type="radio" name="gender" value="male"> Amount
+                </label>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label"><b>Amount</b></label>
+            <div class="col-md-7">
+              <input type="text" name="" class="form-control">                 
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Fine  Modal -->
+<div id="addFine" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Fine</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-md-3 control-label"><b>Fine amount</b></label>
+            <div class="col-md-5">
+              <input type="text" name="" class="form-control">                 
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Create</button>
       </div>
     </div>
   </div>
