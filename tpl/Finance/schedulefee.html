@@ -6,10 +6,10 @@
 /*  .modal-dialog{
     width: 350px !important;
   }*/
-  .bootbox .modal-dialog{
-    width: 150px !important;
-    padding-top: 200px;  
-  }
+  .bootbox .modal-dialog {
+    padding-top: 171px;
+    width: 288px !important;
+}
   .pagination li a input {
     padding: 0;
     margin: -5px 0;
@@ -43,7 +43,7 @@
     </md-button>
     </div>
     <div class="table table-responsive">
-    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="sampleData" style="border-bottom: 1px solid #cfdadd;">
       <tr>
           <th style="width:185px !important">
             <form class="form-inline">
@@ -83,7 +83,7 @@
           </tr>
     </table>
     <!-- <hr> -->
-      <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
+      <table class="table table-striped" st-table="displayedCollection" st-safe-src="sampleData" st-set-filter="customFilter">
         <thead>
           <tr>
             <th style="width:5px !important"></th>
@@ -97,7 +97,7 @@
               <input st-search="'FINC_TXN_IN_DESC'" placeholder="Search for Fees Category" class="input-sm form-control" type="search"/>
             </th>
             <th>
-              <st-select-multiple collection="rowCollection" predicate="FINC_TXN_IN_AMT"></st-select-multiple>
+              <st-select-multiple collection="sampleData" predicate="FINC_TXN_IN_AMT"></st-select-multiple>
             </th>
             <th>
               <input st-search="'FINC_TXN_IN_STATUS'" placeholder="Search for Discount" class="input-sm form-control" type="search"/>
@@ -106,7 +106,7 @@
           <tr>
             <th>
               <label class="i-checks m-b-none">
-                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk();getTotalId();"><i></i>
               </label>
             </th>
             <th st-sort="FINC_TXN_IN_TITLE">Name </th>
@@ -119,10 +119,10 @@
         <tbody ng-hide="isLoading">
           <tr ng-repeat="row in displayedCollection">
             <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
-            <td>{{row.FINC_TXN_IN_TITLE}}</td>
-            <td>{{row.FINC_TXN_IN_DESC}}</td>
-            <td>{{row.FINC_TXN_IN_AMT}}</td>
-            <td>{{row.FINC_TXN_IN_STATUS}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.catageory}}</td>
+            <td>{{row.mode}}</td>
+            <td>{{row.discount}}</td>
             <td style="white-space: nowrap">
               <div class="buttons" ng-show="!rowform.$visible">
                
@@ -146,18 +146,36 @@
         <tfoot>
           <tr>
           <td colspan="3" style="padding-top: 3%">
-              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{sampleData.length}} entries</p>
           </td>
           <td colspan="4">
               <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
             </td>
           </tr>
+          <tr>
+          <td colspan="2" style="border-top:none;">
+          </td>
+            <td style="border-top:none;">
+                <div class="pull-right">
+                  <button  ng-click="multiple_mail_send()" class="btn btn-success btn-sm " >Send Email</button>
+                  <button class="btn btn-primary btn-sm " ng-click="multiple_pdf()" >PDF report</button >
+                   <!--  <a class="btn btn-primary btn-sm " href="http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/?id={{total_checkbox}}" id="newTap" target="_blank">PDF report</a> -->
+                </div>
+            </td>
+          
+          </tr>
         </tfoot>
       </table>
+     
       </div>
     </div>
   </div>
 </div>
+<!-- <div class="model-body">
+        <iframe class="responsiveiframe table-responsive" width="1200px" id="newTap" name="newTap" height="1000px"></iframe>
+    </div> -->
+
 <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog  modal-md" style="padding-top: 87px">
     <div class="modal-content">
