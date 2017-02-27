@@ -12,7 +12,7 @@ angular.module('app')
 	  
 	  // REST API end point
 	  $rootScope.endUrl="http://192.168.1.136/smartedu/api/";
-	  //$rootScope.endUrl="http://applogic.in/demo/smartedu/api/";
+	  //$rootScope.endUrl="http://campusenter.com/services/api/";
     if($localStorage.user_id==''){
       $location.path('signin');
     }else {

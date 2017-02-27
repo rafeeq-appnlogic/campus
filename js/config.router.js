@@ -156,23 +156,32 @@ angular.module('app')
                   url: "/payslip-view",
                   templateUrl: "tpl/payroll/PayslipView.html"
                 })
-              .state("app.PayslipFor-PayrollGroup", {
-                  url: "/payslipfor-payrollgroup",
-                  templateUrl: "tpl/payroll/PayslipforPayrollGroup.html"
-                })
+              // .state("app.PayslipFor-PayrollGroup", {
+                  // url: "/payslipfor-payrollgroup",
+				  // controller:"payslipPayrollGroup",
+                  // templateUrl: "tpl/payroll/PayslipforPayrollGroup.html",
+				  // resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+                // })
 
               .state("app.GeneratePayslip-PayrollGroup", {
                   url: "/generatepayslip-payrollgroup",
                   templateUrl: "tpl/payroll/GeneratePayslipPayrollGroup.html"
                 })
-              .state("app.ViewPayslip-PayrollGroup", {
-                  url: "/viewpayslip-payrollgroup",
-                  templateUrl: "tpl/payroll/ViewPayslipPayrollGroup.html"
-                })
+              // .state("app.ViewPayslip-PayrollGroup", {
+                  // url: "/viewpayslip-payrollgroup",
+                  // templateUrl: "tpl/payroll/ViewPayslipPayrollGroup.html"
+                // })
                 .state("app.Generate-PayslipforAll", {
                   url: "generate-payslipforall",
                   templateUrl: "tpl/payroll/GeneratePayslipforAll.html"
                 })
+				.state("app.PayslipFor-payrollGroup", {
+                  url: "/payslipfor-payrollGroup",
+                  templateUrl: "tpl/payroll/new/PayslipForPayrollGroup.html",
+                  controller:"payrollCategory",
+                  resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              })
+				
               .state("app.Attendance-Register", {
                   url: "/attendance-register",
                   templateUrl: "tpl/EmployeeLeaveMangement/AttendanceRegister.html"
