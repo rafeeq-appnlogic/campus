@@ -363,9 +363,11 @@ angular.module('app')
                 templateUrl: "tpl/Student/student_roll.html",
               })
                //added by manikandan
-                .state("app.Create-RefundRule", { 
+              .state("app.Create-RefundRule", { 
                 url: "/create-refundrule",
+                controller:"createRefundCtrl",
                 templateUrl: "tpl/Finance/addFeesRefund.html",
+                resolve: load(['smart-table','js/controllers/finance/createRefundCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
                 .state("app.View-RefundRule", {
                 url: "/view-refundrule",

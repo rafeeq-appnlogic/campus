@@ -52,6 +52,7 @@ app.controller('FullcalendarCtrl', ['$scope','$controller','$rootScope', functio
 
     $scope.overlay = $('.fc-overlay');
     $scope.alertOnMouseOver = function( event, jsEvent, view ){
+      alert();
       $scope.event = event;
       console.log($scope.event,'mouse over');
       $scope.overlay.removeClass('left right top').find('.arrow').removeClass('left right top pull-up');

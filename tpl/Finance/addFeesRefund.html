@@ -1,145 +1,137 @@
 
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Finance | Fees Refund</h1>
-</div>
-<!-- data table -->
-<div class="wrapper-md ng-scope" style="padding-bottom: 0px">
-  <div class="row">
-  <div class="col-lg-12">
-    <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i><span class="f-s-14 f-w-500">&nbsp; Create Refund Rules</span></button>
-  </div>
-  </div>
-</div>
-<div class="wrapper-md">
-  <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-      Fees Refund Rules
+<style type="text/css">
+  .select-page {
+    width: 50px;
+    text-align: center;
+  }
+  .pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+  }
+  /*.modal-dialog{
+    width: 350px !important;
+  }*/
+  .chosen-container.chosen-container-single{
+    width:100% !important;
+  }
+</style>
+<div>
+
+  <div class="bg-light lter b-b wrapper-md">
+    <div class="row">
+    <div class="col-md-4">
+     <h4 class="m-n font-thin h4"><i class="icon-book-open"></i> &nbsp&nbsp<b>Fee Refund</b> | View Fee Refund Rule</h4>
+      </div>
+      <div class="col-md-8">
+      <ul class="breadcrumb pull-right">
+        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="">Finance</a></li>
+        <li class="active">Add subject</li>
+      </ul>
+      </div>
     </div>
-    <div class="panel-body">
-      <form role="form" class="bs-example form-horizontal ng-pristine ng-valid">
-            <div class="form-group">
-              <label class="col-lg-2 control-label" style="text-align: left;">Select Fee collection</label>
-              <div class="col-lg-3">
-                <select name="" class="form-control m-b" ng-model="FeeCollection">
-                  <option value="" disabled="" style="">Select Fee collection</option>
-                  <option value="1">Term 1 for class1: 02-24-2016  To </option>
-                  <option value="2">Fee for  std_ c1-g4: 03-23-2016  To </option>
-                  <option value="3">Term 2 fee collection: 03-25-2016  To </option>
-                  <option value="4">Fee str: 04-06-2016  To </option>
-                  <option value="5">fee: 12-13-2016  To </option>
-                </select>
+  </div>
+  <div class="wrapper-md" >
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-default">
+    <!-- <div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <button class="btn btn-success m-b-sm" ng-click="addNewSubject()" style="float: right !important;margin-top:-5px;"><i class="fa fa-plus"></i> Add Subject</button></div> -->
+
+<div class="panel-heading" style="padding:19px;"><span style="font-size:18px;"><b>View</b></span>  <!-- <a data-toggle="modal" data-target="#myModal" ng-click="addNewSubject()" class="btn btn-success btn-sm pull-right" style="margin-top:-2px;">
+    <i class="fa fa-plus"></i> &nbsp;Add Subject</a> -->
+    <md-button class="md-primary md-raised pull-right" ng-click="showAdvanced($event,'Add','data')">
+      <i class="mdi-content-add i-24"></i>Add Subject
+    </md-button></div>
+
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" style="border-bottom: 1px solid #cfdadd;">
+      <tr>
+          <th style="width:185px !important">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email">Item by Page &nbsp;</label>
+                <select class="input-sm form-control" name="items" id="items" ng-model="itemsByPage"><option value="5" ng-selected="5==itemsByPage">5</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select>
               </div>
-            </div>
-      </form>
-     <div class="table-responsive" ng-show="FeeCollection=='1' || FeeCollection=='4' "> 
-      <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'tpl/Finance/feesrefund.json',
-          aoColumns: [
-            { mData: 'Employee' },
-            { mData: 'Startdate' },
-            { mData: 'Enddate' },
-            { mData: 'No_of_days' },
-            { mData: 'LeaveType' },
-          ]
-        }" class="table table-striped table table-bordered b-t b-b">
+            </form>
+          </th>
+            <th colspan="2">
+               <div>
+                <select class="input-sm form-control w-sm inline v-middle" ng-model="bulkaction">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete selected</option>
+                  <option value="3">Export</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="applyAction()">Apply</button>                
+              </div>
+            </th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+    </table>
+    <!-- <hr> -->
+
+
+    <table class="table table-striped" st-table="displayedCollection" st-safe-src="rowCollection" st-set-filter="customFilter">
         <thead>
           <tr>
-            <th  style="width:5%">Sl.No.</th>
-            <th  style="width:20%">Name</th>
-            <th  style="width:25%">Refund Percentage / Amount</th>
-            <th  style="width:15%">Refund Validity</th>
-            <th  style="width:15%">Action</th>
+            <th style="width:5px !important"></th>
+            <th>
+              <input st-search="'ACA_SUB_CODE'" placeholder="search for name" class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+              <st-select-distinct collection="rowCollection" predicate="ACA_SUB_ELECT_YN"></st-select-distinct>
+            </th>
+            <th>
+              <input st-search="'ACA_SUB_COU_ID'" placeholder="Search for End Date" class="input-sm form-control" type="search"/>
+            </th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-model="selectall" ng-change="callbackbulk()"><i></i>
+              </label>
+            </th>
+            <th st-sort="ACA_SUB_CODE">Name</th>
+            <th st-sort="ACA_SUB_ELECT_YN">Refund Percentage / Amount</th>
+            <th st-sort="ACA_SUB_COU_ID">Refund Validity</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-hide="isLoading">
+          <tr>
+            <td ><label class="i-checks m-b-none"><input type="checkbox" name="post[]" ng-model="post[$index]" ng-value="$index" ng-change="callbackfunction()"><i></i></label></td>
+            <td>Test</td>
+            <td>50</td>
+            <td>25-02-2017</td>
+            <td style="white-space: nowrap">
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button md-ink-ripple class="md-btn md-raised btn-fw indigo" ng-click="showAdvanced($event,'Edit',row)">&nbsp<i class="fa fa-edit"></i>&nbsp</button>
+                <button md-ink-ripple class="md-btn md-raised btn-fw pink" ng-click="deleteData(row)">&nbsp<i class="fa fa-trash-o"></i>&nbsp</button>
+              </div>  
+            </td>
+          </tr>
         </tbody>
+        <tbody ng-show="isLoading">
+          <tr>
+            <td colspan="5" class="text-center">Loading ...</td>
+          </tr>
+        </tbody>
+        <tbody ng-if="NoData">
+          <tr>
+            <td colspan="8" class="text-center">No Batch Found in This Class !</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          <td colspan="3" style="padding-top: 3%">
+            <div ng-show="rowCollection.length > itemsByPage">
+              <p>Showing {{currentViewCalculation()}} to {{currentViewCalculationMax()}} of {{rowCollection.length}} entries</p>
+            </div>
+          </td>
+          <td colspan="3">
+              <div st-items-by-page="itemsByPage" st-pagination="" st-template="tpl/pagination.custom.html" class="pull-right"></div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
-    </div>
-      </div>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="myModal" role="dialog" style="padding-top: 80px">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create Fees Refund Rules</h4>
-        </div>
-        <div class="modal-body">
-          <form class="bs-example form-horizontal" name="FeesRefundRules">
-          <div class="form-group">
-            <label class="col-lg-4 control-label">Fees collection</label>
-            <div class="col-lg-5">
-              <select class="form-control" name="FeesCollection" >
-              <option value="" selected="" disabled="">Select Fees</option>
-                <option value="1">Fee for  std_ c1-g4: 03-23-2016  To 03-24-2016 </option>
-                <option value="2">fee for all 2016 feb: 02-24-2016  To 02-25-2016 </option>
-                <option value="3">Fee str: 04-06-2016  To 04-07-2016 </option>
-                <option value="4">fee: 12-13-2016  To 12-13-2016 </option>
-                <option value="5">Term 1 for class1: 02-24-2016  To 02-24-2016 </option>
-                <option value="6">Term 2 fee collection: 03-25-2016  To 03-29-2016 </option>
-              </select>
-              <span style="color: red" ng-show="FeesRefundRules.FeesCollection.$dirty && FeesRefundRules.FeesCollection.$invalid">
-                <span ng-show="FeesRefundRules.FeesCollection.$error.required">Select any one Fees Collection</span>
-              </span>
-            </div>
-          </div>
-          <div class="form-group">
-          <label class="col-lg-4 control-label">Refund Name</label>
-            <div class="col-lg-5">
-              <input class="form-control" placeholder="Refund Name" name="RefundName"  type="text" >
-              <span ng-show="FeesRefundRules.RefundName.$invalid">Select any one Fees Collection</span>
-              </span>
-            </div>
-          </div>
-          <div class="form-group">
-          <label class="col-lg-4 control-label">Refund Validity</label>
-            <div class="col-lg-5">
-            <div class="form-group" ng-controller="DatepickerDemoCtrl" >
-            <div class="col-md-3">
-              <div class="input-group w-md">
-                <input type="text" class="form-control" ng-click="open($event)" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </div>
-            </div>
-            </div>
-            </div>
-          </div>
-          <div class="form-group">
-          <label class="col-lg-4 control-label">Type</label>
-              <div class="col-lg-5">
-                <div class="radio">
-                  <label class="i-checks">
-                    <input name="a" value="option2" checked="" type="radio">
-                    <i></i>
-                    Percentage
-                  </label>&nbsp;&nbsp;&nbsp; 
-                  <label class="i-checks">
-                    <input name="a" value="option2" type="radio">
-                    <i></i>
-                    Amount
-                  </label>
-                </div>
-              </div>
-          </div>
-          <div class="form-group">
-          <label class="col-lg-4 control-label">Value</label>
-            <div class="col-lg-5">
-              <input class="form-control" placeholder="Value"  type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-lg-offset-4 col-lg-10">
-              <button type="button" class="btn btn-sm btn-info" ng-disabled="FeesRefundRules.$invalid && FeesRefundRules.$dirty">Save</button>
-              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
-            </div>
-          </div>
-      </form>
-        </div>
-      </div>
-    </div>
-  </div>

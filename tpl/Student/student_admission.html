@@ -11,10 +11,28 @@
    color:red !important;
 }
 
+.md-padding {
+    padding: 5px !important;
+}
+
+md-card.md-default-theme, md-card {
+    background-color: rgb(250,250,250) !important;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+md-content.md-default-theme, md-content {
+    background-color: rgb(245, 245, 245) !important;
+    color: rgba(0, 0, 0, 0.87);
+}
 
 md-input-container.md-default-theme .md-input, md-input-container .md-input{
-    border-bottom-color: #777777;
+    border-bottom-color:#888f96;
   }
+
+  md-select.md-default-theme .md-select-value, md-select .md-select-value {
+    border-bottom-color:#888f96;
+}
   md-input-container.md-default-theme .md-input, md-input-container label{
     font-size: 15px !important;
   }
@@ -32,6 +50,14 @@ md-input-container.md-default-theme .md-input, md-input-container .md-input{
     font-size: 16px;
     padding-top: 14px;
     padding-right: 15px;
+  }
+
+  .row.AdjPad {
+      margin: 5px;
+  }
+
+  .row.AdjPad.topPad {
+      padding-top: 5px;
   }
 
   .md-tab {
@@ -123,14 +149,23 @@ pre {
 }
 
 md-datepicker .md-datepicker-input {
-    width: calc(24.5vw - 64px);
-    max-width: calc(24.5vw - 64px);
+    width: calc(16.5vw - 64px);
+    max-width: calc(16.5vw - 64px);
   }
 @media only screen and (max-width: 600px) {
     md-datepicker .md-datepicker-input {
-      width: calc(87vw - 64px);
-      max-width: calc(87vw - 64px);
+      width: calc(65vw - 64px);
+      max-width: calc(65vw - 64px);
     }
+}
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    background: rgb(3,155,229) none repeat scroll 0 0 !important;
+    color: rgb(255, 64, 129);
+}
+
+md-tabs.md-default-theme .md-tab.md-active, md-tabs .md-tab.md-active, md-tabs.md-default-theme .md-tab.md-active md-icon, md-tabs .md-tab.md-active md-icon, md-tabs.md-default-theme .md-tab.md-focused, md-tabs .md-tab.md-focused, md-tabs.md-default-theme .md-tab.md-focused md-icon, md-tabs .md-tab.md-focused md-icon {
+    color: rgb(45,50,62) !important;
 }
 
 </style>
@@ -156,730 +191,568 @@ md-datepicker .md-datepicker-input {
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
       <md-tab label="Student admission">
-      <md-content class="md-padding">
-      <form name="userForm">
-      
-      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Official Details</h3> 
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Admission Number</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                 <input name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Admission Date</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-datepicker ng-model="Stud.STU_ADM_DT" md-placeholder="Admission Date" md-open-on-focus></md-datepicker>
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Course Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select ng-model="Stud.STU_ADM_CB_COURSE">
-                <md-select-header class="demo-select-header" md-on-close="clearSearchTerm()">
-                  <input ng-model="searchTerm"
-                         type="search"
-                         placeholder=" Search for class name.."
-                         class="demo-header-searchbox md-text">
-                </md-select-header>
-                  <md-option ng-repeat="class in rowCollectionCourse | filter:searchTerm " ng-value="class.ACA_COU_ID">
-                    {{class.ACA_COU_NAME}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Batch Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                  <md-select ng-model="Stud.STU_ADM_CB_BATCH">
-                    <md-option><em>None</em></md-option>
-                    <md-option ng-repeat="class in rowCollectionBatch" ng-value="class.ACA_BAT_ID">
-                      {{class.ACA_BAT_NAME}}
-                    </md-option>
-                  </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>Roll Number</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" required name="STU_ADM_CB_ROLL_NO" ng-model="Stud.STU_ADM_CB_ROLL_NO">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Academic Year</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
-                <md-option value="2015">2015</md-option>
-                <md-option value="2016">2016</md-option>
-                <md-option value="2017">2017</md-option>
-                <md-option value="2018">2018</md-option>
-                <md-option value="2019">2019</md-option>
-                <md-option value="2020">2020</md-option>
-              </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        <div flex flex-gt-xs="10">
-        </div>
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Personal Details</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>First Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                 <input required name="STU_ADM_FIRST_NAME" ng-model="Stud.STU_ADM_FIRST_NAME">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Last Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_ADM_LAST_NAME" ng-model="Stud.STU_ADM_LAST_NAME">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Gender</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-              <br>
-                <md-radio-group layout="row" ng-model="Stud.STU_ADM_GENDER">
-                  <md-radio-button value="Male" class="md-primary"> Male </md-radio-button>
-                  <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
-                </md-radio-group>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>Nationality</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select ng-model="Stud.STU_ADM_NATIONALITY" md-on-close="clearSearchTerm()">
-              <md-select-header class="demo-select-header">
-                <input ng-model="searchTerm"
-                       type="search"
-                       class="demo-header-searchbox md-text">
-              </md-select-header>
-                <md-option ng-repeat="nation in nationality | filter:searchTerm" ng-value="nation">
-                  {{nation}}
-                </md-option>
-              </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Mother Tongue</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select ng-model="Stud.STU_ADM_MOTHER_TONGUE" md-on-close="clearSearchTerm()">
-                  <md-select-header class="demo-select-header">
-                    <input ng-model="searchTerm"
-                           type="search"
-                           class="demo-header-searchbox md-text">
-                  </md-select-header>
-                    <md-option ng-repeat="lang in mothertongue | filter:searchTerm" ng-value="lang">
-                      {{lang}}
-                    </md-option>
-                  </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Religion</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input required name="STU_ADM_RELIGION" ng-model="Stud.STU_ADM_RELIGION">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Date of Birth</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-datepicker ng-model="Stud.STU_ADM_DOB" md-placeholder="Date of Birth" md-open-on-focus></md-datepicker>
-              </md-input-container>
-            </div>  
-          </div>              
-        </div>
-        </div>
+        <md-content class="md-padding">
+          <form name="userForm">
+            <md-content class="md-padding" layout-xs="column" layout="row">
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Official Details</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <label>Admission Number</label>
+                        <input required name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <md-datepicker ng-model="Stud.STU_ADM_DT" md-placeholder="Admission Date" md-open-on-focus></md-datepicker>
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Course Name</label>
+                        <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Batch Name</label>
+                        <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Rollnumber</label>
+                        <input required name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Academic Year</label>
+                        <input required name="STU_ADM_NO" ng-model="Stud.STU_ADM_NO">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <p></p>
+                   <p></p>
+                    <p></p>
+                    <p></p>
+                   <p></p>
+                    <p></p>
+                    <p></p>
+                </md-card>
+              </div>
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Personal Details</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <div class="row AdjPad">
+                  <div class="form-group col-sm-12">
+                    <md-input-container class="md-icon-float md-block">
+                      <label>Full Name</label>
+                      <md-icon md-svg-src="img/icons/index.svg"  class="name"></md-icon>
+                      <input ng-model="user.name" type="text">
+                    </md-input-container>
+                  </div>
+                  </div>
+                  <div class="row AdjPad">
+                  <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <md-radio-group layout="row" ng-model="Stud.STU_ADM_GENDER">
+                          <md-radio-button value="Male" class="md-primary"> Male </md-radio-button>
+                          <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
+                        </md-radio-group>
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                    <md-input-container class="md-icon-float md-block">
+                     <md-input-container class="md-block">
+                        <md-datepicker ng-model="Stud.STU_ADM_DT" md-placeholder="Date Of Birth" md-open-on-focus></md-datepicker>
+                      </md-input-container>
+                    </md-input-container>
+                  </div>
+                  
+                  
+                  </div>
+                  <div class="row AdjPad">
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                        <label>MotherTongue</label>
+                        <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-icon-float md-block">
+                      <label>Relegion</label>
+                      <input ng-model="user.name" type="text">
+                    </md-input-container>
+                  </div>
+                  
+                  </div>
 
-      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Contact Details</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Address Line 1</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input required name="STU_ADM_ADD1" ng-model="Stud.STU_ADM_ADD1">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Address Line 2</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_ADM_ADD2" ng-model="Stud.STU_ADM_ADD2">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>City</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_ADM_CITY" ng-model="Stud.STU_ADM_CITY">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>State</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_ADM_STATE" ng-model="Stud.STU_ADM_STATE">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-               <label>Pincode</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        <div flex flex-gt-xs="10">
-        </div>
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Contact Details Continued</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Country</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
-                <md-option value="India">India</md-option>
-                <md-option value="America">America</md-option>
-                <md-option value="Australia">Australia</md-option>
-                <md-option value="England">England</md-option>
-                <md-option value="Srilanga">Srilanga</md-option>
-              </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Phone</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Phone1</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Mobile</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" required name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>E-mail</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="email" required name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" minlength="10" maxlength="100">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-      </div>
-      <br>
-      <md-button class="md-raised md-primary pull-right" ng-click="nextTab();saveStuAdmission()">Save & Next</md-button>
-      <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Next</button> -->
-      </form>
-      </md-content>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                        <label>Nationality</label>
+                        <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                  </div>
+                  </div>
+
+                  
+                </md-card>
+              </div>
+            </md-content>
+            <md-content class="md-padding" layout-xs="column" layout="row">
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Contact Details</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Address Line</label>
+                        <input required name="STU_ADM_ADD1" ng-model="Stud.STU_ADM_ADD1">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>City</label>
+                        <input name="STU_ADM_CITY" ng-model="Stud.STU_ADM_CITY">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>State</label>
+                        <input name="STU_ADM_STATE" ng-model="Stud.STU_ADM_STATE">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Pincode</label>
+                        <input name="STU_ADM_PINCODE" ng-model="Stud.STU_ADM_PINCODE">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </md-card>
+              </div>
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Contact Details Continued</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Country</label>
+                        <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Phone</label>
+                        <input type="text" name="STU_ADM_PHONE" ng-model="Stud.STU_ADM_PHONE">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Mobile</label>
+                        <input type="text" required name="STU_ADM_MOBILE" ng-model="Stud.STU_ADM_MOBILE">
+                        <div ng-messages="step1.STU_ADM_MOBILE.$error">
+                          <div ng-message="required">This is required.</div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>E-mail</label>
+                        <input type="email" required name="STU_ADM_EMAIL" ng-model="Stud.STU_ADM_EMAIL" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                        <div ng-messages="step1.STU_ADM_EMAIL.$error" role="alert">
+                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">Your email must be between 10 and 100 characters long and look like an e-mail address.</div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                  </div>
+                </md-card>
+              </div>
+            </md-content>
+            <md-button class="md-raised md-primary pull-right" style="background-color: rgb(65,85,94) !important;" ng-click="nextTab();saveStuAdmission()">Save & Next</md-button>
+          <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Next</button> -->
+          </form>
+        </md-content>
       </md-tab>
       <md-tab label="Parent/Guardian Details">
-      <md-content class="md-padding">
-      <form name="userForm1">
-      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Parent - Personal details</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-               <label>First Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_FIRST_NAME" ng-model="Stud.STU_PA_FIRST_NAME">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Last Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_LAST_NAME" ng-model="Stud.STU_PA_LAST_NAME">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-               <label>Relation</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-               <input name="STU_PA_RELATION" ng-model="Stud.STU_PA_RELATION">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Bate of Birth</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                  <md-datepicker ng-model="Stud.STU_PA_DOB" md-placeholder="Date of Birth" md-open-on-focus></md-datepicker>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>Education</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_EDUCATION" ng-model="Stud.STU_PA_EDUCATION">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>Occupation</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_OCCUPATION" ng-model="Stud.STU_PA_OCCUPATION">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>Income</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_INCOME" ng-model="Stud.STU_PA_INCOME">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>E-Mail</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="email" name="STU_PA_EMAIL" ng-model="Stud.STU_PA_EMAIL">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        <div flex flex-gt-xs="10">
-        </div>
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Parent Contact Detail</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Address Line 1</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                 <input name="STU_PA_ADD1" ng-model="Stud.STU_PA_ADD1">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Address Line 2</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_ADD2" ng-model="Stud.STU_PA_ADD2">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>City</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_CITY" ng-model="Stud.STU_PA_CITY">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label>State</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_STATE" ng-model="Stud.STU_PA_STATE">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Country</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
-                <md-option value="India">India</md-option>
-                <md-option value="America">America</md-option>
-                <md-option value="Australia">Australia</md-option>
-                <md-option value="England">England</md-option>
-                <md-option value="Srilanga">Srilanga</md-option>
-              </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Phone 1</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" name="STU_PA_PHONE1" ng-model="Stud.STU_PA_PHONE1">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Phone 2</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" name="STU_PA_PHONE2" ng-model="Stud.STU_PA_PHONE2">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Mobile</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-               <input type="number" name="STU_PA_MOBILE" ng-model="Stud.STU_PA_MOBILE">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        </div>
+        <md-content class="md-padding">
+          <form name="userForm1">
+            <md-content class="md-padding" layout-xs="column" layout="row">
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Parent - Personal details</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-12">
+                      <md-input-container class="md-icon-float md-block">
+                        <label>Full Name</label>
+                        <md-icon md-svg-src="img/icons/index.svg"  class="name"></md-icon>
+                        <input name="STU_PA_FIRST_NAME" ng-model="Stud.STU_PA_FIRST_NAME" type="text">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <label>Relation</label>
+                        <input name="STU_PA_RELATION" ng-model="Stud.STU_PA_RELATION">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <md-datepicker ng-model="Stud.STU_PA_DOB" md-placeholder="Date of Birth" md-open-on-focus></md-datepicker>
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Education</label>
+                        <input name="STU_PA_EDUCATION" ng-model="Stud.STU_PA_EDUCATION">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Occupation</label>
+                        <input name="STU_PA_OCCUPATION" ng-model="Stud.STU_PA_OCCUPATION">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Income</label>
+                        <input name="STU_PA_INCOME" ng-model="Stud.STU_PA_INCOME">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>E-Mail</label>
+                        <input type="email" name="STU_PA_EMAIL" ng-model="Stud.STU_PA_EMAIL">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </md-card>
+              </div>
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Parent Contact Detail</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-12">
+                      <md-input-container class="md-block">
+                        <label>Address Line</label>
+                        <input name="STU_PA_ADD1" ng-model="Stud.STU_PA_ADD1">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>City</label>
+                        <input name="STU_PA_CITY" ng-model="Stud.STU_PA_CITY">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>State</label>
+                        <input name="STU_PA_STATE" ng-model="Stud.STU_PA_STATE">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <label>Country</label>
+                        <md-select name="STU_ADM_COUNTRY" ng-model="Stud.STU_ADM_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                      <md-input-container class="md-block">
+                        <label>Phone 1</label>
+                        <input type="text" name="STU_PA_PHONE1" ng-model="Stud.STU_PA_PHONE1">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad topPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Phone 2</label>
+                        <input type="text" name="STU_PA_PHONE2" ng-model="Stud.STU_PA_PHONE2">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Mobile</label>
+                        <input type="text" name="STU_PA_MOBILE" ng-model="Stud.STU_PA_MOBILE">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </md-card>
+              </div>
+            </md-content>
+            <md-content class="md-padding" layout-xs="column" layout="row">
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Gaurdian - Personal Details</span>
+                    </md-card-title-text>
+                    <!-- <md-card-title-media>
+                      <div class="md-media-lg card-media"></div>
+                    </md-card-title-media> -->
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Gaurdian Name</label>
+                        <md-icon md-svg-src="img/icons/index.svg"  class="name"></md-icon>
+                        <input name="STU_PA_GA_NAME" ng-model="Stud.STU_PA_GA_NAME">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Relation</label>
+                        <input name="STU_PA_GA_RELATION" ng-model="Stud.STU_PA_GA_RELATION">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Address Line 1</label>
+                        <input name="STU_PA_GA_ADD1" ng-model="Stud.STU_PA_GA_ADD1">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Address Line 2</label>
+                        <input name="STU_PA_GA_ADD2" ng-model="Stud.STU_PA_GA_ADD2">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </md-card>
+              </div>
+              <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Gaurdian Details Continued</span>
+                    </md-card-title-text>
+                    <!-- <md-card-title-media>
+                      <div class="md-media-lg card-media"></div>
+                    </md-card-title-media> -->
+                  </md-card-title>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>City</label>
+                        <input name="STU_PA_GA_CITY" ng-model="Stud.STU_PA_GA_CITY">
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>State</label>
+                        <input name="STU_PA_GA_STATE" ng-model="Stud.STU_PA_GA_STATE">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div class="row AdjPad">
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Country</label>
+                        <md-select name="STU_PA_GA_COUNTRY" ng-model="Stud.STU_PA_GA_COUNTRY">
+                          <md-option value="India">India</md-option>
+                          <md-option value="America">America</md-option>
+                          <md-option value="Australia">Australia</md-option>
+                          <md-option value="England">England</md-option>
+                          <md-option value="Srilanga">Srilanga</md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <md-input-container class="md-block">
+                        <label>Phone</label>
+                        <input type="text" name="STU_PA_GA_PHONE1" ng-model="Stud.STU_PA_GA_PHONE1">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </md-card>
+              </div>
+            </md-content>
+            <br>
 
-      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Gaurdian - Personal Details</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Gaurdian Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_GA_NAME" ng-model="Stud.STU_PA_GA_NAME">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Relation</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                 <input name="STU_PA_GA_RELATION" ng-model="Stud.STU_PA_GA_RELATION">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Address Line 1</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_GA_ADD1" ng-model="Stud.STU_PA_GA_ADD1">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Address Line 2</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_GA_ADD2" ng-model="Stud.STU_PA_GA_ADD2">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        <div flex flex-gt-xs="10">
-        </div>
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Gaurdian Details Continued</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>City</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_GA_CITY" ng-model="Stud.STU_PA_GA_CITY">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>State</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PA_GA_STATE" ng-model="Stud.STU_PA_GA_STATE">
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Country</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select name="STU_PA_GA_COUNTRY" ng-model="Stud.STU_PA_GA_COUNTRY">
-                <md-option value="India">India</md-option>
-                <md-option value="America">America</md-option>
-                <md-option value="Australia">Australia</md-option>
-                <md-option value="England">England</md-option>
-                <md-option value="Srilanga">Srilanga</md-option>
-              </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Phone</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input type="number" name="STU_PA_GA_PHONE1" ng-model="Stud.STU_PA_GA_PHONE1">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-      </div>
-      <br>
-      <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink" ng-click="prevTab()">Previous</button>
-      <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Next</button> -->
-      <md-button class="md-raised md-primary" ng-click="prevTab()">Previous</md-button>
-      <md-button class="md-raised md-primary pull-right" ng-click="nextTab()">Save & Next</md-button>
-      </form>
-      </md-content>
+            <md-button class="md-raised md-primary" style="background-color: rgb(65,85,94) !important;" ng-click="prevTab()">Previous</md-button>
+            <md-button class="md-raised md-primary pull-right" style="background-color: rgb(65,85,94) !important;" ng-click="nextTab()">Save & Next</md-button>
+
+            <!-- <md-button class="md-raised md-primary" ng-click="prevTab()">Previous</md-button>
+            <md-button class="md-raised md-primary pull-right" ng-click="nextTab()">Save & Next</md-button> -->
+          </form>
+        </md-content>
       </md-tab>
       <md-tab label="Previous Educational Details">
       <md-content class="md-padding">
-      <form name="userForm2">
-      <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Parent - Personal details</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-               <label>Institution Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PRE_D_INSTITUTE_NAME" ng-model="Stud.STU_PRE_D_INSTITUTE_NAME">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Course Name</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PRE_D_COURSE" ng-model="Stud.STU_PRE_D_COURSE">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-               <label>Year</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-               <input name="STU_PRE_D_YEAR" ng-model="Stud.STU_PRE_D_YEAR">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Total marks</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                  <input name="STU_PRE_D_YEARS" ng-model="Stud.STU_PRE_D_YEARS">
-              </md-input-container>
-            </div>  
-          </div>
-        </div>
-        <div flex flex-gt-xs="10">
-        </div>
-        <div flex flex-gt-xs="45">
-          <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-            <h3>Additional Details</h3>
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Blood group</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                 <md-select name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP">
-                  <md-option value="A+">A+</md-option>
-                  <md-option value="A-">A-</md-option>
-                  <md-option value="A1+">A1+</md-option>
-                  <md-option value="A1-">A1-</md-option>
-                  <md-option value="O+">O+</md-option>
-                </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Birth Place</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <input name="STU_PRE_ADD_BIRTH_PLACE" ng-model="Stud.STU_PRE_ADD_BIRTH_PLACE">
-              </md-input-container>
-            </div>  
-          </div>
-           <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
-            <div flex flex-gt-xs="30">
-              <label>Category</label>
-            </div>
-            <div flex flex-gt-xs="70">
-              <md-input-container class="md-block" flex-gt-sm>
-                <md-select name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP">
-                  <md-option value="Term 1 Fee">Term 1 Fee</md-option>
-                  <md-option value="Fee-">Fee</md-option>
-                </md-select>
-              </md-input-container>
-            </div>  
-          </div>
-          <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row" ng-init="reInitialize()">
-            <div flex flex-gt-xs="30">
-              <label class="control-label">Profile Image</label>
-            </div>
-            <div flex flex-gt-xs="70">
-                <!-- <input ui-jq="filestyle" ui-options="{icon: false, buttonName: 'btn-primary'}" type="file" multiple="" name="STU_PRE_ADD_IMAGE_PATH"  ng-model="Stud.STU_PRE_ADD_IMAGE_PATH" ng-files="getTheFiles($files)"> -->
-                <div drop-zone ng-model="STU_PRE_ADD_IMAGE_PATH" class="one" style="width:100px;height: 100px;background-image: url({{data}});background-size: 100% 100%;background-repeat: no-repeat;">
+        <form name="userForm2">
+          <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs flex-gt-xs="50" layout="column">
+              <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">Educational Details</span>
+                  </md-card-title-text>
+                </md-card-title>
+                <div class="row AdjPad">
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Institution Name</label>
+                      <input name="STU_PRE_D_INSTITUTE_NAME" ng-model="Stud.STU_PRE_D_INSTITUTE_NAME">
+                    </md-input-container>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Class</label>
+                      <input name="STU_PRE_D_COURSE" ng-model="Stud.STU_PRE_D_COURSE">
+                    </md-input-container>
+                  </div>
                 </div>
-            </div>  
-          </div>
-        </div>
-        </div>
-        <!-- <div class="col-md-7 col-md-offset-5">
-        <md-button class="md-raised md-primary">Submit</md-button>
-        </div> -->
-        <!-- <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink" ng-click="prevTab()">Previous</button>
-        <button md-ink-ripple class="md-btn md-raised m-b btn-fw pink pull-right" ng-click="nextTab()">Save & Finish</button> -->
-        <md-button class="md-raised md-primary" ng-click="prevTab()">Previous</md-button>
-        <md-button class="md-raised md-primary pull-right">Save & Finish</md-button>
-      </form>
+                <div class="row AdjPad">
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Year</label>
+                      <input name="STU_PRE_D_YEAR" ng-model="Stud.STU_PRE_D_YEAR">
+                    </md-input-container>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Total marks</label>
+                      <input name="STU_PRE_D_YEARS" ng-model="Stud.STU_PRE_D_YEARS">
+                    </md-input-container>
+                  </div>
+                  <br><br><br><br><br><br><br><br>
+                </div>
+              </md-card>
+            </div>
+            <div flex-xs flex-gt-xs="50" layout="column">
+              <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">Parent Contact Detail</span>
+                  </md-card-title-text>
+                </md-card-title>
+                <div class="row AdjPad">
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Blood group</label>
+                      <md-select name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP">
+                        <md-option value="A+">A+</md-option>
+                        <md-option value="A-">A-</md-option>
+                        <md-option value="A1+">A1+</md-option>
+                        <md-option value="A1-">A1-</md-option>
+                        <md-option value="O+">O+</md-option>
+                      </md-select>
+                    </md-input-container>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Birth Place</label>
+                      <input name="STU_PRE_ADD_BIRTH_PLACE" ng-model="Stud.STU_PRE_ADD_BIRTH_PLACE">
+                    </md-input-container>
+                  </div>
+                </div>
+                <div class="row AdjPad">
+                  <div class="form-group col-sm-6">
+                    <md-input-container class="md-block">
+                      <label>Category</label>
+                      <md-select name="STU_PRE_ADD_BLOOD_GROUP" ng-model="Stud.STU_PRE_ADD_BLOOD_GROUP">
+                        <md-option value="Term 1 Fee">Term 1 Fee</md-option>
+                        <md-option value="Fee-">Fee</md-option>
+                      </md-select>
+                    </md-input-container>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Profile Image</label>
+                    <div drop-zone ng-model="STU_PRE_ADD_IMAGE_PATH" class="one" style="width:100px;height: 100px;background-image: url({{data}});background-size: 100% 100%;background-repeat: no-repeat;">
+                    </div>
+                  </div>
+                </div>
+              </md-card>
+            </div>
+          </md-content>
+          <md-button class="md-raised md-primary" style="background-color: rgb(65,85,94) !important;" ng-click="prevTab()">Previous</md-button>
+          <md-button class="md-raised md-primary pull-right" style="background-color: rgb(65,85,94) !important;" ng-click="nextTab()">Save & Finish</md-button>
+          <!-- <md-button class="md-raised md-primary" ng-click="prevTab()">Previous</md-button>
+          <md-button class="md-raised md-primary pull-right">Save & Finish</md-button> -->
+        </form>
       </md-content>
       </md-tab>
     </md-tabs>
