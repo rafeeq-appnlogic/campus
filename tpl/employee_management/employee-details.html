@@ -71,7 +71,6 @@
               <st-select-distinct collection="rowCollection" predicate="EMP_POSITION"></st-select-distinct>
             </th>
             <th>
-              <!-- <st-select-multiple collection="rowCollection" predicate="EMP_GENDER"></st-select-multiple> -->
               <st-select-distinct collection="rowCollection" predicate="EMP_GENDER"></st-select-distinct>
             </th>
           </tr>
@@ -98,8 +97,6 @@
             <td>{{row.EMP_POSITION}}</td>
             <td>{{row.EMP_GENDER}}</td>
             <td>
-             <!--  <button class="btn btn-sm btn-info" ng-click="rowform.$show();changeMode();"><i class="fa fa-edit"></i></button> -->
-              
               <button class="btn btn-sm btn-primary" ui-sref="app.employee-view-profile" ng-click="openEmployeeProfile(row.EMP_ID);"><i class="icon-eye"></i></button>
               <button class="btn btn-sm btn-danger" ng-click="deleteData($index);"><i class="fa fa-trash-o"></i></button>
                 </td>
