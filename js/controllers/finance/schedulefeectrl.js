@@ -124,39 +124,40 @@ $scope.access_token=$localStorage.access_token;
       });
 */
   }
-  $scope.multiple_pdf = function() {
-      console.log($scope.displayedCollection,"$scope.displayedCollection")
-       $scope.emp_id = [];
-      var totalLength=$scope.displayedCollection.length;
-      for(var i=0;i<totalLength;i++){
-           if ($scope.post[i]==true) {
-              var pdf_id=$scope.displayedCollection[i].id;
-              $scope.emp_id.push(pdf_id);
-              console.log($scope.emp_id,'totalLengthtotalLengthtotalLength22');
-           }
-      }
-      $http({
-        method : "POST",
-        url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
-        data : { 'pdfId':$scope.emp_id}
-      })
-      .then(function mySucces(response) {
-        console.log(response.config.data.pdfId,'pdf');
-        var contData = response.config.data.pdfId.length;
-         console.log( contData,'totaaaallll');
-          window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
-        // for(var $i = 0; $i< contData; $i++){
-        //   window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
-        // }
+  // $scope.multiple_pdf = function() {
+  //     console.log($scope.displayedCollection,"$scope.displayedCollection")
+  //      $scope.emp_id = [];
+  //     var totalLength=$scope.displayedCollection.length;
+  //     for(var i=0;i<totalLength;i++){
+  //          if ($scope.post[i]==true) {
+  //             var pdf_id=$scope.displayedCollection[i].id;
+  //             $scope.emp_id.push(pdf_id);
+  //             console.log(pdf_id,'totalLengthtotalLengthtotalLength');
+  //          }
+  //     }
+  //     $http({
+  //       method : "POST",
+  //       url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+  //       data : { 'pdfId':$scope.emp_id}
+  //     })
+  //     .then(function mySucces(response) {
+  //       //console.log(response.config.data.pdfId,'pdf');
+  //       // var contData = response.config.data.pdfId.length;
+  //       //  console.log( contData,'totaaaallll');
+      
+  //       // for(var $i = 0; $i< contData; $i++){
+  //       //   window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+  //       // }
          
-         $scope.pdf = response.data;
-         //$scope.generatePdf($scope.pdf);
+  //        //$scope.pdf = response.data;
+  //        //console.log($scope.email);
+  //        //$scope.generatePdf($scope.pdf);
          
 
-      }, function myError(response) {
+  //     }, function myError(response) {
        
-      });
-  }
+  //     });
+  // }
 
  /* $scope.generatePdf=function(curr_id){
      $http({
@@ -451,46 +452,76 @@ $scope.access_token=$localStorage.access_token;
   }
 
 
-// $scope.generatePDF = function() {
-//   $localStorage.idList;
-//   $http({
-//       method : "POST",
-//       url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
-//       data : { 'pdfId':$localStorage.idList}
-//     }).then(function mySucces(response) {
-//       // window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/", '_blank');
-//       var collection = $localStorage.idList;
-//         for(var $i = 0; $i< collection.length; $i++){
-//           window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/"+collection[$i], '_blank');
-//         }
-//         //$localStorage.idList='';
-//     });
-// }
+$scope.generatePDF = function() {
+  $http({
+    //url : 'http://localhost/smartedu/Payslip/pdf_generate',
+    url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+    method : 'POST',
+    data : { 'pdfId':$localStorage.idList},
+    responseType : 'arraybuffer',
+    headers: {
+     'Content-type' : 'application/pdf'
+    },
+    cache: true,
+   }).success(function(data) {
+    var blob = new Blob([data], { type: 'application/pdf' });
+    var fileURL = URL.createObjectURL(blob);
+    //alert(fileURL)
+    var fileName = "1099.pdf";
+    var contentFile = blob;
+    var a= document.createElement('a');
+    a.href= fileURL; 
+    a.target= '_blank';
+    //a.download= 'yourfilename.pdf';
+    document.body.appendChild(a);
+    a.click();
+   }).error(function(data){
+    alert("error"+data);
+   });
+
+  // $http({
+  //     method : "POST",
+  //     url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+  //     data : { 'pdfId':$localStorage.idList},
+  //     responsetype:'arraybuffer'
+  //   }).then(function mySucces(response) {
+  //     // window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/", '_blank');
+  //     var collection = $localStorage.idList;
+  //       //for(var $i = 0; $i< collection.length; $i++){
+  //         // var pdfWin= window.open("data:application/pdf;base64, " + response, '', 'height=650,width=840')
+  //         var file = new Blob([response], {type: 'application/pdf'});
+  //         var fileURL = URL.createObjectURL(file);
+  //         $window.open(fileURL);
+  //         // window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate/"+collection, '_blank');
+  //      // }
+  //       //$localStorage.idList='';
+  //   });
+}
 
 
 
-  // $scope.multiple_pdf = function() {
-  //     console.log($scope.displayedCollection,"$scope.displayedCollection")
-  //      $scope.emp_id = [];
-  //     var totalLength=$scope.displayedCollection.length;
-  //     for(var i=0;i<totalLength;i++){
-  //          if ($scope.post[i]==true) {
-  //             var pdf_id=$scope.displayedCollection[i].id;
-  //             // $scope.emp_id.push(pdf_id);
-  //             // console.log(pdf_id,'totalLengthtotalLengthtotalLength');
-  //              $http({
-  //               method : "POST",
-  //               url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
-  //               data : { 'pdfId':$scope.displayedCollection[i].id}
-  //             }).then(function mySucces(response) {
-  //               console.log(response,"response");
-  //                window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
-  //               /*for(var $i = 0; $i< contData; $i++){
-  //                  window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
-  //               }*/
-  //             });
-  //          }
-  //     }
+  $scope.multiple_pdf = function() {
+      console.log($scope.displayedCollection,"$scope.displayedCollection")
+       $scope.emp_id = [];
+      var totalLength=$scope.displayedCollection.length;
+      for(var i=0;i<totalLength;i++){
+           if ($scope.post[i]==true) {
+              var pdf_id=$scope.displayedCollection[i].id;
+              // $scope.emp_id.push(pdf_id);
+              // console.log(pdf_id,'totalLengthtotalLengthtotalLength');
+               $http({
+                method : "POST",
+                url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
+                data : { 'pdfId':$scope.displayedCollection[i].id}
+              }).then(function mySucces(response) {
+                console.log(response,"response");
+                 window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+                /*for(var $i = 0; $i< contData; $i++){
+                   window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
+                }*/
+              });
+           }
+      }
       // $http({
       //   method : "POST",
       //   url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
@@ -511,5 +542,5 @@ $scope.access_token=$localStorage.access_token;
          
 
       // });
-  //}
+  }
 }]);
