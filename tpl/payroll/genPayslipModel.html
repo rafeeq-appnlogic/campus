@@ -2,12 +2,51 @@
 /*md-dialog{
   max-width: 100% !important;
 }*/
-md-input-container {
-    margin: 26px 18px 0 !important;
-}
-.m-b {
-    margin-bottom: 0px !important;
-}
+  md-input-container {
+      margin: 26px 18px 0 !important;
+  }
+  .m-b {
+      margin-bottom: 0px !important;
+  }
+  md-input-container.md-default-theme .md-input, md-input-container .md-input{
+    border-bottom-color: #777777;
+    /*margin-top: -22px !important;*/
+
+  }
+  md-input-container.md-default-theme .md-input, md-input-container label{
+    font-size: 15px !important;
+  }
+  md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-placeholder label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float){
+    transform: translate3d(0px, 20px, 0px) scale(0.75);
+  }
+  md-input-container{
+    margin-top: 0px !important
+    margin-bottom: 0px;
+  }
+  md-input-container .md-errors-spacer{
+    min-height: 7px;
+  }
+  label{
+    font-size: 16px;
+    padding-top: 14px;
+    padding-right: 15px;
+  }
+  .customInput{
+    margin-top: 0px !important;
+  }
+ @media screen and (max-width: 320px) {
+    .modelfooter {
+      padding-right: 44px !important;
+    }
+  }
+  @media screen and (max-width: 360px){
+   .modelfooter {
+      padding-right: 60px !important;
+    } 
+  }
+  .modelfooter {
+      padding-right: 160px ;
+    }
 </style>
 
 <md-dialog aria-label="Mango (Fruit)" style="width: 500px">
@@ -21,7 +60,7 @@ md-input-container {
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content>
+<!--     <md-dialog-content>
       <form name="userForm">
       <div class="col-md-12">
       <div layout-gt-sm="row" layout-gt-md="row" layout-gt-xs="row">
@@ -73,16 +112,69 @@ md-input-container {
       </div>
       <br>
       <br>
-        <!-- <center>
-          <md-button class="md-raised md-primary">Create</md-button>
-          <md-button class="md-raised md-warn">Cancel</md-button>
-        </center> -->
-    </form>    
+      </form>    
+    </md-dialog-content> -->
+    <md-dialog-content>
+      <md-content layout-padding>
+        <div layout-gt-xs="row">
+          <div flex-gt-xs="5"></div>
+          <div flex-gt-xs="90">
+            <div layout-gt-xs="row">
+              <div flex-gt-xs="30">
+                <label>Payroll group</label>
+              </div>
+              <div flex-gt-xs="70">
+                <md-input-container class="md-block customInput" flex-gt-sm >
+                  <input ng-model="user.city">
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+          <div flex-gt-xs="5"></div>
+        </div>
+        <div layout-gt-xs="row">
+          <div flex-gt-xs="5"></div>
+          <div flex-gt-xs="90">
+            <div layout-gt-xs="row">
+              <div flex-gt-xs="30">
+                <label>Payment Type</label>
+              </div>
+              <div flex-gt-xs="70">
+                <md-input-container class="md-block customInput" flex-gt-sm>
+                  <input ng-model="user1"  >
+                </md-input-container>
+              </div>
+            </div> 
+          </div>
+          <div flex-gt-xs="5"></div>
+        </div>
+        <div layout-gt-xs="row">
+          <div flex-gt-xs="5"></div>
+          <div flex-gt-xs="90">
+            <div layout-gt-xs="row">
+              <div flex-gt-xs="30">
+                <label>Category Type</label>
+              </div>
+              <div flex-gt-xs="70">
+                <md-radio-group ng-model="empAdm.EMP_GENDER">                
+                <label class="radio-inline">
+                  <md-radio-button value="Earnings" class="md-primary" >Earnings</md-radio-button>
+                </label>
+                <label class="radio-inline">
+                   <md-radio-button value="Deduction" class="md-primary"> Deduction </md-radio-button>
+                </label>
+              </md-radio-group>
+              </div>
+            </div>
+          </div>
+          <div flex-gt-xs="5"></div>
+        </div>
+      </md-content>
     </md-dialog-content>
-    <br>
-    <md-dialog-actions layout="row">
+    <md-dialog-actions layout="row" style="border-top: 1px solid #DDDDDD">
+      <!-- <md-dialog-actions layout="row"> -->
       <span flex></span>
-      <div class="m-b" style="padding-right: 182px">
+      <div class="m-b modelfooter">
       <button ng-click="cancel()" class="md-btn md-raised m-b btn-fw red" md-ink-ripple="">
       Cancel
       <div class="md-ripple-container" style=""></div>

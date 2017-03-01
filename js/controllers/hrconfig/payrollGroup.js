@@ -32,6 +32,7 @@ app.controller('payrollGroup', ['$scope','$compile',function($scope,$compile) {
     var AE    = parseInt(AdditionalEarn) | 0;
     var Earnings=Basic + HA + TA + AE;
     return Earnings;
+
   }
   $scope.TotalDeduction=function(){
     var AdditionalDedu=0;
@@ -48,7 +49,7 @@ app.controller('payrollGroup', ['$scope','$compile',function($scope,$compile) {
   $scope.Netpay=function(){
     // alert('Netpay');
     var netpay=$scope.TotalEarning() - $scope.TotalDeduction();
-    console.log(netpay,'sdhhNet PAYS SHCFVDJ')
+    console.log(netpay,'PAYS SHCFVDJ')
     console.log($scope.TotalEarning(),'NetPay123');
     return netpay;
   }

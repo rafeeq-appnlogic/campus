@@ -88,6 +88,17 @@ angular.module('app')
               }).state("app.Payroll-CategoryView", {
                   url: "/Payroll-CategoryView",
                   templateUrl: "tpl/payroll/payroll_category_view.html"
+              }).state("app.payroll", {
+                  url: "/Payroll",
+                  templateUrl: "tpl/payroll/new/payrollView.html",
+                  controller:"payrollCategory",
+                  resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
+              }).state("app.PayrollEMPView", {
+                  url: "/PayrollEMPView",
+                  templateUrl: "tpl/payroll/new/PayrollEMPView.html"
+              }).state("app.PayrollCalucation", {
+                  url: "/PayrollCalucation",
+                  templateUrl: "tpl/payroll/new/PayrollCalucation.html"
               }).state("app.pr-group", {
                   url: "/pr-group",
                   templateUrl: "tpl/payroll/payroll_group_view.html"
