@@ -9,7 +9,7 @@
       <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
     </a>
   </li>
-  <li>
+  <li ng-class="{active:$state.includes('app.hr')}">
     <a href class="auto">      
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-angle-right text"></i>
@@ -24,7 +24,7 @@
           <span translate="aside.nav.HR">HR</span>
         </a>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.hr_config')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -35,48 +35,48 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Category">
+            <a ui-sref="app.hr_config.Employee-Category">
               <span>Employee Category</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Department">
+            <a ui-sref="app.hr_config.Employee-Department">
               <span>Employee Department</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Position">
+            <a ui-sref="app.hr_config.Employee-Position">
               <span>Employee Position</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Grade">
+            <a ui-sref="app.hr_config.Employee-Grade">
               <span>Employee Grade</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Working-Days">
+            <a ui-sref="app.hr_config.Working-Days">
               <span>Working Days</span>
             </a>
           </li>
            <li ui-sref-active="active">
-            <a ui-sref="app.Leave-Types">
+            <a ui-sref="app.hr_config.Leave-Types">
               <span>Leave Types</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Bank-Details">
+            <a ui-sref="app.hr_config.Bank-Details">
               <span>Bank Details</span>
             </a>
           </li>
            <li ui-sref-active="active">
-            <a ui-sref="app.Additional-Details">
+            <a ui-sref="app.hr_config.Additional-Details">
               <span>Additional Details</span>
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.hr_pay')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -87,32 +87,32 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.payroll">
+            <a ui-sref="app.hr_pay.payroll">
               <span>Payroll</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.payroll-category">
+            <a ui-sref="app.hr_pay.payroll-category">
               <span>Payroll Category</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.pr-category-new">
+            <a ui-sref="app.hr_pay.pr-category-new">
               <span>Payroll Category New</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.pr-group">
+            <a ui-sref="app.hr_pay.pr-group">
               <span>Payroll Groups</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.pr-group-new">
+            <a ui-sref="app.hr_pay.pr-group-new">
               <span>Payroll Groups New</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Emppayslip-Report">
+            <a ui-sref="app.hr_pay.Emppayslip-Report">
               <span>Payslip Report</span>
             </a>
           </li>
@@ -122,18 +122,18 @@
             <!-- </a> -->
           <!-- </li> -->
 		  <li ui-sref-active="active">
-            <a ui-sref="app.PayslipFor-payrollGroup">
+            <a ui-sref="app.hr_pay.PayslipFor-payrollGroup">
               <span>Payslips for Payroll Group New</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.PayslipFor-Employee">
+            <a ui-sref="app.hr_pay.PayslipFor-Employee">
               <span>Payslips for Employee</span>
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.hr_levMang')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -144,28 +144,28 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Attendance-Register">
+            <a ui-sref="app.hr_levMang.Attendance-Register">
               <span>Attendance Register</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Attendance-Report">
+            <a ui-sref="app.hr_levMang.Attendance-Report">
               <span>Attendance Report</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Leave-Reset">
+            <a ui-sref="app.hr_levMang.Leave-Reset">
               <span>Leave Reset</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Leave-Application">
+            <a ui-sref="app.hr_levMang.Leave-Application">
               <span>Leave Application</span>
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.hr_empMang')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -176,17 +176,17 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Admission">
+            <a ui-sref="app.hr_empMang.Employee-Admission">
               <span>Employee Admission</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Details">
+            <a ui-sref="app.hr_empMang.Employee-Details">
               <span>Employee Details</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Employee-Sub-Association">
+            <a ui-sref="app.hr_empMang.Employee-Sub-Association">
               <span>Employee Subject Association</span>
             </a>
           </li>
@@ -227,7 +227,7 @@
           <span class="font-bold" translate="aside.nav.CALENDAR">Calendar</span>
         </a>
       </li> -->
-      <li>
+      <li ng-class="{active:$state.includes('app.acad_Attend')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -238,12 +238,12 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.pr-category">
+            <a ui-sref="app.acad_Attend.pr-category">
               <span>Attendence Register</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.pr-group">
+            <a ui-sref="app.acad_Attend.pr-group">
               <span>Attendence Report</span>
             </a>
           </li>
@@ -339,7 +339,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.acad.discip')}">
         <a href class="auto">      
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -354,13 +354,13 @@
               <span class="pull-right text-muted">
               </span> 
               <!-- <b class="label bg-info pull-right">2</b> -->
-              <a ui-sref="app.Add-Complaint">
+              <a ui-sref="app.acad.discip.Add-Complaint">
                 <span>Add Complaint</span>
               </a>
           </li>
         </ul>
       </li>
-       <li>
+      <li ng-class="{active:$state.includes('app.acad.Lev')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -371,13 +371,13 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Apply-Leave">
+            <a ui-sref="app.acad.Lev.Apply-Leave">
               <span>Apply Leave</span>
             </a>
           </li>
         </ul>
       </li>
-       <li>
+      <li ng-class="{active:$state.includes('app.acad.exm')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -388,11 +388,11 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Grade-Level">
-              <span>Grade Leave</span>
+            <a ui-sref="app.acad.exm.Grade-Level">
+              <span>Grade Level</span>
             </a>
           </li>
-          <li>
+          <li ng-class="{active:$state.includes('app.acad.Onlexm')}">
             <a href class="auto">
               <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -403,12 +403,12 @@
             </a>
             <ul class="nav dker">
               <li ui-sref-active="active">
-                <a ui-sref="app.View-Exam">
+                <a ui-sref="app.acad.Onlexm.View-Exam">
                   <span>Add Online Exam</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.Add-Income">
+                <a ui-sref="app.acad.Onlexm.Add-Income">
                   <span>View Exam Result</span>
                 </a>
               </li>
@@ -419,7 +419,7 @@
     </ul>
   </li>
 
-  <li>
+  <li ng-class="{active:$state.includes('app.fn')}">
     <a href class="auto">      
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-angle-right text"></i>
@@ -434,7 +434,7 @@
           <span translate="aside.nav.FINANCE">Finance</span>
         </a>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.fn.ALM')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -455,12 +455,12 @@
             </a>
           </li> -->
           <li ui-sref-active="active">
-            <a ui-sref="app.finance-asset">
+            <a ui-sref="app.fn.ALM.finance-asset">
               <span>Asset</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.finance-liability">
+            <a ui-sref="app.fn.ALM.finance-liability">
               <span>Liability</span>
             </a>
           </li>
@@ -469,11 +469,11 @@
       <li>
           <span class="pull-right text-muted">
           </span>
-          <a ui-sref="app.finance-category">
+          <a ui-sref="app.fn.finance-category">
             <span>Finance Categories</span>
           </a>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.fn.trans')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -483,17 +483,17 @@
         </a>
         <ul class="nav dker">
           <li ui-sref-active="active">
-            <a ui-sref="app.Add-Expense">
+            <a ui-sref="app.fn.trans.Add-Expense">
               <span>Add Expense</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Add-Income">
+            <a ui-sref="app.fn.trans.Add-Income">
               <span>Add Income</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.Reverted-Transaction">
+            <a ui-sref="app.fn.trans.Reverted-Transaction">
               <span>Reverted Transactions</span>
             </a>
           </li>
@@ -503,11 +503,11 @@
           <span class="pull-right text-muted">
           </span> 
           <!-- <b class="label bg-info pull-right">2</b> -->
-          <a ui-sref="app.donation-view">
+          <a ui-sref="app.fn.donation-view">
             <span>Donations</span>
           </a>
       </li>
-      <li>
+      <li ng-class="{active:$state.includes('app.fn.fee')}">
         <a href class="auto">
           <span class="pull-right text-muted">
             <i class="fa fa-fw fa-angle-right text"></i>
@@ -517,7 +517,7 @@
           <span>Fees</span>
         </a>
         <ul class="nav dker">
-          <li ui-sref-active="active">
+          <li ng-class="{active:$state.includes('app.fn.fee.con')}">
             <a href class="auto">
               <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -528,39 +528,39 @@
             </a>
             <ul class="nav dker">
               <li ui-sref-active="active">
-                <a ui-sref="app.fn-category">
+                <a ui-sref="app.fn.fee.con.fn-category">
                   <span>Category</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.fn-particularview">
+                <a ui-sref="app.fn.fee.con.fn-particularview">
                   <span>Partculars</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.fee-discount">
+                <a ui-sref="app.fn.fee.con.fee-discount">
                   <span>Fee Discount</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.add-fine">
+                <a ui-sref="app.fn.fee.con.add-fine">
                   <span>Fine</span>
                 </a>
               </li>
             </ul>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.fee-schedule">
+            <a ui-sref="app.fn.fee.fee-schedule">
               <span>Schedule Fee Collection</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="app.fees-defaulter">
+            <a ui-sref="app.fn.fee.fees-defaulter">
               <span>Fees Defaulter</span>
             </a>
           </li>
           </li> 
-          <li ui-sref-active="active">
+          <li ng-class="{active:$state.includes('app.fn.fee.ref')}">
             <a href class="auto">
               <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -570,17 +570,17 @@
             </a>
             <ul class="nav dker">
               <li ui-sref-active="active">
-                <a ui-sref="app.Create-RefundRule">
+                <a ui-sref="app.fn.fee.ref.Create-RefundRule">
                   <span>Create Refund Rule</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.view-refund">
+                <a ui-sref="app.fn.fee.ref.view-refund">
                   <span>View Refund</span>
                 </a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="app.apply-refund">
+                <a ui-sref="app.fn.fee.ref.apply-refund">
                   <span>Apply Refund</span>
                 </a>
               </li>
@@ -622,7 +622,7 @@
       </li>
     </ul>
   </li>
-  <li>
+  <li ui-sref-active="active">
     <a ui-sref="app.repository">
       <i class="fa fa-pencil-square-o"></i>
       <span class="font-bold" translate="aside.nav.REPOSITORY">Repository</span>
