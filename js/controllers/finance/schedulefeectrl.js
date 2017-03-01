@@ -38,19 +38,6 @@ $scope.access_token=$localStorage.access_token;
     $scope.displayedCollection = [].concat($scope.sampleData);
     console.log($scope.displayedCollection);
      $scope.isLoading=false;
-/* 
-
-   /* $http.get($rootScope.endUrl+'FinanceTxnModule/income',{headers: {'access_token':$scope.access_token}}).success(function(incomingData) {
-          $scope.rowCollection = incomingData.result;
-    });
-    $scope.displayedCollection = [].concat($scope.rowCollection);
-    $scope.isLoading=false;
-
-    $http.get($rootScope.endUrl+'FinanceTxnModule/categoryList',{headers: {'access_token':$scope.access_token}}).success(function(response) {
-      console.log(response.result,'response');
-          $scope.categoryList = response.result;
-
-    });*/
   $scope.deleteData = function(index) {
       $ngBootbox.confirm('Are you sure you want to delete this record?')
         .then(function() {
@@ -75,118 +62,41 @@ $scope.access_token=$localStorage.access_token;
   }
 
   $scope.multiple_mail_send = function() {
-     console.log($scope.displayedCollection,"$scope.displayedCollection")
-      $scope.mail =[];
-      $scope.emp_id =[];
-     var totalLength=$scope.displayedCollection.length;
-      for(var i=0;i<totalLength;i++){
-           if ($scope.post[i]==true) {
-              var mail_id=$scope.displayedCollection[i].mail;
-              var emp_id=$scope.displayedCollection[i].id;
-              $scope.mail.push(mail_id);
-              $scope.emp_id.push(emp_id);
-              console.log(mail_id,'totalLengthtotalLengthtotalLength');
-              //console.log(emp_id,'totalLengthtotalLengthtotalLength');
-           }
+    console.log($scope.displayedCollection,"$scope.displayedCollection")
+    $scope.emp_id =[];
+    var totalLength=$scope.displayedCollection.length;
+    for(var i=0;i<totalLength;i++){
+      if ($scope.post[i]==true) {
+        var emp_id=$scope.displayedCollection[i].id;
+          $scope.emp_id.push(emp_id);
+        }
       }
-      
-      
-      console.log($scope.mail,"multiple_Id");
       $http({
           method : "POST",
-          url : 'http://localhost/smartedu/FeesCntrl/Multiple_send_email',
-          data : {'mail_id':$scope.mail,'id':$scope.emp_id}
+          url : 'http://localhost/smartedu/FeesCntrl/getmail_id',
+          data : {'id':$scope.emp_id}
       })
       .then(function mySucces(response) {
-        bootbox.alert('<h4><center>Email Send Successfully<center></h4>');
+        $scope.retun_data = response.data;
+        $scope.mail_send($scope.retun_data);
       }, function myError(response) {
        
       });
-    //$scope.emp_id = 4;
-    /*  $http({
-        method : "POST",
-        url : 'http://localhost/smartedu/FeesCntrl/getmail_id',
-        data : { 'ID':$scope.emp_id}
-      })
-      .then(function mySucces(response) {
-        console.log(response.data,'email');
-         $scope.email = response.data;
-         //console.log($scope.email);
-
-          $http({
-          method : "POST",
-          url : 'http://localhost/smartedu/FeesCntrl/Multiple_send_email',
-          data : { 'mail_id':$scope.email}
-        })
-
-      }, function myError(response) {
-       
-      });
-*/
-  }
-  // $scope.multiple_pdf = function() {
-  //     console.log($scope.displayedCollection,"$scope.displayedCollection")
-  //      $scope.emp_id = [];
-  //     var totalLength=$scope.displayedCollection.length;
-  //     for(var i=0;i<totalLength;i++){
-  //          if ($scope.post[i]==true) {
-  //             var pdf_id=$scope.displayedCollection[i].id;
-  //             $scope.emp_id.push(pdf_id);
-  //             console.log(pdf_id,'totalLengthtotalLengthtotalLength');
-  //          }
-  //     }
-  //     $http({
-  //       method : "POST",
-  //       url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
-  //       data : { 'pdfId':$scope.emp_id}
-  //     })
-  //     .then(function mySucces(response) {
-  //       //console.log(response.config.data.pdfId,'pdf');
-  //       // var contData = response.config.data.pdfId.length;
-  //       //  console.log( contData,'totaaaallll');
-      
-  //       // for(var $i = 0; $i< contData; $i++){
-  //       //   window.open("http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate", '_blank');
-  //       // }
-         
-  //        //$scope.pdf = response.data;
-  //        //console.log($scope.email);
-  //        //$scope.generatePdf($scope.pdf);
-         
-
-  //     }, function myError(response) {
-       
-  //     });
-  // }
-
- /* $scope.generatePdf=function(curr_id){
-     $http({
-          method : "POST",
-          url : 'http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate',
-          data : { 'mail_id':curr_id}
-        }).then(function mySucces(response) {
-            angular.element('#newTap').attr('src','http://localhost/smartedu/FeesCntrl/defaulter_pdf_generate');
-            console.log(angular.element('#newTap'),'hjkkkkkkkkkkkkkk');
-           
-           
-           
-        }
-  }
-
-*/
-  /*$scope.openModel = function() {
-    $scope.buttonStatus='Save';
-    $scope.Inc.FINC_TXN_IN_ID= null;
-    $scope.Inc.FINC_TXN_IN_CA_ID=null;
-    $scope.Inc.FINC_TXN_IN_TITLE= null;
-    $scope.Inc.FINC_TXN_IN_DESC= null;
-    $scope.Inc.FINC_TXN_IN_AMT= null;
-    $scope.Inc.FINC_TXN_IN_DT= null;
-    $scope.Inc.FINC_TXN_IN_STATUS= 'N';
-  };*/
-
- $scope.showAdvanced = function(ev,mode,data) {
     
+  }
+  $scope.mail_send = function(params) {
+      $http({
+        method : "POST",
+        url : 'http://localhost/smartedu/FeesCntrl/Multiple_send_email',
+        data : {'params':params}
+      })
+      .then(function mySucces(response) {
+        console.log(response,'email response');
+         bootbox.alert('<h4><center>Email Send Successfully<center></h4>');
+      }, function myError(response) {
+      });
+}
+ $scope.showAdvanced = function(ev,mode,data) {  
     console.log(mode =='Add');
     console.log(mode ,'modetype');
     console.log(data ,'datatype');
