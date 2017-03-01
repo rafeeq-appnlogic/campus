@@ -40,130 +40,139 @@ angular.module('app')
                   resolve: load(['js/controllers/chart.js'])
               })
               // added by rafeeq
-              .state("app.Employee-Category", {
+              .state('app.hr', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.hr_config', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
+              .state("app.hr_config.Employee-Category", {
                   url: "/employee-category",
                   controller:"empcategoryctrl",
                   templateUrl: "tpl/hrconfig/employee_category.html",
                   resolve: load(['smart-table','js/controllers/hrconfig/empcategoryctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Employee-Department", {
+              .state("app.hr_config.Employee-Department", {
                   url: "/employee-dept",
                   templateUrl: "tpl/hrconfig/employee_department.html",
                   controller:"empdept_ctrl",
                   resolve: load(['smart-table','js/controllers/hrconfig/emp_deptctrl.js','xeditable'])
               })
-              .state("app.Employee-Position", {
+              .state("app.hr_config.Employee-Position", {
                   url: "/employee-position",
                   templateUrl: "tpl/hrconfig/employee_position.html",
                   controller:"position_ctrl",
                   resolve: load(['smart-table','js/controllers/hrconfig/position_ctrl.js','xeditable'])
               })
-              .state("app.Employee-Grade", {
+              .state("app.hr_config.Employee-Grade", {
                   url: "/employee-grade",
                   templateUrl: "tpl/hrconfig/employee_grade.html"
               })
-              .state("app.pr-category", {
+               .state('app.hr_pay', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
+              .state("app.hr_pay.pr-category", {
                   url: "/pr-category",
                   templateUrl: "tpl/payroll/payroll_category.html"
               })
-              .state("app.pr-category-new", {
+              .state("app.hr_pay.pr-category-new", {
                   url: "/pr-category-new",
                   controller:"payrollCategory",
                   templateUrl: "tpl/payroll/PayrollCategoryView.html",
                   resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.pr-category-create",{
+              .state("app.hr_pay.pr-category-create",{
                 url:"/pr-category-create",
                 templateUrl:"tpl/payroll/PayrollCategoryCreate.html"
               })
-              .state("app.pr-group-new",{
+              .state("app.hr_pay.pr-group-new",{
                 url:"/pr-group-new",
                 controller:"payrollGroup",
                 templateUrl:"tpl/payroll/PayrollgroupNew.html",
                 resolve:load(['js/controllers/hrconfig/payrollGroup.js'])
               })
-              .state("app.pr-add", {
+              .state("app.hr_pay.pr-add", {
                   url: "/pr-add",
                   templateUrl: "tpl/payroll/Create_Payroll_Category.html"
-              }).state("app.Payroll-CategoryView", {
+              }).state("app.hr_pay.Payroll-CategoryView", {
                   url: "/Payroll-CategoryView",
                   templateUrl: "tpl/payroll/payroll_category_view.html"
-              }).state("app.payroll", {
+              }).state("app.hr_pay.payroll", {
                   url: "/Payroll",
                   templateUrl: "tpl/payroll/new/payrollView.html",
                   controller:"payrollCategory",
                   resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
-              }).state("app.PayrollEMPView", {
+              }).state("app.hr_pay.PayrollEMPView", {
                   url: "/PayrollEMPView",
                   templateUrl: "tpl/payroll/new/PayrollEMPView.html"
-              }).state("app.PayrollCalucation", {
+              }).state("app.hr_pay.PayrollCalucation", {
                   url: "/PayrollCalucation",
                   templateUrl: "tpl/payroll/new/PayrollCalucation.html"
-              }).state("app.pr-group", {
+              }).state("app.hr_pay.pr-group", {
                   url: "/pr-group",
                   templateUrl: "tpl/payroll/payroll_group_view.html"
-              }).state("app.pr-groupcreate", {
+              }).state("app.hr_pay.pr-groupcreate", {
                   url: "/pr-groupcreate",
                   templateUrl: "tpl/payroll/payroll_group_create.html"
-              }).state("app.pr-groupview", {
+              }).state("app.hr_pay.pr-groupview", {
                   url: "/pr-groupview",
                   templateUrl: "tpl/payroll/payroll_group_viewNew.html"
-              }).state("app.pr-assigngroup", {
+              }).state("app.hr_pay.pr-assigngroup", {
                   url: "/pr-assigngroup",
                   templateUrl: "tpl/payroll/payroll_assign_group.html"
-              }).state("app.pr-changegroup", {
+              }).state("app.hr_pay.pr-changegroup", {
                   url: "/pr-changegroup",
                   templateUrl: "tpl/payroll/payroll_change_group_view.html"
-              }).state("app.pr-changegroupedit", {
+              }).state("app.hr_pay.pr-changegroupedit", {
                   url: "/pr-changegroupedit",
                   templateUrl: "tpl/payroll/payroll_change_group.html"
-              }).state("app.pr-groupedit", {
+              }).state("app.hr_pay.pr-groupedit", {
                   url: "/pr-groupedit",
                   templateUrl: "tpl/payroll/payroll_group_Edit.html"
-              }).state("app.pr-groupemployee", {
+              }).state("app.hr_pay.pr-groupemployee", {
                   url: "/pr-groupemployee",
                   templateUrl: "tpl/payroll/payroll_group_employee.html"
-              }).state("app.pr-groupassignemployee", {
+              }).state("app.hr_pay.pr-groupassignemployee", {
                    url: "/pr-groupassignemployee",
                    templateUrl: "tpl/payroll/payroll_group_assign.html"
-              }).state("app.ps-viewpayslip", {
+              }).state("app.hr_pay.ps-viewpayslip", {
                    url: "/viewpayslip",
                    templateUrl: "tpl/payroll/payslip_viewpayslip.html"
-              }).state("app.ps-viewpayslipall", {
+              }).state("app.hr_pay.ps-viewpayslipall", {
                    url: "/viewpayslipall",
                    templateUrl: "tpl/payroll/payslip_viewpayslipall.html"
               })
 
-              .state("app.Emppayslip-Report", {
+              .state("app.hr_pay.Emppayslip-Report", {
                   url: "/emppayslip-report",
                   templateUrl: "tpl/payroll/EmpPayslipReport.html"
               })
-                 .state("app.Payslipview-Report", {
+                 .state("app.hr_pay.Payslipview-Report", {
                   url: "/payslipview-report",
                   templateUrl: "tpl/payroll/EmpPayslipReportView.html"
               })
-              .state("app.PayslipFor-Employee", {
+              .state("app.hr_pay.PayslipFor-Employee", {
                   url: "/payslipfor-employee",
                   // templateUrl: "tpl/payroll/PayslipForEmployee.html",
                   templateUrl: "tpl/payroll/new/PayslipForEmployee.html",
                   controller:"payrollCategory",
                   resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Generate-Payslip", {
+              .state("app.hr_pay.Generate-Payslip", {
                   url: "/generate-payslip",
                   // templateUrl: "tpl/payroll/GeneratePayslip.html"
                   templateUrl: "tpl/payroll/new/GeneratePayslip.html",
                   controller:"payrollGroup",
                   resolve: load(['js/controllers/hrconfig/payrollGroup.js'])
               })
-              .state("app.View-Payslip", {
+              .state("app.hr_pay.View-Payslip", {
                   url: "/view-payslip",
                   // templateUrl: "tpl/payroll/ViewPayslip.html",
                   templateUrl: "tpl/payroll/new/ViewPayslip.html",
                   controller:"payrollCategory",
                   resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Payslip-View", {
+              .state("app.hr_pay.Payslip-View", {
                   url: "/payslip-view",
                   // templateUrl: "tpl/payroll/PayslipView.html"
                   templateUrl: "tpl/payroll/new/PayslipView.html"
@@ -175,7 +184,7 @@ angular.module('app')
 				  // resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
                 // })
 
-              .state("app.GeneratePayslip-PayrollGroup", {
+              .state("app.hr_pay.GeneratePayslip-PayrollGroup", {
                   url: "/generatepayslip-payrollgroup",
                   templateUrl: "tpl/payroll/GeneratePayslipPayrollGroup.html"
                 })
@@ -183,42 +192,45 @@ angular.module('app')
                   // url: "/viewpayslip-payrollgroup",
                   // templateUrl: "tpl/payroll/ViewPayslipPayrollGroup.html"
                 // })
-                .state("app.Generate-PayslipforAll", {
+                .state("app.hr_pay.Generate-PayslipforAll", {
                   url: "generate-payslipforall",
                   templateUrl: "tpl/payroll/GeneratePayslipforAll.html"
                 })
-				.state("app.PayslipFor-payrollGroup", {
+				.state("app.hr_pay.PayslipFor-payrollGroup", {
                   url: "/payslipfor-payrollGroup",
                   templateUrl: "tpl/payroll/new/PayslipForPayrollGroup.html",
                   controller:"payrollCategory",
                   resolve: load(['smart-table','js/controllers/hrconfig/payrollCategory.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
+               .state('app.hr_levMang', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
 				
-              .state("app.Attendance-Register", {
+              .state("app.hr_levMang.Attendance-Register", {
                   url: "/attendance-register",
                   templateUrl: "tpl/EmployeeLeaveMangement/AttendanceRegister.html"
               })
-              .state("app.Attendance-Report", {
+              .state("app.hr_levMang.Attendance-Report", {
                   url: "/attendance-report",
                   templateUrl: "tpl/EmployeeLeaveMangement/AttendanceReport.html"
               })
-              .state("app.Leave-Application", {
+              .state("app.hr_levMang.Leave-Application", {
                   url: "/leave-application",
                   templateUrl: "tpl/EmployeeLeaveMangement/LeaveApplication.html"
               })
-              .state("app.Leave-Reset", {
+              .state("app.hr_levMang.Leave-Reset", {
                   url: "/leave-reset",
                   templateUrl: "tpl/EmployeeLeaveMangement/LeaveReset.html"
               })
-              .state("app.Reset-Leaves", {
+              .state("app.hr_levMang.Reset-Leaves", {
                   url: "/reset-leaves",
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetLeaves.html"
               })
-              .state("app.Reset-Settings", {
+              .state("app.hr_levMang.Reset-Settings", {
                   url: "/reset-settings",
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetSettings.html"
               })
-              .state("app.ResetLeave-allEmp", {
+              .state("app.hr_levMang.ResetLeave-allEmp", {
                   url: "/resetLeave-allEmployee",
                   templateUrl: "tpl/EmployeeLeaveMangement/ResetEmployeeLeave.html"
               })
@@ -235,74 +247,80 @@ angular.module('app')
               //     templateUrl: "tpl/Finance/liabilityview.html",
               //     resolve: load(['smart-table','js/controllers/finance/liability.js','xeditable','ui.bootstrap'])
               // })
-              .state("app.fn-category", {
+               .state('app.fn.fee.con', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
+              .state("app.fn.fee.con.fn-category", {
                   url: "/configcategory",
                   controller:"feecategoryctrl",
                   templateUrl: "tpl/finance_module/feecategory.html",
                   resolve: load(['smart-table','js/controllers/finance/feecategoryctrl.js','toaster','ngBootbox'])
               })
-              .state("app.fn-particularview", { 
+              .state("app.fn.fee.con.fn-particularview", { 
                   url: "/particularview",
                   controller:"feeparticularctrl",
                   templateUrl: "tpl/finance_module/feesparticular.html",
                   resolve: load(['smart-table','js/controllers/finance/feeparticularctrl.js','toaster','ngBootbox'])
               })
-               .state("app.fee-discount", { 
+               .state("app.fn.fee.con.fee-discount", { 
                   url: "/discountview",
                   controller:"feediscountctrl",
                   templateUrl: "tpl/Finance/feeDiscount.html",
                   resolve: load(['smart-table','js/controllers/finance/feediscountctrl.js','toaster','ngBootbox'])
               })
-               .state("app.add-fine", { 
+               .state("app.fn.fee.con.add-fine", { 
                   url: "/fineview",
                   controller:"finectrl",
                   templateUrl: "tpl/Finance/addFine.html",
                   resolve: load(['smart-table','js/controllers/finance/finectrl.js','toaster','ngBootbox'])
               })
-               .state("app.fee-schedule", { 
+               .state("app.fn.fee.fee-schedule", { 
                   url: "/schedulefee",
                   controller:"schedulefeectrl",
                   templateUrl: "tpl/Finance/schedulefee.html",
                   resolve: load(['smart-table','js/controllers/finance/schedulefeectrl.js','toaster','ngBootbox'])
               })
                 // added by vijayaraj
-              .state("app.Bank-Details", {
+              .state("app.hr_config.Bank-Details", {
                     url: "/bank-details",
                     templateUrl: "tpl/hrconfig/bank_details.html",
                     controller:"bank_detailsctrl",
                     resolve: load(['smart-table','js/controllers/hrconfig/bank_detailsctrl.js','xeditable'])
-                }).state("app.Additional-Details", {
+                }).state("app.hr_config.Additional-Details", {
                     url: "/additional-details",
                     templateUrl: "tpl/hrconfig/additional_Details.html"
-                }).state("app.Working-Days", {
+                }).state("app.hr_config.Working-Days", {
                     url: "/working-days",
                     templateUrl: "tpl/hrconfig/workind_days.html"
-                }).state("app.Leave-Types", {
+                }).state("app.hr_config.Leave-Types", {
                     url: "/leave-types",
                     templateUrl: "tpl/hrconfig/leave-types.html"
-                }).state("app.Leavetype-Add", {
+                }).state("app.hr_config.Leavetype-Add", {
                     url: "/leavetype-add",
                     templateUrl: "tpl/hrconfig/leave-type-add.html"
-                })          
-                .state("app.Employee-Admission", {
+                }) 
+                .state('app.hr_empMang', {
+                  template: '<div ui-view class="fade-in"></div>'
+                })         
+                .state("app.hr_empMang.Employee-Admission", {
                   url: "/employee-admission",
                   controller:"employeeMgmnt",
                   templateUrl: "tpl/employee_management/employee-admission.html",
                   resolve: load(['js/controllers/employeeMgmnt/employeeMgmnt.js','toaster','ngBootbox'])
                 })
-                .state("app.Employee-Details", {
+                .state("app.hr_empMang.Employee-Details", {
                   url: "/employee-details",
                   controller:"empadmission_view",
                   templateUrl: "tpl/employee_management/employee-details.html",
                   resolve: load(['js/controllers/employeeMgmnt/empadm_view.js','toaster','ngBootbox','smart-table','xeditable','ui.bootstrap'])
                 })
-                .state("app.employee-view-profile", {
+                .state("app.hr_empMang.employee-view-profile", {
                   url: "/employee-view-profile",
                   controller:"employee_Profile",
                   templateUrl: "tpl/employee_management/employeeViewProfile.html",
                   resolve: load(['js/controllers/employeeMgmnt/empprofileCtrl.js','toaster','ngBootbox'])
                 })
-                .state("app.Employee-Sub-Association", {
+                .state("app.hr_empMang.Employee-Sub-Association", {
                   url: "/employee-sub-association",
                   templateUrl: "tpl/employee_management/employee-sub_assoc.html",
                   resolve: load(['js/controllers/hrconfig.js'])
@@ -374,17 +392,20 @@ angular.module('app')
                 templateUrl: "tpl/Student/student_roll.html",
               })
                //added by manikandan
-              .state("app.Create-RefundRule", { 
+              .state('app.app.fn.fee.ref', {
+                  template: '<div ui-view class="fade-in"></div>'
+              })
+              .state("app.fn.fee.ref.Create-RefundRule", { 
                 url: "/create-refundrule",
                 controller:"createRefundCtrl",
                 templateUrl: "tpl/Finance/addFeesRefund.html",
                 resolve: load(['smart-table','js/controllers/finance/createRefundCtrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-                .state("app.View-RefundRule", {
+                .state("app.fn.fee.ref.View-RefundRule", {
                 url: "/view-refundrule",
                 templateUrl: "tpl/Finance/viewFeesRefund.html",
               })
-              //   .state("app.Apply-RefundRule", {
+              //   .state("app.fn.fee.ref.Apply-RefundRule", {
               //   url: "/apply-refundrule",
               //   templateUrl: "tpl/Finance/applyFeesRefund.html",
               // })
@@ -402,6 +423,18 @@ angular.module('app')
               })
 
               .state('app.acad.timeT.conf', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.acad.Onlexm', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.acad.exm', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.acad.Lev', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.acad.discip', {
                 template: '<div ui-view class="fade-in"></div>'
               })
 
@@ -475,26 +508,26 @@ angular.module('app')
                 resolve: load(['smart-table','js/controllers/academics/viewSubjectsctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
                //added by gnanamani
-                .state("app.Apply-Leave", {
+                .state("app.acad.Lev.Apply-Leave", {
                 url: "/apply-leave",
                 templateUrl: "tpl/academics/applyLeave.html",
               })
-                .state("app.Add-Complaint", {
+                .state("app.acad.discip.Add-Complaint", {
                 url: "/add-complaint",
                 templateUrl: "tpl/academics/addComplaint.html",
               })
                 
-               .state("app.Grade-Level", {
+               .state("app.acad.exm.Grade-Level", {
                 url: "/grade-level",
                 controller:"gradeLevelctrl",
                 templateUrl: "tpl/academics/gradeLevel.html",
                 resolve: load(['smart-table','js/controllers/academics/gradeLevelctrl.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-                .state("app.View-Exam", {
+                .state("app.acad.Onlexm.View-Exam", {
                 url: "/eiew-exam",
                 templateUrl: "tpl/academics/viewOnlineExam.html",
               })
-                .state("app.Add-Newexam", {
+                .state("app.acad.Onlexm.Add-Newexam", {
                 url: "/add-newexam",
                 templateUrl: "tpl/academics/addNewExam.html",
               })
@@ -518,32 +551,44 @@ angular.module('app')
                   // resolve: load( ['js/controllers/signin.js'] )
               })
 
+              .state('app.fn', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.fn.ALM', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.fn.trans', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
+              .state('app.fn.fee', {
+                template: '<div ui-view class="fade-in"></div>'
+              })
 
-              .state("app.finance-asset", {
+              .state("app.fn.ALM.finance-asset", {
                   url: "/asset",
                   controller:"financeasset",
                   templateUrl: "tpl/finance_module/asset.html",
                   resolve: load(['smart-table','js/controllers/finance/financeasset.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.finance-liability", {
+              .state("app.fn.ALM.finance-liability", {
                   url: "/liability",
                   controller:"liablityCtrl",
                   templateUrl: "tpl/finance_module/liability.html",
                   resolve: load(['smart-table','js/controllers/finance/finance_liability.js','xeditable','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.finance-category", {
+              .state("app.fn.finance-category", {
                   url: "/category",
                   controller:"financecategory",
                   templateUrl: "tpl/finance_module/category.html",
                   resolve: load(['smart-table','js/controllers/finance/finance_category.js','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.Add-Expense", {
+              .state("app.fn.trans.Add-Expense", {
                   url: "/add-expense",
                   controller:"expenseCtrl",
                   templateUrl: "tpl/finance_module/expense.html",
                   resolve: load(['smart-table','js/controllers/finance/expense.js','ui.bootstrap','toaster','ngBootbox'])
               })
-               .state("app.Add-Income", {
+               .state("app.fn.trans.Add-Income", {
                 url: "/add-income",
                 controller:"incomeCtrl",
                 templateUrl: "tpl/finance_module/income.html",
@@ -567,25 +612,25 @@ angular.module('app')
                 templateUrl: "tpl/finance_module/applyrefund_details.html",
                 resolve: load(['smart-table','js/controllers/finance/refundview.js','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.donation-view", {
+              .state("app.fn.donation-view", {
                   url: "/donation-view",
                   controller:"donationCtrl",
                   templateUrl: "tpl/finance_module/viewdonation.html",
                   resolve: load(['smart-table','js/controllers/finance/donation.js','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.fees-defaulter", {
+              .state("app.fn.fee.fees-defaulter", {
                   url: "/fees-defaulter",
                   controller:"feesdefaultCtrl",
                   templateUrl: "tpl/finance_module/feesdefaulter_view.html",
                   resolve: load(['smart-table','js/controllers/finance/feesdefaults.js','ui.bootstrap','toaster','ngBootbox'])
               })
-              .state("app.fees-defaulter-Details", {
+              .state("app.fn.fee.fees-defaulter-Details", {
                   url: "/fees-defaulter",
                   controller:"feesdefaultCtrl",
                   templateUrl: "tpl/finance_module/feesdefaulter_details.html",
                   resolve: load(['smart-table','js/controllers/finance/feesdefaults.js','ui.bootstrap','toaster','ngBootbox'])
               })
-              //  .state("app.Reverted-Transaction", {
+              //  .state("app.fn.trans.Reverted-Transaction", {
               //   url: "/reverted-transaction",
               //   templateUrl: "tpl/Finance/revertedTransaction.html",
               // })
